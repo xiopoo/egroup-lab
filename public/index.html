@@ -51,10 +51,9 @@ img{max-width:100%;display:block;object-fit:contain}
 .header-nav a.active::after{width:100%}
 
 /* Hero */
-.hero{background:linear-gradient(135deg,var(--brand) 0%,var(--brand-dark) 100%);position:relative;overflow:hidden}
+.hero{background:linear-gradient(135deg,var(--brand) 0%,var(--brand-dark) 100%);position:relative;overflow:hidden;border-bottom:1px solid var(--border-light)}
 .hero::before{content:'';position:absolute;top:-50%;right:-10%;width:600px;height:600px;background:radial-gradient(circle,rgba(255,255,255,.08) 0%,transparent 70%);border-radius:50%}
-.hero::after{content:'';position:absolute;bottom:-1px;left:0;right:0;height:80px;background:#fff;clip-path:polygon(0 60%,100% 0,100% 100%,0 100%)}
-.hero-inner{position:relative;display:grid;grid-template-columns:1.2fr 1fr;gap:60px;align-items:center;min-height:480px;padding:60px 0 100px}
+.hero-inner{position:relative;display:grid;grid-template-columns:1.2fr 1fr;gap:60px;align-items:center;min-height:480px;padding:60px 0}
 .hero-content{position:relative;z-index:1}
 .hero-badge{display:inline-block;padding:6px 16px;background:rgba(255,255,255,.15);color:#fff;font-size:13px;border-radius:20px;margin-bottom:24px;backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.2)}
 .hero-title{font-size:48px;font-weight:700;color:#fff;letter-spacing:-.02em;line-height:1.15;margin-bottom:12px}
@@ -203,7 +202,7 @@ img{max-width:100%;display:block;object-fit:contain}
   .header-nav{gap:18px}
   .header-nav a{font-size:13px}
   
-  .hero-inner{grid-template-columns:1fr;gap:40px;min-height:auto;padding:48px 0 80px}
+  .hero-inner{grid-template-columns:1fr;gap:40px;min-height:auto;padding:48px 0}
   .hero-badge{font-size:12px;margin-bottom:20px}
   .hero-title{font-size:36px}
   .hero-subtitle{font-size:18px}
@@ -211,7 +210,6 @@ img{max-width:100%;display:block;object-fit:contain}
   .hero-desc{font-size:14px;margin-bottom:32px}
   .hero-cta{padding:12px 28px;font-size:15px}
   .hero-visual{display:none}
-  .hero::after{height:50px}
   
   .stats-section{padding:40px 0}
   .stats{grid-template-columns:repeat(2,1fr);gap:0}
