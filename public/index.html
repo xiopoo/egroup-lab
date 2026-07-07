@@ -612,7 +612,6 @@
         createApp({
             setup() {
                 const currentPage = ref('home');
-                const showFastMode = ref(false);
                 const useFastMode = ref(false);
                 const questions = ref([]);
                 const currentQuestionIndex = ref(0);
@@ -752,7 +751,6 @@
 
                 const startFastDiagnosis = () => {
                     useFastMode.value = true;
-                    showFastMode.value = true;
                     questions.value = [...fastQuestions];
                     currentQuestionIndex.value = 0;
                     currentLevel.value = questions.value[0]?.level || 0;
@@ -881,7 +879,6 @@
 
                 return {
                     currentPage,
-                    showFastMode,
                     useFastMode,
                     questions,
                     currentQuestionIndex,
