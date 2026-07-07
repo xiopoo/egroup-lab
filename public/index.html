@@ -103,7 +103,7 @@
                         <p class="text-gray-600 text-sm">36道题，3分钟，快速了解企业风险状况</p>
                     </div>
                     <button @click="startDiagnosis" class="btn-primary w-full mb-4">开始诊断</button>
-                    <button @click="showFastMode = !showFastMode" class="btn-secondary w-full text-sm">快速体检（5题）</button>
+                    <button @click="startFastDiagnosis" class="btn-secondary w-full text-sm">快速体检（5题）</button>
                     <div v-if="showFastMode" class="mt-4 p-4 bg-blue-50 rounded-lg text-sm text-blue-700">
                         快速体检仅包含5道基础题，适合初步筛查。完整诊断包含36道题，覆盖债务、资产、经营、法律、家庭五个维度。
                     </div>
@@ -727,7 +727,19 @@
                 };
 
                 const startDiagnosis = () => {
-                    questions.value = useFastMode.value ? [...fastQuestions] : [...fullQuestions];
+                    useFastMode.value = false;
+                    questions.value = [...fullQuestions];
+                    currentQuestionIndex.value = 0;
+                    currentLevel.value = questions.value[0]?.level || 0;
+                    selectedAnswer.value = null;
+                    answers.value = {};
+                    currentPage.value = 'question';
+                };
+
+                const startFastDiagnosis = () => {
+                    useFastMode.value = true;
+                    showFastMode.value = true;
+                    questions.value = [...fastQuestions];
                     currentQuestionIndex.value = 0;
                     currentLevel.value = questions.value[0]?.level || 0;
                     selectedAnswer.value = null;
@@ -869,6 +881,7 @@
                     suggestions,
                     getScoreClass,
                     startDiagnosis,
+                    startFastDiagnosis,
                     selectOption,
                     prevQuestion,
                     nextQuestion,
