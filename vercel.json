@@ -1,5 +1,4 @@
 {
-  "name": "regroup-lab-diagnosis",
   "version": 2,
   "builds": [
     {
@@ -11,8 +10,7 @@
     { "src": "/", "dest": "/public/index.html" },
     { "src": "/diag", "dest": "/public/diag.html" },
     { "src": "/intro", "dest": "/public/intro.html" },
-    { "src": "/(.*)\\.html", "dest": "/public/$1" },
-    { "src": "/(.*)", "dest": "/public/$1" }
+    { "src": "/(.*)\\.html", "dest": "/public/$1" }
   ],
   "headers": [
     {
@@ -25,6 +23,12 @@
       "source": "/public/(.*)\\.html",
       "headers": [
         { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
+      ]
+    },
+    {
+      "source": "/(.*)\\.txt",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=3600" }
       ]
     }
   ]

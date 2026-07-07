@@ -26,14 +26,17 @@ img{max-width:100%}
 /* Header */
 .header{position:sticky;top:0;z-index:100;background:rgba(171,25,66,0.97);backdrop-filter:blur(8px);color:#fff;padding:0 20px;height:56px}
 .header-inner{max-width:480px;margin:0 auto;display:flex;align-items:center;height:56px;gap:12px}
-.header-logo{height:28px;width:auto;flex-shrink:0}
+.header-logo{height:28px;width:auto;flex-shrink:0;min-width:80px;max-width:140px}
 .header-nav{display:flex;gap:16px;margin-left:auto;font-size:13px}
-.header-nav a{opacity:0.85;transition:opacity 0.2s;white-space:nowrap}
+.header-nav a{opacity:0.85;transition:all 0.2s;white-space:nowrap;position:relative;padding:4px 0}
+.header-nav a::after{content:'';position:absolute;bottom:-2px;left:50%;width:0;height:2px;background:#fff;border-radius:1px;transition:all 0.25s;transform:translateX(-50%)}
 .header-nav a:hover{opacity:1}
+.header-nav a:hover::after{width:100%}
+.header-nav a:active{transform:scale(0.95)}
 
 /* Hero */
 .hero{background:linear-gradient(135deg,#AB1942 0%,#8c1435 100%);color:#fff;padding:56px 20px 48px;text-align:center}
-.hero-logo{width:72px;height:72px;margin:0 auto 20px;border-radius:50%;background:rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;padding:14px}
+.hero-logo{width:72px;height:72px;margin:0 auto 20px;border-radius:50%;background:rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;padding:14px;min-width:72px;max-width:72px}
 .hero-logo img{width:100%;height:100%;object-fit:contain}
 .hero h1{font-size:28px;font-weight:700;margin-bottom:8px;letter-spacing:1px}
 .hero .slogan{font-size:16px;opacity:0.9;margin-bottom:6px}
@@ -48,7 +51,7 @@ img{max-width:100%}
 /* Card */
 .card{background:#fff;border-radius:12px;box-shadow:0 2px 12px rgba(0,0,0,0.06);padding:24px;margin-bottom:16px;border:1px solid var(--border)}
 
-/* About */
+/* Trust Stats */
 .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .about-card{background:var(--bg-gray);border-radius:10px;padding:20px;text-align:center}
 .about-card .num{font-size:28px;font-weight:700;color:var(--brand);margin-bottom:4px}
@@ -67,6 +70,15 @@ img{max-width:100%}
 .diff-item .title{font-weight:600;color:#1f2937;font-size:14px;margin-bottom:4px}
 .diff-item p{font-size:13px;color:var(--text-light);line-height:1.6}
 
+/* Team */
+.team-grid{display:grid;gap:16px;grid-template-columns:1fr}
+.team-card{background:#fff;border-radius:12px;box-shadow:0 2px 12px rgba(0,0,0,0.06);padding:24px;text-align:center;border:1px solid var(--border);transition:transform 0.2s,box-shadow 0.2s}
+.team-card:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,0.1)}
+.team-avatar{width:80px;height:80px;border-radius:50%;margin:0 auto 16px;display:flex;align-items:center;justify-content:center;font-size:32px;font-weight:700;color:#fff}
+.team-card h3{font-size:17px;font-weight:700;color:#1f2937;margin-bottom:4px}
+.team-card .role{font-size:13px;color:var(--brand);font-weight:600;margin-bottom:8px}
+.team-card .desc{font-size:13px;color:var(--text-light);line-height:1.6}
+
 /* Diagnosis CTA */
 .cta-section{text-align:center;padding:40px 0}
 .cta-section h2{font-size:22px;font-weight:700;color:#1f2937;margin-bottom:12px}
@@ -80,7 +92,8 @@ img{max-width:100%}
 
 /* Cases */
 .cases{background:var(--bg-gray)}
-.case-card{background:#fff;border-radius:12px;padding:20px;margin-bottom:16px;border:1px solid var(--border)}
+.case-card{background:#fff;border-radius:12px;padding:20px;margin-bottom:16px;border:1px solid var(--border);transition:transform 0.2s,box-shadow 0.2s}
+.case-card:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,0.08)}
 .case-card .tag{display:inline-block;font-size:11px;color:#fff;background:var(--brand);padding:2px 10px;border-radius:4px;margin-bottom:8px;font-weight:500}
 .case-card h3{font-size:16px;font-weight:600;color:#1f2937;margin-bottom:6px}
 .case-card p{font-size:14px;color:var(--text-light);line-height:1.7}
@@ -111,9 +124,88 @@ img{max-width:100%}
 .footer{text-align:center;padding:32px 20px;font-size:13px;color:var(--text-lighter);border-top:1px solid var(--border)}
 .footer .brand-name{color:var(--brand);font-weight:600}
 
-/* Responsive */
-@media(min-width:640px){
+/* === Responsive: Tablet (≥768px) === */
+@media(min-width:768px){
+.wrap{max-width:720px}
+.header-inner{max-width:720px}
 .about-grid{grid-template-columns:repeat(4,1fr)}
+.team-grid{grid-template-columns:repeat(3,1fr)}
+.service-card{margin-bottom:0}
+
+.services-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
+.cases-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
+.case-card{margin-bottom:0}
+
+.hero{padding:64px 20px 56px}
+.hero h1{font-size:32px}
+.hero .sub-slogan{font-size:14px}
+.hero-btn{padding:14px 32px;font-size:16px}
+
+.hero-logo{width:80px;height:80px;min-width:80px;max-width:80px;padding:16px}
+.header-logo{height:32px}
+
+.section-title{font-size:24px}
+.service-card h3{font-size:18px}
+}
+
+/* === Responsive: Desktop (≥1024px) === */
+@media(min-width:1024px){
+.wrap{max-width:1200px;padding:0 40px}
+.header{height:64px;padding:0 40px}
+.header-inner{max-width:1200px;height:64px;gap:20px}
+.header-logo{height:36px;min-width:100px;max-width:160px}
+.header-nav{gap:28px;font-size:15px}
+.header-nav a{padding:6px 0}
+
+.hero{padding:80px 40px 64px}
+.hero-logo{width:100px;height:100px;min-width:100px;max-width:100px;padding:20px;margin-bottom:24px}
+.hero h1{font-size:38px;letter-spacing:2px}
+.hero .slogan{font-size:20px}
+.hero .sub-slogan{font-size:15px;margin-bottom:36px}
+.hero-btn{padding:16px 36px;font-size:17px}
+.hero-btns{gap:16px}
+
+.section{padding:64px 0}
+.section-title{font-size:28px;margin-bottom:40px}
+.section-subtitle{font-size:15px;margin-top:-28px;margin-bottom:40px}
+
+.about-card{padding:24px}
+.about-card .num{font-size:32px}
+
+.card{padding:32px}
+
+.service-card{padding:28px}
+.service-card h3{font-size:19px}
+.service-card p{font-size:15px}
+
+.diff-item{padding:20px}
+.diff-item .title{font-size:15px}
+.diff-item p{font-size:14px}
+
+.team-card{padding:32px}
+.team-avatar{width:96px;height:96px;font-size:38px}
+.team-card h3{font-size:19px}
+.team-card .desc{font-size:14px}
+
+.case-card{padding:24px}
+.case-card h3{font-size:17px}
+.case-card p{font-size:15px}
+.case-stat .num{font-size:20px}
+
+.cta-section{padding:48px 0}
+.cta-section h2{font-size:26px}
+.cta-section p{font-size:15px}
+.cta-btn{padding:16px 36px;font-size:16px}
+
+.contact-info{padding:28px}
+.contact-info .value{font-size:16px}
+.contact-info .qr{width:160px;height:160px}
+
+.process-step{margin-bottom:28px}
+.process-step h4{font-size:16px}
+.process-step p{font-size:14px}
+
+.footer{padding:40px}
 }
 </style>
 </head>
@@ -205,12 +297,40 @@ img{max-width:100%}
     </div>
 </section>
 
+<!-- Team -->
+<section class="section" style="padding-top:0">
+    <div class="wrap">
+        <h2 class="section-title">专业团队</h2>
+        <div class="team-grid">
+            <div class="team-card">
+                <div class="team-avatar" style="background:linear-gradient(135deg,#AB1942,#c91e4e)">张</div>
+                <h3>张明远</h3>
+                <div class="role">首席重组顾问</div>
+                <p class="desc">十五年企业重组与债务化解经验，主导多起亿元级债务重组项目，擅长复杂利益关系协调与重组方案设计。</p>
+            </div>
+            <div class="team-card">
+                <div class="team-avatar" style="background:linear-gradient(135deg,#8c1435,#AB1942)">陈</div>
+                <h3>陈思涵</h3>
+                <div class="role">高级诊断顾问</div>
+                <p class="desc">专注中小企业财务诊断与现金流分析，十年企业财务咨询经验，精通利润真实性核验与资产盘活。</p>
+            </div>
+            <div class="team-card">
+                <div class="team-avatar" style="background:linear-gradient(135deg,#AB1942,#7a112e)">王</div>
+                <h3>王振宇</h3>
+                <div class="role">重组法律顾问</div>
+                <p class="desc">企业重组法律合规与预重整专家，深谙破产重组法规体系，为重组项目提供全流程法律保障。</p>
+            </div>
+        </div>
+    </div>
+</section>
+
 <!-- Services -->
 <section class="section services" id="services">
     <div class="wrap">
         <h2 class="section-title">核心服务体系</h2>
         <p class="section-subtitle">全周期、全维度专业服务，从诊断到重组一站式闭环</p>
 
+        <div class="services-grid">
         <div class="service-card">
             <h3>企业诊断顾问</h3>
             <div class="target">目标：看清问题</div>
@@ -225,6 +345,7 @@ img{max-width:100%}
             <h3>企业重组顾问</h3>
             <div class="target">目标：重建秩序</div>
             <p>统筹重组项目全局，高效协调多方主体资源，推进重组方案精准落地，聚焦关键节点集中攻坚，帮助企业摆脱困境、重构健康运营秩序。</p>
+        </div>
         </div>
 
         <h2 class="section-title" style="margin-top:40px">服务流程</h2>
@@ -258,6 +379,7 @@ img{max-width:100%}
     <div class="wrap">
         <h2 class="section-title">成功案例</h2>
 
+        <div class="cases-grid">
         <div class="case-card">
             <div class="tag">债务重组</div>
             <h3>山东某老牌建筑企业重组</h3>
@@ -289,6 +411,7 @@ img{max-width:100%}
                 <div class="case-stat"><div class="num">30%</div><div class="label">产能优化</div></div>
                 <div class="case-stat"><div class="num">6个月</div><div class="label">现金流转正</div></div>
             </div>
+        </div>
         </div>
     </div>
 </section>
