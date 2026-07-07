@@ -1,5 +1,7 @@
 {
   "version": 2,
+  "buildCommand": null,
+  "outputDirectory": "public",
   "cleanUrls": true,
   "notFound": {
     "path": "/404.html"
