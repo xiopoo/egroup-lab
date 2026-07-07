@@ -102,11 +102,20 @@
                         <h2 class="text-xl font-bold text-gray-800 mb-2">企业经营健康度体检</h2>
                         <p class="text-gray-600 text-sm">36道题，3分钟，快速了解企业风险状况</p>
                     </div>
-                    <button @click="startDiagnosis" class="btn-primary w-full mb-4">开始诊断</button>
-                    <button @click="startFastDiagnosis" class="btn-secondary w-full text-sm">快速体检（5题）</button>
-                    <div v-if="showFastMode" class="mt-4 p-4 bg-blue-50 rounded-lg text-sm text-blue-700">
-                        快速体检仅包含5道基础题，适合初步筛查。完整诊断包含36道题，覆盖债务、资产、经营、法律、家庭五个维度。
-                    </div>
+                    <div class="relative group mb-4">
+                         <button @click="startDiagnosis" class="btn-primary w-full">开始诊断</button>
+                         <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-64 p-3 bg-gray-800 text-white text-xs rounded-lg opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity duration-200 shadow-lg z-10">
+                             36道完整题目，覆盖债务、资产、经营、法律、家庭保障五大维度，全面评估企业健康状况（约3分钟）
+                             <div class="absolute top-full left-1/2 -translate-x-1/2 -mt-1 border-4 border-transparent border-t-gray-800"></div>
+                         </div>
+                     </div>
+                     <div class="relative group">
+                         <button @click="startFastDiagnosis" class="btn-secondary w-full text-sm">快速体检（5题）</button>
+                         <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-64 p-3 bg-gray-800 text-white text-xs rounded-lg opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity duration-200 shadow-lg z-10">
+                             仅5道基础题，快速筛查企业基本状况，适合初步了解风险方向（约1分钟）
+                             <div class="absolute top-full left-1/2 -translate-x-1/2 -mt-1 border-4 border-transparent border-t-gray-800"></div>
+                         </div>
+                     </div>
                 </div>
                 <div class="mt-6 text-sm text-gray-500">
                     <p>已有 <strong class="brand-color">{{ diagnosisCount }}</strong> 位老板完成诊断</p>
