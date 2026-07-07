@@ -110,7 +110,7 @@
         .tooltip-wrapper:hover .tooltip{opacity:1}
         .header{background-color:#AB1942;color:white;padding:16px}
         .header-inner{max-width:448px;margin:0 auto;display:flex;align-items:center}
-        .header-logo{width:120px;height:auto;flex-shrink:0;object-fit:contain}
+        .header-logo{width:140px;height:auto;flex-shrink:0;object-fit:contain;filter:drop-shadow(0 1px 2px rgba(0,0,0,0.1))}
         .header-title-area{flex:1;text-align:center}
         .header h1{font-size:20px;font-weight:700}
         .header p{font-size:12px;opacity:0.8}
@@ -127,6 +127,8 @@
         .h-8{height:32px}
         .min-h-screen{min-height:100vh}
         .icon-lg{width:64px;height:64px;color:#d1d5db}
+        .home-logo{width:200px;height:auto;margin:0 auto 12px;object-fit:contain;display:block}
+        .home-logo-subtitle{font-size:13px;color:#9ca3af;margin-bottom:8px;font-weight:500;letter-spacing:1px}
     </style>
 </head>
 <body>
@@ -146,9 +148,8 @@
             <div v-if="currentPage === 'home'" class="text-center py-12">
                 <div class="card">
                     <div class="mb-6">
-                        <svg class="icon-lg mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
-                        </svg>
+                        <img src="images/logo-color.png" alt="灰金重组" class="home-logo">
+                        <p class="home-logo-subtitle">企业健康度体检</p>
                         <h2 class="text-xl font-bold text-gray-800 mb-2">企业经营健康度体检</h2>
                         <p class="text-gray-600 text-sm">36道题，3分钟，快速了解企业风险状况</p>
                     </div>
