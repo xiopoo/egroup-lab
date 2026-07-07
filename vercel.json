@@ -10,7 +10,8 @@
     { "src": "/", "dest": "/public/index.html" },
     { "src": "/diag", "dest": "/public/diag.html" },
     { "src": "/intro", "dest": "/public/intro.html" },
-    { "src": "/(.*)\\.html", "dest": "/public/$1" }
+    { "src": "/(.*)\\.html", "dest": "/public/$1" },
+    { "src": "/(.*)", "dest": "/public/$1" }
   ],
   "headers": [
     {
