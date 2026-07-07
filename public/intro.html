@@ -4,18 +4,89 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>企业健康度体检 | 灰金重组</title>
-    <script src="https://cdn.tailwindcss.com"></script>
     <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
             background-color: #f8f9fa;
+            min-height: 100vh;
         }
-        .brand-color {
-            color: #AB1942;
-        }
-        .brand-bg {
-            background-color: #AB1942;
-        }
+        .brand-color { color: #AB1942; }
+        .brand-bg { background-color: #AB1942; }
+        .text-white { color: #fff; }
+        .text-center { text-align: center; }
+        .flex { display: flex; }
+        .items-start { align-items: flex-start; }
+        .flex-shrink-0 { flex-shrink: 0; }
+        .shadow-lg { box-shadow: 0 4px 16px rgba(0,0,0,0.12); }
+        .mx-auto { margin-left: auto; margin-right: auto; }
+        .mb-1 { margin-bottom: 4px; }
+        .mb-2 { margin-bottom: 8px; }
+        .mb-4 { margin-bottom: 16px; }
+        .mb-6 { margin-bottom: 24px; }
+        .mt-1 { margin-top: 4px; }
+        .mr-4 { margin-right: 16px; }
+        .p-3 { padding: 12px; }
+        .px-4 { padding-left: 16px; padding-right: 16px; }
+        .py-6 { padding-top: 24px; padding-bottom: 24px; }
+        .py-8 { padding-top: 32px; padding-bottom: 32px; }
+        .text-xs { font-size: 12px; }
+        .text-sm { font-size: 14px; }
+        .text-lg { font-size: 18px; }
+        .text-xl { font-size: 20px; }
+        .text-2xl { font-size: 24px; }
+        .text-3xl { font-size: 30px; }
+        .text-4xl { font-size: 36px; }
+        .font-medium { font-weight: 500; }
+        .font-semibold { font-weight: 600; }
+        .font-bold { font-weight: 700; }
+        .opacity-80 { opacity: 0.8; }
+        .text-gray-400 { color: #9ca3af; }
+        .text-gray-500 { color: #6b7280; }
+        .text-gray-600 { color: #4b5563; }
+        .text-gray-800 { color: #1f2937; }
+        .text-red-600 { color: #dc2626; }
+        .text-red-800 { color: #991b1b; }
+        .text-blue-600 { color: #2563eb; }
+        .text-blue-800 { color: #1e40af; }
+        .text-green-600 { color: #16a34a; }
+        .text-green-800 { color: #166534; }
+        .text-orange-600 { color: #ea580c; }
+        .text-orange-800 { color: #9a3412; }
+        .text-purple-600 { color: #9333ea; }
+        .text-purple-800 { color: #6b21a8; }
+        .bg-gray-50 { background-color: #f9fafb; }
+        .bg-gray-200 { background-color: #e5e7eb; }
+        .bg-white { background-color: #fff; }
+        .bg-red-50 { background-color: #fef2f2; }
+        .bg-blue-50 { background-color: #eff6ff; }
+        .bg-green-50 { background-color: #f0fdf4; }
+        .bg-orange-50 { background-color: #fff7ed; }
+        .bg-purple-50 { background-color: #faf5ff; }
+        .bg-white-20 { background-color: rgba(255,255,255,0.2); }
+        .rounded-lg { border-radius: 8px; }
+        .rounded-full { border-radius: 50%; }
+        .border-t { border-top: 1px solid #e5e7eb; }
+        .grid { display: grid; }
+        .grid-cols-2 { grid-template-columns: 1fr 1fr; }
+        .gap-3 { gap: 12px; }
+        .space-y-4 > * + * { margin-top: 16px; }
+        .space-y-6 > * + * { margin-top: 24px; }
+        .relative { position: relative; }
+        .absolute { position: absolute; }
+        .left-2 { left: 8px; }
+        .left-4 { left: 16px; }
+        .top-0 { top: 0; }
+        .bottom-0 { bottom: 0; }
+        .w-0-5 { width: 2px; }
+        .w-5 { width: 20px; }
+        .h-5 { height: 20px; }
+        .w-16 { width: 64px; }
+        .h-16 { height: 64px; }
+        .max-w-md { max-width: 448px; }
+        .min-h-screen { min-height: 100vh; }
+        .pl-12 { padding-left: 48px; }
+
         .card {
             background: white;
             border-radius: 12px;
@@ -33,12 +104,9 @@
             display: inline-block;
             transition: background-color 0.2s;
         }
-        .btn-primary:hover {
-            background-color: #8c1435;
-        }
+        .btn-primary:hover { background-color: #8c1435; }
         .icon-box {
-            width: 56px;
-            height: 56px;
+            width: 56px; height: 56px;
             border-radius: 12px;
             display: flex;
             align-items: center;
@@ -46,121 +114,122 @@
             margin-bottom: 12px;
             font-size: 24px;
         }
+        .bg-gradient { background: linear-gradient(to bottom right, #fef2f2, #fdf2f8); }
     </style>
 </head>
 <body>
-    <div class="min-h-screen bg-gray-50">
-        <header class="brand-bg text-white py-8 px-4 shadow-lg">
-            <div class="max-w-md mx-auto text-center">
-                <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-white/20 flex items-center justify-center text-3xl">
+    <div style="min-height: 100vh; background-color: #f9fafb;">
+        <header style="background-color: #AB1942; color: white; padding: 32px 16px; box-shadow: 0 4px 16px rgba(0,0,0,0.12);">
+            <div style="max-width: 448px; margin: 0 auto; text-align: center;">
+                <div style="width: 64px; height: 64px; margin: 0 auto 16px; border-radius: 50%; background-color: rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; font-size: 30px;">
                     🔍
                 </div>
-                <h1 class="text-2xl font-bold mb-2">企业经营健康度体检</h1>
-                <p class="text-sm opacity-80">看清问题，重建秩序</p>
+                <h1 style="font-size: 24px; font-weight: 700; margin-bottom: 8px;">企业经营健康度体检</h1>
+                <p style="font-size: 14px; opacity: 0.8;">看清问题，重建秩序</p>
             </div>
         </header>
 
-        <main class="max-w-md mx-auto px-4 py-6">
+        <main style="max-width: 448px; margin: 0 auto; padding: 24px 16px;">
             <div class="card">
-                <h2 class="text-lg font-bold text-gray-800 mb-4">为什么需要做诊断？</h2>
+                <h2 style="font-size: 18px; font-weight: 700; color: #1f2937; margin-bottom: 16px;">为什么需要做诊断？</h2>
                 <div class="space-y-4">
                     <div class="flex items-start">
-                        <div class="icon-box bg-red-50 text-red-600 mr-4 flex-shrink-0">⚠️</div>
+                        <div class="icon-box bg-red-50" style="color: #dc2626; margin-right: 16px; flex-shrink: 0;">⚠️</div>
                         <div>
-                            <h3 class="font-semibold text-gray-800 mb-1">提前识别风险</h3>
-                            <p class="text-sm text-gray-600">大多数企业危机都是渐进式爆发的，早期信号往往被忽视。系统诊断帮您提前发现隐患。</p>
+                            <h3 style="font-weight: 600; color: #1f2937; margin-bottom: 4px;">提前识别风险</h3>
+                            <p style="font-size: 14px; color: #4b5563;">大多数企业危机都是渐进式爆发的，早期信号往往被忽视。系统诊断帮您提前发现隐患。</p>
                         </div>
                     </div>
                     <div class="flex items-start">
-                        <div class="icon-box bg-blue-50 text-blue-600 mr-4 flex-shrink-0">📊</div>
+                        <div class="icon-box bg-blue-50" style="color: #2563eb; margin-right: 16px; flex-shrink: 0;">📊</div>
                         <div>
-                            <h3 class="font-semibold text-gray-800 mb-1">量化评估状况</h3>
-                            <p class="text-sm text-gray-600">用数据说话，从债务、资产、经营、法律、家庭五个维度全面评估，给出可量化的健康分数。</p>
+                            <h3 style="font-weight: 600; color: #1f2937; margin-bottom: 4px;">量化评估状况</h3>
+                            <p style="font-size: 14px; color: #4b5563;">用数据说话，从债务、资产、经营、法律、家庭五个维度全面评估，给出可量化的健康分数。</p>
                         </div>
                     </div>
                     <div class="flex items-start">
-                        <div class="icon-box bg-green-50 text-green-600 mr-4 flex-shrink-0">🎯</div>
+                        <div class="icon-box bg-green-50" style="color: #16a34a; margin-right: 16px; flex-shrink: 0;">🎯</div>
                         <div>
-                            <h3 class="font-semibold text-gray-800 mb-1">获取行动建议</h3>
-                            <p class="text-sm text-gray-600">根据诊断结果，提供针对性的改进路径和专业建议，帮助您制定下一步行动计划。</p>
+                            <h3 style="font-weight: 600; color: #1f2937; margin-bottom: 4px;">获取行动建议</h3>
+                            <p style="font-size: 14px; color: #4b5563;">根据诊断结果，提供针对性的改进路径和专业建议，帮助您制定下一步行动计划。</p>
                         </div>
                     </div>
                 </div>
             </div>
 
             <div class="card">
-                <h2 class="text-lg font-bold text-gray-800 mb-4">诊断体系五大维度</h2>
+                <h2 style="font-size: 18px; font-weight: 700; color: #1f2937; margin-bottom: 16px;">诊断体系五大维度</h2>
                 <div class="grid grid-cols-2 gap-3">
-                    <div class="p-3 bg-red-50 rounded-lg text-center">
-                        <div class="text-xl mb-1">💰</div>
-                        <div class="text-sm font-medium text-red-800">债务压力</div>
-                        <div class="text-xs text-red-600 mt-1">资产负债率、融资成本、债务结构</div>
+                    <div style="padding: 12px; background-color: #fef2f2; border-radius: 8px; text-align: center;">
+                        <div style="font-size: 20px; margin-bottom: 4px;">💰</div>
+                        <div style="font-size: 14px; font-weight: 500; color: #991b1b;">债务压力</div>
+                        <div style="font-size: 12px; color: #dc2626; margin-top: 4px;">资产负债率、融资成本、债务结构</div>
                     </div>
-                    <div class="p-3 bg-blue-50 rounded-lg text-center">
-                        <div class="text-xl mb-1">📦</div>
-                        <div class="text-sm font-medium text-blue-800">资产质量</div>
-                        <div class="text-xs text-blue-600 mt-1">变现能力、资产效率、抵押率</div>
+                    <div style="padding: 12px; background-color: #eff6ff; border-radius: 8px; text-align: center;">
+                        <div style="font-size: 20px; margin-bottom: 4px;">📦</div>
+                        <div style="font-size: 14px; font-weight: 500; color: #1e40af;">资产质量</div>
+                        <div style="font-size: 12px; color: #2563eb; margin-top: 4px;">变现能力、资产效率、抵押率</div>
                     </div>
-                    <div class="p-3 bg-green-50 rounded-lg text-center">
-                        <div class="text-xl mb-1">📈</div>
-                        <div class="text-sm font-medium text-green-800">经营健康</div>
-                        <div class="text-xs text-green-600 mt-1">毛利率、现金流、客户集中度</div>
+                    <div style="padding: 12px; background-color: #f0fdf4; border-radius: 8px; text-align: center;">
+                        <div style="font-size: 20px; margin-bottom: 4px;">📈</div>
+                        <div style="font-size: 14px; font-weight: 500; color: #166534;">经营健康</div>
+                        <div style="font-size: 12px; color: #16a34a; margin-top: 4px;">毛利率、现金流、客户集中度</div>
                     </div>
-                    <div class="p-3 bg-orange-50 rounded-lg text-center">
-                        <div class="text-xl mb-1">⚖️</div>
-                        <div class="text-sm font-medium text-orange-800">法律风险</div>
-                        <div class="text-xs text-orange-600 mt-1">涉诉情况、账户冻结、合规性</div>
+                    <div style="padding: 12px; background-color: #fff7ed; border-radius: 8px; text-align: center;">
+                        <div style="font-size: 20px; margin-bottom: 4px;">⚖️</div>
+                        <div style="font-size: 14px; font-weight: 500; color: #9a3412;">法律风险</div>
+                        <div style="font-size: 12px; color: #ea580c; margin-top: 4px;">涉诉情况、账户冻结、合规性</div>
                     </div>
-                    <div class="p-3 bg-purple-50 rounded-lg text-center col-span-2">
-                        <div class="text-xl mb-1">🏠</div>
-                        <div class="text-sm font-medium text-purple-800">家庭保障</div>
-                        <div class="text-xs text-purple-600 mt-1">个人担保、夫妻共签、风险隔离</div>
+                    <div style="padding: 12px; background-color: #faf5ff; border-radius: 8px; text-align: center; grid-column: span 2;">
+                        <div style="font-size: 20px; margin-bottom: 4px;">🏠</div>
+                        <div style="font-size: 14px; font-weight: 500; color: #6b21a8;">家庭保障</div>
+                        <div style="font-size: 12px; color: #9333ea; margin-top: 4px;">个人担保、夫妻共签、风险隔离</div>
                     </div>
                 </div>
             </div>
 
             <div class="card">
-                <h2 class="text-lg font-bold text-gray-800 mb-4">诊断流程</h2>
+                <h2 style="font-size: 18px; font-weight: 700; color: #1f2937; margin-bottom: 16px;">诊断流程</h2>
                 <div class="relative">
-                    <div class="absolute left-4 top-0 bottom-0 w-0.5 bg-gray-200"></div>
+                    <div style="position: absolute; left: 16px; top: 0; bottom: 0; width: 2px; background-color: #e5e7eb;"></div>
                     <div class="space-y-6">
-                        <div class="relative pl-12">
-                            <div class="absolute left-2 w-5 h-5 rounded-full brand-bg flex items-center justify-center text-white text-xs">1</div>
-                            <h3 class="font-semibold text-gray-800">基础体检</h3>
-                            <p class="text-sm text-gray-600">5道核心问题，快速筛查基本状况</p>
+                        <div style="position: relative; padding-left: 48px;">
+                            <div style="position: absolute; left: 8px; width: 20px; height: 20px; border-radius: 50%; background-color: #AB1942; display: flex; align-items: center; justify-content: center; color: white; font-size: 12px;">1</div>
+                            <h3 style="font-weight: 600; color: #1f2937;">基础体检</h3>
+                            <p style="font-size: 14px; color: #4b5563;">5道核心问题，快速筛查基本状况</p>
                         </div>
-                        <div class="relative pl-12">
-                            <div class="absolute left-2 w-5 h-5 rounded-full brand-bg flex items-center justify-center text-white text-xs">2</div>
-                            <h3 class="font-semibold text-gray-800">专项评估</h3>
-                            <p class="text-sm text-gray-600">债务、资产、经营、法律四大维度深度评估</p>
+                        <div style="position: relative; padding-left: 48px;">
+                            <div style="position: absolute; left: 8px; width: 20px; height: 20px; border-radius: 50%; background-color: #AB1942; display: flex; align-items: center; justify-content: center; color: white; font-size: 12px;">2</div>
+                            <h3 style="font-weight: 600; color: #1f2937;">专项评估</h3>
+                            <p style="font-size: 14px; color: #4b5563;">债务、资产、经营、法律四大维度深度评估</p>
                         </div>
-                        <div class="relative pl-12">
-                            <div class="absolute left-2 w-5 h-5 rounded-full brand-bg flex items-center justify-center text-white text-xs">3</div>
-                            <h3 class="font-semibold text-gray-800">综合诊断</h3>
-                            <p class="text-sm text-gray-600">生成五维雷达图，获取关键发现和建议路径</p>
+                        <div style="position: relative; padding-left: 48px;">
+                            <div style="position: absolute; left: 8px; width: 20px; height: 20px; border-radius: 50%; background-color: #AB1942; display: flex; align-items: center; justify-content: center; color: white; font-size: 12px;">3</div>
+                            <h3 style="font-weight: 600; color: #1f2937;">综合诊断</h3>
+                            <p style="font-size: 14px; color: #4b5563;">生成五维雷达图，获取关键发现和建议路径</p>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="card bg-gradient-to-br from-red-50 to-pink-50">
-                <div class="text-center">
-                    <div class="text-4xl mb-4">⏱️</div>
-                    <h3 class="text-xl font-bold brand-color mb-2">仅需3分钟</h3>
-                    <p class="text-sm text-gray-600 mb-6">36道题，快速完成企业健康度全面扫描</p>
-                    <a href="https://egroup-lab.vercel.app/index.html" class="btn-primary">开始诊断</a>
+            <div class="card" style="background: linear-gradient(to bottom right, #fef2f2, #fdf2f8);">
+                <div style="text-align: center;">
+                    <div style="font-size: 36px; margin-bottom: 16px;">⏱️</div>
+                    <h3 style="font-size: 20px; font-weight: 700; color: #AB1942; margin-bottom: 8px;">仅需3分钟</h3>
+                    <p style="font-size: 14px; color: #4b5563; margin-bottom: 24px;">36道题，快速完成企业健康度全面扫描</p>
+                    <a href="https://hjcz.top" class="btn-primary">开始诊断</a>
                 </div>
             </div>
 
-            <div class="text-center text-sm text-gray-500 mb-6">
+            <div style="text-align: center; font-size: 14px; color: #6b7280; margin-bottom: 24px;">
                 <p>已有 <strong class="brand-color">128</strong> 位老板完成诊断</p>
-                <p class="mt-1">平均评分：<strong class="brand-color">62</strong> 分</p>
+                <p style="margin-top: 4px;">平均评分：<strong class="brand-color">62</strong> 分</p>
             </div>
         </main>
 
-        <footer class="text-center py-6 text-sm text-gray-400 bg-white border-t">
+        <footer style="text-align: center; padding: 24px 16px; font-size: 14px; color: #9ca3af; background-color: white; border-top: 1px solid #e5e7eb;">
             <p>© 灰金重组</p>
-            <p class="mt-1">本文内容仅供参考，不构成法律意见或专业建议</p>
+            <p style="margin-top: 4px;">本文内容仅供参考，不构成法律意见或专业建议</p>
         </footer>
     </div>
 </body>
