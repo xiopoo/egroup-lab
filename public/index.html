@@ -8,104 +8,250 @@
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif;background:#fff;color:#1a1a1a;line-height:1.8;font-size:15px;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
-a{text-decoration:none;color:inherit;transition:color .2s ease}
+a{text-decoration:none;color:inherit;transition:all .3s ease}
 img{max-width:100%;display:block;object-fit:contain}
 
 :root{
   --brand:#AB1942;
+  --brand-dark:#8B1435;
+  --brand-light:#C42A52;
   --text:#1a1a1a;
   --text-secondary:#4a4a4a;
   --text-muted:#8a8a8a;
   --text-faint:#b0b0b0;
-  --border:#eee;
-  --bg-gray:#fafafa;
-  --content-max:680px;
+  --border:#e8e8e8;
+  --border-light:#f0f0f0;
+  --bg-gray:#f7f7f7;
+  --bg-dark:#2a2a2a;
+  --bg-darker:#1f1f1f;
+  --content-max:1100px;
   --content-padding:24px;
+  --radius-sm:6px;
+  --radius-md:10px;
+  --radius-lg:16px;
+  --shadow-sm:0 2px 8px rgba(0,0,0,.04);
+  --shadow-md:0 8px 24px rgba(0,0,0,.08);
+  --shadow-lg:0 16px 48px rgba(0,0,0,.12);
+  --transition:.3s ease;
 }
 
 .container{max-width:var(--content-max);margin:0 auto;padding:0 var(--content-padding)}
 
 /* Header */
-.header{position:sticky;top:0;z-index:100;background:#fff;border-bottom:1px solid var(--border)}
-.header-inner{max-width:var(--content-max);margin:0 auto;padding:0 var(--content-padding);height:56px;display:flex;align-items:center;justify-content:space-between}
-.header-logo{display:flex;align-items:center}
+.header{position:sticky;top:0;z-index:100;background:var(--brand);box-shadow:0 2px 12px rgba(171,25,66,.15)}
+.header-inner{max-width:var(--content-max);margin:0 auto;padding:0 var(--content-padding);height:64px;display:flex;align-items:center;justify-content:space-between}
+.header-logo{display:flex;align-items:center;height:100%}
 .header-logo img{width:120px;height:auto;object-fit:contain}
-.header-nav{display:flex;gap:24px;font-size:14px}
-.header-nav a{color:var(--text-secondary);font-weight:400}
-.header-nav a:hover{color:var(--brand)}
-.header-nav a.active{color:var(--brand);font-weight:500}
+.header-nav{display:flex;gap:32px;align-items:center}
+.header-nav a{color:#fff;font-size:15px;font-weight:400;opacity:.9;position:relative}
+.header-nav a:hover{opacity:1;color:#fff}
+.header-nav a::after{content:'';position:absolute;bottom:-6px;left:0;width:0;height:2px;background:#fff;transition:width var(--transition);opacity:.8}
+.header-nav a:hover::after{width:100%}
+.header-nav a.active{opacity:1;font-weight:500}
+.header-nav a.active::after{width:100%}
 
 /* Hero */
-.hero{padding:80px 0 64px}
-.hero-title{font-size:36px;font-weight:700;color:var(--text);letter-spacing:-.02em;line-height:1.2;margin-bottom:12px}
-.hero-subtitle{font-size:17px;color:var(--text-secondary);font-weight:400;margin-bottom:8px}
-.hero-slogan{font-size:15px;color:var(--brand);font-weight:500;letter-spacing:1px;margin-bottom:32px}
-.hero-desc{font-size:15px;color:var(--text-secondary);line-height:2;margin-bottom:40px}
+.hero{background:linear-gradient(135deg,var(--brand) 0%,var(--brand-dark) 100%);position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-50%;right:-10%;width:600px;height:600px;background:radial-gradient(circle,rgba(255,255,255,.08) 0%,transparent 70%);border-radius:50%}
+.hero::after{content:'';position:absolute;bottom:-1px;left:0;right:0;height:80px;background:#fff;clip-path:polygon(0 60%,100% 0,100% 100%,0 100%)}
+.hero-inner{position:relative;display:grid;grid-template-columns:1.2fr 1fr;gap:60px;align-items:center;min-height:480px;padding:60px 0 100px}
+.hero-content{position:relative;z-index:1}
+.hero-badge{display:inline-block;padding:6px 16px;background:rgba(255,255,255,.15);color:#fff;font-size:13px;border-radius:20px;margin-bottom:24px;backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.2)}
+.hero-title{font-size:48px;font-weight:700;color:#fff;letter-spacing:-.02em;line-height:1.15;margin-bottom:12px}
+.hero-subtitle{font-size:22px;color:#fff;font-weight:500;margin-bottom:12px;opacity:.95}
+.hero-slogan{font-size:18px;color:#fff;letter-spacing:4px;margin-bottom:28px;opacity:.75;font-weight:300}
+.hero-desc{font-size:15px;color:#fff;line-height:2;margin-bottom:36px;opacity:.85;max-width:520px}
+.hero-cta{display:inline-flex;align-items:center;gap:8px;padding:14px 36px;background:#fff;color:var(--brand);font-size:16px;font-weight:600;border-radius:50px;transition:all var(--transition);box-shadow:0 8px 24px rgba(0,0,0,.15)}
+.hero-cta:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(0,0,0,.2)}
+.hero-cta::after{content:'→';transition:transform var(--transition)}
+.hero-cta:hover::after{transform:translateX(4px)}
+.hero-visual{position:relative;display:flex;align-items:center;justify-content:center}
+.hero-pattern{width:100%;max-width:380px;aspect-ratio:1;position:relative}
+.hero-pattern::before{content:'';position:absolute;inset:0;border:2px solid rgba(255,255,255,.15);border-radius:50%;animation:pulse-ring 3s ease-in-out infinite}
+.hero-pattern::after{content:'';position:absolute;inset:15%;border:1px solid rgba(255,255,255,.1);border-radius:50%}
+.hero-pattern-inner{position:absolute;inset:30%;background:rgba(255,255,255,.06);border-radius:50%;backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center}
+.hero-pattern-text{color:#fff;font-size:56px;font-weight:700;letter-spacing:-.02em;opacity:.9}
+
+@keyframes pulse-ring{
+  0%,100%{transform:scale(1);opacity:.6}
+  50%{transform:scale(1.05);opacity:.8}
+}
 
 /* Stats */
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;padding:32px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
-.stat-item{text-align:left}
-.stat-item .num{font-size:22px;font-weight:700;color:var(--text);letter-spacing:-.02em;line-height:1.2;margin-bottom:4px}
-.stat-item .label{font-size:12px;color:var(--text-muted);line-height:1.5}
+.stats-section{padding:60px 0;background:#fff}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.stat-item{text-align:center;padding:32px 16px;position:relative}
+.stat-item::after{content:'';position:absolute;right:0;top:20%;bottom:20%;width:1px;background:var(--border-light)}
+.stat-item:last-child::after{display:none}
+.stat-item .num{font-size:42px;font-weight:700;color:var(--brand);letter-spacing:-.02em;line-height:1.1;margin-bottom:10px}
+.stat-item .label{font-size:14px;color:var(--text-muted);line-height:1.5}
 
 /* Section */
-.section{padding:64px 0}
-.section-title{font-size:22px;font-weight:600;color:var(--text);letter-spacing:-.01em;margin-bottom:8px;line-height:1.4}
-.section-desc{font-size:14px;color:var(--text-muted);margin-bottom:28px}
-
-/* Services */
-.service-list{display:grid;gap:0}
-.service-item{padding:24px 0;border-top:1px solid var(--border)}
-.service-item:last-child{border-bottom:1px solid var(--border)}
-.service-item h3{font-size:17px;font-weight:600;color:var(--text);margin-bottom:4px}
-.service-item .target{font-size:13px;color:var(--brand);margin-bottom:10px}
-.service-item p{font-size:14px;color:var(--text-secondary);line-height:1.8}
-
-.view-more{display:inline-block;font-size:14px;color:var(--text);margin-top:20px;font-weight:500}
-.view-more:hover{color:var(--brand)}
-.view-more::after{content:' →'}
-
-/* Diagnosis CTA */
-.diagnosis-cta{margin:64px 0;padding:36px 32px;background:var(--bg-gray);border:1px solid var(--border);border-radius:8px}
-.diagnosis-cta h3{font-size:18px;font-weight:600;color:var(--text);margin-bottom:8px}
-.diagnosis-cta p{font-size:14px;color:var(--text-secondary);margin-bottom:20px;line-height:1.8}
-.diagnosis-btn{display:inline-block;padding:12px 28px;background:var(--brand);color:#fff;font-size:14px;font-weight:500;border-radius:6px;transition:opacity .2s ease}
-.diagnosis-btn:hover{opacity:.85}
-
-/* Cases */
-.case-list{display:grid;gap:0}
-.case-item{padding:24px 0;border-top:1px solid var(--border)}
-.case-item:last-child{border-bottom:1px solid var(--border)}
-.case-item .tag{display:inline-block;font-size:12px;color:var(--brand);margin-bottom:8px;font-weight:500}
-.case-item h3{font-size:16px;font-weight:600;color:var(--text);margin-bottom:8px}
-.case-item p{font-size:14px;color:var(--text-secondary);line-height:1.8;margin-bottom:12px}
-.case-meta{font-size:13px;color:var(--text-muted)}
-.case-meta span{margin-right:16px}
-.case-meta strong{color:var(--text);font-weight:600}
+.section{padding:80px 0}
+.section-header{text-align:center;margin-bottom:56px}
+.section-label{display:inline-block;font-size:13px;color:var(--brand);font-weight:600;letter-spacing:2px;text-transform:uppercase;margin-bottom:12px}
+.section-title{font-size:32px;font-weight:700;color:var(--text);letter-spacing:-.01em;margin-bottom:12px;line-height:1.3}
+.section-desc{font-size:16px;color:var(--text-muted);max-width:600px;margin:0 auto;line-height:1.8}
 
 /* About */
-.about-text{font-size:15px;color:var(--text-secondary);line-height:2}
+.about-section{background:var(--bg-gray)}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.about-content .section-label{text-align:left;display:block}
+.about-content .section-title{text-align:left;margin-bottom:20px}
+.about-content p{font-size:15px;color:var(--text-secondary);line-height:2;margin-bottom:16px}
+.about-content p strong{color:var(--brand);font-weight:600}
+.about-link{display:inline-flex;align-items:center;gap:6px;font-size:15px;color:var(--brand);font-weight:500;margin-top:12px}
+.about-link:hover{gap:10px}
+.about-visual{position:relative;aspect-ratio:4/3;background:linear-gradient(135deg,var(--brand) 0%,var(--brand-dark) 100%);border-radius:var(--radius-lg);overflow:hidden;display:flex;align-items:center;justify-content:center}
+.about-visual::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 30% 30%,rgba(255,255,255,.1) 0%,transparent 50%)}
+.about-visual-content{position:relative;color:#fff;text-align:center;padding:40px}
+.about-visual-number{font-size:72px;font-weight:700;line-height:1;opacity:.9;margin-bottom:12px}
+.about-visual-text{font-size:18px;opacity:.85;letter-spacing:2px}
+
+/* Services */
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.service-card{background:#fff;border:1px solid var(--border);border-radius:var(--radius-md);padding:36px 28px;transition:all var(--transition);position:relative;overflow:hidden}
+.service-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--brand);transform:scaleX(0);transform-origin:left;transition:transform var(--transition)}
+.service-card:hover{border-color:var(--brand);box-shadow:var(--shadow-md);transform:translateY(-4px)}
+.service-card:hover::before{transform:scaleX(1)}
+.service-number{font-size:48px;font-weight:700;color:var(--brand);opacity:.15;line-height:1;margin-bottom:16px;font-family:'Georgia',serif}
+.service-card h3{font-size:20px;font-weight:600;color:var(--text);margin-bottom:8px}
+.service-target{font-size:13px;color:var(--brand);margin-bottom:16px;font-weight:500}
+.service-card p{font-size:14px;color:var(--text-secondary);line-height:1.9;margin-bottom:24px}
+.service-link{display:inline-flex;align-items:center;gap:6px;font-size:14px;color:var(--text);font-weight:500}
+.service-link:hover{color:var(--brand);gap:10px}
+
+/* Diagnosis CTA */
+.diagnosis-section{background:linear-gradient(135deg,var(--brand) 0%,var(--brand-dark) 100%);position:relative;overflow:hidden}
+.diagnosis-section::before{content:'';position:absolute;top:-50%;left:-20%;width:500px;height:500px;background:radial-gradient(circle,rgba(255,255,255,.06) 0%,transparent 70%);border-radius:50%}
+.diagnosis-section::after{content:'';position:absolute;bottom:-50%;right:-20%;width:400px;height:400px;background:radial-gradient(circle,rgba(255,255,255,.05) 0%,transparent 70%);border-radius:50%}
+.diagnosis-content{position:relative;text-align:center;padding:70px 40px}
+.diagnosis-icon{width:64px;height:64px;background:rgba(255,255,255,.15);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 24px;font-size:28px;color:#fff;backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.2)}
+.diagnosis-content h3{font-size:28px;font-weight:700;color:#fff;margin-bottom:12px}
+.diagnosis-content p{font-size:16px;color:#fff;opacity:.85;margin-bottom:32px;max-width:500px;margin-left:auto;margin-right:auto}
+.diagnosis-btn{display:inline-flex;align-items:center;gap:8px;padding:16px 40px;background:#fff;color:var(--brand);font-size:16px;font-weight:600;border-radius:50px;transition:all var(--transition);box-shadow:0 8px 24px rgba(0,0,0,.15)}
+.diagnosis-btn:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(0,0,0,.2)}
+.diagnosis-btn::after{content:'→';transition:transform var(--transition)}
+.diagnosis-btn:hover::after{transform:translateX(4px)}
+
+/* Cases */
+.cases-section{background:var(--bg-gray)}
+.cases-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-bottom:40px}
+.case-card{background:#fff;border-radius:var(--radius-md);overflow:hidden;transition:all var(--transition);border:1px solid var(--border-light)}
+.case-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg);border-color:transparent}
+.case-image{height:180px;background:linear-gradient(135deg,var(--brand) 0%,var(--brand-dark) 100%);position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.case-image::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 70% 30%,rgba(255,255,255,.1) 0%,transparent 50%)}
+.case-tag{position:absolute;top:16px;left:16px;padding:4px 12px;background:rgba(255,255,255,.9);color:var(--brand);font-size:12px;font-weight:600;border-radius:20px;z-index:1}
+.case-image-text{position:relative;color:#fff;font-size:36px;font-weight:700;opacity:.3}
+.case-body{padding:28px 24px}
+.case-body h3{font-size:18px;font-weight:600;color:var(--text);margin-bottom:12px;line-height:1.4}
+.case-body p{font-size:14px;color:var(--text-secondary);line-height:1.8;margin-bottom:20px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.case-meta{display:flex;flex-wrap:wrap;gap:12px;padding-top:16px;border-top:1px solid var(--border-light)}
+.case-meta-item{font-size:12px;color:var(--text-muted)}
+.case-meta-item strong{display:block;font-size:18px;color:var(--brand);font-weight:700;margin-bottom:2px}
+.cases-more{text-align:center}
+.cases-more a{display:inline-flex;align-items:center;gap:6px;font-size:15px;color:var(--text);font-weight:500}
+.cases-more a:hover{color:var(--brand);gap:10px}
+
+/* Team */
+.team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin-bottom:40px}
+.team-card{text-align:center;padding:32px 24px;background:#fff;border:1px solid var(--border-light);border-radius:var(--radius-md);transition:all var(--transition)}
+.team-card:hover{border-color:var(--brand);box-shadow:var(--shadow-md);transform:translateY(-4px)}
+.team-avatar{width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,var(--brand) 0%,var(--brand-dark) 100%);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;color:#fff;font-size:32px;font-weight:600}
+.team-card h4{font-size:18px;font-weight:600;color:var(--text);margin-bottom:6px}
+.team-role{font-size:13px;color:var(--brand);font-weight:500;margin-bottom:12px}
+.team-desc{font-size:13px;color:var(--text-muted);line-height:1.7}
+.team-more{text-align:center}
+.team-more a{display:inline-flex;align-items:center;gap:6px;font-size:15px;color:var(--text);font-weight:500}
+.team-more a:hover{color:var(--brand);gap:10px}
+
+/* Contact CTA */
+.contact-section{background:var(--bg-gray)}
+.contact-box{background:#fff;border-radius:var(--radius-lg);padding:48px 56px;display:grid;grid-template-columns:1.5fr 1fr;gap:40px;align-items:center;box-shadow:var(--shadow-sm);border:1px solid var(--border-light)}
+.contact-text h3{font-size:24px;font-weight:700;color:var(--text);margin-bottom:10px}
+.contact-text p{font-size:15px;color:var(--text-secondary);line-height:1.8}
+.contact-actions{display:flex;gap:16px;justify-content:flex-end;align-items:center}
+.contact-btn{display:inline-flex;align-items:center;gap:8px;padding:14px 32px;background:var(--brand);color:#fff;font-size:15px;font-weight:600;border-radius:50px;transition:all var(--transition)}
+.contact-btn:hover{background:var(--brand-light);transform:translateY(-2px);box-shadow:0 8px 20px rgba(171,25,66,.3)}
+.contact-btn::after{content:'→';transition:transform var(--transition)}
+.contact-btn:hover::after{transform:translateX(4px)}
+.contact-wechat{display:flex;align-items:center;gap:12px;padding:10px 20px;background:var(--bg-gray);border-radius:50px;font-size:14px;color:var(--text-secondary)}
 
 /* Footer */
-.footer{padding:48px 0 40px;text-align:center;font-size:13px;color:var(--text-muted);border-top:1px solid var(--border)}
-.footer p{margin-bottom:4px}
-.footer a{color:var(--text-secondary)}
-.footer a:hover{color:var(--brand)}
+.footer{background:var(--bg-dark);color:#fff;padding:60px 0 30px}
+.footer-top{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:40px;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,.1)}
+.footer-brand img{width:120px;height:auto;margin-bottom:16px;filter:brightness(0) invert(1);opacity:.9}
+.footer-brand-name{font-size:20px;font-weight:600;margin-bottom:8px}
+.footer-brand-slogan{font-size:14px;color:var(--text-faint);letter-spacing:2px}
+.footer-col h5{font-size:15px;font-weight:600;margin-bottom:20px;color:#fff}
+.footer-links{list-style:none}
+.footer-links li{margin-bottom:12px}
+.footer-links a{font-size:14px;color:var(--text-faint)}
+.footer-links a:hover{color:#fff}
+.footer-contact p{font-size:14px;color:var(--text-faint);margin-bottom:10px;line-height:1.6}
+.footer-contact a{color:var(--text-faint)}
+.footer-contact a:hover{color:#fff}
+.footer-bottom{padding-top:30px;text-align:center;font-size:12px;color:var(--text-muted);line-height:1.8}
+.footer-bottom p{margin-bottom:4px}
 
 /* Responsive */
 @media(max-width:767px){
-  :root{--content-max:480px;--content-padding:20px}
-  .hero{padding:56px 0 48px}
-  .hero-title{font-size:28px}
-  .hero-subtitle{font-size:15px}
-  .hero-slogan{font-size:14px;margin-bottom:24px}
+  :root{--content-padding:20px}
+  
+  .header-inner{height:56px}
+  .header-logo img{width:100px}
+  .header-nav{gap:18px}
+  .header-nav a{font-size:13px}
+  
+  .hero-inner{grid-template-columns:1fr;gap:40px;min-height:auto;padding:48px 0 80px}
+  .hero-badge{font-size:12px;margin-bottom:20px}
+  .hero-title{font-size:36px}
+  .hero-subtitle{font-size:18px}
+  .hero-slogan{font-size:16px;letter-spacing:3px;margin-bottom:24px}
   .hero-desc{font-size:14px;margin-bottom:32px}
-  .stats{grid-template-columns:repeat(2,1fr);gap:20px;padding:24px 0}
-  .stat-item .num{font-size:20px}
-  .section{padding:48px 0}
-  .section-title{font-size:20px}
-  .header-nav{gap:16px;font-size:13px}
-  .diagnosis-cta{padding:28px 24px;margin:48px 0}
+  .hero-cta{padding:12px 28px;font-size:15px}
+  .hero-visual{display:none}
+  .hero::after{height:50px}
+  
+  .stats-section{padding:40px 0}
+  .stats{grid-template-columns:repeat(2,1fr);gap:0}
+  .stat-item{padding:24px 12px}
+  .stat-item::after{display:none}
+  .stat-item .num{font-size:32px}
+  .stat-item .label{font-size:13px}
+  
+  .section{padding:56px 0}
+  .section-header{margin-bottom:40px}
+  .section-title{font-size:26px}
+  .section-desc{font-size:14px}
+  
+  .about-grid{grid-template-columns:1fr;gap:32px}
+  .about-content .section-title{font-size:24px}
+  .about-visual{aspect-ratio:16/10}
+  .about-visual-number{font-size:56px}
+  
+  .services-grid{grid-template-columns:1fr;gap:16px}
+  .service-card{padding:28px 24px}
+  
+  .diagnosis-content{padding:56px 24px}
+  .diagnosis-content h3{font-size:22px}
+  .diagnosis-content p{font-size:14px}
+  .diagnosis-btn{padding:14px 32px;font-size:15px}
+  
+  .cases-grid{grid-template-columns:1fr;gap:20px}
+  .case-image{height:160px}
+  .case-body{padding:24px 20px}
+  
+  .team-grid{grid-template-columns:1fr;gap:20px}
+  .team-card{padding:28px 24px}
+  
+  .contact-box{grid-template-columns:1fr;gap:28px;padding:36px 28px;text-align:center}
+  .contact-actions{justify-content:center;flex-direction:column}
+  .contact-btn{width:100%;justify-content:center}
+  
+  .footer-top{grid-template-columns:1fr;gap:32px}
+  .footer{padding:48px 0 24px}
+  .footer-bottom{font-size:11px}
 }
 </style>
 </head>
@@ -114,7 +260,7 @@ img{max-width:100%;display:block;object-fit:contain}
 <header class="header">
   <div class="header-inner">
     <a href="index.html" class="header-logo">
-      <img src="images/logo-color.png" alt="灰金重组">
+      <img src="images/logo-white.png" alt="灰金重组">
     </a>
     <nav class="header-nav">
       <a href="index.html" class="active">首页</a>
@@ -127,13 +273,32 @@ img{max-width:100%;display:block;object-fit:contain}
 </header>
 
 <main>
+  <!-- Hero -->
   <section class="hero">
     <div class="container">
-      <h1 class="hero-title">灰金重组</h1>
-      <p class="hero-subtitle">企业困境诊断与重组顾问</p>
-      <p class="hero-slogan">看清问题，重建秩序</p>
-      <p class="hero-desc">深耕中小企业困境诊断与重组赛道，聚焦企业资产、负债、现金流三维平衡重构。以专业视角穿透企业经营核心矛盾，通过系统性方案设计，为陷入发展瓶颈的中小企业提供可持续的破局路径与价值重塑方案。</p>
+      <div class="hero-inner">
+        <div class="hero-content">
+          <span class="hero-badge">专注中小企业困境重组</span>
+          <h1 class="hero-title">灰金重组</h1>
+          <p class="hero-subtitle">企业困境诊断与重组顾问</p>
+          <p class="hero-slogan">看 清 问 题 · 重 建 秩 序</p>
+          <p class="hero-desc">深耕中小企业困境诊断与重组赛道，聚焦企业资产、负债、现金流三维平衡重构。以专业视角穿透企业经营核心矛盾，通过系统性方案设计，为陷入发展瓶颈的中小企业提供可持续的破局路径与价值重塑方案。</p>
+          <a href="diag.html" class="hero-cta">免费健康体检</a>
+        </div>
+        <div class="hero-visual">
+          <div class="hero-pattern">
+            <div class="hero-pattern-inner">
+              <span class="hero-pattern-text">灰</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
+  <!-- Stats -->
+  <section class="stats-section">
+    <div class="container">
       <div class="stats">
         <div class="stat-item">
           <div class="num">128+</div>
@@ -155,94 +320,230 @@ img{max-width:100%;display:block;object-fit:contain}
     </div>
   </section>
 
+  <!-- About -->
+  <section class="section about-section">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-content">
+          <span class="section-label">ABOUT US</span>
+          <h2 class="section-title">关于灰金</h2>
+          <p>灰金重组聚焦企业<strong>资产、负债、现金流</strong>三维平衡重构，以专业视角穿透企业经营核心矛盾，通过系统性方案设计，为陷入发展瓶颈的中小企业提供可持续的破局路径与价值重塑方案。</p>
+          <p>我们相信，<strong>每一家企业都有重生的可能</strong>。</p>
+          <a href="about.html" class="about-link">了解更多 →</a>
+        </div>
+        <div class="about-visual">
+          <div class="about-visual-content">
+            <div class="about-visual-number">128+</div>
+            <div class="about-visual-text">服 务 企 业</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
   <section class="section">
     <div class="container">
-      <h2 class="section-title">核心服务</h2>
-      <p class="section-desc">全周期、全维度专业服务，从诊断到重组一站式闭环</p>
-
-      <div class="service-list">
-        <div class="service-item">
+      <div class="section-header">
+        <span class="section-label">OUR SERVICES</span>
+        <h2 class="section-title">核心服务</h2>
+        <p class="section-desc">全周期、全维度专业服务，从诊断到重组一站式闭环</p>
+      </div>
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-number">01</div>
           <h3>诊断顾问</h3>
-          <div class="target">目标：看清问题</div>
+          <div class="service-target">目标：看清问题</div>
           <p>提供资产全盘梳理、债务逐项摸排与利润真实性核验服务，精准识别潜在经营风险，结合企业实际出具可落地的系统性行动方案。</p>
+          <a href="services.html" class="service-link">查看详情 →</a>
         </div>
-        <div class="service-item">
+        <div class="service-card">
+          <div class="service-number">02</div>
           <h3>陪跑顾问</h3>
-          <div class="target">目标：持续判断</div>
+          <div class="service-target">目标：持续判断</div>
           <p>为重大决策提供专业支撑，建立经营风险动态预警机制，随业务发展迭代优化解决方案，对接行业优质资源，助力企业稳健前行。</p>
+          <a href="services.html" class="service-link">查看详情 →</a>
         </div>
-        <div class="service-item">
+        <div class="service-card">
+          <div class="service-number">03</div>
           <h3>重组顾问</h3>
-          <div class="target">目标：重建秩序</div>
+          <div class="service-target">目标：重建秩序</div>
           <p>统筹重组项目全局，高效协调多方主体资源，推进重组方案精准落地，聚焦关键节点集中攻坚，帮助企业摆脱困境、重构健康运营秩序。</p>
+          <a href="services.html" class="service-link">查看详情 →</a>
         </div>
       </div>
-
-      <a href="services.html" class="view-more">查看全部服务</a>
     </div>
   </section>
 
-  <section class="container">
-    <div class="diagnosis-cta">
-      <h3>免费企业经营健康体检</h3>
-      <p>36道题，3分钟，基于真实经营数据的深度体检</p>
-      <a href="diag.html" class="diagnosis-btn">开始体检 →</a>
-    </div>
-  </section>
-
-  <section class="section">
+  <!-- Diagnosis CTA -->
+  <section class="diagnosis-section">
     <div class="container">
-      <h2 class="section-title">成功案例</h2>
-      <p class="section-desc">用结果说话，实战验证专业</p>
+      <div class="diagnosis-content">
+        <div class="diagnosis-icon">📋</div>
+        <h3>免费企业经营健康体检</h3>
+        <p>36道题，3分钟，基于真实经营数据的深度体检</p>
+        <a href="diag.html" class="diagnosis-btn">开始体检</a>
+      </div>
+    </div>
+  </section>
 
-      <div class="case-list">
-        <div class="case-item">
-          <span class="tag">债务重组</span>
-          <h3>建筑企业重组</h3>
-          <p>老牌建筑企业因市场环境变化及资金链断裂陷入严重债务危机，总负债高达2.2亿元，濒临破产清算。通过启动法院预重整程序、引入战略投资，成功化解全部债务风险。</p>
-          <div class="case-meta">
-            <span>债务化解 <strong>2.2亿</strong></span>
-            <span>稳定就业 <strong>550+</strong></span>
+  <!-- Cases -->
+  <section class="section cases-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">SUCCESS CASES</span>
+        <h2 class="section-title">成功案例</h2>
+        <p class="section-desc">用结果说话，实战验证专业</p>
+      </div>
+      <div class="cases-grid">
+        <div class="case-card">
+          <div class="case-image">
+            <span class="case-tag">债务重组</span>
+            <span class="case-image-text">建筑</span>
+          </div>
+          <div class="case-body">
+            <h3>建筑企业重组</h3>
+            <p>老牌建筑企业因市场环境变化及资金链断裂陷入严重债务危机，总负债高达2.2亿元，濒临破产清算。通过启动法院预重整程序、引入战略投资，成功化解全部债务风险。</p>
+            <div class="case-meta">
+              <div class="case-meta-item">
+                <strong>2.2亿</strong>
+                债务化解
+              </div>
+              <div class="case-meta-item">
+                <strong>550+</strong>
+                稳定就业
+              </div>
+            </div>
           </div>
         </div>
-        <div class="case-item">
-          <span class="tag">资产盘活</span>
-          <h3>资产盘活 + 债权协商</h3>
-          <p>闲置大型生产设备采用"售后回租"模式回笼资金800万元，与银行达成贷款本金延期3年、利息减免40%的方案，同时剥离6条亏损产品线，实现盈利能力质的飞跃。</p>
-          <div class="case-meta">
-            <span>资产变现 <strong>800万</strong></span>
-            <span>利息减免 <strong>40%</strong></span>
+        <div class="case-card">
+          <div class="case-image">
+            <span class="case-tag">资产盘活</span>
+            <span class="case-image-text">制造</span>
+          </div>
+          <div class="case-body">
+            <h3>资产盘活 + 债权协商</h3>
+            <p>闲置大型生产设备采用"售后回租"模式回笼资金800万元，与银行达成贷款本金延期3年、利息减免40%的方案，同时剥离6条亏损产品线，实现盈利能力质的飞跃。</p>
+            <div class="case-meta">
+              <div class="case-meta-item">
+                <strong>800万</strong>
+                资产变现
+              </div>
+              <div class="case-meta-item">
+                <strong>40%</strong>
+                利息减免
+              </div>
+            </div>
           </div>
         </div>
-        <div class="case-item">
-          <span class="tag">企业纾困</span>
-          <h3>重度困境企业纾困</h3>
-          <p>紧急止血冻结非刚性支出，与民间借贷方谈判将年化利率从24%下调至8%并达成分期协议，收缩30%低效产能聚焦核心业务，6个月实现现金流转正。</p>
-          <div class="case-meta">
-            <span>利息降幅 <strong>60%</strong></span>
-            <span>现金流转正 <strong>6个月</strong></span>
+        <div class="case-card">
+          <div class="case-image">
+            <span class="case-tag">企业纾困</span>
+            <span class="case-image-text">纾困</span>
+          </div>
+          <div class="case-body">
+            <h3>重度困境企业纾困</h3>
+            <p>紧急止血冻结非刚性支出，与民间借贷方谈判将年化利率从24%下调至8%并达成分期协议，收缩30%低效产能聚焦核心业务，6个月实现现金流转正。</p>
+            <div class="case-meta">
+              <div class="case-meta-item">
+                <strong>60%</strong>
+                利息降幅
+              </div>
+              <div class="case-meta-item">
+                <strong>6个月</strong>
+                现金流转正
+              </div>
+            </div>
           </div>
         </div>
       </div>
-
-      <a href="cases.html" class="view-more">查看全部案例</a>
+      <div class="cases-more">
+        <a href="cases.html">查看全部案例 →</a>
+      </div>
     </div>
   </section>
 
+  <!-- Team -->
   <section class="section">
     <div class="container">
-      <h2 class="section-title">关于灰金</h2>
-      <p class="section-desc">深耕中小企业困境诊断与重组赛道</p>
-      <p class="about-text">灰金重组聚焦企业资产、负债、现金流三维平衡重构，以专业视角穿透企业经营核心矛盾，通过系统性方案设计，为陷入发展瓶颈的中小企业提供可持续的破局路径与价值重塑方案。我们相信，每一家企业都有重生的可能。</p>
-      <a href="about.html" class="view-more">了解更多</a>
+      <div class="section-header">
+        <span class="section-label">OUR TEAM</span>
+        <h2 class="section-title">专业团队</h2>
+        <p class="section-desc">资深专家团队，为企业重生保驾护航</p>
+      </div>
+      <div class="team-grid">
+        <div class="team-card">
+          <div class="team-avatar">李</div>
+          <h4>李明远</h4>
+          <div class="team-role">创始人 · 首席顾问</div>
+          <p class="team-desc">15年企业重组经验，主导过50+大型重组项目</p>
+        </div>
+        <div class="team-card">
+          <div class="team-avatar">王</div>
+          <h4>王淑芬</h4>
+          <div class="team-role">高级合伙人 · 财务总监</div>
+          <p class="team-desc">注册会计师，擅长债务重组与资产盘活</p>
+        </div>
+        <div class="team-card">
+          <div class="team-avatar">张</div>
+          <h4>张志强</h4>
+          <div class="team-role">法律顾问 · 资深律师</div>
+          <p class="team-desc">20年执业经验，专注企业破产重整法律事务</p>
+        </div>
+      </div>
+      <div class="team-more">
+        <a href="about.html">了解团队 →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact CTA -->
+  <section class="contact-section">
+    <div class="container">
+      <div class="contact-box">
+        <div class="contact-text">
+          <h3>不确定你的企业处于什么阶段？</h3>
+          <p>预约免费咨询，我们的专业顾问会为你做初步诊断</p>
+        </div>
+        <div class="contact-actions">
+          <a href="mailto:Lucasa@foxmail.com" class="contact-btn">联系咨询</a>
+        </div>
+      </div>
     </div>
   </section>
 </main>
 
+<!-- Footer -->
 <footer class="footer">
   <div class="container">
-    <p>灰金重组整理</p>
-    <p>联系 <a href="mailto:Lucasa@foxmail.com">Lucasa@foxmail.com</a></p>
+    <div class="footer-top">
+      <div class="footer-brand">
+        <img src="images/logo-white.png" alt="灰金重组">
+        <div class="footer-brand-name">灰金重组</div>
+        <div class="footer-brand-slogan">看 清 问 题 · 重 建 秩 序</div>
+      </div>
+      <div class="footer-col">
+        <h5>快速导航</h5>
+        <ul class="footer-links">
+          <li><a href="index.html">首页</a></li>
+          <li><a href="about.html">关于我们</a></li>
+          <li><a href="services.html">核心服务</a></li>
+          <li><a href="cases.html">成功案例</a></li>
+          <li><a href="diag.html">健康诊断</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>联系方式</h5>
+        <div class="footer-contact">
+          <p>邮箱：<a href="mailto:Lucasa@foxmail.com">Lucasa@foxmail.com</a></p>
+          <p>专注：中小企业困境重组</p>
+          <p>理念：看清问题，重建秩序</p>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 灰金重组 · 本文内容仅供参考，不构成法律意见或专业建议</p>
+    </div>
   </div>
 </footer>
 

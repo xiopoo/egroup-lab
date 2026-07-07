@@ -3,59 +3,106 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
-<title>页面不存在 | 灰金重组</title>
+<title>页面走丢了 | 灰金重组</title>
 <meta name="description" content="灰金重组深耕中小企业困境诊断与重组赛道，提供企业诊断、陪跑顾问、重组顾问三大核心服务，帮助企业看清问题、重建秩序。">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif;background:#fff;color:#1a1a1a;line-height:1.8;font-size:15px;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
-a{text-decoration:none;color:inherit;transition:color .2s ease}
+a{text-decoration:none;color:inherit;transition:all .3s ease}
 img{max-width:100%;display:block;object-fit:contain}
 
 :root{
   --brand:#AB1942;
+  --brand-dark:#8B1435;
+  --brand-light:#C42A52;
   --text:#1a1a1a;
   --text-secondary:#4a4a4a;
   --text-muted:#8a8a8a;
   --text-faint:#b0b0b0;
-  --border:#eee;
-  --bg-gray:#fafafa;
-  --content-max:680px;
+  --border:#e8e8e8;
+  --border-light:#f0f0f0;
+  --bg-gray:#f7f7f7;
+  --bg-dark:#2a2a2a;
+  --bg-darker:#1f1f1f;
+  --content-max:1100px;
   --content-padding:24px;
+  --radius-sm:6px;
+  --radius-md:10px;
+  --radius-lg:16px;
+  --shadow-sm:0 2px 8px rgba(0,0,0,.04);
+  --shadow-md:0 8px 24px rgba(0,0,0,.08);
+  --shadow-lg:0 16px 48px rgba(0,0,0,.12);
+  --transition:.3s ease;
 }
 
 .container{max-width:var(--content-max);margin:0 auto;padding:0 var(--content-padding)}
 
 /* Header */
-.header{position:sticky;top:0;z-index:100;background:#fff;border-bottom:1px solid var(--border)}
-.header-inner{max-width:var(--content-max);margin:0 auto;padding:0 var(--content-padding);height:56px;display:flex;align-items:center;justify-content:space-between}
-.header-logo{display:flex;align-items:center}
+.header{position:sticky;top:0;z-index:100;background:var(--brand);box-shadow:0 2px 12px rgba(171,25,66,.15)}
+.header-inner{max-width:var(--content-max);margin:0 auto;padding:0 var(--content-padding);height:64px;display:flex;align-items:center;justify-content:space-between}
+.header-logo{display:flex;align-items:center;height:100%}
 .header-logo img{width:120px;height:auto;object-fit:contain}
-.header-nav{display:flex;gap:24px;font-size:14px}
-.header-nav a{color:var(--text-secondary);font-weight:400}
-.header-nav a:hover{color:var(--brand)}
-.header-nav a.active{color:var(--brand);font-weight:500}
+.header-nav{display:flex;gap:32px;align-items:center}
+.header-nav a{color:#fff;font-size:15px;font-weight:400;opacity:.9;position:relative}
+.header-nav a:hover{opacity:1;color:#fff}
+.header-nav a::after{content:'';position:absolute;bottom:-6px;left:0;width:0;height:2px;background:#fff;transition:width var(--transition);opacity:.8}
+.header-nav a:hover::after{width:100%}
+.header-nav a.active{opacity:1;font-weight:500}
+.header-nav a.active::after{width:100%}
 
 /* 404 Main */
-.error-page{padding:120px 0;text-align:center}
-.error-code{font-size:96px;font-weight:800;color:var(--brand);line-height:1;margin-bottom:16px;letter-spacing:-.04em}
-.error-title{font-size:28px;font-weight:600;color:var(--text);margin-bottom:12px;letter-spacing:-.01em}
-.error-desc{font-size:15px;color:var(--text-secondary);line-height:1.8;margin-bottom:40px}
-.btn-home{display:inline-block;padding:12px 28px;background:var(--brand);color:#fff;font-size:14px;font-weight:500;border-radius:6px;transition:opacity .2s ease}
-.btn-home:hover{opacity:.85}
+.error-section{position:relative;overflow:hidden;background:var(--bg-gray)}
+.error-section::before{content:'';position:absolute;top:20%;left:50%;transform:translateX(-50%);width:600px;height:600px;background:radial-gradient(circle,rgba(171,25,66,.08) 0%,transparent 70%);border-radius:50%;pointer-events:none}
+.error-section::after{content:'';position:absolute;bottom:-1px;left:0;right:0;height:80px;background:#fff;clip-path:polygon(0 60%,100% 0,100% 100%,0 100%)}
+.error-inner{position:relative;min-height:calc(100vh - 64px - 300px);display:flex;align-items:center;justify-content:center;padding:100px 0 140px}
+.error-content{text-align:center;position:relative;z-index:1}
+.error-code{font-size:120px;font-weight:700;color:var(--brand);line-height:1;margin-bottom:20px;letter-spacing:-.04em;background:linear-gradient(135deg,var(--brand) 0%,var(--brand-dark) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.error-title{font-size:32px;font-weight:600;color:var(--text);margin-bottom:16px;letter-spacing:-.01em}
+.error-desc{font-size:16px;color:var(--text-secondary);line-height:1.8;margin-bottom:48px;max-width:480px;margin-left:auto;margin-right:auto}
+.error-actions{display:flex;gap:16px;justify-content:center;align-items:center;flex-wrap:wrap}
+.btn-primary{display:inline-flex;align-items:center;gap:8px;padding:14px 36px;background:var(--brand);color:#fff;font-size:15px;font-weight:600;border-radius:50px;transition:all var(--transition);box-shadow:0 4px 16px rgba(171,25,66,.3)}
+.btn-primary:hover{background:var(--brand-light);transform:translateY(-2px);box-shadow:0 8px 24px rgba(171,25,66,.4)}
+.btn-primary::after{content:'→';transition:transform var(--transition)}
+.btn-primary:hover::after{transform:translateX(4px)}
+.btn-secondary{display:inline-flex;align-items:center;gap:8px;padding:14px 36px;background:#fff;color:var(--brand);font-size:15px;font-weight:600;border-radius:50px;border:2px solid var(--brand);transition:all var(--transition)}
+.btn-secondary:hover{background:var(--brand);color:#fff;transform:translateY(-2px);box-shadow:0 8px 24px rgba(171,25,66,.3)}
 
 /* Footer */
-.footer{padding:48px 0 40px;text-align:center;font-size:13px;color:var(--text-muted);border-top:1px solid var(--border)}
-.footer p{margin-bottom:4px}
-.footer a{color:var(--text-secondary)}
-.footer a:hover{color:var(--brand)}
+.footer{background:var(--bg-dark);color:#fff;padding:60px 0 30px}
+.footer-top{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:40px;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,.1)}
+.footer-brand img{width:120px;height:auto;margin-bottom:16px;filter:brightness(0) invert(1);opacity:.9}
+.footer-brand-name{font-size:20px;font-weight:600;margin-bottom:8px}
+.footer-brand-slogan{font-size:14px;color:var(--text-faint);letter-spacing:2px}
+.footer-col h5{font-size:15px;font-weight:600;margin-bottom:20px;color:#fff}
+.footer-links{list-style:none}
+.footer-links li{margin-bottom:12px}
+.footer-links a{font-size:14px;color:var(--text-faint)}
+.footer-links a:hover{color:#fff}
+.footer-contact p{font-size:14px;color:var(--text-faint);margin-bottom:10px;line-height:1.6}
+.footer-contact a{color:var(--text-faint)}
+.footer-contact a:hover{color:#fff}
+.footer-bottom{padding-top:30px;text-align:center;font-size:12px;color:var(--text-muted);line-height:1.8}
+.footer-bottom p{margin-bottom:4px}
 
 /* Responsive */
 @media(max-width:767px){
-  :root{--content-max:480px;--content-padding:20px}
-  .error-page{padding:80px 0}
-  .error-code{font-size:72px}
-  .error-title{font-size:22px}
-  .header-nav{gap:16px;font-size:13px}
+  :root{--content-padding:20px}
+  
+  .header-inner{height:56px}
+  .header-logo img{width:100px}
+  .header-nav{gap:18px}
+  .header-nav a{font-size:13px}
+  
+  .error-inner{min-height:auto;padding:60px 0 100px}
+  .error-code{font-size:80px;margin-bottom:16px}
+  .error-title{font-size:24px}
+  .error-desc{font-size:14px;margin-bottom:36px}
+  .error-actions{flex-direction:column}
+  .btn-primary,.btn-secondary{width:100%;justify-content:center}
+  
+  .footer-top{grid-template-columns:1fr;gap:32px}
+  .footer{padding:48px 0 24px}
+  .footer-bottom{font-size:11px}
 }
 </style>
 </head>
@@ -64,7 +111,7 @@ img{max-width:100%;display:block;object-fit:contain}
 <header class="header">
   <div class="header-inner">
     <a href="index.html" class="header-logo">
-      <img src="images/logo-color.png" alt="灰金重组">
+      <img src="images/logo-white.png" alt="灰金重组">
     </a>
     <nav class="header-nav">
       <a href="index.html">首页</a>
@@ -77,20 +124,53 @@ img{max-width:100%;display:block;object-fit:contain}
 </header>
 
 <main>
-  <section class="error-page">
+  <section class="error-section">
     <div class="container">
-      <div class="error-code">404</div>
-      <h1 class="error-title">页面不存在</h1>
-      <p class="error-desc">您访问的页面可能已移除或地址有误</p>
-      <a href="index.html" class="btn-home">返回首页 →</a>
+      <div class="error-inner">
+        <div class="error-content">
+          <div class="error-code">404</div>
+          <h1 class="error-title">页面走丢了</h1>
+          <p class="error-desc">您访问的页面不存在，或已被移除</p>
+          <div class="error-actions">
+            <a href="index.html" class="btn-primary">返回首页</a>
+            <a href="diag.html" class="btn-secondary">免费体检</a>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 </main>
 
 <footer class="footer">
   <div class="container">
-    <p>灰金重组整理</p>
-    <p>联系 <a href="mailto:Lucasa@foxmail.com">Lucasa@foxmail.com</a></p>
+    <div class="footer-top">
+      <div class="footer-brand">
+        <img src="images/logo-white.png" alt="灰金重组">
+        <div class="footer-brand-name">灰金重组</div>
+        <div class="footer-brand-slogan">看 清 问 题 · 重 建 秩 序</div>
+      </div>
+      <div class="footer-col">
+        <h5>快速导航</h5>
+        <ul class="footer-links">
+          <li><a href="index.html">首页</a></li>
+          <li><a href="about.html">关于我们</a></li>
+          <li><a href="services.html">核心服务</a></li>
+          <li><a href="cases.html">成功案例</a></li>
+          <li><a href="diag.html">健康诊断</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>联系方式</h5>
+        <div class="footer-contact">
+          <p>邮箱：<a href="mailto:Lucasa@foxmail.com">Lucasa@foxmail.com</a></p>
+          <p>专注：中小企业困境重组</p>
+          <p>理念：看清问题，重建秩序</p>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 灰金重组 · 本文内容仅供参考，不构成法律意见或专业建议</p>
+    </div>
   </div>
 </footer>
 
