@@ -1,0 +1,10 @@
+{
+  "name": "regroup-lab-diagnosis",
+  "version": "1.0.0",
+  "description": "灰金困境自助诊断系统",
+  "scripts": {
+    "dev": "vercel dev",
+    "build": "echo 'Static build complete'",
+    "deploy": "vercel --prod"
+  }
+}

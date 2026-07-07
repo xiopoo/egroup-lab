@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>灰金困境自助诊断</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@3.4.21/dist/vue.global.prod.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: #f8f9fa;
+        }
+        .brand-color {
+            color: #AB1942;
+        }
+        .brand-bg {
+            background-color: #AB1942;
+        }
+        .btn-primary {
+            background-color: #AB1942;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: background-color 0.2s;
+        }
+        .btn-primary:hover {
+            background-color: #8c1435;
+        }
+        .btn-secondary {
+            background-color: #fff;
+            color: #333;
+            border: 1px solid #ddd;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 500;
+        }
+        .card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            padding: 24px;
+            margin-bottom: 16px;
+        }
+        .option-card {
+            border: 2px solid #eee;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .option-card:hover {
+            border-color: #AB1942;
+            background-color: #fdf2f4;
+        }
+        .option-card.selected {
+            border-color: #AB1942;
+            background-color: #fdf2f4;
+        }
+        .option-card.selected::before {
+            content: '✓';
+            color: #AB1942;
+            font-weight: bold;
+            margin-right: 8px;
+        }
+        .progress-bar {
+            height: 8px;
+            background-color: #eee;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        .progress-fill {
+            height: 100%;
+            background-color: #AB1942;
+            border-radius: 4px;
+            transition: width 0.3s;
+        }
+    </style>
+</head>
+<body>
+    <div id="app" class="min-h-screen bg-gray-50">
+        <header class="brand-bg text-white py-6 px-4 shadow-lg">
+            <div class="max-w-md mx-auto text-center">
+                <img src="logo.svg" alt="灰金重组" class="h-10 mx-auto mb-3">
+                <h1 class="text-2xl font-bold mb-2">灰金困境自助诊断</h1>
+                <p class="text-sm opacity-80">看清问题，重建秩序</p>
+            </div>
+        </header>
+
+        <main class="max-w-md mx-auto px-4 py-6">
+            <div v-if="currentPage === 'home'" class="text-center py-12">
+                <div class="card">
+                    <div class="mb-6">
+                        <svg class="w-16 h-16 mx-auto mb-4 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                        </svg>
+                        <h2 class="text-xl font-bold text-gray-800 mb-2">企业经营健康度体检</h2>
+                        <p class="text-gray-600 text-sm">36道题，3分钟，快速了解企业风险状况</p>
+                    </div>
+                    <button @click="startDiagnosis" class="btn-primary w-full mb-4">开始诊断</button>
+                    <button @click="showFastMode = !showFastMode" class="btn-secondary w-full text-sm">快速体检（5题）</button>
+                    <div v-if="showFastMode" class="mt-4 p-4 bg-blue-50 rounded-lg text-sm text-blue-700">
+                        快速体检仅包含5道基础题，适合初步筛查。完整诊断包含36道题，覆盖债务、资产、经营、法律、家庭五个维度。
+                    </div>
+                </div>
+                <div class="mt-6 text-sm text-gray-500">
+                    <p>已有 <strong class="brand-color">{{ diagnosisCount }}</strong> 位老板完成诊断</p>
+                    <p class="mt-1">平均评分：<strong class="brand-color">{{ averageScore }}</strong> 分</p>
+                </div>
+            </div>
+
+            <div v-if="currentPage === 'question'" class="py-4">
+                <div class="card mb-4">
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="text-sm text-gray-500">层次 {{ currentLevel + 1 }}：{{ levels[currentLevel].name }}</span>
+                        <span class="text-sm font-medium">{{ currentQuestionIndex + 1 }}/{{ totalQuestions }}</span>
+                    </div>
+                    <div class="progress-bar mb-6">
+                        <div class="progress-fill" :style="{ width: progressPercent + '%' }"></div>
+                    </div>
+                    <div class="mb-6">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-2">
+                            Q{{ currentQuestionIndex + 1 }}：{{ currentQuestion.text }}
+                        </h3>
+                        <p v-if="currentQuestion.hint" class="text-sm text-gray-500">{{ currentQuestion.hint }}</p>
+                    </div>
+                    <div>
+                        <div 
+                            v-for="(option, idx) in currentQuestion.options" 
+                            :key="idx"
+                            @click="selectOption(idx)"
+                            class="option-card"
+                            :class="{ selected: selectedAnswer === idx }"
+                        >
+                            <span class="font-medium text-gray-800">{{ option.text }}</span>
+
+                        </div>
+                    </div>
+                </div>
+                <div v-if="currentQuestionIndex > 0" class="flex gap-4">
+                    <button 
+                        @click="prevQuestion" 
+                        class="btn-secondary w-full"
+                    >
+                        上一题
+                    </button>
+                </div>
+            </div>
+
+            <div v-if="currentPage === 'result'" class="py-4">
+                <div class="card">
+                    <div class="text-center mb-6">
+                        <div class="inline-flex items-center justify-center w-20 h-20 rounded-full brand-bg text-white text-2xl font-bold mb-4">
+                            {{ Math.round(totalScore) }}
+                        </div>
+                        <h2 class="text-xl font-bold text-gray-800 mb-1">综合评分</h2>
+                        <p class="text-sm" :class="resultClass">{{ resultLevel }}</p>
+                    </div>
+
+                    <div class="mb-6">
+                        <canvas id="radarChart" height="250"></canvas>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-3 mb-6">
+                        <div v-for="dim in dimensionScores" :key="dim.name" class="p-3 bg-gray-50 rounded-lg text-center">
+                            <div class="text-lg font-bold" :class="getScoreClass(dim.score)">{{ dim.score }}</div>
+                            <div class="text-xs text-gray-500">{{ dim.name }}</div>
+                        </div>
+                    </div>
+
+                    <div class="mb-6">
+                        <h3 class="font-semibold text-gray-800 mb-3">关键发现</h3>
+                        <ul class="space-y-2">
+                            <li v-for="(finding, idx) in findings" :key="idx" class="text-sm text-gray-600 flex items-start">
+                                <span class="mr-2 text-red-500">•</span>
+                                {{ finding }}
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="mb-6">
+                        <h3 class="font-semibold text-gray-800 mb-3">建议路径</h3>
+                        <div class="space-y-3">
+                            <div v-for="(step, idx) in suggestions" :key="idx" class="p-3 bg-blue-50 rounded-lg">
+                                <div class="font-medium text-blue-800 mb-1">{{ step.title }}</div>
+                                <div class="text-xs text-blue-600">{{ step.content }}</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex gap-4">
+                        <button @click="restartDiagnosis" class="btn-secondary flex-1">重新诊断</button>
+                        <button @click="showContact = !showContact" class="btn-primary flex-1">预约咨询</button>
+                    </div>
+                </div>
+
+                <div v-if="showContact" class="card mt-4 text-center">
+                    <h3 class="font-semibold text-gray-800 mb-4">预约咨询</h3>
+                    <div class="mb-4">
+                        <p class="text-sm text-gray-600 mb-4">扫码添加微信，获取专业诊断方案</p>
+                        <div class="w-48 h-48 mx-auto bg-gray-100 rounded-lg flex items-center justify-center mb-4">
+                            <img src="wechat-qrcode.jpg" alt="微信二维码" class="w-full h-full object-contain p-2">
+                        </div>
+                        <p class="text-xs text-gray-400">如扫码失败，请搜索微信号：igrape</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer class="text-center py-6 text-sm text-gray-400">
+            <p>© 灰金重组</p>
+            <p class="mt-1">本文内容仅供参考，不构成法律意见或专业建议</p>
+        </footer>
+    </div>
+
+    <script>
+        const { createApp, ref, computed, onMounted, watch, nextTick } = Vue;
+
+        const levels = [
+            { name: '基础体检', weight: 0 },
+            { name: '债务评估', weight: 0.3 },
+            { name: '资产评估', weight: 0.2 },
+            { name: '经营评估', weight: 0.25 },
+            { name: '法律评估', weight: 0.15 },
+            { name: '综合诊断', weight: 0.1 }
+        ];
+
+        const fullQuestions = [
+            {
+                text: '企业当前是否存在逾期债务？',
+                options: [
+                    { text: '否', score: 100 },
+                    { text: '有但可控', score: 60 },
+                    { text: '大面积逾期', score: 20 }
+                ],
+                dimension: 'debt',
+                level: 0
+            },
+            {
+                text: '银行贷款到期时间是否集中在3个月内？',
+                options: [
+                    { text: '否', score: 100 },
+                    { text: '部分', score: 60 },
+                    { text: '集中', score: 20 }
+                ],
+                dimension: 'debt',
+                level: 0
+            },
+            {
+                text: '是否存在个人或夫妻共同担保公司债务的情况？',
+                options: [
+                    { text: '否', score: 100 },
+                    { text: '少量', score: 60 },
+                    { text: '大量', score: 20 }
+                ],
+                dimension: 'family',
+                level: 0
+            },
+            {
+                text: '核心业务是否持续盈利？',
+                options: [
+                    { text: '是', score: 100 },
+                    { text: '微利', score: 60 },
+                    { text: '亏损', score: 20 }
+                ],
+                dimension: 'business',
+                level: 0
+            },
+            {
+                text: '是否已涉及诉讼或被执行？',
+                options: [
+                    { text: '否', score: 100 },
+                    { text: '有但可控', score: 60 },
+                    { text: '严重', score: 20 }
+                ],
+                dimension: 'legal',
+                level: 0
+            },
+            {
+                text: '资产负债率（总负债/总资产）',
+                options: [
+                    { text: '≤50%', score: 100 },
+                    { text: '50-70%', score: 60 },
+                    { text: '≥70%', score: 20 }
+                ],
+                dimension: 'debt',
+                level: 1
+            },
+            {
+                text: '综合融资成本（年化）',
+                options: [
+                    { text: '≤10%', score: 100 },
+                    { text: '10-15%', score: 60 },
+                    { text: '≥15%', score: 20 }
+                ],
+                dimension: 'debt',
+                level: 1
+            },
+            {
+                text: '短期负债占比（流动负债/总负债）',
+                options: [
+                    { text: '≤40%', score: 100 },
+                    { text: '40-60%', score: 60 },
+                    { text: '≥60%', score: 20 }
+                ],
+                dimension: 'debt',
+                level: 1
+            },
+            {
+                text: '是否存在民间借贷？',
+                options: [
+                    { text: '否', score: 100 },
+                    { text: '少量且合规', score: 60 },
+                    { text: '大量或高息', score: 20 }
+                ],
+                dimension: 'debt',
+                level: 1
+            },
+            {
+                text: '个人连带责任担保金额占净资产比例',
+                options: [
+                    { text: '≤20%', score: 100 },
+                    { text: '20-50%', score: 60 },
+                    { text: '≥50%', score: 20 }
+                ],
+                dimension: 'family',
+                level: 1
+            },
+            {
+                text: '是否存在联保、互保链？',
+                options: [
+                    { text: '否', score: 100 },
+                    { text: '有但未出险', score: 60 },
+                    { text: '已出险', score: 20 }
+                ],
+                dimension: 'debt',
+                level: 1
+            },
+            {
+                text: '逾期债务占总债务比例',
+                options: [
+                    { text: '≤5%', score: 100 },
+                    { text: '5-20%', score: 60 },
+                    { text: '≥20%', score: 20 }
+                ],
+                dimension: 'debt',
+                level: 1
+            },
+            {
+                text: '是否存在以贷养贷情况？',
+                options: [
+                    { text: '否', score: 100 },
+                    { text: '少量', score: 60 },
+                    { text: '严重', score: 20 }
+                ],
+                dimension: 'debt',
+                level: 1
+            },
+            {
+                text: '夫妻共签债务金额',
+                options: [
+                    { text: '无', score: 100 },
+                    { text: '少量', score: 60 },
+                    { text: '大量', score: 20 }
+                ],
+                dimension: 'family',
+                level: 1
+            },
+            {
+                text: '债务到期时间分布是否均衡？',
+                options: [
+                    { text: '均衡', score: 100 },
+                    { text: '部分集中', score: 60 },
+                    { text: '高度集中', score: 20 }
+                ],
+                dimension: 'debt',
+                level: 1
+            },
+            {
+                text: '可快速变现资产占比',
+                options: [
+                    { text: '≥50%', score: 100 },
+                    { text: '30-50%', score: 60 },
+                    { text: '≤30%', score: 20 }
+                ],
+                dimension: 'asset',
+                level: 2
+            },
+            {
+                text: '是否存在闲置或低效资产？',
+                options: [
+                    { text: '否', score: 100 },
+                    { text: '少量', score: 60 },
+                    { text: '大量', score: 20 }
+                ],
+                dimension: 'asset',
+                level: 2
+            },
+            {
+                text: '应收账款周转天数',
+                options: [
+                    { text: '≤60天', score: 100 },
+                    { text: '60-90天', score: 60 },
+                    { text: '≥90天', score: 20 }
+                ],
+                dimension: 'asset',
+                level: 2
+            },
+            {
+                text: '库存周转天数',
+                options: [
+                    { text: '≤30天', score: 100 },
+                    { text: '30-60天', score: 60 },
+                    { text: '≥60天', score: 20 }
+                ],
+                dimension: 'asset',
+                level: 2
+            },
+            {
+                text: '固定资产抵押率',
+                options: [
+                    { text: '≤50%', score: 100 },
+                    { text: '50-80%', score: 60 },
+                    { text: '≥80%', score: 20 }
+                ],
+                dimension: 'asset',
+                level: 2
+            },
+            {
+                text: '是否存在已查封资产？',
+                options: [
+                    { text: '否', score: 100 },
+                    { text: '少量', score: 60 },
+                    { text: '大量', score: 20 }
+                ],
+                dimension: 'legal',
+                level: 2
+            },
+            {
+                text: '无形资产（资质/牌照）是否完整？',
+                options: [
+                    { text: '完整', score: 100 },
+                    { text: '部分缺失', score: 60 },
+                    { text: '严重缺失', score: 20 }
+                ],
+                dimension: 'asset',
+                level: 2
+            },
+            {
+                text: '对外投资是否存在亏损？',
+                options: [
+                    { text: '否', score: 100 },
+                    { text: '少量', score: 60 },
+                    { text: '严重', score: 20 }
+                ],
+                dimension: 'asset',
+                level: 2
+            },
+            {
+                text: '核心业务毛利率',
+                options: [
+                    { text: '≥20%', score: 100 },
+                    { text: '10-20%', score: 60 },
+                    { text: '≤10%', score: 20 }
+                ],
+                dimension: 'business',
+                level: 3
+            },
+            {
+                text: '近6个月现金流是否为正？',
+                options: [
+                    { text: '持续为正', score: 100 },
+                    { text: '基本平衡', score: 60 },
+                    { text: '持续为负', score: 20 }
+                ],
+                dimension: 'business',
+                level: 3
+            },
+            {
+                text: '经营性现金流/净利润比率',
+                options: [
+                    { text: '≥1', score: 100 },
+                    { text: '0.5-1', score: 60 },
+                    { text: '≤0.5', score: 20 }
+                ],
+                dimension: 'business',
+                level: 3
+            },
+            {
+                text: '是否存在亏损业务？',
+                options: [
+                    { text: '否', score: 100 },
+                    { text: '少量', score: 60 },
+                    { text: '大量', score: 20 }
+                ],
+                dimension: 'business',
+                level: 3
+            },
+            {
+                text: '客户集中度（前5大客户占比）',
+                options: [
+                    { text: '≤50%', score: 100 },
+                    { text: '50-70%', score: 60 },
+                    { text: '≥70%', score: 20 }
+                ],
+                dimension: 'business',
+                level: 3
+            },
+            {
+                text: '供应商账期是否合理？',
+                options: [
+                    { text: '合理', score: 100 },
+                    { text: '偏紧', score: 60 },
+                    { text: '严重受限', score: 20 }
+                ],
+                dimension: 'business',
+                level: 3
+            },
+            {
+                text: '是否建立现金流预警机制？',
+                options: [
+                    { text: '已建立', score: 100 },
+                    { text: '部分建立', score: 60 },
+                    { text: '未建立', score: 20 }
+                ],
+                dimension: 'business',
+                level: 3
+            },
+            {
+                text: '公私账户是否完全分开？',
+                options: [
+                    { text: '完全分开', score: 100 },
+                    { text: '部分混同', score: 60 },
+                    { text: '严重混同', score: 20 }
+                ],
+                dimension: 'legal',
+                level: 3
+            },
+            {
+                text: '已涉诉案件数量',
+                options: [
+                    { text: '0', score: 100 },
+                    { text: '1-3', score: 60 },
+                    { text: '≥4', score: 20 }
+                ],
+                dimension: 'legal',
+                level: 4
+            },
+            {
+                text: '是否存在被执行案件？',
+                options: [
+                    { text: '否', score: 100 },
+                    { text: '有但未冻结', score: 60 },
+                    { text: '已冻结', score: 20 }
+                ],
+                dimension: 'legal',
+                level: 4
+            },
+            {
+                text: '账户冻结情况',
+                options: [
+                    { text: '无', score: 100 },
+                    { text: '非核心账户', score: 60 },
+                    { text: '核心账户', score: 20 }
+                ],
+                dimension: 'legal',
+                level: 4
+            },
+            {
+                text: '是否存在刑事风险（拒执罪等）？',
+                options: [
+                    { text: '否', score: 100 },
+                    { text: '有风险', score: 60 },
+                    { text: '已触发', score: 20 }
+                ],
+                dimension: 'legal',
+                level: 4
+            },
+            {
+                text: '是否完成公司化改造？',
+                options: [
+                    { text: '已完成', score: 100 },
+                    { text: '进行中', score: 60 },
+                    { text: '未开始', score: 20 }
+                ],
+                dimension: 'legal',
+                level: 4
+            }
+        ];
+
+        const fastQuestions = fullQuestions.filter(q => q.level === 0);
+
+        createApp({
+            setup() {
+                const currentPage = ref('home');
+                const showFastMode = ref(false);
+                const useFastMode = ref(false);
+                const questions = ref([]);
+                const currentQuestionIndex = ref(0);
+                const currentLevel = ref(0);
+                const selectedAnswer = ref(null);
+                const answers = ref({});
+                const diagnosisCount = ref(128);
+                const averageScore = ref(62);
+                const showContact = ref(false);
+                const contactForm = ref({
+                    name: '',
+                    phone: '',
+                    company: '',
+                    message: ''
+                });
+                const radarChart = ref(null);
+
+                const totalQuestions = computed(() => questions.value.length);
+                const currentQuestion = computed(() => questions.value[currentQuestionIndex.value]);
+                const isLastQuestion = computed(() => currentQuestionIndex.value === questions.value.length - 1);
+                const progressPercent = computed(() => ((currentQuestionIndex.value + 1) / questions.value.length) * 100);
+
+                const dimensionWeights = {
+                    debt: 0.3,
+                    asset: 0.2,
+                    business: 0.25,
+                    legal: 0.15,
+                    family: 0.1
+                };
+
+                const dimensionNames = {
+                    debt: '债务压力',
+                    asset: '资产质量',
+                    business: '经营健康',
+                    legal: '法律风险',
+                    family: '家庭保障'
+                };
+
+                const dimensionScores = computed(() => {
+                    const scores = { debt: [], asset: [], business: [], legal: [], family: [] };
+                    Object.entries(answers.value).forEach(([idx, answerIdx]) => {
+                        const question = questions.value[idx];
+                        if (question) {
+                            scores[question.dimension].push(question.options[answerIdx].score);
+                        }
+                    });
+
+                    return Object.entries(scores).map(([key, values]) => ({
+                        name: dimensionNames[key],
+                        score: values.length > 0 
+                            ? Math.round(values.reduce((a, b) => a + b, 0) / values.length)
+                            : 0,
+                        weight: dimensionWeights[key]
+                    }));
+                });
+
+                const totalScore = computed(() => {
+                    return dimensionScores.value.reduce((total, dim) => {
+                        return total + dim.score * dim.weight;
+                    }, 0);
+                });
+
+                const resultLevel = computed(() => {
+                    const score = totalScore.value;
+                    if (score >= 80) return '健康型企业';
+                    if (score >= 60) return '关注型企业';
+                    if (score >= 40) return '预警型企业';
+                    return '危机型企业';
+                });
+
+                const resultClass = computed(() => {
+                    const score = totalScore.value;
+                    if (score >= 80) return 'text-green-600';
+                    if (score >= 60) return 'text-blue-600';
+                    if (score >= 40) return 'text-orange-600';
+                    return 'text-red-600';
+                });
+
+                const findings = computed(() => {
+                    const result = [];
+                    dimensionScores.value.forEach(dim => {
+                        if (dim.score < 40) {
+                            result.push(`${dim.name}严重不足（${dim.score}分），需立即采取措施`);
+                        } else if (dim.score < 60) {
+                            result.push(`${dim.name}存在隐患（${dim.score}分），建议重点关注`);
+                        }
+                    });
+                    if (result.length === 0) {
+                        result.push('企业整体健康状况良好，建议保持现有的经营管理模式');
+                    }
+                    return result;
+                });
+
+                const suggestions = computed(() => {
+                    const score = totalScore.value;
+                    if (score >= 80) {
+                        return [
+                            { title: '维持现状', content: '企业经营状况良好，建议继续保持稳健的财务管理和风险控制' },
+                            { title: '优化升级', content: '可考虑进一步优化债务结构，降低融资成本，提升资产运营效率' }
+                        ];
+                    } else if (score >= 60) {
+                        return [
+                            { title: '风险预警', content: '企业存在一定风险，建议建立现金流监控机制，提前做好风险预案' },
+                            { title: '债务优化', content: '梳理现有债务结构，优先解决高息负债，降低综合融资成本' }
+                        ];
+                    } else if (score >= 40) {
+                        return [
+                            { title: '紧急处理', content: '企业已进入风险预警区间，需立即启动债务重组准备工作' },
+                            { title: '专业咨询', content: '建议尽快联系专业重组机构，进行正式的企业经营健康度体检' },
+                            { title: '资产盘活', content: '处置低效资产，快速回笼现金，缓解资金压力' }
+                        ];
+                    } else {
+                        return [
+                            { title: '立即行动', content: '企业已处于危机状态，需立即采取全面的困境重组措施' },
+                            { title: '专业介入', content: '强烈建议寻求专业困境重组机构的帮助，制定系统性解决方案' },
+                            { title: '法律保护', content: '立即咨询律师，了解当前法律风险，避免情况进一步恶化' }
+                        ];
+                    }
+                });
+
+                const getScoreClass = (score) => {
+                    if (score >= 80) return 'text-green-600';
+                    if (score >= 60) return 'text-blue-600';
+                    if (score >= 40) return 'text-orange-600';
+                    return 'text-red-600';
+                };
+
+                const startDiagnosis = () => {
+                    questions.value = useFastMode.value ? [...fastQuestions] : [...fullQuestions];
+                    currentQuestionIndex.value = 0;
+                    currentLevel.value = questions.value[0]?.level || 0;
+                    selectedAnswer.value = null;
+                    answers.value = {};
+                    currentPage.value = 'question';
+                };
+
+                const selectOption = (idx) => {
+                    selectedAnswer.value = idx;
+                    answers.value[currentQuestionIndex.value] = idx;
+                    
+                    if (isLastQuestion.value) {
+                        currentPage.value = 'result';
+                        nextTick(() => {
+                            renderRadarChart();
+                        });
+                    } else {
+                        currentQuestionIndex.value++;
+                        currentLevel.value = questions.value[currentQuestionIndex.value].level;
+                        selectedAnswer.value = answers.value[currentQuestionIndex.value] ?? null;
+                    }
+                };
+
+                const prevQuestion = () => {
+                    if (currentQuestionIndex.value > 0) {
+                        currentQuestionIndex.value--;
+                        currentLevel.value = questions.value[currentQuestionIndex.value].level;
+                        selectedAnswer.value = answers.value[currentQuestionIndex.value] ?? null;
+                    }
+                };
+
+                const nextQuestion = () => {
+                    if (selectedAnswer.value !== null) {
+                        answers.value[currentQuestionIndex.value] = selectedAnswer.value;
+                        
+                        if (isLastQuestion.value) {
+                            currentPage.value = 'result';
+                            nextTick(() => {
+                                renderRadarChart();
+                            });
+                        } else {
+                            currentQuestionIndex.value++;
+                            currentLevel.value = questions.value[currentQuestionIndex.value].level;
+                            selectedAnswer.value = answers.value[currentQuestionIndex.value] ?? null;
+                        }
+                    }
+                };
+
+                const renderRadarChart = () => {
+                    const ctx = document.getElementById('radarChart').getContext('2d');
+                    if (radarChart.value) {
+                        radarChart.value.destroy();
+                    }
+
+                    const labels = dimensionScores.value.map(d => d.name);
+                    const data = dimensionScores.value.map(d => d.score);
+
+                    radarChart.value = new Chart(ctx, {
+                        type: 'radar',
+                        data: {
+                            labels: labels,
+                            datasets: [{
+                                label: '维度评分',
+                                data: data,
+                                backgroundColor: 'rgba(171, 25, 66, 0.2)',
+                                borderColor: '#AB1942',
+                                borderWidth: 2,
+                                pointBackgroundColor: '#AB1942',
+                                pointBorderColor: '#fff',
+                                pointHoverBackgroundColor: '#fff',
+                                pointHoverBorderColor: '#AB1942'
+                            }]
+                        },
+                        options: {
+                            scales: {
+                                r: {
+                                    beginAtZero: true,
+                                    max: 100,
+                                    ticks: {
+                                        stepSize: 20,
+                                        font: { size: 10 }
+                                    },
+                                    grid: {
+                                        color: 'rgba(0, 0, 0, 0.1)'
+                                    },
+                                    pointLabels: {
+                                        font: { size: 12 }
+                                    }
+                                }
+                            },
+                            plugins: {
+                                legend: {
+                                    display: false
+                                }
+                            },
+                            maintainAspectRatio: false
+                        }
+                    });
+                };
+
+                const restartDiagnosis = () => {
+                    currentPage.value = 'home';
+                    showContact.value = false;
+                    contactForm.value = { name: '', phone: '', company: '', message: '' };
+                };
+
+                const submitContact = () => {
+                    console.log('Contact form submitted:', contactForm.value);
+                    currentPage.value = 'success';
+                };
+
+                watch(currentQuestionIndex, (newIdx) => {
+                    currentLevel.value = questions.value[newIdx]?.level || 0;
+                });
+
+                return {
+                    currentPage,
+                    showFastMode,
+                    useFastMode,
+                    questions,
+                    currentQuestionIndex,
+                    currentLevel,
+                    selectedAnswer,
+                    answers,
+                    diagnosisCount,
+                    averageScore,
+                    showContact,
+                    contactForm,
+                    levels,
+                    totalQuestions,
+                    currentQuestion,
+                    isLastQuestion,
+                    progressPercent,
+                    dimensionScores,
+                    totalScore,
+                    resultLevel,
+                    resultClass,
+                    findings,
+                    suggestions,
+                    getScoreClass,
+                    startDiagnosis,
+                    selectOption,
+                    prevQuestion,
+                    nextQuestion,
+                    restartDiagnosis,
+                    submitContact
+                };
+            }
+        }).mount('#app');
+    </script>
+</body>
+</html>

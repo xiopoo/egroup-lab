@@ -1,0 +1,15 @@
+{
+  "name": "regroup-lab-diagnosis",
+  "version": 2,
+  "builds": [
+    {
+      "src": "public/**",
+      "use": "@vercel/static"
+    }
+  ],
+  "routes": [
+    { "src": "/", "dest": "/public/index.html" },
+    { "src": "/intro.html", "dest": "/public/intro.html" },
+    { "src": "/(.*)", "dest": "/public/$1" }
+  ]
+}
