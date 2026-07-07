@@ -10,12 +10,10 @@
 html{scroll-behavior:smooth}
 body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;background:#fff;color:#333;line-height:1.6}
 a{text-decoration:none;color:inherit}
-img{max-width:100%}
+img{max-width:100%;display:block;object-fit:contain}
 
-/* Brand */
 :root{--brand:#AB1942;--brand-dark:#8c1435;--brand-light:#fdf2f4;--text:#333;--text-light:#6b7280;--text-lighter:#9ca3af;--bg-gray:#f8f9fa;--border:#eee}
 
-/* Layout */
 .wrap{max-width:480px;margin:0 auto;padding:0 20px}
 .text-center{text-align:center}
 .flex{display:flex}
@@ -23,10 +21,9 @@ img{max-width:100%}
 .section-title{font-size:22px;font-weight:700;color:#1f2937;margin-bottom:32px;text-align:center}
 .section-subtitle{font-size:14px;color:var(--text-light);margin-top:-24px;margin-bottom:32px;text-align:center}
 
-/* Header */
 .header{position:sticky;top:0;z-index:100;background:rgba(171,25,66,0.97);backdrop-filter:blur(8px);color:#fff;padding:0 20px;height:56px}
 .header-inner{max-width:480px;margin:0 auto;display:flex;align-items:center;height:56px;gap:12px}
-.header-logo{height:28px;width:auto;flex-shrink:0;min-width:80px;max-width:140px}
+.header-logo{width:120px;height:auto;flex-shrink:0}
 .header-nav{display:flex;gap:16px;margin-left:auto;font-size:13px}
 .header-nav a{opacity:0.85;transition:all 0.2s;white-space:nowrap;position:relative;padding:4px 0}
 .header-nav a::after{content:'';position:absolute;bottom:-2px;left:50%;width:0;height:2px;background:#fff;border-radius:1px;transition:all 0.25s;transform:translateX(-50%)}
@@ -34,13 +31,17 @@ img{max-width:100%}
 .header-nav a:hover::after{width:100%}
 .header-nav a:active{transform:scale(0.95)}
 
-/* Hero */
-.hero{background:linear-gradient(135deg,#AB1942 0%,#8c1435 100%);color:#fff;padding:56px 20px 48px;text-align:center}
-.hero-logo{width:72px;height:72px;margin:0 auto 20px;border-radius:50%;background:rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;padding:14px;min-width:72px;max-width:72px}
-.hero-logo img{width:100%;height:100%;object-fit:contain}
+.hero{background:linear-gradient(135deg,#AB1942 0%,#8c1435 100%);color:#fff;padding:48px 20px}
+.hero-inner{max-width:480px;margin:0 auto}
+.hero-logo-wrap{text-align:center;margin-bottom:28px}
+.hero-logo{width:220px;height:auto;margin:0 auto}
+.hero-content{text-align:center}
 .hero h1{font-size:28px;font-weight:700;margin-bottom:8px;letter-spacing:1px}
 .hero .slogan{font-size:16px;opacity:0.9;margin-bottom:6px}
-.hero .sub-slogan{font-size:13px;opacity:0.65;margin-bottom:32px}
+.hero .sub-slogan{font-size:13px;opacity:0.65;margin-bottom:24px}
+.hero-highlights{display:grid;grid-template-columns:1fr;gap:10px;margin-bottom:28px;text-align:left}
+.hero-highlight{display:flex;align-items:center;gap:10px;font-size:13px;opacity:0.9}
+.hero-highlight-icon{width:20px;height:20px;border-radius:50%;background:rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:11px;font-weight:700}
 .hero-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
 .hero-btn{display:inline-block;padding:14px 28px;border-radius:8px;font-weight:600;font-size:15px;transition:all 0.2s}
 .hero-btn-primary{background:#fff;color:var(--brand)}
@@ -48,29 +49,24 @@ img{max-width:100%}
 .hero-btn-secondary{background:rgba(255,255,255,0.12);color:#fff;border:1px solid rgba(255,255,255,0.25)}
 .hero-btn-secondary:hover{background:rgba(255,255,255,0.2)}
 
-/* Card */
 .card{background:#fff;border-radius:12px;box-shadow:0 2px 12px rgba(0,0,0,0.06);padding:24px;margin-bottom:16px;border:1px solid var(--border)}
 
-/* Trust Stats */
 .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .about-card{background:var(--bg-gray);border-radius:10px;padding:20px;text-align:center}
 .about-card .num{font-size:28px;font-weight:700;color:var(--brand);margin-bottom:4px}
 .about-card .label{font-size:13px;color:var(--text-light)}
 
-/* Services */
 .services{background:var(--bg-gray)}
 .service-card{background:#fff;border-radius:12px;padding:24px;margin-bottom:16px;border-left:3px solid var(--brand)}
 .service-card h3{font-size:17px;font-weight:700;color:#1f2937;margin-bottom:4px}
 .service-card .target{font-size:13px;color:var(--brand);font-weight:600;margin-bottom:8px}
 .service-card p{font-size:14px;color:var(--text-light);line-height:1.7}
 
-/* Differentiators */
 .diff-list{display:grid;gap:12px}
 .diff-item{padding:16px;background:var(--brand-light);border-radius:8px;border-left:3px solid var(--brand)}
 .diff-item .title{font-weight:600;color:#1f2937;font-size:14px;margin-bottom:4px}
 .diff-item p{font-size:13px;color:var(--text-light);line-height:1.6}
 
-/* Team */
 .team-grid{display:grid;gap:16px;grid-template-columns:1fr}
 .team-card{background:#fff;border-radius:12px;box-shadow:0 2px 12px rgba(0,0,0,0.06);padding:24px;text-align:center;border:1px solid var(--border);transition:transform 0.2s,box-shadow 0.2s}
 .team-card:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,0.1)}
@@ -79,7 +75,6 @@ img{max-width:100%}
 .team-card .role{font-size:13px;color:var(--brand);font-weight:600;margin-bottom:8px}
 .team-card .desc{font-size:13px;color:var(--text-light);line-height:1.6}
 
-/* Diagnosis CTA */
 .cta-section{text-align:center;padding:40px 0}
 .cta-section h2{font-size:22px;font-weight:700;color:#1f2937;margin-bottom:12px}
 .cta-section p{font-size:14px;color:var(--text-light);margin-bottom:24px}
@@ -90,7 +85,6 @@ img{max-width:100%}
 .cta-btn-secondary{background:#fff;color:var(--brand);border:1.5px solid var(--brand)}
 .cta-btn-secondary:hover{background:var(--brand-light)}
 
-/* Cases */
 .cases{background:var(--bg-gray)}
 .case-card{background:#fff;border-radius:12px;padding:20px;margin-bottom:16px;border:1px solid var(--border);transition:transform 0.2s,box-shadow 0.2s}
 .case-card:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,0.08)}
@@ -102,7 +96,6 @@ img{max-width:100%}
 .case-stat .num{font-size:18px;font-weight:700;color:var(--brand)}
 .case-stat .label{font-size:11px;color:var(--text-lighter)}
 
-/* Process */
 .process-steps{position:relative}
 .process-steps::before{content:'';position:absolute;left:15px;top:8px;bottom:8px;width:2px;background:var(--border)}
 .process-step{position:relative;padding-left:44px;margin-bottom:24px}
@@ -111,23 +104,25 @@ img{max-width:100%}
 .process-step h4{font-size:15px;font-weight:600;color:#1f2937;margin-bottom:2px}
 .process-step p{font-size:13px;color:var(--text-light)}
 
-/* Contact */
 .contact-info{background:var(--bg-gray);border-radius:12px;padding:20px;text-align:center}
 .contact-info .item{margin-bottom:12px}
 .contact-info .item:last-child{margin-bottom:0}
 .contact-info .label{font-size:12px;color:var(--text-lighter)}
 .contact-info .value{font-size:15px;font-weight:600;color:#1f2937}
-.contact-info .qr{width:140px;height:140px;margin:16px auto 0;background:var(--bg-gray);border-radius:8px;overflow:hidden;border:1px solid var(--border)}
-.contact-info .qr img{width:100%;height:100%;object-fit:contain;padding:8px}
+.contact-info .qr{width:140px;height:140px;margin:16px auto 0;background:#fff;border-radius:8px;overflow:hidden;border:1px solid var(--border);padding:8px}
+.contact-info .qr img{width:100%;height:100%;object-fit:contain}
 
-/* Footer */
+.footer-banner{padding:32px 20px;background:var(--bg-gray)}
+.footer-banner-inner{max-width:480px;margin:0 auto}
+.footer-banner img{width:100%;height:auto;object-fit:contain;border-radius:12px}
+
 .footer{text-align:center;padding:32px 20px;font-size:13px;color:var(--text-lighter);border-top:1px solid var(--border)}
 .footer .brand-name{color:var(--brand);font-weight:600}
 
-/* === Responsive: Tablet (≥768px) === */
 @media(min-width:768px){
-.wrap{max-width:720px}
-.header-inner{max-width:720px}
+.wrap{max-width:720px;padding:0 24px}
+.header-inner{max-width:720px;padding:0 24px}
+.header-logo{width:140px}
 .about-grid{grid-template-columns:repeat(4,1fr)}
 .team-grid{grid-template-columns:repeat(3,1fr)}
 .service-card{margin-bottom:0}
@@ -136,34 +131,41 @@ img{max-width:100%}
 .cases-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
 .case-card{margin-bottom:0}
 
-.hero{padding:64px 20px 56px}
+.hero{padding:56px 24px}
+.hero-inner{max-width:720px}
+.hero-logo{width:260px}
 .hero h1{font-size:32px}
 .hero .sub-slogan{font-size:14px}
+.hero-highlights{grid-template-columns:1fr 1fr 1fr;gap:16px;text-align:center}
+.hero-highlight{flex-direction:column;gap:6px;font-size:13px}
 .hero-btn{padding:14px 32px;font-size:16px}
-
-.hero-logo{width:80px;height:80px;min-width:80px;max-width:80px;padding:16px}
-.header-logo{height:32px}
 
 .section-title{font-size:24px}
 .service-card h3{font-size:18px}
+
+.footer-banner-inner{max-width:720px;padding:0 24px}
 }
 
-/* === Responsive: Desktop (≥1024px) === */
 @media(min-width:1024px){
-.wrap{max-width:1200px;padding:0 40px}
-.header{height:64px;padding:0 40px}
-.header-inner{max-width:1200px;height:64px;gap:20px}
-.header-logo{height:36px;min-width:100px;max-width:160px}
+.wrap{max-width:1080px;padding:0 32px}
+.header{height:64px;padding:0}
+.header-inner{max-width:1080px;height:64px;gap:20px;padding:0 32px}
+.header-logo{width:160px}
 .header-nav{gap:28px;font-size:15px}
 .header-nav a{padding:6px 0}
 
-.hero{padding:80px 40px 64px}
-.hero-logo{width:100px;height:100px;min-width:100px;max-width:100px;padding:20px;margin-bottom:24px}
-.hero h1{font-size:38px;letter-spacing:2px}
+.hero{padding:72px 32px}
+.hero-inner{max-width:1080px;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+.hero-logo-wrap{order:2;text-align:right;margin-bottom:0}
+.hero-content{order:1;text-align:left}
+.hero-logo{width:320px;margin:0 0 0 auto}
+.hero h1{font-size:36px;letter-spacing:2px}
 .hero .slogan{font-size:20px}
-.hero .sub-slogan{font-size:15px;margin-bottom:36px}
+.hero .sub-slogan{font-size:15px;margin-bottom:28px}
+.hero-highlights{grid-template-columns:1fr;gap:12px;text-align:left;margin-bottom:32px}
+.hero-highlight{flex-direction:row;gap:10px;font-size:14px}
+.hero-btns{justify-content:flex-start;gap:16px}
 .hero-btn{padding:16px 36px;font-size:17px}
-.hero-btns{gap:16px}
 
 .section{padding:64px 0}
 .section-title{font-size:28px;margin-bottom:40px}
@@ -174,6 +176,7 @@ img{max-width:100%}
 
 .card{padding:32px}
 
+.services-grid{gap:20px}
 .service-card{padding:28px}
 .service-card h3{font-size:19px}
 .service-card p{font-size:15px}
@@ -182,11 +185,13 @@ img{max-width:100%}
 .diff-item .title{font-size:15px}
 .diff-item p{font-size:14px}
 
-.team-card{padding:32px}
+.team-grid{gap:20px}
+.team-card{padding:28px}
 .team-avatar{width:96px;height:96px;font-size:38px}
 .team-card h3{font-size:19px}
 .team-card .desc{font-size:14px}
 
+.cases-grid{gap:20px}
 .case-card{padding:24px}
 .case-card h3{font-size:17px}
 .case-card p{font-size:15px}
@@ -205,16 +210,18 @@ img{max-width:100%}
 .process-step h4{font-size:16px}
 .process-step p{font-size:14px}
 
+.footer-banner{padding:48px 32px}
+.footer-banner-inner{max-width:1080px;padding:0 32px}
+
 .footer{padding:40px}
 }
 </style>
 </head>
 <body>
 
-<!-- Header -->
 <header class="header">
     <div class="header-inner">
-        <img src="logo.png" alt="灰金重组" class="header-logo">
+        <img src="images/logo-white.png" alt="灰金重组" class="header-logo">
         <nav class="header-nav">
             <a href="#services">服务</a>
             <a href="#cases">案例</a>
@@ -224,19 +231,37 @@ img{max-width:100%}
     </div>
 </header>
 
-<!-- Hero -->
 <section class="hero">
-    <div class="hero-logo"><img src="logo.png" alt="灰金重组"></div>
-    <h1>灰金重组</h1>
-    <p class="slogan">看清问题，重建秩序</p>
-    <p class="sub-slogan">中小企业困境诊断与重组顾问 · 全周期专业服务</p>
-    <div class="hero-btns">
-        <a href="diag.html" class="hero-btn hero-btn-primary">免费健康体检</a>
-        <a href="#services" class="hero-btn hero-btn-secondary">了解服务</a>
+    <div class="hero-inner">
+        <div class="hero-logo-wrap">
+            <img src="images/logo-white.png" alt="灰金重组" class="hero-logo">
+        </div>
+        <div class="hero-content">
+            <h1>灰金重组</h1>
+            <p class="slogan">看清问题，重建秩序</p>
+            <p class="sub-slogan">中小企业困境诊断与重组顾问</p>
+            <div class="hero-highlights">
+                <div class="hero-highlight">
+                    <span class="hero-highlight-icon">✓</span>
+                    <span>10年+行业经验</span>
+                </div>
+                <div class="hero-highlight">
+                    <span class="hero-highlight-icon">✓</span>
+                    <span>亿元级债务化解</span>
+                </div>
+                <div class="hero-highlight">
+                    <span class="hero-highlight-icon">✓</span>
+                    <span>全周期陪跑服务</span>
+                </div>
+            </div>
+            <div class="hero-btns">
+                <a href="diag.html" class="hero-btn hero-btn-primary">免费健康体检</a>
+                <a href="#services" class="hero-btn hero-btn-secondary">了解服务</a>
+            </div>
+        </div>
     </div>
 </section>
 
-<!-- Trust Stats -->
 <section class="section" style="padding:32px 0">
     <div class="wrap">
         <div class="about-grid">
@@ -248,7 +273,6 @@ img{max-width:100%}
     </div>
 </section>
 
-<!-- About -->
 <section class="section" style="padding-top:0">
     <div class="wrap">
         <h2 class="section-title">关于灰金</h2>
@@ -273,7 +297,6 @@ img{max-width:100%}
     </div>
 </section>
 
-<!-- Differentiators -->
 <section class="section" style="padding-top:0">
     <div class="wrap">
         <h2 class="section-title">我们的不同</h2>
@@ -297,7 +320,6 @@ img{max-width:100%}
     </div>
 </section>
 
-<!-- Team -->
 <section class="section" style="padding-top:0">
     <div class="wrap">
         <h2 class="section-title">专业团队</h2>
@@ -324,7 +346,6 @@ img{max-width:100%}
     </div>
 </section>
 
-<!-- Services -->
 <section class="section services" id="services">
     <div class="wrap">
         <h2 class="section-title">核心服务体系</h2>
@@ -360,7 +381,6 @@ img{max-width:100%}
     </div>
 </section>
 
-<!-- Diagnosis CTA -->
 <section class="section">
     <div class="wrap">
         <div class="cta-section">
@@ -374,7 +394,6 @@ img{max-width:100%}
     </div>
 </section>
 
-<!-- Cases -->
 <section class="section cases" id="cases">
     <div class="wrap">
         <h2 class="section-title">成功案例</h2>
@@ -416,7 +435,6 @@ img{max-width:100%}
     </div>
 </section>
 
-<!-- Contact -->
 <section class="section" id="contact">
     <div class="wrap">
         <h2 class="section-title">联系我们</h2>
@@ -431,13 +449,18 @@ img{max-width:100%}
             </div>
             <div class="item">
                 <div class="label">扫码添加微信，获取一对一咨询服务</div>
-                <div class="qr"><img src="wechat-qrcode.jpg" alt="微信二维码"></div>
+                <div class="qr"><img src="images/wechat-qrcode.jpg" alt="微信二维码"></div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- Footer -->
+<section class="footer-banner">
+    <div class="footer-banner-inner">
+        <img src="images/banner-footer.png" alt="灰金重组">
+    </div>
+</section>
+
 <footer class="footer">
     <p><span class="brand-name">灰金重组</span> — 企业困境诊断与重组顾问</p>
     <p style="margin-top:4px">看清问题 · 重建秩序</p>
