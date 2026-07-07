@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>企业健康度体检 | 灰金重组</title>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.4.21/vue.global.prod.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+    <style>
+        *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+        body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;background-color:#f8f9fa;min-height:100vh}
+        .brand-color{color:#AB1942}
+        .brand-bg{background-color:#AB1942}
+        .container{max-width:448px;margin-left:auto;margin-right:auto}
+        .flex{display:flex}
+        .flex-1{flex:1}
+        .flex-shrink-0{flex-shrink:0}
+        .items-center{align-items:center}
+        .justify-center{justify-content:center}
+        .justify-between{justify-content:space-between}
+        .inline-flex{display:inline-flex}
+        .grid{display:grid}
+        .grid-cols-2{grid-template-columns:1fr 1fr}
+        .gap-3{gap:12px}
+        .gap-4{gap:16px}
+        .space-y-2>*+*{margin-top:8px}
+        .space-y-3>*+*{margin-top:12px}
+        .text-center{text-align:center}
+        .relative{position:relative}
+        .absolute{position:absolute}
+        .bottom-full{bottom:100%}
+        .top-full{top:100%}
+        .left-1-2{left:50%}
+        .-translate-x-1-2{transform:translateX(-50%)}
+        .-mt-1{margin-top:-4px}
+        .pointer-events-none{pointer-events:none}
+        .z-10{z-index:10}
+        .object-contain{object-fit:contain}
+        .overflow-hidden{overflow:hidden}
+        .shadow-lg{box-shadow:0 4px 16px rgba(0,0,0,0.12)}
+        .mx-auto{margin-left:auto;margin-right:auto}
+        .mt-1{margin-top:4px}
+        .mt-4{margin-top:16px}
+        .mt-6{margin-top:24px}
+        .mb-1{margin-bottom:4px}
+        .mb-2{margin-bottom:8px}
+        .mb-3{margin-bottom:12px}
+        .mb-4{margin-bottom:16px}
+        .mb-6{margin-bottom:24px}
+        .mr-2{margin-right:8px}
+        .p-2{padding:8px}
+        .p-3{padding:12px}
+        .p-4{padding:16px}
+        .px-4{padding-left:16px;padding-right:16px}
+        .py-4{padding-top:16px;padding-bottom:16px}
+        .py-6{padding-top:24px;padding-bottom:24px}
+        .py-12{padding-top:48px;padding-bottom:48px}
+        .text-xs{font-size:12px}
+        .text-sm{font-size:14px}
+        .text-lg{font-size:18px}
+        .text-xl{font-size:20px}
+        .text-2xl{font-size:24px}
+        .font-medium{font-weight:500}
+        .font-semibold{font-weight:600}
+        .font-bold{font-weight:700}
+        .text-white{color:#fff}
+        .text-gray-300{color:#d1d5db}
+        .text-gray-400{color:#9ca3af}
+        .text-gray-500{color:#6b7280}
+        .text-gray-600{color:#4b5563}
+        .text-gray-800{color:#1f2937}
+        .text-red-500{color:#ef4444}
+        .text-red-600{color:#dc2626}
+        .text-red-700{color:#b91c1c}
+        .text-green-600{color:#16a34a}
+        .text-blue-600{color:#2563eb}
+        .text-blue-800{color:#1e40af}
+        .text-orange-600{color:#ea580c}
+        .bg-gray-50{background-color:#f9fafb}
+        .bg-gray-100{background-color:#f3f4f6}
+        .bg-red-50{background-color:#fef2f2}
+        .bg-blue-50{background-color:#eff6ff}
+        .opacity-80{opacity:0.8}
+        .border-red-100{border-color:#fee2e2}
+        .rounded-lg{border-radius:8px}
+        .rounded-full{border-radius:50%}
+        .border{border:1px solid}
+        .border-4{border-width:4px}
+        .border-transparent{border-color:transparent}
+        .transition-opacity{transition-property:opacity}
+        .duration-200{transition-duration:0.2s}
+        .transition-all{transition:all 0.2s}
+        .btn-primary{background-color:#AB1942;color:white;padding:12px 24px;border-radius:8px;font-weight:500;border:none;cursor:pointer;transition:background-color 0.2s;display:inline-block;text-align:center}
+        .btn-primary:hover{background-color:#8c1435}
+        .btn-primary.w-full{width:100%}
+        .btn-secondary{background-color:#fff;color:#333;border:1px solid #ddd;padding:12px 24px;border-radius:8px;font-weight:500;cursor:pointer;transition:all 0.2s;display:inline-block;text-align:center}
+        .btn-secondary:hover{border-color:#AB1942;color:#AB1942}
+        .btn-secondary.w-full{width:100%}
+        .card{background:white;border-radius:12px;box-shadow:0 2px 12px rgba(0,0,0,0.08);padding:24px;margin-bottom:16px}
+        .option-card{border:2px solid #eee;border-radius:8px;padding:16px;margin-bottom:12px;cursor:pointer;transition:all 0.2s}
+        .option-card:hover{border-color:#AB1942;background-color:#fdf2f4}
+        .option-card.selected{border-color:#AB1942;background-color:#fdf2f4}
+        .option-card.selected::before{content:'✓';color:#AB1942;font-weight:bold;margin-right:8px}
+        .progress-bar{height:8px;background-color:#eee;border-radius:4px;overflow:hidden}
+        .progress-fill{height:100%;background-color:#AB1942;border-radius:4px;transition:width 0.3s}
+        .tooltip{position:absolute;bottom:100%;left:50%;transform:translateX(-50%);margin-bottom:8px;width:256px;padding:12px;background-color:#1f2937;color:#fff;font-size:12px;border-radius:8px;opacity:0;pointer-events:none;transition:opacity 0.2s;z-index:10;box-shadow:0 4px 16px rgba(0,0,0,0.2)}
+        .tooltip::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:4px solid transparent;border-top-color:#1f2937}
+        .tooltip-wrapper:hover .tooltip{opacity:1}
+        .header{background-color:#AB1942;color:white;padding:16px}
+        .header-inner{max-width:448px;margin:0 auto;display:flex;align-items:center}
+        .header-logo{height:32px;width:auto;flex-shrink:0}
+        .header-title-area{flex:1;text-align:center}
+        .header h1{font-size:20px;font-weight:700}
+        .header p{font-size:12px;opacity:0.8}
+        .footer{text-align:center;padding:24px 16px;font-size:14px;color:#9ca3af}
+        .score-badge{display:inline-flex;align-items:center;justify-content:center;width:80px;height:80px;border-radius:50%;background-color:#AB1942;color:#fff;font-size:24px;font-weight:700}
+        .w-16{width:64px}
+        .h-16{height:64px}
+        .w-20{width:80px}
+        .h-20{height:80px}
+        .w-48{width:192px}
+        .h-48{height:192px}
+        .w-full{width:100%}
+        .w-auto{width:auto}
+        .h-8{height:32px}
+        .min-h-screen{min-height:100vh}
+        .icon-lg{width:64px;height:64px;color:#d1d5db}
+    </style>
+</head>
+<body>
+    <div id="app" class="min-h-screen">
+        <header class="header">
+            <div class="header-inner">
+                <a href="index.html"><img src="logo.png" alt="灰金重组" class="header-logo"></a>
+                <div class="header-title-area">
+                    <h1>企业健康度体检</h1>
+                    <p>看清问题，重建秩序</p>
+                </div>
+            </div>
+        </header>
+
+        <main class="container px-4 py-6">
+            <!-- Home -->
+            <div v-if="currentPage === 'home'" class="text-center py-12">
+                <div class="card">
+                    <div class="mb-6">
+                        <svg class="icon-lg mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                        </svg>
+                        <h2 class="text-xl font-bold text-gray-800 mb-2">企业经营健康度体检</h2>
+                        <p class="text-gray-600 text-sm">36道题，3分钟，快速了解企业风险状况</p>
+                    </div>
+                    <div class="tooltip-wrapper relative mb-4">
+                        <button @click="startDiagnosis" class="btn-primary w-full">开始诊断</button>
+                        <div class="tooltip">36道完整题目，覆盖债务、资产、经营、法律、家庭保障五大维度，全面评估企业健康状况（约3分钟）</div>
+                    </div>
+                    <div class="tooltip-wrapper relative">
+                        <button @click="startFastDiagnosis" class="btn-secondary w-full text-sm">快速体检（5题）</button>
+                        <div class="tooltip">仅5道基础题，快速筛查企业基本状况，适合初步了解风险方向（约1分钟）</div>
+                    </div>
+                </div>
+                <div class="mt-6 text-sm text-gray-500">
+                    <p>已有 <strong class="brand-color">{{ diagnosisCount }}</strong> 位老板完成诊断</p>
+                    <p class="mt-1">平均评分：<strong class="brand-color">{{ averageScore }}</strong> 分</p>
+                </div>
+                <div class="mt-6">
+                    <a href="index.html" class="text-sm brand-color" style="text-decoration:none;">← 返回首页</a>
+                </div>
+            </div>
+
+            <!-- Question -->
+            <div v-if="currentPage === 'question'" class="py-4">
+                <div class="card mb-4">
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="text-sm text-gray-500">层次 {{ currentLevel + 1 }}：{{ levels[currentLevel].name }}</span>
+                        <span class="text-sm font-medium">{{ currentQuestionIndex + 1 }}/{{ totalQuestions }}</span>
+                    </div>
+                    <div class="progress-bar mb-6">
+                        <div class="progress-fill" :style="{ width: progressPercent + '%' }"></div>
+                    </div>
+                    <div class="mb-6">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-2">Q{{ currentQuestionIndex + 1 }}：{{ currentQuestion.text }}</h3>
+                        <p v-if="currentQuestion.hint" class="text-sm text-gray-500">{{ currentQuestion.hint }}</p>
+                    </div>
+                    <div>
+                        <div v-for="(option, idx) in currentQuestion.options" :key="idx" @click="selectOption(idx)" class="option-card" :class="{ selected: selectedAnswer === idx }">
+                            <span class="font-medium text-gray-800">{{ option.text }}</span>
+                        </div>
+                    </div>
+                </div>
+                <div v-if="currentQuestionIndex > 0" class="flex gap-4">
+                    <button @click="prevQuestion" class="btn-secondary w-full">上一题</button>
+                </div>
+            </div>
+
+            <!-- Result -->
+            <div v-if="currentPage === 'result'" class="py-4">
+                <div class="card">
+                    <div class="text-center mb-6">
+                        <div class="score-badge mb-4">{{ Math.round(totalScore) }}</div>
+                        <h2 class="text-xl font-bold text-gray-800 mb-1">综合评分</h2>
+                        <p class="text-sm" :class="resultClass">{{ resultLevel }}</p>
+                    </div>
+                    <div class="mb-6"><canvas id="radarChart" height="250"></canvas></div>
+                    <div class="grid grid-cols-2 gap-3 mb-6">
+                        <div v-for="dim in dimensionScores" :key="dim.name" class="p-3 bg-gray-50 rounded-lg text-center">
+                            <div class="text-lg font-bold" :class="getScoreClass(dim.score)">{{ dim.score }}</div>
+                            <div class="text-xs text-gray-500">{{ dim.name }}</div>
+                        </div>
+                    </div>
+                    <div class="mb-6">
+                        <h3 class="font-semibold text-gray-800 mb-3">关键发现</h3>
+                        <ul class="space-y-2">
+                            <li v-for="(finding, idx) in findings" :key="idx" class="text-sm text-gray-600 flex items-start">
+                                <span class="mr-2 text-red-500">•</span>{{ finding }}
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="mb-6">
+                        <h3 class="font-semibold text-gray-800 mb-3">建议路径</h3>
+                        <div class="space-y-3">
+                            <div v-for="(step, idx) in suggestions" :key="idx" class="p-3 bg-blue-50 rounded-lg">
+                                <div class="font-medium text-blue-800 mb-1">{{ step.title }}</div>
+                                <div class="text-xs text-blue-600">{{ step.content }}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div v-if="useFastMode" class="mb-6 p-4 bg-red-50 rounded-lg text-center border border-red-100">
+                        <p class="text-sm text-red-700 mb-3">快速体检已完成初步筛查，想深入了解企业各维度的详细状况？</p>
+                        <button @click="startFullDiagnosis" class="btn-primary w-full">做全面诊断（36题）</button>
+                    </div>
+                    <div class="flex gap-4">
+                        <button @click="restartDiagnosis" class="btn-secondary flex-1">重新诊断</button>
+                        <button @click="showContact = !showContact" class="btn-primary flex-1">预约咨询</button>
+                    </div>
+                </div>
+                <div v-if="showContact" class="card mt-4 text-center">
+                    <h3 class="font-semibold text-gray-800 mb-4">预约咨询</h3>
+                    <div class="mb-4">
+                        <p class="text-sm text-gray-600 mb-4">扫码添加微信，获取专业诊断方案</p>
+                        <div class="w-48 h-48 mx-auto bg-gray-100 rounded-lg flex items-center justify-center mb-4">
+                            <img src="wechat-qrcode.jpg" alt="微信二维码" class="w-full h-full object-contain p-2">
+                        </div>
+                        <p class="text-xs text-gray-400">如扫码失败，请搜索微信号：igrape</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <p>© 灰金重组</p>
+            <p class="mt-1">本文内容仅供参考，不构成法律意见或专业建议</p>
+        </footer>
+    </div>
+
+    <script>
+        const { createApp, ref, computed, nextTick } = Vue;
+        const levels = [{name:'基础体检',weight:0},{name:'债务评估',weight:0.3},{name:'资产评估',weight:0.2},{name:'经营评估',weight:0.25},{name:'法律评估',weight:0.15},{name:'综合诊断',weight:0.1}];
+        const fullQuestions = [
+            {text:'企业当前是否存在逾期债务？',options:[{text:'否',score:100},{text:'有但可控',score:60},{text:'大面积逾期',score:20}],dimension:'debt',level:0},
+            {text:'银行贷款到期时间是否集中在3个月内？',options:[{text:'否',score:100},{text:'部分',score:60},{text:'集中',score:20}],dimension:'debt',level:0},
+            {text:'是否存在个人或夫妻共同担保公司债务的情况？',options:[{text:'否',score:100},{text:'少量',score:60},{text:'大量',score:20}],dimension:'family',level:0},
+            {text:'核心业务是否持续盈利？',options:[{text:'是',score:100},{text:'微利',score:60},{text:'亏损',score:20}],dimension:'business',level:0},
+            {text:'是否已涉及诉讼或被执行？',options:[{text:'否',score:100},{text:'有但可控',score:60},{text:'严重',score:20}],dimension:'legal',level:0},
+            {text:'资产负债率（总负债/总资产）',options:[{text:'≤50%',score:100},{text:'50-70%',score:60},{text:'≥70%',score:20}],dimension:'debt',level:1},
+            {text:'综合融资成本（年化）',options:[{text:'≤10%',score:100},{text:'10-15%',score:60},{text:'≥15%',score:20}],dimension:'debt',level:1},
+            {text:'短期负债占比（流动负债/总负债）',options:[{text:'≤40%',score:100},{text:'40-60%',score:60},{text:'≥60%',score:20}],dimension:'debt',level:1},
+            {text:'是否存在民间借贷？',options:[{text:'否',score:100},{text:'少量且合规',score:60},{text:'大量或高息',score:20}],dimension:'debt',level:1},
+            {text:'个人连带责任担保金额占净资产比例',options:[{text:'≤20%',score:100},{text:'20-50%',score:60},{text:'≥50%',score:20}],dimension:'family',level:1},
+            {text:'是否存在联保、互保链？',options:[{text:'否',score:100},{text:'有但未出险',score:60},{text:'已出险',score:20}],dimension:'debt',level:1},
+            {text:'逾期债务占总债务比例',options:[{text:'≤5%',score:100},{text:'5-20%',score:60},{text:'≥20%',score:20}],dimension:'debt',level:1},
+            {text:'是否存在以贷养贷情况？',options:[{text:'否',score:100},{text:'少量',score:60},{text:'严重',score:20}],dimension:'debt',level:1},
+            {text:'夫妻共签债务金额',options:[{text:'无',score:100},{text:'少量',score:60},{text:'大量',score:20}],dimension:'family',level:1},
+            {text:'债务到期时间分布是否均衡？',options:[{text:'均衡',score:100},{text:'部分集中',score:60},{text:'高度集中',score:20}],dimension:'debt',level:1},
+            {text:'可快速变现资产占比',options:[{text:'≥50%',score:100},{text:'30-50%',score:60},{text:'≤30%',score:20}],dimension:'asset',level:2},
+            {text:'是否存在闲置或低效资产？',options:[{text:'否',score:100},{text:'少量',score:60},{text:'大量',score:20}],dimension:'asset',level:2},
+            {text:'应收账款周转天数',options:[{text:'≤60天',score:100},{text:'60-90天',score:60},{text:'≥90天',score:20}],dimension:'asset',level:2},
+            {text:'库存周转天数',options:[{text:'≤30天',score:100},{text:'30-60天',score:60},{text:'≥60天',score:20}],dimension:'asset',level:2},
+            {text:'固定资产抵押率',options:[{text:'≤50%',score:100},{text:'50-80%',score:60},{text:'≥80%',score:20}],dimension:'asset',level:2},
+            {text:'是否存在已查封资产？',options:[{text:'否',score:100},{text:'少量',score:60},{text:'大量',score:20}],dimension:'legal',level:2},
+            {text:'无形资产（资质/牌照）是否完整？',options:[{text:'完整',score:100},{text:'部分缺失',score:60},{text:'严重缺失',score:20}],dimension:'asset',level:2},
+            {text:'对外投资是否存在亏损？',options:[{text:'否',score:100},{text:'少量',score:60},{text:'严重',score:20}],dimension:'asset',level:2},
+            {text:'核心业务毛利率',options:[{text:'≥20%',score:100},{text:'10-20%',score:60},{text:'≤10%',score:20}],dimension:'business',level:3},
+            {text:'近6个月现金流是否为正？',options:[{text:'持续为正',score:100},{text:'基本平衡',score:60},{text:'持续为负',score:20}],dimension:'business',level:3},
+            {text:'经营性现金流/净利润比率',options:[{text:'≥1',score:100},{text:'0.5-1',score:60},{text:'≤0.5',score:20}],dimension:'business',level:3},
+            {text:'是否存在亏损业务？',options:[{text:'否',score:100},{text:'少量',score:60},{text:'大量',score:20}],dimension:'business',level:3},
+            {text:'客户集中度（前5大客户占比）',options:[{text:'≤50%',score:100},{text:'50-70%',score:60},{text:'≥70%',score:20}],dimension:'business',level:3},
+            {text:'供应商账期是否合理？',options:[{text:'合理',score:100},{text:'偏紧',score:60},{text:'严重受限',score:20}],dimension:'business',level:3},
+            {text:'是否建立现金流预警机制？',options:[{text:'已建立',score:100},{text:'部分建立',score:60},{text:'未建立',score:20}],dimension:'business',level:3},
+            {text:'公私账户是否完全分开？',options:[{text:'完全分开',score:100},{text:'部分混同',score:60},{text:'严重混同',score:20}],dimension:'legal',level:3},
+            {text:'已涉诉案件数量',options:[{text:'0',score:100},{text:'1-3',score:60},{text:'≥4',score:20}],dimension:'legal',level:4},
+            {text:'是否存在被执行案件？',options:[{text:'否',score:100},{text:'有但未冻结',score:60},{text:'已冻结',score:20}],dimension:'legal',level:4},
+            {text:'账户冻结情况',options:[{text:'无',score:100},{text:'非核心账户',score:60},{text:'核心账户',score:20}],dimension:'legal',level:4},
+            {text:'是否存在刑事风险（拒执罪等）？',options:[{text:'否',score:100},{text:'有风险',score:60},{text:'已触发',score:20}],dimension:'legal',level:4},
+            {text:'是否完成公司化改造？',options:[{text:'已完成',score:100},{text:'进行中',score:60},{text:'未开始',score:20}],dimension:'legal',level:4}
+        ];
+        const fastQuestions = fullQuestions.filter(q => q.level === 0);
+        createApp({setup(){
+            const currentPage = ref('home');
+            const useFastMode = ref(false);
+            const questions = ref([]);
+            const currentQuestionIndex = ref(0);
+            const currentLevel = ref(0);
+            const selectedAnswer = ref(null);
+            const answers = ref({});
+            const diagnosisCount = ref(128);
+            const averageScore = ref(62);
+            const showContact = ref(false);
+            const radarChart = ref(null);
+            const totalQuestions = computed(() => questions.value.length);
+            const currentQuestion = computed(() => questions.value[currentQuestionIndex.value]);
+            const isLastQuestion = computed(() => currentQuestionIndex.value === questions.value.length - 1);
+            const progressPercent = computed(() => ((currentQuestionIndex.value + 1) / questions.value.length) * 100);
+            const dimensionWeights = {debt:0.3,asset:0.2,business:0.25,legal:0.15,family:0.1};
+            const dimensionNames = {debt:'债务压力',asset:'资产质量',business:'经营健康',legal:'法律风险',family:'家庭保障'};
+            const dimensionScores = computed(() => {const s={debt:[],asset:[],business:[],legal:[],family:[]};Object.entries(answers.value).forEach(([idx,aidx]) => {const q=questions.value[idx];if(q)s[q.dimension].push(q.options[aidx].score)});return Object.entries(s).map(([k,v])=>({name:dimensionNames[k],score:v.length>0?Math.round(v.reduce((a,b)=>a+b,0)/v.length):0,weight:dimensionWeights[k]}))});
+            const totalScore = computed(() => dimensionScores.value.reduce((t,d)=>t+d.score*d.weight,0));
+            const resultLevel = computed(() => {const s=totalScore.value;if(s>=80)return'健康型企业';if(s>=60)return'关注型企业';if(s>=40)return'预警型企业';return'危机型企业'});
+            const resultClass = computed(() => {const s=totalScore.value;if(s>=80)return'text-green-600';if(s>=60)return'text-blue-600';if(s>=40)return'text-orange-600';return'text-red-600'});
+            const findings = computed(() => {const r=[];dimensionScores.value.forEach(d=>{if(d.score<40)r.push(d.name+'严重不足（'+d.score+'分），需立即采取措施');else if(d.score<60)r.push(d.name+'存在隐患（'+d.score+'分），建议重点关注')});if(r.length===0)r.push('企业整体健康状况良好，建议保持现有的经营管理模式');return r});
+            const suggestions = computed(() => {const s=totalScore.value;if(s>=80)return[{title:'维持现状',content:'企业经营状况良好，建议继续保持稳健的财务管理和风险控制'},{title:'优化升级',content:'可考虑进一步优化债务结构，降低融资成本，提升资产运营效率'}];if(s>=60)return[{title:'风险预警',content:'企业存在一定风险，建议建立现金流监控机制，提前做好风险预案'},{title:'债务优化',content:'梳理现有债务结构，优先解决高息负债，降低综合融资成本'}];if(s>=40)return[{title:'紧急处理',content:'企业已进入风险预警区间，需立即启动债务重组准备工作'},{title:'专业咨询',content:'建议尽快联系专业重组机构，进行正式的企业经营健康度体检'},{title:'资产盘活',content:'处置低效资产，快速回笼现金，缓解资金压力'}];return[{title:'立即行动',content:'企业已处于危机状态，需立即采取全面的困境重组措施'},{title:'专业介入',content:'强烈建议寻求专业困境重组机构的帮助，制定系统性解决方案'},{title:'法律保护',content:'立即咨询律师，了解当前法律风险，避免情况进一步恶化'}]});
+            const getScoreClass = (s) => {if(s>=80)return'text-green-600';if(s>=60)return'text-blue-600';if(s>=40)return'text-orange-600';return'text-red-600'};
+            const startDiagnosis = () => {useFastMode.value=false;questions.value=[...fullQuestions];currentQuestionIndex.value=0;currentLevel.value=questions.value[0]?.level||0;selectedAnswer.value=null;answers.value={};currentPage.value='question'};
+            const startFastDiagnosis = () => {useFastMode.value=true;questions.value=[...fastQuestions];currentQuestionIndex.value=0;currentLevel.value=questions.value[0]?.level||0;selectedAnswer.value=null;answers.value={};currentPage.value='question'};
+            const startFullDiagnosis = () => {useFastMode.value=false;questions.value=[...fullQuestions];currentQuestionIndex.value=0;currentLevel.value=questions.value[0]?.level||0;selectedAnswer.value=null;answers.value={};currentPage.value='question'};
+            const selectOption = (idx) => {selectedAnswer.value=idx;answers.value[currentQuestionIndex.value]=idx;if(isLastQuestion.value){currentPage.value='result';nextTick(()=>renderRadarChart())}else{currentQuestionIndex.value++;currentLevel.value=questions.value[currentQuestionIndex.value].level;selectedAnswer.value=answers.value[currentQuestionIndex.value]??null}};
+            const prevQuestion = () => {if(currentQuestionIndex.value>0){currentQuestionIndex.value--;currentLevel.value=questions.value[currentQuestionIndex.value].level;selectedAnswer.value=answers.value[currentQuestionIndex.value]??null}};
+            const renderRadarChart = () => {const ctx=document.getElementById('radarChart').getContext('2d');if(radarChart.value)radarChart.value.destroy();radarChart.value=new Chart(ctx,{type:'radar',data:{labels:dimensionScores.value.map(d=>d.name),datasets:[{label:'维度评分',data:dimensionScores.value.map(d=>d.score),backgroundColor:'rgba(171,25,66,0.2)',borderColor:'#AB1942',borderWidth:2,pointBackgroundColor:'#AB1942',pointBorderColor:'#fff'}]},options:{scales:{r:{beginAtZero:true,max:100,ticks:{stepSize:20,font:{size:10}},grid:{color:'rgba(0,0,0,0.1)'},pointLabels:{font:{size:12}}}},plugins:{legend:{display:false}},maintainAspectRatio:false}})};
+            const restartDiagnosis = () => {currentPage.value='home';showContact.value=false};
+            return {currentPage,useFastMode,questions,currentQuestionIndex,currentLevel,selectedAnswer,answers,diagnosisCount,averageScore,showContact,levels,totalQuestions,currentQuestion,isLastQuestion,progressPercent,dimensionScores,totalScore,resultLevel,resultClass,findings,suggestions,getScoreClass,startDiagnosis,startFastDiagnosis,startFullDiagnosis,selectOption,prevQuestion,renderRadarChart,restartDiagnosis}
+        }}).mount('#app');
+    </script>
+</body>
+</html>
