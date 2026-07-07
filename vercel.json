@@ -1,17 +1,8 @@
 {
   "version": 2,
   "cleanUrls": true,
-  "rewrites": [
-    { "source": "/", "destination": "/public/index.html" },
-    { "source": "/about", "destination": "/public/about.html" },
-    { "source": "/services", "destination": "/public/services.html" },
-    { "source": "/cases", "destination": "/public/cases.html" },
-    { "source": "/diag", "destination": "/public/diag.html" },
-    { "source": "/intro", "destination": "/public/intro.html" },
-    { "source": "/(.*)", "destination": "/public/$1" }
-  ],
   "notFound": {
-    "path": "/public/404.html"
+    "path": "/404.html"
   },
   "headers": [
     {
