@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<title>核心服务 | 灰金重组</title>
+<meta name="description" content="灰金重组提供企业诊断顾问、陪跑顾问、重组顾问三大核心服务，全周期、全维度专业服务闭环，从诊断到重组一站式覆盖。">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif;background:#fff;color:#1a1a1a;line-height:1.8;font-size:15px;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+a{text-decoration:none;color:inherit;transition:color .2s ease}
+img{max-width:100%;display:block;object-fit:contain}
+
+:root{
+  --brand:#AB1942;
+  --text:#1a1a1a;
+  --text-secondary:#4a4a4a;
+  --text-muted:#8a8a8a;
+  --text-faint:#b0b0b0;
+  --border:#eee;
+  --bg-gray:#fafafa;
+  --content-max:680px;
+  --content-padding:24px;
+}
+
+.container{max-width:var(--content-max);margin:0 auto;padding:0 var(--content-padding)}
+
+/* Header */
+.header{position:sticky;top:0;z-index:100;background:#fff;border-bottom:1px solid var(--border)}
+.header-inner{max-width:var(--content-max);margin:0 auto;padding:0 var(--content-padding);height:56px;display:flex;align-items:center;justify-content:space-between}
+.header-logo{display:flex;align-items:center}
+.header-logo img{width:120px;height:auto;object-fit:contain}
+.header-nav{display:flex;gap:24px;font-size:14px}
+.header-nav a{color:var(--text-secondary);font-weight:400}
+.header-nav a:hover{color:var(--brand)}
+.header-nav a.active{color:var(--brand);font-weight:500}
+
+/* Page Hero */
+.page-hero{padding:64px 0 48px}
+.page-hero-title{font-size:32px;font-weight:700;color:var(--text);letter-spacing:-.02em;line-height:1.2;margin-bottom:12px}
+.page-hero-subtitle{font-size:16px;color:var(--text-secondary);font-weight:400;line-height:1.8}
+
+/* Section */
+.section{padding:56px 0}
+.section-title{font-size:22px;font-weight:600;color:var(--text);letter-spacing:-.01em;margin-bottom:8px;line-height:1.4}
+.section-desc{font-size:14px;color:var(--text-muted);margin-bottom:28px}
+
+/* Service System */
+.service-system-list{display:grid;gap:0}
+.service-system-item{padding:28px 0;border-top:1px solid var(--border)}
+.service-system-item:last-child{border-bottom:1px solid var(--border)}
+.service-system-item .service-number{font-size:14px;font-weight:600;color:var(--brand);letter-spacing:1px;margin-bottom:8px}
+.service-system-item h3{font-size:19px;font-weight:600;color:var(--text);margin-bottom:6px}
+.service-system-item .service-target{font-size:14px;color:var(--brand);margin-bottom:12px;font-weight:500}
+.service-system-item .service-desc{font-size:14px;color:var(--text-secondary);line-height:1.8;margin-bottom:12px}
+.service-system-item .service-scenario{font-size:13px;color:var(--text-muted);line-height:1.8}
+.service-system-item .service-scenario strong{color:var(--text-secondary);font-weight:500}
+
+/* Process Timeline */
+.process-list{display:grid;gap:0}
+.process-item{padding:24px 0;border-top:1px solid var(--border);display:grid;grid-template-columns:48px 1fr;gap:20px}
+.process-item:last-child{border-bottom:1px solid var(--border)}
+.process-number{font-size:16px;font-weight:700;color:var(--brand);letter-spacing:-.01em;line-height:1.4;padding-top:1px}
+.process-content h3{font-size:16px;font-weight:600;color:var(--text);margin-bottom:6px}
+.process-content p{font-size:14px;color:var(--text-secondary);line-height:1.8}
+
+/* Deliverables */
+.deliverable-list{display:grid;gap:0}
+.deliverable-item{padding:20px 0;border-top:1px solid var(--border);display:flex;align-items:flex-start;gap:12px}
+.deliverable-item:last-child{border-bottom:1px solid var(--border)}
+.deliverable-icon{font-size:16px;color:var(--brand);flex-shrink:0;margin-top:2px}
+.deliverable-content h3{font-size:15px;font-weight:600;color:var(--text);margin-bottom:4px}
+.deliverable-content p{font-size:13px;color:var(--text-secondary);line-height:1.8}
+
+.deliverable-summary{margin-top:24px;padding:20px 24px;background:var(--bg-gray);border-radius:6px;font-size:14px;color:var(--text-secondary);line-height:1.8}
+.deliverable-summary strong{color:var(--brand);font-weight:600}
+
+/* Suitable Enterprises */
+.suitable-list{display:grid;gap:0}
+.suitable-item{padding:16px 0;border-top:1px solid var(--border);display:flex;align-items:flex-start;gap:12px}
+.suitable-item:last-child{border-bottom:1px solid var(--border)}
+.suitable-icon{font-size:14px;color:var(--brand);flex-shrink:0;margin-top:4px}
+.suitable-item p{font-size:14px;color:var(--text-secondary);line-height:1.8}
+
+.suitable-highlight{margin-top:24px;padding:20px 24px;background:var(--bg-gray);border-left:3px solid var(--brand);border-radius:0 6px 6px 0;font-size:14px;color:var(--text);line-height:1.8;font-weight:500}
+
+/* Diagnosis CTA */
+.diagnosis-cta{margin:56px 0;padding:36px 32px;background:var(--bg-gray);border:1px solid var(--border);border-radius:8px}
+.diagnosis-cta h3{font-size:18px;font-weight:600;color:var(--text);margin-bottom:8px}
+.diagnosis-cta p{font-size:14px;color:var(--text-secondary);margin-bottom:20px;line-height:1.8}
+.diagnosis-btn{display:inline-block;padding:12px 28px;background:var(--brand);color:#fff;font-size:14px;font-weight:500;border-radius:6px;transition:opacity .2s ease}
+.diagnosis-btn:hover{opacity:.85}
+
+/* Footer */
+.footer{padding:48px 0 40px;text-align:center;font-size:13px;color:var(--text-muted);border-top:1px solid var(--border)}
+.footer p{margin-bottom:4px}
+.footer a{color:var(--text-secondary)}
+.footer a:hover{color:var(--brand)}
+
+/* Responsive */
+@media(max-width:767px){
+  :root{--content-max:480px;--content-padding:20px}
+  .page-hero{padding:48px 0 36px}
+  .page-hero-title{font-size:26px}
+  .page-hero-subtitle{font-size:14px}
+  .section{padding:40px 0}
+  .section-title{font-size:20px}
+  .header-nav{gap:16px;font-size:13px}
+  .service-system-item{padding:24px 0}
+  .service-system-item h3{font-size:17px}
+  .process-item{grid-template-columns:40px 1fr;gap:16px;padding:20px 0}
+  .process-number{font-size:15px}
+  .deliverable-summary{padding:16px 20px;font-size:13px}
+  .suitable-highlight{padding:16px 20px;font-size:13px}
+  .diagnosis-cta{padding:28px 24px;margin:40px 0}
+}
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-inner">
+    <a href="index.html" class="header-logo">
+      <img src="images/logo-color.png" alt="灰金重组">
+    </a>
+    <nav class="header-nav">
+      <a href="index.html">首页</a>
+      <a href="about.html">关于</a>
+      <a href="services.html" class="active">服务</a>
+      <a href="cases.html">案例</a>
+      <a href="diag.html">诊断</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="page-hero">
+    <div class="container">
+      <h1 class="page-hero-title">核心服务</h1>
+      <p class="page-hero-subtitle">全周期、全维度专业服务闭环，从诊断到重组一站式覆盖</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">三大核心服务体系</h2>
+      <p class="section-desc">从诊断到重组，覆盖企业困境全周期</p>
+
+      <div class="service-system-list">
+        <div class="service-system-item">
+          <div class="service-number">01</div>
+          <h3>企业诊断顾问</h3>
+          <div class="service-target">目标：看清问题</div>
+          <p class="service-desc">提供资产全盘梳理、债务逐项摸排与利润真实性核验服务，精准识别潜在经营风险，并结合企业实际出具可落地的系统性行动方案。</p>
+          <p class="service-scenario"><strong>适用场景：</strong>企业发展遇瓶颈、不确定风险点、需要摸清家底</p>
+        </div>
+        <div class="service-system-item">
+          <div class="service-number">02</div>
+          <h3>企业陪跑顾问</h3>
+          <div class="service-target">目标：持续判断</div>
+          <p class="service-desc">为重大决策提供专业支撑，建立经营风险动态预警机制，随业务发展迭代优化解决方案，同时对接行业优质资源，助力企业稳健前行。</p>
+          <p class="service-scenario"><strong>适用场景：</strong>转型期、扩张期、需要外部专业视角</p>
+        </div>
+        <div class="service-system-item">
+          <div class="service-number">03</div>
+          <h3>企业重组顾问</h3>
+          <div class="service-target">目标：重建秩序</div>
+          <p class="service-desc">统筹重组项目全局，高效协调多方主体资源，推进重组方案精准落地，聚焦关键节点集中攻坚，帮助企业摆脱困境、重构健康运营秩序。</p>
+          <p class="service-scenario"><strong>适用场景：</strong>债务危机、资金链断裂、资不抵债、需要司法重整</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">服务流程</h2>
+      <p class="section-desc">四步走，系统性解决企业困境</p>
+
+      <div class="process-list">
+        <div class="process-item">
+          <div class="process-number">01</div>
+          <div class="process-content">
+            <h3>企业全面诊断</h3>
+            <p>围绕资产、负债、现金流及利润真实性展开全方位摸排，精准识别企业核心问题与潜在风险点。</p>
+          </div>
+        </div>
+        <div class="process-item">
+          <div class="process-number">02</div>
+          <div class="process-content">
+            <h3>定制落地方案</h3>
+            <p>对风险进行分级排序，梳理清晰的解决路径，结合企业实际情况输出可落地的90天阶段性执行计划。</p>
+          </div>
+        </div>
+        <div class="process-item">
+          <div class="process-number">03</div>
+          <div class="process-content">
+            <h3>长期陪跑落地</h3>
+            <p>全程跟踪方案执行效果，根据企业经营现状与外部环境变化，动态调整策略，保障方案有效落地。</p>
+          </div>
+        </div>
+        <div class="process-item">
+          <div class="process-number">04</div>
+          <div class="process-content">
+            <h3>专项重组攻坚</h3>
+            <p>针对陷入重度困境的企业，启动重大重组专项服务，整合多方资源，实施针对性的攻坚与破局行动。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">交付成果</h2>
+      <p class="section-desc">六项核心交付物，确保服务价值落地</p>
+
+      <div class="deliverable-list">
+        <div class="deliverable-item">
+          <div class="deliverable-icon">◆</div>
+          <div class="deliverable-content">
+            <h3>企业全景诊断报告</h3>
+            <p>基于多维度调研与数据分析，形成全方位、深层次的企业现状诊断</p>
+          </div>
+        </div>
+        <div class="deliverable-item">
+          <div class="deliverable-icon">◆</div>
+          <div class="deliverable-content">
+            <h3>90天专项行动方案</h3>
+            <p>分阶段、可量化的短期执行计划，明确关键节点与责任分工</p>
+          </div>
+        </div>
+        <div class="deliverable-item">
+          <div class="deliverable-icon">◆</div>
+          <div class="deliverable-content">
+            <h3>经营风险预警清单</h3>
+            <p>识别财务、运营、合规等潜在风险点，建立风险分级与预警机制</p>
+          </div>
+        </div>
+        <div class="deliverable-item">
+          <div class="deliverable-icon">◆</div>
+          <div class="deliverable-content">
+            <h3>重大决策建议书</h3>
+            <p>结合企业战略与现状，为关键经营决策提供数据支撑与专业建议</p>
+          </div>
+        </div>
+        <div class="deliverable-item">
+          <div class="deliverable-icon">◆</div>
+          <div class="deliverable-content">
+            <h3>企业专项重组方案</h3>
+            <p>针对组织架构、资产负债、业务板块进行针对性重组规划</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="deliverable-summary">
+        客户获得的不只是报告，而是一套<strong>可落地、可执行、可脱困</strong>的完整解决方案
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">哪些企业适合提前介入</h2>
+      <p class="section-desc">早发现、早干预、早脱困</p>
+
+      <div class="suitable-list">
+        <div class="suitable-item">
+          <div class="suitable-icon">✓</div>
+          <p>核心业务具备留存价值</p>
+        </div>
+        <div class="suitable-item">
+          <div class="suitable-icon">✓</div>
+          <p>企业主有强烈自救意愿</p>
+        </div>
+        <div class="suitable-item">
+          <div class="suitable-icon">✓</div>
+          <p>资产规模覆盖或持平负债</p>
+        </div>
+        <div class="suitable-item">
+          <div class="suitable-icon">✓</div>
+          <p>无重大违法违规记录</p>
+        </div>
+      </div>
+
+      <div class="suitable-highlight">
+        越早介入，债务重组的成本越低，方案灵活性越强，最终的成功率也越高！
+      </div>
+    </div>
+  </section>
+
+  <section class="container">
+    <div class="diagnosis-cta">
+      <h3>不确定你的企业是否需要介入？</h3>
+      <p>36道题，3分钟，基于真实经营数据的深度体检</p>
+      <a href="diag.html" class="diagnosis-btn">免费健康体检 →</a>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <p>灰金重组整理</p>
+    <p>联系 <a href="mailto:Lucasa@foxmail.com">Lucasa@foxmail.com</a></p>
+  </div>
+</footer>
+
+</body>
+</html>

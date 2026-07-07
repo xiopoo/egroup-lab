@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<title>关于灰金 | 灰金重组</title>
+<meta name="description" content="灰金重组深耕中小企业困境诊断与重组赛道，聚焦企业资产、负债、现金流三维平衡重构，为陷入发展瓶颈的中小企业提供可持续的破局路径与价值重塑方案。">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif;background:#fff;color:#1a1a1a;line-height:1.8;font-size:15px;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+a{text-decoration:none;color:inherit;transition:color .2s ease}
+img{max-width:100%;display:block;object-fit:contain}
+
+:root{
+  --brand:#AB1942;
+  --text:#1a1a1a;
+  --text-secondary:#4a4a4a;
+  --text-muted:#8a8a8a;
+  --text-faint:#b0b0b0;
+  --border:#eee;
+  --bg-gray:#fafafa;
+  --content-max:680px;
+  --content-padding:24px;
+}
+
+.container{max-width:var(--content-max);margin:0 auto;padding:0 var(--content-padding)}
+
+/* Header */
+.header{position:sticky;top:0;z-index:100;background:#fff;border-bottom:1px solid var(--border)}
+.header-inner{max-width:var(--content-max);margin:0 auto;padding:0 var(--content-padding);height:56px;display:flex;align-items:center;justify-content:space-between}
+.header-logo{display:flex;align-items:center}
+.header-logo img{width:120px;height:auto;object-fit:contain}
+.header-nav{display:flex;gap:24px;font-size:14px}
+.header-nav a{color:var(--text-secondary);font-weight:400}
+.header-nav a:hover{color:var(--brand)}
+.header-nav a.active{color:var(--brand);font-weight:500}
+
+/* Page Hero */
+.page-hero{padding:64px 0 48px;border-bottom:1px solid var(--border)}
+.page-hero .eyebrow{font-size:13px;color:var(--brand);font-weight:500;letter-spacing:1px;margin-bottom:12px}
+.page-hero h1{font-size:32px;font-weight:700;color:var(--text);letter-spacing:-.02em;line-height:1.2;margin-bottom:12px}
+.page-hero .tagline{font-size:16px;color:var(--text-secondary);font-weight:400;margin-bottom:28px}
+.page-hero p{font-size:15px;color:var(--text-secondary);line-height:2;margin-bottom:16px}
+.page-hero p:last-child{margin-bottom:0}
+
+/* Section */
+.section{padding:56px 0}
+.section-title{font-size:22px;font-weight:600;color:var(--text);letter-spacing:-.01em;margin-bottom:8px;line-height:1.4}
+.section-desc{font-size:14px;color:var(--text-muted);margin-bottom:28px}
+
+/* Core Capabilities */
+.capability-list{display:grid;gap:0}
+.capability-item{padding:20px 0;border-top:1px solid var(--border)}
+.capability-item:last-child{border-bottom:1px solid var(--border)}
+.capability-item h3{font-size:16px;font-weight:600;color:var(--text);margin-bottom:6px}
+.capability-item p{font-size:14px;color:var(--text-secondary);line-height:1.8}
+
+/* Difference */
+.diff-list{display:grid;gap:20px}
+.diff-item{padding:24px;background:var(--bg-gray);border:1px solid var(--border);border-radius:8px}
+.diff-item h3{font-size:16px;font-weight:600;color:var(--brand);margin-bottom:10px}
+.diff-item p{font-size:14px;color:var(--text-secondary);line-height:1.8}
+.diff-bar{margin-top:32px;padding:20px 24px;background:var(--brand);color:#fff;border-radius:8px;text-align:center;font-size:15px;font-weight:500;letter-spacing:.5px}
+
+/* Team */
+.team-list{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.team-card{padding:24px 20px;background:#fff;border:1px solid var(--border);border-radius:8px;text-align:center}
+.team-avatar{width:56px;height:56px;margin:0 auto 16px;border-radius:50%;background:linear-gradient(135deg,var(--brand),#d43862);display:flex;align-items:center;justify-content:center;color:#fff;font-size:22px;font-weight:600}
+.team-card h3{font-size:16px;font-weight:600;color:var(--text);margin-bottom:4px}
+.team-card .role{font-size:13px;color:var(--brand);margin-bottom:12px;font-weight:500}
+.team-card p{font-size:13px;color:var(--text-secondary);line-height:1.7;text-align:left}
+
+/* Partners */
+.partner-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.partner-item{padding:20px;background:var(--bg-gray);border:1px solid var(--border);border-radius:8px}
+.partner-item h3{font-size:15px;font-weight:600;color:var(--text);margin-bottom:8px}
+.partner-item p{font-size:13px;color:var(--text-secondary);line-height:1.7}
+
+/* CTA */
+.about-cta{margin:48px 0 8px;padding:36px 32px;background:var(--bg-gray);border:1px solid var(--border);border-radius:8px}
+.about-cta h3{font-size:18px;font-weight:600;color:var(--text);margin-bottom:8px}
+.about-cta p{font-size:14px;color:var(--text-secondary);margin-bottom:20px;line-height:1.8}
+.cta-btn{display:inline-block;padding:12px 28px;background:var(--brand);color:#fff;font-size:14px;font-weight:500;border-radius:6px;transition:opacity .2s ease}
+.cta-btn:hover{opacity:.85}
+
+/* Footer */
+.footer{padding:48px 0 40px;text-align:center;font-size:13px;color:var(--text-muted);border-top:1px solid var(--border)}
+.footer p{margin-bottom:4px}
+.footer a{color:var(--text-secondary)}
+.footer a:hover{color:var(--brand)}
+
+/* Responsive */
+@media(max-width:767px){
+  :root{--content-max:480px;--content-padding:20px}
+  .page-hero{padding:48px 0 36px}
+  .page-hero h1{font-size:26px}
+  .page-hero .tagline{font-size:15px}
+  .page-hero p{font-size:14px}
+  .section{padding:40px 0}
+  .section-title{font-size:20px}
+  .header-nav{gap:16px;font-size:13px}
+  .team-list{grid-template-columns:1fr;gap:16px}
+  .team-card{padding:20px 16px}
+  .partner-grid{grid-template-columns:1fr;gap:12px}
+  .diff-bar{padding:16px 20px;font-size:14px}
+  .about-cta{padding:28px 24px;margin:32px 0 0}
+}
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-inner">
+    <a href="index.html" class="header-logo">
+      <img src="images/logo-color.png" alt="灰金重组">
+    </a>
+    <nav class="header-nav">
+      <a href="index.html">首页</a>
+      <a href="about.html" class="active">关于</a>
+      <a href="services.html">服务</a>
+      <a href="cases.html">案例</a>
+      <a href="diag.html">诊断</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="page-hero">
+    <div class="container">
+      <div class="eyebrow">关于灰金</div>
+      <h1>关于灰金</h1>
+      <p class="tagline">深耕中小企业困境诊断与重组赛道</p>
+      <p>深耕中小企业困境诊断与重组赛道，聚焦企业资产、负债、现金流三维平衡重构。</p>
+      <p>以专业视角穿透企业经营核心矛盾，通过系统性方案设计，为陷入发展瓶颈的中小企业提供可持续的破局路径与价值重塑方案。</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">核心能力</h2>
+      <p class="section-desc">五大专业领域，覆盖企业困境全链条</p>
+
+      <div class="capability-list">
+        <div class="capability-item">
+          <h3>不良资产</h3>
+          <p>沉淀多年市场实操经验，精准识别不良资产潜在价值，把控处置关键节点与风险。</p>
+        </div>
+        <div class="capability-item">
+          <h3>企业重组</h3>
+          <p>提供全流程重组落地执行服务，统筹各方利益诉求，优化股权与业务结构，实现企业重生。</p>
+        </div>
+        <div class="capability-item">
+          <h3>债务处置</h3>
+          <p>针对复杂债务问题定制化解方案，协调金融机构与债权人，通过债务重组实现风险隔离与缓释。</p>
+        </div>
+        <div class="capability-item">
+          <h3>财务分析</h3>
+          <p>开展深度财务尽职调查，还原企业真实经营数据，为方案制定提供严谨、可靠的财务依据。</p>
+        </div>
+        <div class="capability-item">
+          <h3>特殊资产投资</h3>
+          <p>专业研判特殊资产底层逻辑与增值空间，以价值投资视角挖掘资产潜力，实现投资收益最大化。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0">
+    <div class="container">
+      <h2 class="section-title">我们的不同</h2>
+      <p class="section-desc">拒绝泛泛而谈，直击企业核心痛点</p>
+
+      <div class="diff-list">
+        <div class="diff-item">
+          <h3>≠ 普通管理咨询</h3>
+          <p>摒弃空洞的战略PPT与纸上谈兵，拒绝脱离经营实际的理论框架，始终以企业真实痛点为锚点，提供可落地、可执行的实战化解决方案。</p>
+        </div>
+        <div class="diff-item">
+          <h3>≠ 单一法律服务</h3>
+          <p>不止于解决表层纠纷或处理单一法律问题，更聚焦企业经营根本，从法律合规切入深度关联商业逻辑，为企业持续运营提供全方位护航。</p>
+        </div>
+        <div class="diff-item">
+          <h3>≠ 基础财务记账</h3>
+          <p>跳出简单的账务处理与核算工作，深耕企业生存底层逻辑，透过财务数据挖掘商业价值，重构企业资金、资产与资源的健康运转体系。</p>
+        </div>
+      </div>
+
+      <div class="diff-bar">
+        我们只聚焦企业最核心的：存活破局 · 现金流修复 · 经营秩序重建
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">专业团队</h2>
+      <p class="section-desc">资深专家团队，实战经验丰富</p>
+
+      <div class="team-list">
+        <div class="team-card">
+          <div class="team-avatar">张</div>
+          <h3>张明远</h3>
+          <div class="role">首席重组顾问</div>
+          <p>十五年企业重组与债务化解经验，主导多起亿元级债务重组项目，擅长复杂利益关系协调与重组方案设计。</p>
+        </div>
+        <div class="team-card">
+          <div class="team-avatar">陈</div>
+          <h3>陈思涵</h3>
+          <div class="role">高级诊断顾问</div>
+          <p>专注中小企业财务诊断与现金流分析，十年企业财务咨询经验，精通利润真实性核验与资产盘活。</p>
+        </div>
+        <div class="team-card">
+          <div class="team-avatar">王</div>
+          <h3>王振宇</h3>
+          <div class="role">重组法律顾问</div>
+          <p>企业重组法律合规与预重整专家，深谙破产重组法规体系，为重组项目提供全流程法律保障。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0">
+    <div class="container">
+      <h2 class="section-title">全链条专业合作机构</h2>
+      <p class="section-desc">四大权威机构资源深度赋能</p>
+
+      <div class="partner-grid">
+        <div class="partner-item">
+          <h3>律师事务所</h3>
+          <p>合规审查、纠纷调处、法律风控</p>
+        </div>
+        <div class="partner-item">
+          <h3>会计师事务所</h3>
+          <p>资产审计、财务梳理、价值核算</p>
+        </div>
+        <div class="partner-item">
+          <h3>资产评估机构</h3>
+          <p>资产定价、价值分析</p>
+        </div>
+        <div class="partner-item">
+          <h3>持牌金融机构</h3>
+          <p>资金支持、融资规划</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="container">
+    <div class="about-cta">
+      <h3>想了解你的企业健康状况？</h3>
+      <p>36道题，3分钟，基于真实经营数据的深度体检</p>
+      <a href="diag.html" class="cta-btn">免费体检 →</a>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <p>灰金重组整理</p>
+    <p>联系 <a href="mailto:Lucasa@foxmail.com">Lucasa@foxmail.com</a></p>
+  </div>
+</footer>
+
+</body>
+</html>
