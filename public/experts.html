@@ -284,47 +284,47 @@ img{max-width:100%;display:block;object-fit:contain;pointer-events:none}
       </div>
     </div>
   </section>
-</main>
 
-<!-- Expert Detail Modal -->
-<div v-if="showModal" class="expert-overlay" @click="closeModal">
-  <div class="expert-modal" @click.stop>
-    <button class="expert-modal-close" @click="closeModal">&times;</button>
-    
-    <div class="expert-modal-header">
-      <div class="expert-modal-avatar">{{ selectedExpert.avatar }}</div>
-      <div>
-        <h2>{{ selectedExpert.name }}</h2>
-        <span class="expert-modal-role">{{ selectedExpert.role }}</span>
-        <p class="expert-modal-tagline">{{ selectedExpert.tagline }}</p>
-      </div>
-    </div>
-    
-    <div class="expert-modal-body">
-      <div class="expert-modal-section">
-        <h4>学历背景</h4>
-        <div v-for="edu in selectedExpert.education" class="expert-modal-item">{{ edu }}</div>
+  <!-- Expert Detail Modal -->
+  <div v-if="showModal" class="expert-overlay" @click="closeModal">
+    <div class="expert-modal" @click.stop>
+      <button class="expert-modal-close" @click="closeModal">&times;</button>
+      
+      <div class="expert-modal-header">
+        <div class="expert-modal-avatar">{{ selectedExpert.avatar }}</div>
+        <div>
+          <h2>{{ selectedExpert.name }}</h2>
+          <span class="expert-modal-role">{{ selectedExpert.role }}</span>
+          <p class="expert-modal-tagline">{{ selectedExpert.tagline }}</p>
+        </div>
       </div>
       
-      <div class="expert-modal-section">
-        <h4>从业经历</h4>
-        <div v-for="exp in selectedExpert.experience" class="expert-modal-item">{{ exp }}</div>
-      </div>
-      
-      <div class="expert-modal-section">
-        <h4>代表性案例</h4>
-        <div v-for="c in selectedExpert.cases" class="expert-modal-item">{{ c }}</div>
-      </div>
-      
-      <div class="expert-modal-section">
-        <h4>专业资质</h4>
-        <div class="expert-modal-tags">
-          <span v-for="cert in selectedExpert.certifications" class="expert-modal-tag">{{ cert }}</span>
+      <div class="expert-modal-body">
+        <div class="expert-modal-section">
+          <h4>学历背景</h4>
+          <div v-for="edu in selectedExpert.education" class="expert-modal-item">{{ edu }}</div>
+        </div>
+        
+        <div class="expert-modal-section">
+          <h4>从业经历</h4>
+          <div v-for="exp in selectedExpert.experience" class="expert-modal-item">{{ exp }}</div>
+        </div>
+        
+        <div class="expert-modal-section">
+          <h4>代表性案例</h4>
+          <div v-for="c in selectedExpert.cases" class="expert-modal-item">{{ c }}</div>
+        </div>
+        
+        <div class="expert-modal-section">
+          <h4>专业资质</h4>
+          <div class="expert-modal-tags">
+            <span v-for="cert in selectedExpert.certifications" class="expert-modal-tag">{{ cert }}</span>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
+</main>
 
 <!-- Footer -->
 <footer class="footer">
