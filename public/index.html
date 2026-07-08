@@ -177,14 +177,9 @@ img{max-width:100%;display:block;object-fit:contain;pointer-events:none}
 .contact-btn:active{transform:translateY(0)}
 .contact-btn::after{content:'→';transition:transform var(--transition)}
 .contact-btn:hover::after{transform:translateX(4px)}
-.contact-wechat{display:flex;align-items:center;gap:12px;padding:10px 20px;background:var(--bg-gray);border-radius:50px;font-size:14px;color:var(--text-secondary);position:relative;cursor:pointer;transition:all var(--transition)}
+.contact-wechat{display:flex;align-items:center;gap:12px;padding:10px 20px;background:var(--bg-gray);border-radius:50px;font-size:14px;color:var(--text-secondary);cursor:pointer;transition:all var(--transition);-webkit-tap-highlight-color:transparent;}
 .contact-wechat:hover{background:#e5e7eb}
-.wechat-popover{position:absolute;bottom:calc(100% + 16px);left:50%;transform:translateX(-50%) translateY(4px);background:#fff;border-radius:12px;padding:16px;box-shadow:0 8px 30px rgba(0,0,0,.15);opacity:0;visibility:hidden;transition:all .25s ease;z-index:50}
-.contact-wechat:hover .wechat-popover,
-.contact-wechat.active .wechat-popover{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0)}
-.wechat-popover::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:8px solid transparent;border-top-color:#fff}
-.wechat-popover img{width:160px;height:160px;display:block;border-radius:8px}
-.wechat-popover-label{display:block;text-align:center;font-size:12px;color:#999;margin-top:10px}
+.contact-wechat:active{transform:scale(.97)}
 
 /* Footer */
 .footer{background:var(--bg-dark);color:#fff;padding:60px 0 30px}
@@ -202,6 +197,17 @@ img{max-width:100%;display:block;object-fit:contain;pointer-events:none}
 .footer-contact a:hover{color:#fff}
 .footer-bottom{padding-top:30px;text-align:center;font-size:12px;color:var(--text-muted);line-height:1.8}
 .footer-bottom p{margin-bottom:4px}
+
+/* WeChat Overlay */
+.wechat-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);display:flex;align-items:center;justify-content:center;z-index:1000;animation:fadeIn .2s ease}
+.wechat-overlay.hidden{display:none}
+.wechat-popover-fixed{background:#fff;border-radius:16px;padding:28px 24px;box-shadow:0 16px 48px rgba(0,0,0,.3);text-align:center;position:relative;animation:scaleIn .25s ease;max-width:280px;width:90%}
+.wechat-popover-fixed img{width:200px;height:200px;display:block;border-radius:8px;margin:0 auto}
+.wechat-popover-fixed .wechat-popover-label{display:block;text-align:center;font-size:13px;color:#6b7280;margin-top:12px}
+.wechat-close{position:absolute;top:8px;right:8px;font-size:22px;color:#9ca3af;background:none;border:none;cursor:pointer;width:32px;height:32px;display:flex;align-items:center;justify-content:center;border-radius:50%;line-height:1;transition:all .2s}
+.wechat-close:hover{background:#f3f4f6;color:#374151}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes scaleIn{from{opacity:0;transform:scale(.9)}to{opacity:1;transform:scale(1)}}
 
 /* Responsive */
 @media(max-width:767px){
@@ -256,11 +262,6 @@ img{max-width:100%;display:block;object-fit:contain;pointer-events:none}
   .contact-box{grid-template-columns:1fr;gap:28px;padding:36px 28px;text-align:center}
   .contact-actions{justify-content:center;flex-direction:column}
   .contact-btn{width:100%;justify-content:center;min-height:48px}
-  .contact-wechat{position:static}
-  .wechat-popover{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) scale(.9);bottom:auto;width:220px;padding:20px;box-shadow:0 16px 48px rgba(0,0,0,.3)}
-  .contact-wechat.active .wechat-popover{transform:translate(-50%,-50%) scale(1)}
-  .wechat-popover::after{display:none}
-  .wechat-popover img{width:180px;height:180px}
   .contact-btn,.contact-wechat{width:100%;justify-content:center;min-height:48px}
   
   .footer-top{grid-template-columns:1fr;gap:32px}
@@ -520,20 +521,25 @@ img{max-width:100%;display:block;object-fit:contain;pointer-events:none}
         </div>
         <div class="contact-actions">
           <a href="mailto:lucasa@agent.qq.com" class="contact-btn">联系咨询</a>
-          <div class="contact-wechat" onclick="this.classList.toggle('active')">
+          <div class="contact-wechat" onclick="document.getElementById('wechat-overlay').classList.remove('hidden')">
             <img src="images/wechat-qrcode.jpg" alt="微信二维码" style="width:28px;height:28px;border-radius:6px;object-fit:cover;">
             <span>扫码咨询</span>
-            <div class="wechat-popover">
-              <img src="images/wechat-qrcode.jpg" alt="微信二维码">
-              <span class="wechat-popover-label">长按/扫码添加微信</span>
-              <span style="display:block;text-align:center;font-size:11px;color:#999;margin-top:6px">如果扫不到可以联系微信：igrape</span>
-            </div>
           </div>
         </div>
       </div>
     </div>
   </section>
 </main>
+
+<!-- WeChat QR Overlay -->
+<div id="wechat-overlay" class="wechat-overlay hidden" onclick="document.getElementById('wechat-overlay').classList.add('hidden')">
+  <div class="wechat-popover-fixed" onclick="event.stopPropagation()">
+    <button class="wechat-close" onclick="document.getElementById('wechat-overlay').classList.add('hidden')">&times;</button>
+    <img src="images/wechat-qrcode.jpg" alt="微信二维码">
+    <span class="wechat-popover-label">长按/扫码添加微信，获取专业方案</span>
+    <span style="display:block;text-align:center;font-size:11px;color:#9ca3af;margin-top:4px">如果扫不到可以联系微信：igrape</span>
+  </div>
+</div>
 
 <!-- Footer -->
 <footer class="footer">
