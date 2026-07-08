@@ -221,6 +221,14 @@ img{max-width:100%;display:block;object-fit:contain;pointer-events:none}
 
       <div class="experts-grid">
 
+        <!-- 王少华 -->
+        <div class="expert-card" @click="openExpert(6)">
+          <div class="expert-avatar">王</div>
+          <h3>王少华</h3>
+          <span class="expert-role">创始人/企业重组顾问</span>
+          <p>工学金融复合背景，十五年企业诊断与重组实战经验，擅长从经营本质诊断企业困境、设计系统性重组方案。</p>
+        </div>
+
         <!-- 张明远 -->
         <div class="expert-card" @click="openExpert(0)">
           <div class="expert-avatar">张</div>
@@ -491,6 +499,27 @@ const experts = [
       '③某房地产企业破产债权确认诉讼（代理胜诉，确认优先债权2.3亿）'
     ],
     certifications: ['中国律师执业资格（执业20年）', '山东省破产管理人协会会员']
+  },
+  {
+    avatar: '王',
+    name: '王少华',
+    role: '创始人/企业重组顾问',
+    tagline: '工学金融复合背景，十五年企业诊断与重组实战经验',
+    education: [
+      '2007-2011 天津大学 光电子信息工程 学士',
+      '2011-2013 山东大学 金融学 硕士'
+    ],
+    experience: [
+      '2013-2016 中国银行山东省分行 公司金融部 信贷经理',
+      '2016-2019 毕马威（KPMG） 企业重组部 高级顾问',
+      '2019-至今 灰金重组 创始人'
+    ],
+    cases: [
+      '①山东某化工企业债务重组（主导，涉及债务3.2亿元，债转股+资产剥离实现全面化解）',
+      '②济南某房企预重整咨询（主导，6个月完成预重整程序，避免直接破产清算）',
+      '③青岛某外贸企业现金流救援（主导，2个月实现现金流转正，挽救企业生命线）'
+    ],
+    certifications: ['中国注册会计师（CPA）', '国际注册企业价值评估分析师（CVA）']
   }
 ];
 
