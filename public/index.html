@@ -69,51 +69,89 @@ img{max-width:100%;display:block;object-fit:contain;pointer-events:none}
 .hero-cta:hover::after{transform:translateX(4px)}
 .hero-visual{position:relative;display:flex;align-items:center;justify-content:center}
 .hero-radial{width:100%;max-width:380px;aspect-ratio:1;position:relative;display:flex;align-items:center;justify-content:center}
-/* Cosmic Restructuring Diagram */
-.cosmic-core{
-  position:absolute;z-index:3;width:28%;aspect-ratio:1;border-radius:50%;
-  background:linear-gradient(135deg,#F5B041,#E67E22);
-  display:flex;align-items:center;justify-content:center;flex-direction:column;
-  color:#fff;text-align:center;line-height:1.3;letter-spacing:2px;
-  box-shadow:0 0 40px rgba(245,176,65,.3),0 0 80px rgba(245,176,65,.15);
-  animation:cosmic-pulse 3s ease-in-out infinite
-}
-.cosmic-core-line1{font-size:18px;font-weight:700}
-.cosmic-core-line2{font-size:13px;font-weight:500;opacity:.9;margin-top:2px}
-
-.cosmic-ring-wrap{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);aspect-ratio:1;z-index:1;pointer-events:none}
-.cosmic-ring-wrap-1{width:42%}
-.cosmic-ring-wrap-2{width:68%}
-.cosmic-ring-wrap-3{width:88%}
-.cosmic-ring-line{width:100%;height:100%;border-radius:50%}
-.cosmic-ring-wrap-1 .cosmic-ring-line{border:1.5px dashed rgba(255,255,255,.2);animation:cosmic-spin-cw 20s linear infinite}
-.cosmic-ring-wrap-2 .cosmic-ring-line{border:1.5px dotted rgba(255,255,255,.25);animation:cosmic-spin-ccw 25s linear infinite}
-.cosmic-ring-wrap-3 .cosmic-ring-line{border:1px solid rgba(255,255,255,.08)}
-
-.cosmic-dot{position:absolute;width:8px;height:8px;border-radius:50%;background:#fff;top:-4px;left:calc(50% - 4px);box-shadow:0 0 12px rgba(255,255,255,.6)}
-
-.cosmic-inner-node{
-  position:absolute;width:72px;height:36px;border-radius:18px;z-index:2;
-  background:linear-gradient(135deg,#5B9BD5,#4A90D9);
+/* Enterprise Core Dynamic Diagram */
+.diagram-core{
+  position:absolute;z-index:3;width:24%;aspect-ratio:1;border-radius:50%;
+  background:rgba(255,255,255,.15);border:2px solid rgba(255,255,255,.4);
   display:flex;align-items:center;justify-content:center;
-  color:#fff;font-size:13px;font-weight:600;letter-spacing:1px;
-  box-shadow:0 4px 20px rgba(0,0,0,.15)
+  color:#fff;font-size:22px;font-weight:700;letter-spacing:2px;
+  box-shadow:0 0 30px rgba(255,255,255,.15);
+  animation:diagram-core-pulse 3s ease-in-out infinite
 }
-.cosmic-outer-node{
-  position:absolute;width:90px;height:40px;border-radius:12px;z-index:2;
+
+.diagram-ring-wrap{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);aspect-ratio:1;z-index:1;pointer-events:none}
+.diagram-ring-inner-wrap{width:48%}
+.diagram-ring-outer-wrap{width:76%}
+.diagram-ring-line{width:100%;height:100%;border-radius:50%}
+.diagram-ring-inner-wrap .diagram-ring-line{border:1.5px dashed rgba(255,255,255,.18);animation:diagram-spin-cw 30s linear infinite}
+.diagram-ring-outer-wrap .diagram-ring-line{border:1.5px dashed rgba(255,255,255,.12);animation:diagram-spin-ccw 40s linear infinite}
+
+.diagram-node-inner{
+  position:absolute;width:80px;height:36px;border-radius:18px;z-index:2;
+  display:flex;align-items:center;justify-content:center;
+  color:#fff;font-size:14px;font-weight:600;letter-spacing:1px;
+  box-shadow:0 4px 20px rgba(0,0,0,.18);
+  cursor:pointer;
+  transition:transform .3s ease,box-shadow .3s ease
+}
+.diagram-node-inner:hover{transform:scale(1.1);box-shadow:0 6px 30px rgba(0,0,0,.25)}
+.diagram-node-inner-1{background:linear-gradient(135deg,#5B9BD5,#4A90D9)}
+.diagram-node-inner-2{background:linear-gradient(135deg,#4EDB8A,#2ECC71)}
+.diagram-node-inner-3{background:linear-gradient(135deg,#F5B041,#F39C12)}
+
+.diagram-node-outer{
+  position:absolute;width:96px;height:40px;border-radius:12px;z-index:2;
   background:rgba(255,255,255,.12);backdrop-filter:blur(4px);
   border:1px solid rgba(255,255,255,.25);
   display:flex;align-items:center;justify-content:center;
   color:rgba(255,255,255,.9);font-size:13px;font-weight:600;letter-spacing:1px;
-  box-shadow:0 4px 20px rgba(0,0,0,.12)
+  box-shadow:0 4px 20px rgba(0,0,0,.12);
+  cursor:pointer;
+  transition:transform .3s ease,box-shadow .3s ease
 }
+.diagram-node-outer:hover{transform:scale(1.1);box-shadow:0 6px 30px rgba(0,0,0,.2)}
 
-@keyframes cosmic-spin-cw{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
-@keyframes cosmic-spin-ccw{from{transform:rotate(0deg)}to{transform:rotate(-360deg)}}
-@keyframes cosmic-pulse{
-  0%,100%{box-shadow:0 0 30px rgba(245,176,65,.25),0 0 60px rgba(245,176,65,.1)}
-  50%{box-shadow:0 0 50px rgba(245,176,65,.4),0 0 100px rgba(245,176,65,.2)}
+/* SVG Connection Lines */
+.diagram-svg{position:absolute;top:0;left:0;width:100%;height:100%;z-index:1;pointer-events:none}
+.diagram-svg line{stroke:rgba(255,255,255,.2);stroke-width:1.5;stroke-dasharray:5 6;animation:diagram-line-flow 1.2s linear infinite}
+
+/* Tooltip */
+.diagram-tooltip{
+  position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);
+  background:rgba(0,0,0,.75);backdrop-filter:blur(8px);
+  color:#fff;font-size:12px;padding:6px 12px;border-radius:6px;
+  white-space:nowrap;pointer-events:none;opacity:0;
+  transition:opacity .25s ease;z-index:10
 }
+.diagram-tooltip::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:5px solid transparent;border-top-color:rgba(0,0,0,.75)}
+.diagram-node-inner:hover .diagram-tooltip,.diagram-node-outer:hover .diagram-tooltip{opacity:1}
+
+/* Detail Panel */
+.diagram-panel{
+  position:absolute;top:calc(100% + 16px);left:0;right:0;
+  background:rgba(255,255,255,.1);backdrop-filter:blur(12px);
+  border:1px solid rgba(255,255,255,.2);border-radius:12px;
+  padding:16px 20px;color:#fff;font-size:13px;line-height:1.8;
+  opacity:0;transform:translateY(-8px);pointer-events:none;
+  transition:all .35s ease;z-index:5
+}
+.diagram-panel.active{opacity:1;transform:translateY(0);pointer-events:auto}
+.diagram-panel-close{
+  position:absolute;top:8px;right:10px;color:rgba(255,255,255,.5);
+  cursor:pointer;font-size:18px;line-height:1;background:none;border:none
+}
+.diagram-panel-close:hover{color:#fff}
+.diagram-panel-title{font-size:16px;font-weight:600;margin-bottom:6px}
+.diagram-panel-desc{font-size:13px;opacity:.85}
+
+/* Animations */
+@keyframes diagram-spin-cw{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+@keyframes diagram-spin-ccw{from{transform:rotate(0deg)}to{transform:rotate(-360deg)}}
+@keyframes diagram-core-pulse{
+  0%,100%{box-shadow:0 0 20px rgba(255,255,255,.1)}
+  50%{box-shadow:0 0 50px rgba(255,255,255,.25)}
+}
+@keyframes diagram-line-flow{to{stroke-dashoffset:-11}}
 
 /* Stats */
 .stats-section{padding:40px 0;background:#fff}
@@ -326,41 +364,66 @@ img{max-width:100%;display:block;object-fit:contain;pointer-events:none}
           <a href="diag.html" class="hero-cta">免费诊断</a>
         </div>
         <div class="hero-visual">
-          <div class="hero-radial">
-            <!-- Core Sun: "困境重组·与诊断" -->
-            <div class="cosmic-core">
-              <span class="cosmic-core-line1">困境重组</span>
-              <span class="cosmic-core-line2">· 与诊断 ·</span>
+          <div class="hero-radial" id="diagram-container">
+            <!-- Core: "企业" -->
+            <div class="diagram-core">企业</div>
+            
+            <!-- Inner Ring (diagnosis) -->
+            <div class="diagram-ring-wrap diagram-ring-inner-wrap">
+              <div class="diagram-ring-line"></div>
             </div>
             
-            <!-- Inner Ring (diagnosis phase) -->
-            <div class="cosmic-ring-wrap cosmic-ring-wrap-1">
-              <div class="cosmic-ring-line">
-                <div class="cosmic-dot"></div>
-              </div>
+            <!-- Outer Ring (restructuring) -->
+            <div class="diagram-ring-wrap diagram-ring-outer-wrap">
+              <div class="diagram-ring-line"></div>
             </div>
             
-            <!-- Outer Ring (restructuring phase) -->
-            <div class="cosmic-ring-wrap cosmic-ring-wrap-2">
-              <div class="cosmic-ring-line">
-                <div class="cosmic-dot"></div>
-              </div>
-            </div>
-            
-            <!-- Edge Ring (rebirth/value path) -->
-            <div class="cosmic-ring-wrap cosmic-ring-wrap-3">
-              <div class="cosmic-ring-line"></div>
-            </div>
+            <!-- SVG Connection Lines -->
+            <svg class="diagram-svg" viewBox="0 0 380 380" preserveAspectRatio="xMidYMid meet">
+              <!-- Inner ring connections -->
+              <line x1="190" y1="190" x2="190" y2="99"/>
+              <line x1="190" y1="190" x2="269" y2="236"/>
+              <line x1="190" y1="190" x2="111" y2="236"/>
+              <!-- Outer ring connections -->
+              <line x1="190" y1="190" x2="190" y2="46"/>
+              <line x1="190" y1="190" x2="315" y2="262"/>
+              <line x1="190" y1="190" x2="65" y2="262"/>
+            </svg>
             
             <!-- Inner nodes: diagnosis dimensions -->
-            <div class="cosmic-inner-node" style="left:calc(50% - 36px);top:calc(50% - 21% - 18px)">资产</div>
-            <div class="cosmic-inner-node" style="left:calc(50% + 21%*0.866 - 36px);top:calc(50% + 21%*0.5 - 18px)">债务</div>
-            <div class="cosmic-inner-node" style="left:calc(50% - 21%*0.866 - 36px);top:calc(50% + 21%*0.5 - 18px)">运营</div>
+            <div class="diagram-node-inner diagram-node-inner-1" style="left:calc(50% - 40px);top:calc(50% - 24% - 18px)" data-key="business">
+              业务
+              <span class="diagram-tooltip">评估企业业务模式与运营效率</span>
+            </div>
+            <div class="diagram-node-inner diagram-node-inner-2" style="left:calc(50% + 24%*0.866 - 40px);top:calc(50% + 24%*0.5 - 18px)" data-key="finance">
+              财务
+              <span class="diagram-tooltip">分析企业资金状况与盈利能力</span>
+            </div>
+            <div class="diagram-node-inner diagram-node-inner-3" style="left:calc(50% - 24%*0.866 - 40px);top:calc(50% + 24%*0.5 - 18px)" data-key="debt">
+              债务
+              <span class="diagram-tooltip">评估企业负债结构与偿债能力</span>
+            </div>
             
             <!-- Outer nodes: restructuring solutions -->
-            <div class="cosmic-outer-node" style="left:calc(50% - 45px);top:calc(50% - 34% - 20px)">资产重组</div>
-            <div class="cosmic-outer-node" style="left:calc(50% + 34%*0.866 - 45px);top:calc(50% + 34%*0.5 - 20px)">债务重组</div>
-            <div class="cosmic-outer-node" style="left:calc(50% - 34%*0.866 - 45px);top:calc(50% + 34%*0.5 - 20px)">业务重整</div>
+            <div class="diagram-node-outer" style="left:calc(50% - 48px);top:calc(50% - 38% - 20px)" data-key="asset-restructure">
+              资产重组
+              <span class="diagram-tooltip">优化资产配置，盘活存量资源</span>
+            </div>
+            <div class="diagram-node-outer" style="left:calc(50% + 38%*0.866 - 48px);top:calc(50% + 38%*0.5 - 20px)" data-key="debt-restructure">
+              债务重组
+              <span class="diagram-tooltip">协商债务化解方案，减轻负担</span>
+            </div>
+            <div class="diagram-node-outer" style="left:calc(50% - 38%*0.866 - 48px);top:calc(50% + 38%*0.5 - 20px)" data-key="operation-restructure">
+              业务重组
+              <span class="diagram-tooltip">重整业务结构，重塑竞争优势</span>
+            </div>
+            
+            <!-- Detail Panel (hidden by default) -->
+            <div class="diagram-panel" id="diagram-panel">
+              <button class="diagram-panel-close" onclick="closeDiagramPanel()">&times;</button>
+              <div class="diagram-panel-title" id="panel-title">标题</div>
+              <div class="diagram-panel-desc" id="panel-desc">详细说明</div>
+            </div>
           </div>
         </div>
       </div>
@@ -596,5 +659,77 @@ img{max-width:100%;display:block;object-fit:contain;pointer-events:none}
   </div>
 </footer>
 
+<script>
+// Detail panel data for each node
+const diagramData = {
+  'business': {
+    title: '业务诊断',
+    desc: '全面评估企业现有业务模式的健康度与可持续性，分析市场定位、产品竞争力、客户结构等核心维度，识别运营效率瓶颈与增长瓶颈，为业务重整提供数据支撑与方向指引。'
+  },
+  'finance': {
+    title: '财务诊断',
+    desc: '深入核验企业利润真实性，分析现金流结构、资产负债匹配度、资金周转效率等关键财务指标，识别潜在的财务风险与资金链隐患，为企业财务健康度提供系统性评估报告。'
+  },
+  'debt': {
+    title: '债务诊断',
+    desc: '逐项摸排企业债务构成，区分有息/无息负债、短期/长期债务、刚性/柔性债务，评估整体负债率与偿债能力，识别高息债务与隐性债务风险，制定债务化解优先级方案。'
+  },
+  'asset-restructure': {
+    title: '资产重组方案',
+    desc: '对企业存量资产进行全面梳理与价值重估，通过资产剥离、资产置换、售后回租等多元化手段，盘活低效资产与闲置资产，优化资产结构，提升资产运营效率与回报率。'
+  },
+  'debt-restructure': {
+    title: '债务重组方案',
+    desc: '统筹协调银行、民间借贷、供应商等各方债权人，通过债务展期、利息减免、债转股、分期偿还等方式，系统性化解企业债务压力，争取时间窗口恢复经营造血能力。'
+  },
+  'operation-restructure': {
+    title: '业务重组方案',
+    desc: '基于诊断结论对企业业务结构进行战略性调整，收缩低效产能、裁撤亏损业务线、优化供应链配置，集中资源聚焦核心优势业务，重塑企业的市场竞争能力与盈利基础。'
+  }
+};
+
+function openDiagramPanel(key) {
+  const panel = document.getElementById('diagram-panel');
+  const title = document.getElementById('panel-title');
+  const desc = document.getElementById('panel-desc');
+  const data = diagramData[key];
+  if (data) {
+    title.textContent = data.title;
+    desc.textContent = data.desc;
+    panel.classList.add('active');
+  }
+}
+
+function closeDiagramPanel() {
+  document.getElementById('diagram-panel').classList.remove('active');
+}
+
+// Attach click handlers to all diagram nodes
+document.addEventListener('DOMContentLoaded', function() {
+  const nodes = document.querySelectorAll('.diagram-node-inner, .diagram-node-outer');
+  nodes.forEach(function(node) {
+    node.addEventListener('click', function(e) {
+      e.stopPropagation();
+      const key = this.getAttribute('data-key');
+      const panel = document.getElementById('diagram-panel');
+      // If clicking the same node that's already open, close it
+      if (panel.classList.contains('active') && panel._activeKey === key) {
+        closeDiagramPanel();
+        return;
+      }
+      panel._activeKey = key;
+      openDiagramPanel(key);
+    });
+  });
+  
+  // Close panel when clicking outside
+  document.addEventListener('click', function(e) {
+    const panel = document.getElementById('diagram-panel');
+    if (panel.classList.contains('active') && !e.target.closest('.hero-radial')) {
+      closeDiagramPanel();
+    }
+  });
+});
+</script>
 </body>
 </html>
