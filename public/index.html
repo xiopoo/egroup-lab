@@ -94,7 +94,7 @@ img{max-width:100%;display:block;object-fit:contain;pointer-events:none}
 .diagram-ring-outer-wrap .diagram-orbit-body{animation:diagram-spin-ccw 40s linear infinite}
 
 .diagram-node-inner{
-  width:80px;height:36px;border-radius:18px;z-index:2;
+  position:absolute;width:80px;height:36px;border-radius:18px;z-index:2;
   display:flex;align-items:center;justify-content:center;
   color:#fff;font-size:14px;font-weight:600;letter-spacing:1px;
   box-shadow:0 4px 20px rgba(0,0,0,.18);
@@ -115,7 +115,7 @@ img{max-width:100%;display:block;object-fit:contain;pointer-events:none}
 .diagram-node-inner-3{background:linear-gradient(135deg,#F5B041,#F39C12)}
 
 .diagram-node-outer{
-  width:96px;height:40px;border-radius:12px;z-index:2;
+  position:absolute;width:96px;height:40px;border-radius:12px;z-index:2;
   background:rgba(255,255,255,.12);backdrop-filter:blur(4px);
   border:1px solid rgba(255,255,255,.25);
   display:flex;align-items:center;justify-content:center;
@@ -396,28 +396,19 @@ img{max-width:100%;display:block;object-fit:contain;pointer-events:none}
                   <line x1="190" y1="190" x2="190" y2="10" transform="rotate(120,190,190)"/>
                   <line x1="190" y1="190" x2="190" y2="10" transform="rotate(240,190,190)"/>
                 </svg>
-                  <!-- Node 1 at 0° -->
-                  <div style="position:absolute;top:0;left:50%;transform:rotate(0deg);transform-origin:0px 50%">
-                    <div class="diagram-node-inner diagram-node-inner-1" data-key="business" style="transform:rotate(0deg);pointer-events:auto">
-                      <span class="diagram-node-text">业务</span>
-                      <span class="diagram-tooltip">评估企业业务模式与运营效率</span>
-                    </div>
+                  <div class="diagram-node-inner diagram-node-inner-1" data-key="business" style="position:absolute;left:calc(50% - 40px);top:0;pointer-events:auto">
+                    <span class="diagram-node-text">业务</span>
+                    <span class="diagram-tooltip">评估企业业务模式与运营效率</span>
                   </div>
                   
-                  <!-- Node 2 at 120° -->
-                  <div style="position:absolute;top:0;left:50%;transform:rotate(120deg);transform-origin:0px 50%">
-                    <div class="diagram-node-inner diagram-node-inner-2" data-key="finance" style="transform:rotate(-120deg);pointer-events:auto">
-                      <span class="diagram-node-text">财务</span>
-                      <span class="diagram-tooltip">分析企业资金状况与盈利能力</span>
-                    </div>
+                  <div class="diagram-node-inner diagram-node-inner-2" data-key="finance" style="position:absolute;left:calc(93.3% - 40px);top:calc(75% - 18px);pointer-events:auto">
+                    <span class="diagram-node-text">财务</span>
+                    <span class="diagram-tooltip">分析企业资金状况与盈利能力</span>
                   </div>
                   
-                  <!-- Node 3 at 240° -->
-                  <div style="position:absolute;top:0;left:50%;transform:rotate(240deg);transform-origin:0px 50%">
-                    <div class="diagram-node-inner diagram-node-inner-3" data-key="debt" style="transform:rotate(-240deg);pointer-events:auto">
-                      <span class="diagram-node-text">债务</span>
-                      <span class="diagram-tooltip">评估企业负债结构与偿债能力</span>
-                    </div>
+                  <div class="diagram-node-inner diagram-node-inner-3" data-key="debt" style="position:absolute;left:calc(6.7% - 40px);top:calc(75% - 18px);pointer-events:auto">
+                    <span class="diagram-node-text">债务</span>
+                    <span class="diagram-tooltip">评估企业负债结构与偿债能力</span>
                   </div>
               </div>
             </div>
@@ -431,28 +422,19 @@ img{max-width:100%;display:block;object-fit:contain;pointer-events:none}
                   <line x1="190" y1="190" x2="190" y2="10" transform="rotate(120,190,190)"/>
                   <line x1="190" y1="190" x2="190" y2="10" transform="rotate(240,190,190)"/>
                 </svg>
-                  <!-- Outer Node 1 at 0° -->
-                  <div style="position:absolute;top:0;left:50%;transform:rotate(0deg);transform-origin:0px 50%">
-                    <div class="diagram-node-outer" data-key="asset-restructure" style="transform:rotate(0deg);pointer-events:auto">
-                      <span class="diagram-node-text">资产重组</span>
-                      <span class="diagram-tooltip">优化资产配置，盘活存量资源</span>
-                    </div>
+                  <div class="diagram-node-outer" data-key="asset-restructure" style="position:absolute;left:calc(50% - 48px);top:0;pointer-events:auto">
+                    <span class="diagram-node-text">资产重组</span>
+                    <span class="diagram-tooltip">优化资产配置，盘活存量资源</span>
                   </div>
                   
-                  <!-- Outer Node 2 at 120° -->
-                  <div style="position:absolute;top:0;left:50%;transform:rotate(120deg);transform-origin:0px 50%">
-                    <div class="diagram-node-outer" data-key="debt-restructure" style="transform:rotate(-120deg);pointer-events:auto">
-                      <span class="diagram-node-text">债务重组</span>
-                      <span class="diagram-tooltip">协商债务化解方案，减轻负担</span>
-                    </div>
+                  <div class="diagram-node-outer" data-key="debt-restructure" style="position:absolute;left:calc(93.3% - 48px);top:calc(75% - 20px);pointer-events:auto">
+                    <span class="diagram-node-text">债务重组</span>
+                    <span class="diagram-tooltip">协商债务化解方案，减轻负担</span>
                   </div>
                   
-                  <!-- Outer Node 3 at 240° -->
-                  <div style="position:absolute;top:0;left:50%;transform:rotate(240deg);transform-origin:0px 50%">
-                    <div class="diagram-node-outer" data-key="operation-restructure" style="transform:rotate(-240deg);pointer-events:auto">
-                      <span class="diagram-node-text">业务重组</span>
-                      <span class="diagram-tooltip">重整业务结构，重塑竞争优势</span>
-                    </div>
+                  <div class="diagram-node-outer" data-key="operation-restructure" style="position:absolute;left:calc(6.7% - 48px);top:calc(75% - 20px);pointer-events:auto">
+                    <span class="diagram-node-text">业务重组</span>
+                    <span class="diagram-tooltip">重整业务结构，重塑竞争优势</span>
                   </div>
               </div>
             </div>
