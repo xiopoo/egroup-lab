@@ -53,7 +53,7 @@ img{max-width:100%;display:block;object-fit:contain;pointer-events:none}
 .nav-badge{font-size:10px;font-weight:600;background:#fff;color:#AB1942;padding:1px 5px;border-radius:8px;line-height:1.4;letter-spacing:.5px}
 
 /* Hero */
-.hero{background:linear-gradient(135deg,var(--brand) 0%,var(--brand-dark) 100%);position:relative;overflow:hidden}
+.hero{background:linear-gradient(135deg,var(--brand) 0%,var(--brand-dark) 100%);position:relative;overflow:visible}
 .hero::before{content:'';position:absolute;top:-50%;right:-10%;width:600px;height:600px;background:radial-gradient(circle,rgba(255,255,255,.08) 0%,transparent 70%);border-radius:50%;pointer-events:none}
 .hero-inner{position:relative;display:grid;grid-template-columns:1.2fr 1fr;gap:60px;align-items:center;box-sizing:border-box;min-height:320px;padding:48px 0}
 .hero-content{position:relative;z-index:1}
@@ -69,68 +69,93 @@ img{max-width:100%;display:block;object-fit:contain;pointer-events:none}
 .hero-cta:hover::after{transform:translateX(4px)}
 .hero-visual{position:relative;display:flex;align-items:center;justify-content:center}
 .hero-radial{width:100%;max-width:380px;aspect-ratio:1;position:relative;display:flex;align-items:center;justify-content:center}
-/* Enterprise Core Dynamic Diagram */
+/* Enterprise Core Dynamic Diagram - 2.5D Sphere */
 .diagram-core{
-  position:absolute;z-index:3;width:24%;aspect-ratio:1;border-radius:50%;
+  position:absolute;z-index:10;width:16%;aspect-ratio:1;border-radius:50%;
   background:rgba(255,255,255,.15);border:2px solid rgba(255,255,255,.4);
   display:flex;align-items:center;justify-content:center;
-  color:#fff;font-size:22px;font-weight:700;letter-spacing:2px;
+  color:#fff;font-size:20px;font-weight:700;letter-spacing:2px;
   box-shadow:0 0 30px rgba(255,255,255,.15);
   animation:diagram-core-pulse 3s ease-in-out infinite
 }
 
-.diagram-ring-wrap{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);aspect-ratio:1;z-index:1;pointer-events:none}
-.diagram-ring-inner-wrap{width:48%}
-.diagram-ring-outer-wrap{width:76%}
-.diagram-ring-line{width:100%;height:100%;border-radius:50%}
-.diagram-ring-inner-wrap .diagram-ring-line{border:1.5px dashed rgba(255,255,255,.18);animation:diagram-spin-cw 30s linear infinite}
-.diagram-ring-outer-wrap .diagram-ring-line{border:1.5px dashed rgba(255,255,255,.12);animation:diagram-spin-ccw 40s linear infinite}
-
-.diagram-orbit-body{
-  position:absolute;top:0;left:0;width:100%;height:100%;z-index:2;
-  pointer-events:none
+/* Layer wraps - each creates a ring at specific radius */
+.sphere-layer-wrap{
+  position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);aspect-ratio:1;z-index:1;pointer-events:none
 }
-.diagram-ring-inner-wrap .diagram-orbit-body{animation:diagram-spin-cw 30s linear infinite}
-.diagram-ring-outer-wrap .diagram-orbit-body{animation:diagram-spin-ccw 40s linear infinite}
+.sphere-layer-1{width:55%}
+.sphere-layer-2{width:45%}
+.sphere-layer-3{width:30%}
 
-.diagram-node-inner{
-  position:absolute;width:80px;height:36px;border-radius:18px;z-index:2;
+/* Orbit ring line (dashed circle) */
+.sphere-layer-line{width:100%;height:100%;border-radius:50%}
+.sphere-layer-1 .sphere-layer-line{border:1.5px dashed rgba(255,255,255,.18);animation:sphere-ring-cw 35s linear infinite}
+.sphere-layer-2 .sphere-layer-line{border:1.5px dashed rgba(255,255,255,.14);animation:sphere-ring-ccw 30s linear infinite}
+.sphere-layer-3 .sphere-layer-line{border:1.5px dashed rgba(255,255,255,.10);animation:sphere-ring-cw 25s linear infinite}
+
+/* Ellipse layer - creates latitude perspective by vertical squash */
+.ellipse-layer{
+  position:absolute;top:0;left:0;width:100%;height:100%;z-index:2
+}
+.ellipse-layer-30{transform:scaleY(0.85)}
+.ellipse-layer-60{transform:scaleY(0.5)}
+
+/* Orbit Node Wrap - rotates to carry node along orbital path */
+.orbit-node-wrap{
+  position:absolute;top:0;left:0;width:100%;height:100%;z-index:3;
+  pointer-events:none;transform-origin:50% 50%
+}
+.orbit-node-wrap:hover{animation-play-state:paused}
+
+/* Per-node SVG connection line */
+.orbit-node-svg{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none}
+.orbit-node-svg line{stroke:rgba(255,255,255,.2);stroke-width:1.5;stroke-dasharray:5 6}
+
+/* Depth animation layer - opacity changes based on orbit position */
+.depth-layer{
+  position:absolute;top:0;left:calc(50% - 38px);pointer-events:auto;z-index:4;
+  animation:sphere-depth 35s linear infinite
+}
+.ellipse-layer-30 .depth-layer{left:calc(50% - 34px)}
+.ellipse-layer-60 .depth-layer{left:calc(50% - 30px)}
+
+/* Text block appearance */
+.sphere-text-block{
   display:flex;align-items:center;justify-content:center;
-  color:#fff;font-size:14px;font-weight:600;letter-spacing:1px;
-  box-shadow:0 4px 20px rgba(0,0,0,.18);
-  cursor:pointer;
-  pointer-events:auto;
-  transform-origin:center bottom;
-  transition:transform .3s ease,box-shadow .3s ease
+  color:#fff;font-weight:600;letter-spacing:1px;
+  cursor:pointer;pointer-events:auto;
+  transition:scale .3s ease,box-shadow .3s ease
 }
-.diagram-node-inner:hover{transform:scale(1.1) !important;box-shadow:0 6px 30px rgba(0,0,0,.25)}
-.diagram-node-text{
-  display:inline-block;position:relative;z-index:1;
-  pointer-events:none
-}
-.diagram-ring-inner-wrap .diagram-node-text{animation:diagram-text-fix-cw 30s linear infinite}
-.diagram-ring-outer-wrap .diagram-node-text{animation:diagram-text-fix-ccw 40s linear infinite}
-.diagram-node-inner-1{background:linear-gradient(135deg,#5B9BD5,#4A90D9)}
-.diagram-node-inner-2{background:linear-gradient(135deg,#4EDB8A,#2ECC71)}
-.diagram-node-inner-3{background:linear-gradient(135deg,#F5B041,#F39C12)}
+.sphere-text-block:hover{scale:1.15;box-shadow:0 6px 30px rgba(0,0,0,.3)}
+.sphere-text-block .text{display:inline-block;pointer-events:none}
 
-.diagram-node-outer{
-  position:absolute;width:96px;height:40px;border-radius:12px;z-index:2;
-  background:rgba(255,255,255,.12);backdrop-filter:blur(4px);
-  border:1px solid rgba(255,255,255,.25);
-  display:flex;align-items:center;justify-content:center;
-  color:rgba(255,255,255,.9);font-size:13px;font-weight:600;letter-spacing:1px;
-  box-shadow:0 4px 20px rgba(0,0,0,.12);
-  cursor:pointer;
-  pointer-events:auto;
-  transform-origin:center bottom;
-  transition:transform .3s ease,box-shadow .3s ease
+/* Layer 1 (Equator) styles - 4 text blocks */
+.layer-text-1{
+  width:76px;height:32px;border-radius:16px;font-size:14px;
+  box-shadow:0 4px 20px rgba(0,0,0,.18)
 }
-.diagram-node-outer:hover{transform:scale(1.1) !important;box-shadow:0 6px 30px rgba(0,0,0,.2)}
 
-/* SVG Connection Lines */
-.diagram-orbit-svg{position:absolute;top:0;left:0;width:100%;height:100%}
-.diagram-orbit-svg line{stroke:rgba(255,255,255,.2);stroke-width:1.5;stroke-dasharray:5 6}
+/* Layer 2 (30° lat) styles */
+.layer-text-2{
+  width:68px;height:28px;border-radius:14px;font-size:13px;
+  box-shadow:0 3px 15px rgba(0,0,0,.15)
+}
+.layer-text-2 .text{font-size:12px}
+
+/* Layer 3 (60° lat) styles */
+.layer-text-3{
+  width:60px;height:24px;border-radius:12px;font-size:12px;
+  box-shadow:0 2px 10px rgba(0,0,0,.12)
+}
+.layer-text-3 .text{font-size:11px}
+
+/* Layer color variants - 3 colors shared across 4 blocks per layer */
+.layer-color-1{background:linear-gradient(135deg,#5B9BD5,#4A90D9)}
+.layer-color-2{background:linear-gradient(135deg,#4EDB8A,#2ECC71)}
+.layer-color-3{background:linear-gradient(135deg,#F5B041,#F39C12)}
+.layer-color-4{background:linear-gradient(135deg,#E57373,#EF5350)}
+.layer-color-5{background:linear-gradient(135deg,#BA68C8,#AB47BC)}
+.layer-color-6{background:linear-gradient(135deg,#4DD0E1,#00BCD4)}
 
 /* Tooltip */
 .diagram-tooltip{
@@ -141,7 +166,7 @@ img{max-width:100%;display:block;object-fit:contain;pointer-events:none}
   transition:opacity .25s ease;z-index:10
 }
 .diagram-tooltip::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:5px solid transparent;border-top-color:rgba(0,0,0,.75)}
-.diagram-node-inner:hover .diagram-tooltip,.diagram-node-outer:hover .diagram-tooltip{opacity:1}
+.sphere-text-block:hover .diagram-tooltip{opacity:1}
 
 /* Detail Panel */
 .diagram-panel{
@@ -161,16 +186,31 @@ img{max-width:100%;display:block;object-fit:contain;pointer-events:none}
 .diagram-panel-title{font-size:16px;font-weight:600;margin-bottom:6px}
 .diagram-panel-desc{font-size:13px;opacity:.85}
 
-/* Animations */
-@keyframes diagram-spin-cw{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
-@keyframes diagram-spin-ccw{from{transform:rotate(0deg)}to{transform:rotate(-360deg)}}
+/* Counter-rotation classes: orbit anim + text counter-rotation */
+.cr-layer-1{animation:sphere-depth 35s linear infinite,text-counter-cw 35s linear infinite}
+.cr-layer-2{animation:sphere-depth 30s linear infinite,text-counter-ccw 30s linear infinite}
+.cr-layer-3{animation:sphere-depth 25s linear infinite,text-counter-cw 25s linear infinite}
+
+/* Counter-scale: undo elliptical vertical squash so text stays normal */
+.ellipse-layer-30 .sphere-text-block{transform:scaleY(1.176)}
+.ellipse-layer-60 .sphere-text-block{transform:scaleY(2.0)}
+
+/* Keyframes */
+@keyframes sphere-ring-cw{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+@keyframes sphere-ring-ccw{from{transform:rotate(0deg)}to{transform:rotate(-360deg)}}
+@keyframes text-counter-cw{from{transform:rotate(0deg)}to{transform:rotate(-360deg)}}
+@keyframes text-counter-ccw{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
 @keyframes diagram-core-pulse{
   0%,100%{box-shadow:0 0 20px rgba(255,255,255,.1)}
   50%{box-shadow:0 0 50px rgba(255,255,255,.25)}
 }
-@keyframes diagram-line-flow{to{stroke-dashoffset:-11}}
-@keyframes diagram-text-fix-cw{from{transform:rotate(0deg)}to{transform:rotate(-360deg)}}
-@keyframes diagram-text-fix-ccw{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+@keyframes sphere-depth{
+  0%{opacity:0.15}
+  25%{opacity:0.55}
+  50%{opacity:1.0}
+  75%{opacity:0.55}
+  100%{opacity:0.15}
+}
 
 /* Stats */
 .stats-section{padding:40px 0;background:#fff}
@@ -387,55 +427,166 @@ img{max-width:100%;display:block;object-fit:contain;pointer-events:none}
             <!-- Core: "企业" -->
             <div class="diagram-core">企业</div>
             
-            <!-- Inner Ring (diagnosis) with orbiting nodes -->
-            <div class="diagram-ring-wrap diagram-ring-inner-wrap">
-              <div class="diagram-ring-line"></div>
-              <div class="diagram-orbit-body" style="pointer-events:auto">
-                <svg class="diagram-orbit-svg" viewBox="0 0 380 380" preserveAspectRatio="xMidYMid meet">
+            <!-- Layer 1 (Equator, 55% radius, 35s CW) -->
+            <div class="sphere-layer-wrap sphere-layer-1">
+              <div class="sphere-layer-line"></div>
+              <!-- 诊断 0° -->
+              <div class="orbit-node-wrap" style="animation:sphere-ring-cw 35s linear infinite">
+                <svg class="orbit-node-svg" viewBox="0 0 380 380" preserveAspectRatio="xMidYMid meet" style="animation:sphere-depth 35s linear infinite">
                   <line x1="190" y1="190" x2="190" y2="10"/>
-                  <line x1="190" y1="190" x2="190" y2="10" transform="rotate(120,190,190)"/>
-                  <line x1="190" y1="190" x2="190" y2="10" transform="rotate(240,190,190)"/>
                 </svg>
-                  <div class="diagram-node-inner diagram-node-inner-1" data-key="business" style="position:absolute;left:calc(50% - 40px);top:0;pointer-events:auto">
-                    <span class="diagram-node-text">业务</span>
-                    <span class="diagram-tooltip">评估企业业务模式与运营效率</span>
+                <div class="depth-layer cr-layer-1">
+                  <div class="sphere-text-block layer-text-1 layer-color-1" data-key="diag">
+                    <span class="text">诊断</span>
+                    <span class="diagram-tooltip">全面评估企业健康度，识别核心问题</span>
                   </div>
-                  
-                  <div class="diagram-node-inner diagram-node-inner-2" data-key="finance" style="position:absolute;left:calc(93.3% - 40px);top:calc(75% - 18px);pointer-events:auto">
-                    <span class="diagram-node-text">财务</span>
-                    <span class="diagram-tooltip">分析企业资金状况与盈利能力</span>
+                </div>
+              </div>
+              <!-- 重组 90° -->
+              <div class="orbit-node-wrap" style="animation:sphere-ring-cw 35s linear infinite;animation-delay:-8.75s">
+                <svg class="orbit-node-svg" viewBox="0 0 380 380" preserveAspectRatio="xMidYMid meet" style="animation:sphere-depth 35s linear infinite;animation-delay:-8.75s">
+                  <line x1="190" y1="190" x2="190" y2="10"/>
+                </svg>
+                <div class="depth-layer cr-layer-1" style="animation-delay:-8.75s,-8.75s">
+                  <div class="sphere-text-block layer-text-1 layer-color-2" data-key="reorg">
+                    <span class="text">重组</span>
+                    <span class="diagram-tooltip">系统性重构企业资产与债务结构</span>
                   </div>
-                  
-                  <div class="diagram-node-inner diagram-node-inner-3" data-key="debt" style="position:absolute;left:calc(6.7% - 40px);top:calc(75% - 18px);pointer-events:auto">
-                    <span class="diagram-node-text">债务</span>
-                    <span class="diagram-tooltip">评估企业负债结构与偿债能力</span>
+                </div>
+              </div>
+              <!-- 破局 180° -->
+              <div class="orbit-node-wrap" style="animation:sphere-ring-cw 35s linear infinite;animation-delay:-17.5s">
+                <svg class="orbit-node-svg" viewBox="0 0 380 380" preserveAspectRatio="xMidYMid meet" style="animation:sphere-depth 35s linear infinite;animation-delay:-17.5s">
+                  <line x1="190" y1="190" x2="190" y2="10"/>
+                </svg>
+                <div class="depth-layer cr-layer-1" style="animation-delay:-17.5s,-17.5s">
+                  <div class="sphere-text-block layer-text-1 layer-color-3" data-key="breakthrough">
+                    <span class="text">破局</span>
+                    <span class="diagram-tooltip">打破经营困局，开辟全新发展路径</span>
                   </div>
+                </div>
+              </div>
+              <!-- 重塑 270° -->
+              <div class="orbit-node-wrap" style="animation:sphere-ring-cw 35s linear infinite;animation-delay:-26.25s">
+                <svg class="orbit-node-svg" viewBox="0 0 380 380" preserveAspectRatio="xMidYMid meet" style="animation:sphere-depth 35s linear infinite;animation-delay:-26.25s">
+                  <line x1="190" y1="190" x2="190" y2="10"/>
+                </svg>
+                <div class="depth-layer cr-layer-1" style="animation-delay:-26.25s,-26.25s">
+                  <div class="sphere-text-block layer-text-1 layer-color-4" data-key="reshape">
+                    <span class="text">重塑</span>
+                    <span class="diagram-tooltip">重塑企业价值体系与核心竞争力</span>
+                  </div>
+                </div>
               </div>
             </div>
             
-            <!-- Outer Ring (restructuring) with orbiting nodes -->
-            <div class="diagram-ring-wrap diagram-ring-outer-wrap">
-              <div class="diagram-ring-line"></div>
-              <div class="diagram-orbit-body" style="pointer-events:auto">
-                <svg class="diagram-orbit-svg" viewBox="0 0 380 380" preserveAspectRatio="xMidYMid meet">
-                  <line x1="190" y1="190" x2="190" y2="10"/>
-                  <line x1="190" y1="190" x2="190" y2="10" transform="rotate(120,190,190)"/>
-                  <line x1="190" y1="190" x2="190" y2="10" transform="rotate(240,190,190)"/>
-                </svg>
-                  <div class="diagram-node-outer" data-key="asset-restructure" style="position:absolute;left:calc(50% - 48px);top:0;pointer-events:auto">
-                    <span class="diagram-node-text">资产重组</span>
-                    <span class="diagram-tooltip">优化资产配置，盘活存量资源</span>
+            <!-- Layer 2 (30° latitude, 45% radius, 30s CCW, elliptical 0.85) -->
+            <div class="sphere-layer-wrap sphere-layer-2">
+              <div class="sphere-layer-line"></div>
+              <div class="ellipse-layer ellipse-layer-30">
+                <!-- 业务 0° -->
+                <div class="orbit-node-wrap" style="animation:sphere-ring-ccw 30s linear infinite">
+                  <svg class="orbit-node-svg" viewBox="0 0 380 380" preserveAspectRatio="xMidYMid meet" style="animation:sphere-depth 30s linear infinite">
+                    <line x1="190" y1="190" x2="190" y2="10"/>
+                  </svg>
+                  <div class="depth-layer cr-layer-2" style="left:calc(50% - 34px)">
+                    <div class="sphere-text-block layer-text-2 layer-color-5" data-key="business">
+                      <span class="text">业务</span>
+                      <span class="diagram-tooltip">评估企业业务模式与运营效率</span>
+                    </div>
                   </div>
-                  
-                  <div class="diagram-node-outer" data-key="debt-restructure" style="position:absolute;left:calc(93.3% - 48px);top:calc(75% - 20px);pointer-events:auto">
-                    <span class="diagram-node-text">债务重组</span>
-                    <span class="diagram-tooltip">协商债务化解方案，减轻负担</span>
+                </div>
+                <!-- 财务 90° -->
+                <div class="orbit-node-wrap" style="animation:sphere-ring-ccw 30s linear infinite;animation-delay:-7.5s">
+                  <svg class="orbit-node-svg" viewBox="0 0 380 380" preserveAspectRatio="xMidYMid meet" style="animation:sphere-depth 30s linear infinite;animation-delay:-7.5s">
+                    <line x1="190" y1="190" x2="190" y2="10"/>
+                  </svg>
+                  <div class="depth-layer cr-layer-2" style="animation-delay:-7.5s,-7.5s;left:calc(50% - 34px)">
+                    <div class="sphere-text-block layer-text-2 layer-color-6" data-key="finance">
+                      <span class="text">财务</span>
+                      <span class="diagram-tooltip">分析企业资金状况与盈利能力</span>
+                    </div>
                   </div>
-                  
-                  <div class="diagram-node-outer" data-key="operation-restructure" style="position:absolute;left:calc(6.7% - 48px);top:calc(75% - 20px);pointer-events:auto">
-                    <span class="diagram-node-text">业务重组</span>
-                    <span class="diagram-tooltip">重整业务结构，重塑竞争优势</span>
+                </div>
+                <!-- 债务 180° -->
+                <div class="orbit-node-wrap" style="animation:sphere-ring-ccw 30s linear infinite;animation-delay:-15s">
+                  <svg class="orbit-node-svg" viewBox="0 0 380 380" preserveAspectRatio="xMidYMid meet" style="animation:sphere-depth 30s linear infinite;animation-delay:-15s">
+                    <line x1="190" y1="190" x2="190" y2="10"/>
+                  </svg>
+                  <div class="depth-layer cr-layer-2" style="animation-delay:-15s,-15s;left:calc(50% - 34px)">
+                    <div class="sphere-text-block layer-text-2 layer-color-1" data-key="debt">
+                      <span class="text">债务</span>
+                      <span class="diagram-tooltip">评估企业负债结构与偿债能力</span>
+                    </div>
                   </div>
+                </div>
+                <!-- 资产 270° -->
+                <div class="orbit-node-wrap" style="animation:sphere-ring-ccw 30s linear infinite;animation-delay:-22.5s">
+                  <svg class="orbit-node-svg" viewBox="0 0 380 380" preserveAspectRatio="xMidYMid meet" style="animation:sphere-depth 30s linear infinite;animation-delay:-22.5s">
+                    <line x1="190" y1="190" x2="190" y2="10"/>
+                  </svg>
+                  <div class="depth-layer cr-layer-2" style="animation-delay:-22.5s,-22.5s;left:calc(50% - 34px)">
+                    <div class="sphere-text-block layer-text-2 layer-color-2" data-key="asset">
+                      <span class="text">资产</span>
+                      <span class="diagram-tooltip">盘活存量资产，优化资源配置</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Layer 3 (60° latitude, 30% radius, 25s CW, elliptical 0.5) -->
+            <div class="sphere-layer-wrap sphere-layer-3">
+              <div class="sphere-layer-line"></div>
+              <div class="ellipse-layer ellipse-layer-60">
+                <!-- 价值 0° -->
+                <div class="orbit-node-wrap" style="animation:sphere-ring-cw 25s linear infinite">
+                  <svg class="orbit-node-svg" viewBox="0 0 380 380" preserveAspectRatio="xMidYMid meet" style="animation:sphere-depth 25s linear infinite">
+                    <line x1="190" y1="190" x2="190" y2="10"/>
+                  </svg>
+                  <div class="depth-layer cr-layer-3" style="left:calc(50% - 30px)">
+                    <div class="sphere-text-block layer-text-3 layer-color-3" data-key="value">
+                      <span class="text">价值</span>
+                      <span class="diagram-tooltip">发现与释放企业潜在价值</span>
+                    </div>
+                  </div>
+                </div>
+                <!-- 秩序 90° -->
+                <div class="orbit-node-wrap" style="animation:sphere-ring-cw 25s linear infinite;animation-delay:-6.25s">
+                  <svg class="orbit-node-svg" viewBox="0 0 380 380" preserveAspectRatio="xMidYMid meet" style="animation:sphere-depth 25s linear infinite;animation-delay:-6.25s">
+                    <line x1="190" y1="190" x2="190" y2="10"/>
+                  </svg>
+                  <div class="depth-layer cr-layer-3" style="animation-delay:-6.25s,-6.25s;left:calc(50% - 30px)">
+                    <div class="sphere-text-block layer-text-3 layer-color-4" data-key="order">
+                      <span class="text">秩序</span>
+                      <span class="diagram-tooltip">重建企业运营新秩序</span>
+                    </div>
+                  </div>
+                </div>
+                <!-- 平衡 180° -->
+                <div class="orbit-node-wrap" style="animation:sphere-ring-cw 25s linear infinite;animation-delay:-12.5s">
+                  <svg class="orbit-node-svg" viewBox="0 0 380 380" preserveAspectRatio="xMidYMid meet" style="animation:sphere-depth 25s linear infinite;animation-delay:-12.5s">
+                    <line x1="190" y1="190" x2="190" y2="10"/>
+                  </svg>
+                  <div class="depth-layer cr-layer-3" style="animation-delay:-12.5s,-12.5s;left:calc(50% - 30px)">
+                    <div class="sphere-text-block layer-text-3 layer-color-5" data-key="balance">
+                      <span class="text">平衡</span>
+                      <span class="diagram-tooltip">实现资产债务现金流三维平衡</span>
+                    </div>
+                  </div>
+                </div>
+                <!-- 增长 270° -->
+                <div class="orbit-node-wrap" style="animation:sphere-ring-cw 25s linear infinite;animation-delay:-18.75s">
+                  <svg class="orbit-node-svg" viewBox="0 0 380 380" preserveAspectRatio="xMidYMid meet" style="animation:sphere-depth 25s linear infinite;animation-delay:-18.75s">
+                    <line x1="190" y1="190" x2="190" y2="10"/>
+                  </svg>
+                  <div class="depth-layer cr-layer-3" style="animation-delay:-18.75s,-18.75s;left:calc(50% - 30px)">
+                    <div class="sphere-text-block layer-text-3 layer-color-6" data-key="growth">
+                      <span class="text">增长</span>
+                      <span class="diagram-tooltip">驱动企业持续增长与价值提升</span>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
             
@@ -683,30 +834,18 @@ img{max-width:100%;display:block;object-fit:contain;pointer-events:none}
 <script>
 // Detail panel data for each node
 const diagramData = {
-  'business': {
-    title: '业务诊断',
-    desc: '全面评估企业现有业务模式的健康度与可持续性，分析市场定位、产品竞争力、客户结构等核心维度，识别运营效率瓶颈与增长瓶颈，为业务重整提供数据支撑与方向指引。'
-  },
-  'finance': {
-    title: '财务诊断',
-    desc: '深入核验企业利润真实性，分析现金流结构、资产负债匹配度、资金周转效率等关键财务指标，识别潜在的财务风险与资金链隐患，为企业财务健康度提供系统性评估报告。'
-  },
-  'debt': {
-    title: '债务诊断',
-    desc: '逐项摸排企业债务构成，区分有息/无息负债、短期/长期债务、刚性/柔性债务，评估整体负债率与偿债能力，识别高息债务与隐性债务风险，制定债务化解优先级方案。'
-  },
-  'asset-restructure': {
-    title: '资产重组方案',
-    desc: '对企业存量资产进行全面梳理与价值重估，通过资产剥离、资产置换、售后回租等多元化手段，盘活低效资产与闲置资产，优化资产结构，提升资产运营效率与回报率。'
-  },
-  'debt-restructure': {
-    title: '债务重组方案',
-    desc: '统筹协调银行、民间借贷、供应商等各方债权人，通过债务展期、利息减免、债转股、分期偿还等方式，系统性化解企业债务压力，争取时间窗口恢复经营造血能力。'
-  },
-  'operation-restructure': {
-    title: '业务重组方案',
-    desc: '基于诊断结论对企业业务结构进行战略性调整，收缩低效产能、裁撤亏损业务线、优化供应链配置，集中资源聚焦核心优势业务，重塑企业的市场竞争能力与盈利基础。'
-  }
+  'diag': { title: '诊断', desc: '对企业进行全方位系统性诊断，深入剖析业务模式、财务状况与债务结构，精准识别经营风险与核心矛盾，为后续重组方案提供数据支撑与方向指引。' },
+  'reorg': { title: '重组', desc: '基于诊断结论，从资产、债务、业务三个维度进行系统性重组设计，统筹协调各方资源与利益，制定可落地的重组实施方案，帮助企业重建健康的运营秩序。' },
+  'breakthrough': { title: '破局', desc: '帮助企业打破经营困境与发展瓶颈，通过创新的方案设计与果断的战略决策，开辟全新的发展路径，实现从困境到重生的关键转折。' },
+  'reshape': { title: '重塑', desc: '在企业走出困境后，对其价值体系、治理结构、战略方向进行全面重塑与升级，构建可持续的核心竞争力，确保企业长期健康发展。' },
+  'business': { title: '业务诊断', desc: '全面评估企业现有业务模式的健康度与可持续性，分析市场定位、产品竞争力、客户结构等核心维度，识别运营效率瓶颈与增长瓶颈，为业务重整提供数据支撑与方向指引。' },
+  'finance': { title: '财务诊断', desc: '深入核验企业利润真实性，分析现金流结构、资产负债匹配度、资金周转效率等关键财务指标，识别潜在的财务风险与资金链隐患，为企业财务健康度提供系统性评估报告。' },
+  'debt': { title: '债务诊断', desc: '逐项摸排企业债务构成，区分有息/无息负债、短期/长期债务、刚性/柔性债务，评估整体负债率与偿债能力，识别高息债务与隐性债务风险，制定债务化解优先级方案。' },
+  'asset': { title: '资产盘活', desc: '对企业存量资产进行全面梳理与价值重估，通过资产剥离、资产置换、售后回租等多元化手段，盘活低效资产与闲置资产，优化资产结构，提升资产运营效率与回报率。' },
+  'value': { title: '价值发现', desc: '深入挖掘企业潜在价值，对企业无形资产、品牌价值、人力资源等进行全面评估，找出被低估或未被充分利用的价值资源。' },
+  'order': { title: '秩序重建', desc: '协助企业建立规范化的经营管理制度与流程，完善内部治理结构与风险管控体系，为企业的长期稳定发展奠定坚实基础。' },
+  'balance': { title: '三维平衡', desc: '聚焦企业资产、负债、现金流三个核心维度的平衡重构，通过系统性方案设计，使企业恢复健康的财务结构与运营状态。' },
+  'growth': { title: '价值增长', desc: '驱动企业实现可持续的价值增长，通过业务优化、效率提升、资源整合等策略，打造企业的持续竞争优势与盈利能力。' }
 };
 
 function openDiagramPanel(key) {
@@ -727,7 +866,7 @@ function closeDiagramPanel() {
 
 // Attach click handlers to all diagram nodes
 document.addEventListener('DOMContentLoaded', function() {
-  const nodes = document.querySelectorAll('.diagram-node-inner, .diagram-node-outer');
+  const nodes = document.querySelectorAll('.sphere-text-block');
   nodes.forEach(function(node) {
     node.addEventListener('click', function(e) {
       e.stopPropagation();
@@ -750,6 +889,41 @@ document.addEventListener('DOMContentLoaded', function() {
       closeDiagramPanel();
     }
   });
+  
+  // Dynamic Z-Index sorting — front elements (lower on screen) get higher z-index
+  var container = document.getElementById('diagram-container');
+  if (container) {
+    var textBlocks = document.querySelectorAll('.sphere-text-block');
+    if (textBlocks.length > 0) {
+      function sortDepth() {
+        var containerRect = container.getBoundingClientRect();
+        if (containerRect.height === 0) { requestAnimationFrame(sortDepth); return; }
+        var centerY = containerRect.top + containerRect.height / 2;
+        var maxDist = containerRect.height / 2;
+        
+        for (var i = 0; i < textBlocks.length; i++) {
+          var node = textBlocks[i];
+          var rect = node.getBoundingClientRect();
+          var nodeCenterY = rect.top + rect.height / 2;
+          var distFromCenter = nodeCenterY - centerY;
+          var normalized = Math.max(-1, Math.min(1, distFromCenter / maxDist));
+          var zIndex = Math.round(7 + normalized * 5);
+          
+          var depthLayer = node.closest('.depth-layer');
+          if (!depthLayer) continue;
+          
+          var layerBoost = 0;
+          if (depthLayer.closest('.sphere-layer-1')) { layerBoost = 2; }
+          else if (depthLayer.closest('.sphere-layer-2')) { layerBoost = 1; }
+          
+          depthLayer.style.zIndex = zIndex + layerBoost;
+        }
+        
+        requestAnimationFrame(sortDepth);
+      }
+      requestAnimationFrame(sortDepth);
+    }
+  }
 });
 </script>
 </body>
