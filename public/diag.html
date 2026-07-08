@@ -135,7 +135,7 @@
         .nav-item-wrapper{display:inline-flex;align-items:center;gap:4px}
         .nav-badge{font-size:10px;font-weight:600;background:#fff;color:#AB1942;padding:1px 5px;border-radius:8px;line-height:1.4;letter-spacing:.5px}
         /* Page Hero */
-        .page-hero{background:linear-gradient(135deg,var(--brand) 0%,var(--brand-dark) 100%);position:relative;overflow:hidden;height:280px;display:flex;align-items:center}
+        .page-hero{background:linear-gradient(135deg,var(--brand) 0%,var(--brand-dark) 100%);position:relative;overflow:hidden;height:220px;display:flex;align-items:center;max-width:var(--content-max);margin:0 auto;border-radius:0 0 24px 24px}
         .page-hero::before{content:'';position:absolute;top:-50%;right:-10%;width:500px;height:500px;background:radial-gradient(circle,rgba(255,255,255,.08) 0%,transparent 70%);border-radius:50%;pointer-events:none}
         .page-hero-inner{position:relative;z-index:1;text-align:center;padding:60px 0}
         .page-hero-title{font-size:42px;font-weight:700;color:#fff;letter-spacing:-.02em;line-height:1.2;margin-bottom:12px}
@@ -157,7 +157,7 @@
         .min-h-screen{min-height:100vh}
         .icon-lg{width:64px;height:64px;color:#d1d5db}
         .home-logo{width:200px;height:auto;margin:0 auto 12px;object-fit:contain;display:block}
-        .home-desc{font-size:14px;color:#6b7280;font-weight:400;line-height:1.6;margin:0 auto;max-width:280px;position:relative}
+        .home-desc{font-size:14px;color:#6b7280;font-weight:400;line-height:1.8;margin:0 auto;display:inline-block;white-space:nowrap;position:relative}
         .diagnosis-option{border:2px solid #eee;border-radius:12px;margin-bottom:12px;overflow:hidden;transition:all 0.2s;background:#fff}
         .diagnosis-option.active{border-color:#AB1942;box-shadow:0 4px 16px rgba(171,25,66,0.1)}
         .diagnosis-option-header{padding:16px;cursor:pointer;display:flex;align-items:center;gap:12px}
@@ -184,13 +184,18 @@
         .diagnosis-option-detail .start-btn.full:hover{background:#8c1435}
         .diagnosis-option-detail .start-btn.fast{background:#fff;color:#AB1942;border:2px solid #AB1942}
         .diagnosis-option-detail .start-btn.fast:hover{background:#fdf2f4}
+        @media(max-width:1023px){
+          .page-hero{height:200px}
+        }
+
         @media(max-width:767px){
           :root{--content-padding:20px}
           .header-nav{gap:16px;font-size:13px}
           .nav-badge{font-size:9px;padding:0 4px}
-          .page-hero{height:220px}
+          .page-hero{height:220px;max-width:none;margin:0;border-radius:0}
           .page-hero-title{font-size:32px}
           .page-hero-subtitle{font-size:15px}
+          .home-desc{max-width:90%;display:block;white-space:normal}
         }
 
         /* WeChat Popover */
@@ -216,6 +221,7 @@
                     <a href="about.html">关于</a>
                     <a href="services.html">服务</a>
                     <a href="cases-detail.html">案例</a>
+                    <a href="experts.html">专家团队</a>
                     <span class="nav-item-wrapper"><a href="diag.html" class="active">诊断</a><span class="nav-badge">免费</span></span>
                 </nav>
             </div>

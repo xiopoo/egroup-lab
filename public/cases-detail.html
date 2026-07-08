@@ -53,7 +53,7 @@ img{max-width:100%;display:block;object-fit:contain;pointer-events:none}
 .nav-badge{font-size:10px;font-weight:600;background:#fff;color:#AB1942;padding:1px 5px;border-radius:8px;line-height:1.4;letter-spacing:.5px}
 
 /* Page Hero */
-.page-hero{background:linear-gradient(135deg,var(--brand) 0%,var(--brand-dark) 100%);position:relative;overflow:hidden;height:280px;display:flex;align-items:center}
+.page-hero{background:linear-gradient(135deg,var(--brand) 0%,var(--brand-dark) 100%);position:relative;overflow:hidden;height:220px;display:flex;align-items:center;max-width:var(--content-max);margin:0 auto;border-radius:0 0 24px 24px}
 .page-hero::before{content:'';position:absolute;top:-50%;right:-10%;width:500px;height:500px;background:radial-gradient(circle,rgba(255,255,255,.08) 0%,transparent 70%);border-radius:50%;pointer-events:none}
 .page-hero-inner{position:relative;z-index:1;text-align:center;padding:60px 0}
 .page-hero-title{font-size:42px;font-weight:700;color:#fff;letter-spacing:-.02em;line-height:1.2;margin-bottom:12px}
@@ -61,6 +61,7 @@ img{max-width:100%;display:block;object-fit:contain;pointer-events:none}
 
 /* Section */
 .section{padding:80px 0}
+.first-section{padding-top:60px}
 .section-header{text-align:center;margin-bottom:56px}
 .section-label{display:inline-block;font-size:13px;color:var(--brand);font-weight:600;letter-spacing:2px;text-transform:uppercase;margin-bottom:12px}
 .section-title{font-size:32px;font-weight:700;color:var(--text);letter-spacing:-.01em;margin-bottom:12px;line-height:1.3}
@@ -146,7 +147,7 @@ img{max-width:100%;display:block;object-fit:contain;pointer-events:none}
 
 /* Responsive */
         @media(max-width:1023px){
-          .page-hero{height:240px}
+          .page-hero{height:200px}
           .page-hero-title{font-size:36px}
           .page-hero-subtitle{font-size:14px}
         }
@@ -159,7 +160,7 @@ img{max-width:100%;display:block;object-fit:contain;pointer-events:none}
   .header-nav a{font-size:13px}
   .nav-badge{font-size:9px;padding:0 4px}
 
-  .page-hero{height:220px}
+  .page-hero{height:220px;max-width:none;margin:0;border-radius:0}
   .page-hero-title{font-size:32px}
   .page-hero-subtitle{font-size:15px}
 
@@ -210,6 +211,7 @@ img{max-width:100%;display:block;object-fit:contain;pointer-events:none}
       <a href="about.html">关于</a>
       <a href="services.html">服务</a>
       <a href="cases-detail.html" class="active">案例</a>
+      <a href="experts.html">专家团队</a>
       <span class="nav-item-wrapper"><a href="diag.html">诊断</a><span class="nav-badge">免费</span></span>
     </nav>
   </div>
@@ -227,7 +229,7 @@ img{max-width:100%;display:block;object-fit:contain;pointer-events:none}
   </section>
 
   <!-- Cases -->
-  <section class="section cases-section">
+  <section class="section cases-section first-section">
     <div class="container">
       <div class="section-header">
         <span class="section-label">SUCCESS CASES</span>
@@ -633,6 +635,7 @@ img{max-width:100%;display:block;object-fit:contain;pointer-events:none}
           <li><a href="about.html">关于我们</a></li>
           <li><a href="services.html">核心服务</a></li>
           <li><a href="cases-detail.html">成功案例</a></li>
+          <li><a href="experts.html">专家团队</a></li>
           <li><a href="diag.html">诊断</a></li>
         </ul>
       </div>
