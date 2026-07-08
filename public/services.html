@@ -202,6 +202,25 @@ img{max-width:100%;display:block;object-fit:contain;pointer-events:none}
   .footer{padding:48px 0 24px}
   .footer-bottom{font-size:11px}
 }
+
+/* Contact CTA */
+.contact-section{background:var(--bg-gray)}
+.contact-box{background:#fff;border-radius:var(--radius-lg);padding:48px 56px;display:grid;grid-template-columns:1.5fr 1fr;gap:40px;align-items:center;box-shadow:var(--shadow-sm);border:1px solid var(--border-light)}
+.contact-text h3{font-size:24px;font-weight:700;color:var(--text);margin-bottom:10px}
+.contact-text p{font-size:15px;color:var(--text-secondary);line-height:1.8}
+.contact-actions{display:flex;gap:16px;justify-content:flex-end;align-items:center}
+.contact-btn{display:inline-flex;align-items:center;gap:8px;padding:14px 32px;background:var(--brand);color:#fff;font-size:15px;font-weight:600;border-radius:50px;transition:all var(--transition);cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation;text-decoration:none}
+.contact-btn:hover{background:var(--brand-light);transform:translateY(-2px);box-shadow:0 8px 20px rgba(171,25,66,.3)}
+.contact-btn:active{transform:translateY(0)}
+.contact-btn::after{content:'→';transition:transform var(--transition)}
+.contact-btn:hover::after{transform:translateX(4px)}
+.contact-wechat{display:inline-flex;align-items:center;gap:10px;padding:8px 18px;background:var(--bg-gray);border-radius:50px;font-size:14px;color:var(--text-secondary);cursor:pointer;transition:all var(--transition)}
+.contact-wechat:hover{background:#e5e7eb;transform:translateY(-1px)}
+@media(max-width:767px){
+  .contact-box{grid-template-columns:1fr;gap:28px;padding:36px 28px;text-align:center}
+  .contact-actions{justify-content:center;flex-direction:column}
+  .contact-btn,.contact-wechat{width:100%;justify-content:center;min-height:48px}
+}
 </style>
 </head>
 <body>
@@ -258,7 +277,7 @@ img{max-width:100%;display:block;object-fit:contain;pointer-events:none}
             <div class="price-label">服务定位</div>
             <div class="price-value">一次性诊断 · 快速摸清家底</div>
           </div>
-          <a href="mailto:Lucasa@foxmail.com" class="service-btn">立即咨询</a>
+          <a href="mailto:huijinchongzu@agent.qq.com" class="service-btn">立即咨询</a>
         </div>
         <div class="service-card">
           <span class="service-tag">进阶服务</span>
@@ -276,7 +295,7 @@ img{max-width:100%;display:block;object-fit:contain;pointer-events:none}
             <div class="price-label">服务定位</div>
             <div class="price-value">长期陪伴 · 持续保驾护航</div>
           </div>
-          <a href="mailto:Lucasa@foxmail.com" class="service-btn">立即咨询</a>
+          <a href="mailto:huijinchongzu@agent.qq.com" class="service-btn">立即咨询</a>
         </div>
         <div class="service-card">
           <span class="service-tag">深度服务</span>
@@ -294,7 +313,7 @@ img{max-width:100%;display:block;object-fit:contain;pointer-events:none}
             <div class="price-label">服务定位</div>
             <div class="price-value">专项攻坚 · 彻底摆脱困境</div>
           </div>
-          <a href="mailto:Lucasa@foxmail.com" class="service-btn">立即咨询</a>
+          <a href="mailto:huijinchongzu@agent.qq.com" class="service-btn">立即咨询</a>
         </div>
       </div>
     </div>
@@ -421,6 +440,25 @@ img{max-width:100%;display:block;object-fit:contain;pointer-events:none}
       </div>
     </div>
   </section>
+
+  <!-- Contact CTA -->
+  <section class="contact-section">
+    <div class="container">
+      <div class="contact-box">
+        <div class="contact-text">
+          <h3>不确定你的企业处于什么阶段？</h3>
+          <p>预约免费咨询，我们的专业顾问会为你做初步诊断</p>
+        </div>
+        <div class="contact-actions">
+          <a href="mailto:huijinchongzu@agent.qq.com" class="contact-btn">联系咨询</a>
+          <div class="contact-wechat">
+            <img src="images/wechat-qrcode.jpg" alt="微信二维码" style="width:28px;height:28px;border-radius:6px;object-fit:cover;">
+            <span>扫码咨询</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 </main>
 
 <!-- Footer -->
@@ -445,7 +483,7 @@ img{max-width:100%;display:block;object-fit:contain;pointer-events:none}
       <div class="footer-col">
         <h5>联系方式</h5>
         <div class="footer-contact">
-          <p>邮箱：<a href="mailto:Lucasa@foxmail.com">Lucasa@foxmail.com</a></p>
+          <p>邮箱：<a href="mailto:huijinchongzu@agent.qq.com">huijinchongzu@agent.qq.com</a></p>
           <p>专注：企业困境诊断与重组</p>
           <p>理念：看清问题，重建秩序</p>
         </div>
