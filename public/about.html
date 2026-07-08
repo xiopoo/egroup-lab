@@ -24,7 +24,7 @@ img{max-width:100%;display:block;object-fit:contain;pointer-events:none}
   --bg-gray:#f7f7f7;
   --bg-dark:#2a2a2a;
   --bg-darker:#1f1f1f;
-  --content-max:1100px;
+  --content-max:1200px;
   --content-padding:24px;
   --radius-sm:6px;
   --radius-md:10px;
@@ -149,6 +149,11 @@ img{max-width:100%;display:block;object-fit:contain;pointer-events:none}
 .footer-bottom p{margin-bottom:4px}
 
 /* Responsive */
+        @media(max-width:1023px){
+          .page-hero{height:240px}
+          .page-hero-title{font-size:36px}
+          .page-hero-subtitle{font-size:14px}
+        }
 @media(max-width:767px){
   :root{--content-padding:20px}
 
