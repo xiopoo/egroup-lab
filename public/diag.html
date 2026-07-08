@@ -157,7 +157,7 @@
         .min-h-screen{min-height:100vh}
         .icon-lg{width:64px;height:64px;color:#d1d5db}
         .home-logo{width:200px;height:auto;margin:0 auto 12px;object-fit:contain;display:block}
-        .home-logo-subtitle{font-size:13px;color:#9ca3af;margin-bottom:8px;font-weight:500;letter-spacing:1px}
+        .home-desc{font-size:14px;color:#6b7280;font-weight:400;line-height:1.6;margin:0 auto;max-width:280px;position:relative}
         .diagnosis-option{border:2px solid #eee;border-radius:12px;margin-bottom:12px;overflow:hidden;transition:all 0.2s;background:#fff}
         .diagnosis-option.active{border-color:#AB1942;box-shadow:0 4px 16px rgba(171,25,66,0.1)}
         .diagnosis-option-header{padding:16px;cursor:pointer;display:flex;align-items:center;gap:12px}
@@ -236,8 +236,7 @@
             <div v-if="currentPage === 'home'" class="text-center py-12">
                 <div class="card">
                     <div class="mb-6">
-                        <p class="home-logo-subtitle">企业诊断</p>
-                        <p class="text-gray-600 text-sm">选择适合你的诊断方式，快速了解企业风险状况</p>
+                        <p class="home-desc">选择适合你的诊断方式，快速了解企业风险状况</p>
                     </div>
                     
                     <!-- 全面诊断卡片 -->
