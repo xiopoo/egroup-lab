@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>企业健康度体检 | 灰金重组</title>
+    <title>企业诊断 | 灰金重组</title>
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.4.21/vue.global.prod.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
@@ -223,7 +223,7 @@
           <div class="container">
             <div class="page-hero-inner">
               <h1 class="page-hero-title">企业诊断</h1>
-              <p class="page-hero-subtitle">36道题，3分钟，基于真实经营数据的深度体检</p>
+              <p class="page-hero-subtitle">36道题，3分钟，清晰掌握企业真实状况</p>
             </div>
           </div>
         </section>
@@ -233,7 +233,7 @@
             <div v-if="currentPage === 'home'" class="text-center py-12">
                 <div class="card">
                     <div class="mb-6">
-                        <p class="home-logo-subtitle">企业健康度体检</p>
+                        <p class="home-logo-subtitle">企业诊断</p>
                         <p class="text-gray-600 text-sm">选择适合你的诊断方式，快速了解企业风险状况</p>
                     </div>
                     
@@ -262,12 +262,12 @@
                         </div>
                     </div>
                     
-                    <!-- 快速体检卡片 -->
+                    <!-- 快速诊断卡片 -->
                     <div class="diagnosis-option" :class="{ active: expandedOption === 'fast' }">
                         <div class="diagnosis-option-header" @click="toggleOption('fast')">
                             <div class="diagnosis-option-icon fast">⚡</div>
                             <div class="diagnosis-option-info">
-                                <div class="diagnosis-option-title">快速体检</div>
+                                <div class="diagnosis-option-title">快速诊断</div>
                                 <div class="diagnosis-option-subtitle">
                                     <span class="tag fast">5道题</span>
                                     <span>约1分钟</span>
@@ -283,7 +283,7 @@
                                 <li>1分钟即可完成，高效便捷</li>
                                 <li>可升级到全面诊断获取详细报告</li>
                             </ul>
-                            <button @click.stop="startFastDiagnosis" class="start-btn fast">开始快速体检</button>
+                            <button @click.stop="startFastDiagnosis" class="start-btn fast">开始快速诊断</button>
                         </div>
                     </div>
                 </div>
@@ -354,7 +354,7 @@
                         </div>
                     </div>
                     <div v-if="useFastMode" class="mb-6 p-4 bg-red-50 rounded-lg text-center border border-red-100">
-                        <p class="text-sm text-red-700 mb-3">快速体检已完成初步筛查，想深入了解企业各维度的详细状况？</p>
+                        <p class="text-sm text-red-700 mb-3">快速诊断已完成初步筛查，想深入了解企业各维度的详细状况？</p>
                         <button @click="startFullDiagnosis" class="btn-primary w-full">做全面诊断（36题）</button>
                     </div>
                     <div class="flex gap-4">
@@ -380,7 +380,7 @@
 
     <script>
         const { createApp, ref, computed, nextTick } = Vue;
-        const levels = [{name:'基础体检',weight:0},{name:'债务评估',weight:0.3},{name:'资产评估',weight:0.2},{name:'经营评估',weight:0.25},{name:'法律评估',weight:0.15},{name:'综合诊断',weight:0.1}];
+        const levels = [{name:'基础诊断',weight:0},{name:'债务评估',weight:0.3},{name:'资产评估',weight:0.2},{name:'经营评估',weight:0.25},{name:'法律评估',weight:0.15},{name:'综合诊断',weight:0.1}];
         const fullQuestions = [
             {text:'企业当前是否存在逾期债务？',options:[{text:'否',score:100},{text:'有但可控',score:60},{text:'大面积逾期',score:20}],dimension:'debt',level:0},
             {text:'银行贷款到期时间是否集中在3个月内？',options:[{text:'否',score:100},{text:'部分',score:60},{text:'集中',score:20}],dimension:'debt',level:0},
@@ -444,7 +444,7 @@
             const resultLevel = computed(() => {const s=totalScore.value;if(s>=80)return'健康型企业';if(s>=60)return'关注型企业';if(s>=40)return'预警型企业';return'危机型企业'});
             const resultClass = computed(() => {const s=totalScore.value;if(s>=80)return'text-green-600';if(s>=60)return'text-blue-600';if(s>=40)return'text-orange-600';return'text-red-600'});
             const findings = computed(() => {const r=[];dimensionScores.value.forEach(d=>{if(d.score<40)r.push(d.name+'严重不足（'+d.score+'分），需立即采取措施');else if(d.score<60)r.push(d.name+'存在隐患（'+d.score+'分），建议重点关注')});if(r.length===0)r.push('企业整体健康状况良好，建议保持现有的经营管理模式');return r});
-            const suggestions = computed(() => {const s=totalScore.value;if(s>=80)return[{title:'维持现状',content:'企业经营状况良好，建议继续保持稳健的财务管理和风险控制'},{title:'优化升级',content:'可考虑进一步优化债务结构，降低融资成本，提升资产运营效率'}];if(s>=60)return[{title:'风险预警',content:'企业存在一定风险，建议建立现金流监控机制，提前做好风险预案'},{title:'债务优化',content:'梳理现有债务结构，优先解决高息负债，降低综合融资成本'}];if(s>=40)return[{title:'紧急处理',content:'企业已进入风险预警区间，需立即启动债务重组准备工作'},{title:'专业咨询',content:'建议尽快联系专业重组机构，进行正式的企业经营健康度体检'},{title:'资产盘活',content:'处置低效资产，快速回笼现金，缓解资金压力'}];return[{title:'立即行动',content:'企业已处于危机状态，需立即采取全面的困境重组措施'},{title:'专业介入',content:'强烈建议寻求专业困境重组机构的帮助，制定系统性解决方案'},{title:'法律保护',content:'立即咨询律师，了解当前法律风险，避免情况进一步恶化'}]});
+            const suggestions = computed(() => {const s=totalScore.value;if(s>=80)return[{title:'维持现状',content:'企业经营状况良好，建议继续保持稳健的财务管理和风险控制'},{title:'优化升级',content:'可考虑进一步优化债务结构，降低融资成本，提升资产运营效率'}];if(s>=60)return[{title:'风险预警',content:'企业存在一定风险，建议建立现金流监控机制，提前做好风险预案'},{title:'债务优化',content:'梳理现有债务结构，优先解决高息负债，降低综合融资成本'}];if(s>=40)return[{title:'紧急处理',content:'企业已进入风险预警区间，需立即启动债务重组准备工作'},{title:'专业咨询',content:'建议尽快联系专业重组机构，进行正式的企业诊断'},{title:'资产盘活',content:'处置低效资产，快速回笼现金，缓解资金压力'}];return[{title:'立即行动',content:'企业已处于危机状态，需立即采取全面的困境重组措施'},{title:'专业介入',content:'强烈建议寻求专业困境重组机构的帮助，制定系统性解决方案'},{title:'法律保护',content:'立即咨询律师，了解当前法律风险，避免情况进一步恶化'}]});
             const getScoreClass = (s) => {if(s>=80)return'text-green-600';if(s>=60)return'text-blue-600';if(s>=40)return'text-orange-600';return'text-red-600'};
             const startDiagnosis = () => {useFastMode.value=false;questions.value=[...fullQuestions];currentQuestionIndex.value=0;currentLevel.value=questions.value[0]?.level||0;selectedAnswer.value=null;answers.value={};currentPage.value='question'};
             const startFastDiagnosis = () => {useFastMode.value=true;questions.value=[...fastQuestions];currentQuestionIndex.value=0;currentLevel.value=questions.value[0]?.level||0;selectedAnswer.value=null;answers.value={};currentPage.value='question'};
