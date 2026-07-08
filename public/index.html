@@ -177,7 +177,14 @@ img{max-width:100%;display:block;object-fit:contain;pointer-events:none}
 .contact-btn:active{transform:translateY(0)}
 .contact-btn::after{content:'→';transition:transform var(--transition)}
 .contact-btn:hover::after{transform:translateX(4px)}
-.contact-wechat{display:flex;align-items:center;gap:12px;padding:10px 20px;background:var(--bg-gray);border-radius:50px;font-size:14px;color:var(--text-secondary)}
+.contact-wechat{display:flex;align-items:center;gap:12px;padding:10px 20px;background:var(--bg-gray);border-radius:50px;font-size:14px;color:var(--text-secondary);position:relative;cursor:pointer;transition:all var(--transition)}
+.contact-wechat:hover{background:#e5e7eb}
+.wechat-popover{position:absolute;bottom:calc(100% + 16px);left:50%;transform:translateX(-50%) translateY(4px);background:#fff;border-radius:12px;padding:16px;box-shadow:0 8px 30px rgba(0,0,0,.15);opacity:0;visibility:hidden;transition:all .25s ease;z-index:50}
+.contact-wechat:hover .wechat-popover,
+.contact-wechat.active .wechat-popover{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0)}
+.wechat-popover::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:8px solid transparent;border-top-color:#fff}
+.wechat-popover img{width:160px;height:160px;display:block;border-radius:8px}
+.wechat-popover-label{display:block;text-align:center;font-size:12px;color:#999;margin-top:10px}
 
 /* Footer */
 .footer{background:var(--bg-dark);color:#fff;padding:60px 0 30px}
@@ -249,6 +256,12 @@ img{max-width:100%;display:block;object-fit:contain;pointer-events:none}
   .contact-box{grid-template-columns:1fr;gap:28px;padding:36px 28px;text-align:center}
   .contact-actions{justify-content:center;flex-direction:column}
   .contact-btn{width:100%;justify-content:center;min-height:48px}
+  .contact-wechat{position:static}
+  .wechat-popover{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) scale(.9);bottom:auto;width:220px;padding:20px;box-shadow:0 16px 48px rgba(0,0,0,.3)}
+  .contact-wechat.active .wechat-popover{transform:translate(-50%,-50%) scale(1)}
+  .wechat-popover::after{display:none}
+  .wechat-popover img{width:180px;height:180px}
+  .contact-btn,.contact-wechat{width:100%;justify-content:center;min-height:48px}
   
   .footer-top{grid-template-columns:1fr;gap:32px}
   .footer{padding:48px 0 24px}
@@ -506,10 +519,14 @@ img{max-width:100%;display:block;object-fit:contain;pointer-events:none}
           <p>预约免费咨询，我们的专业顾问会为你做初步诊断</p>
         </div>
         <div class="contact-actions">
-          <a href="mailto:huijinchongzu@agent.qq.com" class="contact-btn">联系咨询</a>
-          <div class="contact-wechat">
+          <a href="mailto:lucasa@agent.qq.com" class="contact-btn">联系咨询</a>
+          <div class="contact-wechat" onclick="this.classList.toggle('active')">
             <img src="images/wechat-qrcode.jpg" alt="微信二维码" style="width:28px;height:28px;border-radius:6px;object-fit:cover;">
             <span>扫码咨询</span>
+            <div class="wechat-popover">
+              <img src="images/wechat-qrcode.jpg" alt="微信二维码">
+              <span class="wechat-popover-label">长按/扫码添加微信</span>
+            </div>
           </div>
         </div>
       </div>
@@ -539,7 +556,7 @@ img{max-width:100%;display:block;object-fit:contain;pointer-events:none}
       <div class="footer-col">
         <h5>联系方式</h5>
         <div class="footer-contact">
-          <p>邮箱：<a href="mailto:huijinchongzu@agent.qq.com">huijinchongzu@agent.qq.com</a></p>
+          <p>邮箱：<a href="mailto:lucasa@agent.qq.com">lucasa@agent.qq.com</a></p>
           <p>专注：企业困境诊断与重组</p>
           <p>理念：看清问题，重建秩序</p>
         </div>
