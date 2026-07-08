@@ -146,6 +146,39 @@ img{max-width:100%;display:block;object-fit:contain;pointer-events:none}
   .footer{padding:48px 0 24px}
   .footer-bottom{font-size:11px}
 }
+
+/* Expert Detail Modal */
+.expert-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.55);display:flex;align-items:center;justify-content:center;z-index:200;padding:20px;overflow-y:auto}
+.expert-modal{background:#fff;border-radius:16px;max-width:720px;width:100%;max-height:90vh;overflow-y:auto;padding:40px;position:relative;animation:modalIn .3s ease;box-shadow:0 20px 60px rgba(0,0,0,.2)}
+@keyframes modalIn{from{opacity:0;transform:scale(.95) translateY(10px)}to{opacity:1;transform:scale(1) translateY(0)}}
+
+.expert-modal-close{position:absolute;top:16px;right:20px;width:36px;height:36px;border:none;background:var(--bg-gray);border-radius:50%;font-size:22px;color:var(--text-muted);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all var(--transition);line-height:1}
+.expert-modal-close:hover{background:var(--border);color:var(--text)}
+
+.expert-modal-header{display:flex;gap:24px;align-items:flex-start;margin-bottom:32px;padding-bottom:28px;border-bottom:1px solid var(--border-light)}
+.expert-modal-avatar{width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,var(--brand) 0%,var(--brand-dark) 100%);display:flex;align-items:center;justify-content:center;color:#fff;font-size:30px;font-weight:600;flex-shrink:0;box-shadow:0 6px 20px rgba(171,25,66,.3)}
+.expert-modal-header h2{font-size:24px;font-weight:700;color:var(--text);margin-bottom:4px;line-height:1.3}
+.expert-modal-role{display:inline-block;font-size:12px;color:#fff;background:var(--brand);padding:3px 14px;border-radius:20px;font-weight:500;letter-spacing:1px;margin-bottom:8px}
+.expert-modal-tagline{font-size:14px;color:var(--text-secondary);line-height:1.7;margin-top:8px}
+
+.expert-modal-body{display:flex;flex-direction:column;gap:28px}
+.expert-modal-section h4{font-size:15px;font-weight:700;color:var(--text);margin-bottom:14px;padding-left:12px;border-left:3px solid var(--brand);line-height:1.4}
+.expert-modal-item{font-size:14px;color:var(--text-secondary);line-height:1.7;padding:8px 0 8px 12px;position:relative}
+.expert-modal-item:not(:last-child){border-bottom:1px solid var(--border-light)}
+.expert-modal-item::before{content:'';position:absolute;left:0;top:14px;width:4px;height:4px;border-radius:50%;background:var(--text-faint)}
+
+.expert-modal-tags{display:flex;flex-wrap:wrap;gap:10px}
+.expert-modal-tag{display:inline-block;padding:6px 16px;font-size:13px;color:var(--brand);background:rgba(171,25,66,.06);border:1px solid rgba(171,25,66,.15);border-radius:20px;font-weight:500}
+
+@media(max-width:767px){
+  .expert-overlay{padding:0;align-items:flex-start}
+  .expert-modal{border-radius:0;max-height:100vh;height:100%;padding:24px 20px;overflow-y:auto}
+  .expert-modal-header{flex-direction:column;align-items:center;text-align:center;gap:16px}
+  .expert-modal-avatar{width:64px;height:64px;font-size:24px}
+  .expert-modal-header h2{font-size:20px}
+  .expert-modal-section h4{font-size:14px}
+  .expert-modal-item{font-size:13px}
+}
 </style>
 </head>
 <body>
@@ -189,7 +222,7 @@ img{max-width:100%;display:block;object-fit:contain;pointer-events:none}
       <div class="experts-grid">
 
         <!-- 张明远 -->
-        <div class="expert-card">
+        <div class="expert-card" @click="openExpert(0)">
           <div class="expert-avatar">张</div>
           <h3>张明远</h3>
           <span class="expert-role">首席重组顾问</span>
@@ -197,15 +230,15 @@ img{max-width:100%;display:block;object-fit:contain;pointer-events:none}
         </div>
 
         <!-- 陈思涵 -->
-        <div class="expert-card">
+        <div class="expert-card" @click="openExpert(3)">
           <div class="expert-avatar">陈</div>
           <h3>陈思涵</h3>
-          <span class="expert-role">高级诊断顾问</span>
+          <span class="expert-role">财务诊断顾问</span>
           <p>专注中小企业财务诊断与现金流分析，十年企业财务咨询经验，精通利润真实性核验与资产盘活。</p>
         </div>
 
         <!-- 王振宇 -->
-        <div class="expert-card">
+        <div class="expert-card" @click="openExpert(2)">
           <div class="expert-avatar">王</div>
           <h3>王振宇</h3>
           <span class="expert-role">重组法律顾问</span>
@@ -213,27 +246,27 @@ img{max-width:100%;display:block;object-fit:contain;pointer-events:none}
         </div>
 
         <!-- 李明远 -->
-        <div class="expert-card">
+        <div class="expert-card" @click="openExpert(1)">
           <div class="expert-avatar">李</div>
           <h3>李明远</h3>
-          <span class="expert-role">首席顾问</span>
-          <p>15年企业重组经验，主导过50+大型重组项目，在制造业和房地产领域有丰富实战经验。</p>
+          <span class="expert-role">企业诊断顾问</span>
+          <p>存量资产盘活与现金流救援专家，尤擅科技/互联网企业的快速止血与模式重构。</p>
         </div>
 
         <!-- 王淑芬 -->
-        <div class="expert-card">
+        <div class="expert-card" @click="openExpert(4)">
           <div class="expert-avatar">王</div>
           <h3>王淑芬</h3>
-          <span class="expert-role">财务总监</span>
-          <p>注册会计师，20年财务管理经验，擅长债务重组方案设计、资产盘活与现金流管理。</p>
+          <span class="expert-role">财务重组总监</span>
+          <p>债务重组方案设计与执行操盘手，精通金融工具运用与资本市场对接。</p>
         </div>
 
         <!-- 张志强 -->
-        <div class="expert-card">
+        <div class="expert-card" @click="openExpert(5)">
           <div class="expert-avatar">张</div>
           <h3>张志强</h3>
-          <span class="expert-role">资深律师</span>
-          <p>20年执业经验，专注企业破产重整法律事务，成功代理多起重大重组案件。</p>
+          <span class="expert-role">破产清算律师</span>
+          <p>破产清算与债务催收法律专家，专注债权人权益保护与破产财产追偿。</p>
         </div>
 
       </div>
@@ -252,6 +285,46 @@ img{max-width:100%;display:block;object-fit:contain;pointer-events:none}
     </div>
   </section>
 </main>
+
+<!-- Expert Detail Modal -->
+<div v-if="showModal" class="expert-overlay" @click="closeModal">
+  <div class="expert-modal" @click.stop>
+    <button class="expert-modal-close" @click="closeModal">&times;</button>
+    
+    <div class="expert-modal-header">
+      <div class="expert-modal-avatar">{{ selectedExpert.avatar }}</div>
+      <div>
+        <h2>{{ selectedExpert.name }}</h2>
+        <span class="expert-modal-role">{{ selectedExpert.role }}</span>
+        <p class="expert-modal-tagline">{{ selectedExpert.tagline }}</p>
+      </div>
+    </div>
+    
+    <div class="expert-modal-body">
+      <div class="expert-modal-section">
+        <h4>学历背景</h4>
+        <div v-for="edu in selectedExpert.education" class="expert-modal-item">{{ edu }}</div>
+      </div>
+      
+      <div class="expert-modal-section">
+        <h4>从业经历</h4>
+        <div v-for="exp in selectedExpert.experience" class="expert-modal-item">{{ exp }}</div>
+      </div>
+      
+      <div class="expert-modal-section">
+        <h4>代表性案例</h4>
+        <div v-for="c in selectedExpert.cases" class="expert-modal-item">{{ c }}</div>
+      </div>
+      
+      <div class="expert-modal-section">
+        <h4>专业资质</h4>
+        <div class="expert-modal-tags">
+          <span v-for="cert in selectedExpert.certifications" class="expert-modal-tag">{{ cert }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- Footer -->
 <footer class="footer">
@@ -288,5 +361,160 @@ img{max-width:100%;display:block;object-fit:contain;pointer-events:none}
   </div>
 </footer>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.4.27/vue.global.prod.min.js"></script>
+<script>
+const { createApp, ref } = Vue;
+
+const experts = [
+  {
+    avatar: '张',
+    name: '张明远',
+    role: '首席重组顾问',
+    tagline: '企业重组战略总顾问，聚焦重资产行业（制造、地产）的复杂重组项目',
+    education: [
+      '2004年 山东大学 经济学学士',
+      '2007年 复旦大学 工商管理硕士（MBA）'
+    ],
+    experience: [
+      '2007-2012 德勤中国 企业重组部 高级顾问',
+      '2012-2018 中化集团 资产管理部 副总经理',
+      '2018-至今 灰金重组 首席重组顾问'
+    ],
+    cases: [
+      '①淄博某电子制造企业重组（主导化解1.2亿债务，化解率83%）',
+      '②潍坊某建筑企业破产重整（主导化解1.8亿债务，化解率92%）',
+      '③某上市房企债务展期（参与，涉及债务45亿）'
+    ],
+    certifications: ['中国注册会计师（CPA）', '国际重组协会（INSOL）会员']
+  },
+  {
+    avatar: '李',
+    name: '李明远',
+    role: '企业诊断顾问',
+    tagline: '存量资产盘活与现金流救援专家，尤擅科技/互联网企业的快速止血与模式重构',
+    education: [
+      '2003年 浙江大学 计算机科学与技术 学士',
+      '2009年 北京大学 经济学 硕士'
+    ],
+    experience: [
+      '2003-2008 华为技术 战略规划部 项目经理',
+      '2008-2015 华兴资本 企业重组部 副总裁',
+      '2015-至今 灰金重组 企业诊断顾问'
+    ],
+    cases: [
+      '①烟台某软件公司现金流救援（主导，90天现金流转正）',
+      '②济南某连锁餐饮品牌经营脱困（主导库存清化率75%）',
+      '③某AI初创企业重组（主导引入A轮投资2000万）'
+    ],
+    certifications: ['国际注册企业价值评估分析师（CVA）', '特许金融分析师（CFA）']
+  },
+  {
+    avatar: '王',
+    name: '王振宇',
+    role: '重组法律顾问',
+    tagline: '企业重组全流程法律合规顾问，专精预重整程序设计与司法重整对接',
+    education: [
+      '2005年 中国政法大学 法学学士',
+      '2008年 中国人民大学 民商法学 硕士'
+    ],
+    experience: [
+      '2008-2014 金杜律师事务所 破产重组部 律师',
+      '2014-2019 中伦律师事务所 合伙人',
+      '2019-至今 灰金重组 重组法律顾问'
+    ],
+    cases: [
+      '①潍坊某建筑企业预重整（主导法律程序，8个月完成重整）',
+      '②某集团关联企业合并重整（涉及关联企业12家）',
+      '③某地方法院预重整指引起草（参与省级规范制定）'
+    ],
+    certifications: ['中国律师执业资格', '中国上市公司独立董事资格']
+  },
+  {
+    avatar: '陈',
+    name: '陈思涵',
+    role: '财务诊断顾问',
+    tagline: '企业财务健康状况深度评估专家，专注中小企业财务合规体系搭建与预警机制建设',
+    education: [
+      '2008年 山东财经大学 会计学 学士',
+      '2011年 厦门大学 财务管理 硕士'
+    ],
+    experience: [
+      '2011-2016 立信会计师事务所 审计部 项目经理',
+      '2016-2019 海尔集团 财务内控部 高级经理',
+      '2019-至今 灰金重组 财务诊断顾问'
+    ],
+    cases: [
+      '①济南某连锁餐饮财务合规化（主导搭建内控体系，损耗率从22%降至8%）',
+      '②临沂某零售企业财务预警系统（主导提前预警现金流风险3次）',
+      '③某制造企业利润真实性审计（核减虚增利润1200万）'
+    ],
+    certifications: ['中国注册会计师（CPA 执业10年+）', '国际注册内部审计师（CIA）']
+  },
+  {
+    avatar: '王',
+    name: '王淑芬',
+    role: '财务重组总监',
+    tagline: '债务重组方案设计与执行操盘手，精通金融工具运用与资本市场对接',
+    education: [
+      '1999年 中央财经大学 金融学 学士',
+      '2002年 对外经济贸易大学 国际金融 硕士'
+    ],
+    experience: [
+      '2002-2008 中国银行 公司金融部 高级客户经理',
+      '2008-2015 中信证券 债务融资部 执行总经理',
+      '2015-至今 灰金重组 财务重组总监'
+    ],
+    cases: [
+      '①青岛某贸易公司债务重组（与6家银行达成债务重组协议）',
+      '②淄博某制造企业债转股方案（主导引入产业基金1.5亿）',
+      '③某民营企业债务置换方案（综合融资成本从18%降至8%）'
+    ],
+    certifications: ['中国注册会计师（CPA）', '中国银行业从业资格（CCBP）', '注册金融风险管理师（FRM）']
+  },
+  {
+    avatar: '张',
+    name: '张志强',
+    role: '破产清算律师',
+    tagline: '破产清算与债务催收法律专家，专注债权人权益保护与破产财产追偿',
+    education: [
+      '2000年 西南政法大学 法学学士',
+      '2004年 武汉大学 诉讼法学 硕士'
+    ],
+    experience: [
+      '2004-2010 北京天同律师事务所 诉讼部 律师',
+      '2010-2018 上海锦天城律师事务所 合伙人',
+      '2018-至今 灰金重组 法律顾问'
+    ],
+    cases: [
+      '①山东某钢铁企业破产清算（主导债权申报确认金额8.6亿）',
+      '②某担保公司追偿权纠纷（主导追回金额1.2亿）',
+      '③某房地产企业破产债权确认诉讼（代理胜诉，确认优先债权2.3亿）'
+    ],
+    certifications: ['中国律师执业资格（执业20年）', '山东省破产管理人协会会员']
+  }
+];
+
+const app = createApp({
+  setup() {
+    const selectedExpert = ref(null);
+    const showModal = ref(false);
+
+    function openExpert(index) {
+      selectedExpert.value = experts[index];
+      showModal.value = true;
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      showModal.value = false;
+      document.body.style.overflow = '';
+    }
+
+    return { selectedExpert, showModal, openExpert, closeModal };
+  }
+});
+
+app.mount('main');
+</script>
 </body>
 </html>
