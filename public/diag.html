@@ -131,6 +131,12 @@
         .header-nav a:hover::after{width:100%}
         .header-nav a.active{opacity:1;font-weight:500}
         .header-nav a.active::after{width:100%}
+        /* Page Hero */
+        .page-hero{background:linear-gradient(135deg,var(--brand) 0%,var(--brand-dark) 100%);position:relative;overflow:hidden;height:280px;display:flex;align-items:center}
+        .page-hero::before{content:'';position:absolute;top:-50%;right:-10%;width:500px;height:500px;background:radial-gradient(circle,rgba(255,255,255,.08) 0%,transparent 70%);border-radius:50%;pointer-events:none}
+        .page-hero-inner{position:relative;z-index:1;text-align:center}
+        .page-hero-title{font-size:42px;font-weight:700;color:#fff;letter-spacing:-.02em;line-height:1.2;margin-bottom:12px}
+        .page-hero-subtitle{font-size:18px;color:#fff;opacity:.85;font-weight:400}
         .footer{padding:48px 0 40px;text-align:center;font-size:13px;color:var(--text-muted);border-top:1px solid var(--border)}
         .footer p{margin-bottom:4px}
         .footer a{color:var(--text-secondary)}
@@ -178,6 +184,9 @@
         @media(max-width:767px){
           :root{--content-max:480px;--content-padding:20px}
           .header-nav{gap:16px;font-size:13px}
+          .page-hero{height:220px}
+          .page-hero-title{font-size:32px}
+          .page-hero-subtitle{font-size:15px}
         }
 
         /* WeChat Popover */
@@ -207,6 +216,16 @@
                 </nav>
             </div>
         </header>
+
+        <!-- Page Hero -->
+        <section class="page-hero">
+          <div class="container">
+            <div class="page-hero-inner">
+              <h1 class="page-hero-title">企业诊断</h1>
+              <p class="page-hero-subtitle">36道题，3分钟，基于真实经营数据的深度体检</p>
+            </div>
+          </div>
+        </section>
 
         <main class="container px-4 py-6">
             <!-- Home -->

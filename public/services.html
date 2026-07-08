@@ -51,10 +51,9 @@ img{max-width:100%;display:block;object-fit:contain;pointer-events:none}
 .header-nav a.active::after{width:100%}
 
 /* Page Hero */
-.page-hero{background:linear-gradient(135deg,var(--brand) 0%,var(--brand-dark) 100%);position:relative;overflow:hidden}
-.page-hero::before{content:'';position:absolute;top:-50%;right:-10%;width:600px;height:600px;background:radial-gradient(circle,rgba(255,255,255,.08) 0%,transparent 70%);border-radius:50%;pointer-events:none}
-.page-hero-inner{position:relative;text-align:center;padding:80px 0}
-.page-hero-badge{display:inline-block;padding:6px 16px;background:rgba(255,255,255,.15);color:#fff;font-size:13px;border-radius:20px;margin-bottom:20px;backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.2)}
+.page-hero{background:linear-gradient(135deg,var(--brand) 0%,var(--brand-dark) 100%);position:relative;overflow:hidden;height:280px;display:flex;align-items:center}
+.page-hero::before{content:'';position:absolute;top:-50%;right:-10%;width:500px;height:500px;background:radial-gradient(circle,rgba(255,255,255,.08) 0%,transparent 70%);border-radius:50%;pointer-events:none}
+.page-hero-inner{position:relative;z-index:1;text-align:center}
 .page-hero-title{font-size:42px;font-weight:700;color:#fff;letter-spacing:-.02em;line-height:1.15;margin-bottom:12px}
 .page-hero-subtitle{font-size:18px;color:#fff;opacity:.85;font-weight:400;letter-spacing:1px}
 
@@ -164,11 +163,9 @@ img{max-width:100%;display:block;object-fit:contain;pointer-events:none}
   .header-nav{gap:18px}
   .header-nav a{font-size:13px}
   
-  .page-hero-inner{padding:60px 0 90px}
-  .page-hero-badge{font-size:12px;margin-bottom:16px}
+  .page-hero{height:220px}
   .page-hero-title{font-size:32px}
   .page-hero-subtitle{font-size:15px}
-  .page-hero::after{height:50px}
   
   .section{padding:56px 0}
   .section-header{margin-bottom:40px}
@@ -265,7 +262,6 @@ img{max-width:100%;display:block;object-fit:contain;pointer-events:none}
   <section class="page-hero">
     <div class="container">
       <div class="page-hero-inner">
-        <span class="page-hero-badge">全周期专业服务</span>
         <h1 class="page-hero-title">服务体系</h1>
         <p class="page-hero-subtitle">从诊断到重组，全周期陪跑</p>
       </div>
@@ -277,8 +273,8 @@ img{max-width:100%;display:block;object-fit:contain;pointer-events:none}
     <div class="container">
       <div class="section-header">
         <span class="section-label">OUR SERVICES</span>
-        <h2 class="section-title">三大核心服务体系</h2>
-        <p class="section-desc">从诊断到重组，覆盖企业困境全周期，一站式专业服务闭环</p>
+        <h2 class="section-title">核心服务体系</h2>
+        <p class="section-desc">从诊断到重组，覆盖企业困境全周期</p>
       </div>
       <div class="services-grid">
         <div class="service-card">
@@ -345,7 +341,7 @@ img{max-width:100%;display:block;object-fit:contain;pointer-events:none}
       <div class="section-header">
         <span class="section-label">SERVICE PROCESS</span>
         <h2 class="section-title">四步服务流程</h2>
-        <p class="section-desc">系统化、标准化的服务流程，确保每一步都专业高效</p>
+        <p class="section-desc">标准流程，确保每一步都专业高效</p>
       </div>
       <div class="process-grid">
         <div class="process-card">
@@ -377,8 +373,8 @@ img{max-width:100%;display:block;object-fit:contain;pointer-events:none}
     <div class="container">
       <div class="section-header">
         <span class="section-label">DELIVERABLES</span>
-        <h2 class="section-title">五项核心交付成果</h2>
-        <p class="section-desc">看得见、摸得着的专业交付，确保服务价值真实落地</p>
+        <h2 class="section-title">核心交付成果</h2>
+        <p class="section-desc">标准化专业交付，确保服务价值真实落地</p>
       </div>
       <div class="deliverables-grid">
         <div class="deliverable-card">
