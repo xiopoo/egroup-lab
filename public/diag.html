@@ -149,6 +149,32 @@
         .icon-lg{width:64px;height:64px;color:#d1d5db}
         .home-logo{width:200px;height:auto;margin:0 auto 12px;object-fit:contain;display:block}
         .home-logo-subtitle{font-size:13px;color:#9ca3af;margin-bottom:8px;font-weight:500;letter-spacing:1px}
+        .diagnosis-option{border:2px solid #eee;border-radius:12px;margin-bottom:12px;overflow:hidden;transition:all 0.2s;background:#fff}
+        .diagnosis-option.active{border-color:#AB1942;box-shadow:0 4px 16px rgba(171,25,66,0.1)}
+        .diagnosis-option-header{padding:16px;cursor:pointer;display:flex;align-items:center;gap:12px}
+        .diagnosis-option-icon{width:48px;height:48px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0}
+        .diagnosis-option-icon.full{background:linear-gradient(135deg,#AB1942,#8B1435);color:#fff}
+        .diagnosis-option-icon.fast{background:linear-gradient(135deg,#fef2f2,#fee2e2);color:#AB1942}
+        .diagnosis-option-info{flex:1;min-width:0}
+        .diagnosis-option-title{font-size:16px;font-weight:600;color:#1f2937;margin-bottom:2px}
+        .diagnosis-option-subtitle{font-size:13px;color:#6b7280;display:flex;align-items:center;gap:4px;flex-wrap:wrap}
+        .diagnosis-option-subtitle .tag{display:inline-flex;align-items:center;padding:1px 8px;border-radius:10px;font-size:11px;font-weight:500}
+        .diagnosis-option-subtitle .tag.full{background:rgba(171,25,66,0.1);color:#AB1942}
+        .diagnosis-option-subtitle .tag.fast{background:rgba(59,130,246,0.1);color:#2563eb}
+        .diagnosis-option-chevron{font-size:14px;color:#9ca3af;transition:transform 0.2s;flex-shrink:0}
+        .diagnosis-option.active .diagnosis-option-chevron{transform:rotate(180deg);color:#AB1942}
+        .diagnosis-option-detail{max-height:0;overflow:hidden;transition:max-height 0.3s ease-out,padding 0.3s ease-out;background:#fafafa;border-top:1px solid transparent}
+        .diagnosis-option.active .diagnosis-option-detail{max-height:300px;padding:16px;border-top-color:#f0f0f0}
+        .diagnosis-option-detail ul{list-style:none;padding:0;margin:0 0 12px 0}
+        .diagnosis-option-detail li{font-size:13px;color:#4b5563;line-height:1.8;padding-left:20px;position:relative;margin-bottom:4px}
+        .diagnosis-option-detail li::before{content:'✓';position:absolute;left:0;color:#AB1942;font-weight:700;font-size:12px}
+        .diagnosis-option-detail .suitable-for{font-size:12px;color:#6b7280;margin-bottom:12px;padding:8px 12px;background:#fff;border-radius:6px;border:1px solid #f0f0f0}
+        .diagnosis-option-detail .suitable-for strong{color:#374151;font-weight:600}
+        .diagnosis-option-detail .start-btn{width:100%;padding:12px;border-radius:8px;border:none;font-size:15px;font-weight:600;cursor:pointer;transition:all 0.2s}
+        .diagnosis-option-detail .start-btn.full{background:#AB1942;color:#fff}
+        .diagnosis-option-detail .start-btn.full:hover{background:#8c1435}
+        .diagnosis-option-detail .start-btn.fast{background:#fff;color:#AB1942;border:2px solid #AB1942}
+        .diagnosis-option-detail .start-btn.fast:hover{background:#fdf2f4}
         @media(max-width:767px){
           :root{--content-max:480px;--content-padding:20px}
           .header-nav{gap:16px;font-size:13px}
@@ -180,15 +206,57 @@
                         <img src="images/logo-color.png" alt="灰金重组" class="home-logo">
                         <p class="home-logo-subtitle">企业健康度体检</p>
                         <h2 class="text-xl font-bold text-gray-800 mb-2">企业经营健康度体检</h2>
-                        <p class="text-gray-600 text-sm">36道题，3分钟，快速了解企业风险状况</p>
+                        <p class="text-gray-600 text-sm">选择适合你的诊断方式，快速了解企业风险状况</p>
                     </div>
-                    <div class="tooltip-wrapper relative mb-4">
-                        <button @click="startDiagnosis" class="btn-primary w-full">开始诊断</button>
-                        <div class="tooltip">36道完整题目，覆盖债务、资产、经营、法律、家庭保障五大维度，全面评估企业健康状况（约3分钟）</div>
+                    
+                    <!-- 全面诊断卡片 -->
+                    <div class="diagnosis-option" :class="{ active: expandedOption === 'full' }">
+                        <div class="diagnosis-option-header" @click="toggleOption('full')">
+                            <div class="diagnosis-option-icon full">📊</div>
+                            <div class="diagnosis-option-info">
+                                <div class="diagnosis-option-title">全面诊断</div>
+                                <div class="diagnosis-option-subtitle">
+                                    <span class="tag full">36道题</span>
+                                    <span>约3分钟</span>
+                                </div>
+                            </div>
+                            <div class="diagnosis-option-chevron">▼</div>
+                        </div>
+                        <div class="diagnosis-option-detail">
+                            <div class="suitable-for"><strong>适合：</strong>想全面了解企业经营状况，深入排查各维度风险</div>
+                            <ul>
+                                <li>覆盖债务、资产、经营、法律、家庭保障五大维度</li>
+                                <li>36道完整题目，精准评估企业健康状况</li>
+                                <li>生成详细雷达图，直观展示各维度得分</li>
+                                <li>提供针对性建议路径和关键发现</li>
+                            </ul>
+                            <button @click.stop="startDiagnosis" class="start-btn full">开始全面诊断</button>
+                        </div>
                     </div>
-                    <div class="tooltip-wrapper relative">
-                        <button @click="startFastDiagnosis" class="btn-secondary w-full text-sm">快速体检（5题）</button>
-                        <div class="tooltip">仅5道基础题，快速筛查企业基本状况，适合初步了解风险方向（约1分钟）</div>
+                    
+                    <!-- 快速体检卡片 -->
+                    <div class="diagnosis-option" :class="{ active: expandedOption === 'fast' }">
+                        <div class="diagnosis-option-header" @click="toggleOption('fast')">
+                            <div class="diagnosis-option-icon fast">⚡</div>
+                            <div class="diagnosis-option-info">
+                                <div class="diagnosis-option-title">快速体检</div>
+                                <div class="diagnosis-option-subtitle">
+                                    <span class="tag fast">5道题</span>
+                                    <span>约1分钟</span>
+                                </div>
+                            </div>
+                            <div class="diagnosis-option-chevron">▼</div>
+                        </div>
+                        <div class="diagnosis-option-detail">
+                            <div class="suitable-for"><strong>适合：</strong>时间有限，想快速筛查企业基本风险方向</div>
+                            <ul>
+                                <li>5道核心题目，快速筛查企业基本状况</li>
+                                <li>聚焦关键风险点，初步判断风险等级</li>
+                                <li>1分钟即可完成，高效便捷</li>
+                                <li>可升级到全面诊断获取详细报告</li>
+                            </ul>
+                            <button @click.stop="startFastDiagnosis" class="start-btn fast">开始快速体检</button>
+                        </div>
                     </div>
                 </div>
                 <div class="mt-6 text-sm text-gray-500">
@@ -330,6 +398,7 @@
         createApp({setup(){
             const currentPage = ref('home');
             const useFastMode = ref(false);
+            const expandedOption = ref(null);
             const questions = ref([]);
             const currentQuestionIndex = ref(0);
             const currentLevel = ref(0);
@@ -355,11 +424,12 @@
             const startDiagnosis = () => {useFastMode.value=false;questions.value=[...fullQuestions];currentQuestionIndex.value=0;currentLevel.value=questions.value[0]?.level||0;selectedAnswer.value=null;answers.value={};currentPage.value='question'};
             const startFastDiagnosis = () => {useFastMode.value=true;questions.value=[...fastQuestions];currentQuestionIndex.value=0;currentLevel.value=questions.value[0]?.level||0;selectedAnswer.value=null;answers.value={};currentPage.value='question'};
             const startFullDiagnosis = () => {useFastMode.value=false;questions.value=[...fullQuestions];currentQuestionIndex.value=0;currentLevel.value=questions.value[0]?.level||0;selectedAnswer.value=null;answers.value={};currentPage.value='question'};
+            const toggleOption = (type) => {expandedOption.value = expandedOption.value === type ? null : type};
             const selectOption = (idx) => {selectedAnswer.value=idx;answers.value[currentQuestionIndex.value]=idx;if(isLastQuestion.value){currentPage.value='result';nextTick(()=>renderRadarChart())}else{currentQuestionIndex.value++;currentLevel.value=questions.value[currentQuestionIndex.value].level;selectedAnswer.value=answers.value[currentQuestionIndex.value]??null}};
             const prevQuestion = () => {if(currentQuestionIndex.value>0){currentQuestionIndex.value--;currentLevel.value=questions.value[currentQuestionIndex.value].level;selectedAnswer.value=answers.value[currentQuestionIndex.value]??null}};
             const renderRadarChart = () => {const ctx=document.getElementById('radarChart').getContext('2d');if(radarChart.value)radarChart.value.destroy();radarChart.value=new Chart(ctx,{type:'radar',data:{labels:dimensionScores.value.map(d=>d.name),datasets:[{label:'维度评分',data:dimensionScores.value.map(d=>d.score),backgroundColor:'rgba(171,25,66,0.2)',borderColor:'#AB1942',borderWidth:2,pointBackgroundColor:'#AB1942',pointBorderColor:'#fff'}]},options:{scales:{r:{beginAtZero:true,max:100,ticks:{stepSize:20,font:{size:10}},grid:{color:'rgba(0,0,0,0.1)'},pointLabels:{font:{size:12}}}},plugins:{legend:{display:false}},maintainAspectRatio:false}})};
             const restartDiagnosis = () => {currentPage.value='home';showContact.value=false};
-            return {currentPage,useFastMode,questions,currentQuestionIndex,currentLevel,selectedAnswer,answers,diagnosisCount,averageScore,showContact,levels,totalQuestions,currentQuestion,isLastQuestion,progressPercent,dimensionScores,totalScore,resultLevel,resultClass,findings,suggestions,getScoreClass,startDiagnosis,startFastDiagnosis,startFullDiagnosis,selectOption,prevQuestion,renderRadarChart,restartDiagnosis}
+            return {currentPage,useFastMode,expandedOption,questions,currentQuestionIndex,currentLevel,selectedAnswer,answers,diagnosisCount,averageScore,showContact,levels,totalQuestions,currentQuestion,isLastQuestion,progressPercent,dimensionScores,totalScore,resultLevel,resultClass,findings,suggestions,getScoreClass,startDiagnosis,startFastDiagnosis,startFullDiagnosis,toggleOption,selectOption,prevQuestion,renderRadarChart,restartDiagnosis}
         }}).mount('#app');
     </script>
 </body>
