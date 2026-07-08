@@ -86,34 +86,51 @@ img{max-width:100%;display:block;object-fit:contain;pointer-events:none}
 .diagram-ring-inner-wrap .diagram-ring-line{border:1.5px dashed rgba(255,255,255,.18);animation:diagram-spin-cw 30s linear infinite}
 .diagram-ring-outer-wrap .diagram-ring-line{border:1.5px dashed rgba(255,255,255,.12);animation:diagram-spin-ccw 40s linear infinite}
 
+.diagram-orbit-body{
+  position:absolute;top:0;left:0;width:100%;height:100%;z-index:2;
+  pointer-events:none
+}
+.diagram-ring-inner-wrap .diagram-orbit-body{animation:diagram-spin-cw 30s linear infinite}
+.diagram-ring-outer-wrap .diagram-orbit-body{animation:diagram-spin-ccw 40s linear infinite}
+
 .diagram-node-inner{
-  position:absolute;width:80px;height:36px;border-radius:18px;z-index:2;
+  width:80px;height:36px;border-radius:18px;z-index:2;
   display:flex;align-items:center;justify-content:center;
   color:#fff;font-size:14px;font-weight:600;letter-spacing:1px;
   box-shadow:0 4px 20px rgba(0,0,0,.18);
   cursor:pointer;
+  pointer-events:auto;
+  transform-origin:center bottom;
   transition:transform .3s ease,box-shadow .3s ease
 }
-.diagram-node-inner:hover{transform:scale(1.1);box-shadow:0 6px 30px rgba(0,0,0,.25)}
+.diagram-node-inner:hover{transform:scale(1.1) !important;box-shadow:0 6px 30px rgba(0,0,0,.25)}
+.diagram-node-text{
+  display:inline-block;position:relative;z-index:1;
+  pointer-events:none
+}
+.diagram-ring-inner-wrap .diagram-node-text{animation:diagram-text-fix-cw 30s linear infinite}
+.diagram-ring-outer-wrap .diagram-node-text{animation:diagram-text-fix-ccw 40s linear infinite}
 .diagram-node-inner-1{background:linear-gradient(135deg,#5B9BD5,#4A90D9)}
 .diagram-node-inner-2{background:linear-gradient(135deg,#4EDB8A,#2ECC71)}
 .diagram-node-inner-3{background:linear-gradient(135deg,#F5B041,#F39C12)}
 
 .diagram-node-outer{
-  position:absolute;width:96px;height:40px;border-radius:12px;z-index:2;
+  width:96px;height:40px;border-radius:12px;z-index:2;
   background:rgba(255,255,255,.12);backdrop-filter:blur(4px);
   border:1px solid rgba(255,255,255,.25);
   display:flex;align-items:center;justify-content:center;
   color:rgba(255,255,255,.9);font-size:13px;font-weight:600;letter-spacing:1px;
   box-shadow:0 4px 20px rgba(0,0,0,.12);
   cursor:pointer;
+  pointer-events:auto;
+  transform-origin:center bottom;
   transition:transform .3s ease,box-shadow .3s ease
 }
-.diagram-node-outer:hover{transform:scale(1.1);box-shadow:0 6px 30px rgba(0,0,0,.2)}
+.diagram-node-outer:hover{transform:scale(1.1) !important;box-shadow:0 6px 30px rgba(0,0,0,.2)}
 
 /* SVG Connection Lines */
-.diagram-svg{position:absolute;top:0;left:0;width:100%;height:100%;z-index:1;pointer-events:none}
-.diagram-svg line{stroke:rgba(255,255,255,.2);stroke-width:1.5;stroke-dasharray:5 6;animation:diagram-line-flow 1.2s linear infinite}
+.diagram-orbit-svg{position:absolute;top:0;left:0;width:100%;height:100%}
+.diagram-orbit-svg line{stroke:rgba(255,255,255,.2);stroke-width:1.5;stroke-dasharray:5 6}
 
 /* Tooltip */
 .diagram-tooltip{
@@ -152,6 +169,8 @@ img{max-width:100%;display:block;object-fit:contain;pointer-events:none}
   50%{box-shadow:0 0 50px rgba(255,255,255,.25)}
 }
 @keyframes diagram-line-flow{to{stroke-dashoffset:-11}}
+@keyframes diagram-text-fix-cw{from{transform:rotate(0deg)}to{transform:rotate(-360deg)}}
+@keyframes diagram-text-fix-ccw{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
 
 /* Stats */
 .stats-section{padding:40px 0;background:#fff}
@@ -368,54 +387,74 @@ img{max-width:100%;display:block;object-fit:contain;pointer-events:none}
             <!-- Core: "企业" -->
             <div class="diagram-core">企业</div>
             
-            <!-- Inner Ring (diagnosis) -->
+            <!-- Inner Ring (diagnosis) with orbiting nodes -->
             <div class="diagram-ring-wrap diagram-ring-inner-wrap">
               <div class="diagram-ring-line"></div>
+              <div class="diagram-orbit-body" style="pointer-events:auto">
+                <svg class="diagram-orbit-svg" viewBox="0 0 380 380" preserveAspectRatio="xMidYMid meet">
+                  <line x1="190" y1="190" x2="190" y2="10"/>
+                  <line x1="190" y1="190" x2="190" y2="10" transform="rotate(120,190,190)"/>
+                  <line x1="190" y1="190" x2="190" y2="10" transform="rotate(240,190,190)"/>
+                </svg>
+                  <!-- Node 1 at 0° -->
+                  <div style="position:absolute;top:0;left:50%;transform:rotate(0deg);transform-origin:0px 50%">
+                    <div class="diagram-node-inner diagram-node-inner-1" data-key="business" style="transform:rotate(0deg);pointer-events:auto">
+                      <span class="diagram-node-text">业务</span>
+                      <span class="diagram-tooltip">评估企业业务模式与运营效率</span>
+                    </div>
+                  </div>
+                  
+                  <!-- Node 2 at 120° -->
+                  <div style="position:absolute;top:0;left:50%;transform:rotate(120deg);transform-origin:0px 50%">
+                    <div class="diagram-node-inner diagram-node-inner-2" data-key="finance" style="transform:rotate(-120deg);pointer-events:auto">
+                      <span class="diagram-node-text">财务</span>
+                      <span class="diagram-tooltip">分析企业资金状况与盈利能力</span>
+                    </div>
+                  </div>
+                  
+                  <!-- Node 3 at 240° -->
+                  <div style="position:absolute;top:0;left:50%;transform:rotate(240deg);transform-origin:0px 50%">
+                    <div class="diagram-node-inner diagram-node-inner-3" data-key="debt" style="transform:rotate(-240deg);pointer-events:auto">
+                      <span class="diagram-node-text">债务</span>
+                      <span class="diagram-tooltip">评估企业负债结构与偿债能力</span>
+                    </div>
+                  </div>
+              </div>
             </div>
             
-            <!-- Outer Ring (restructuring) -->
+            <!-- Outer Ring (restructuring) with orbiting nodes -->
             <div class="diagram-ring-wrap diagram-ring-outer-wrap">
               <div class="diagram-ring-line"></div>
-            </div>
-            
-            <!-- SVG Connection Lines -->
-            <svg class="diagram-svg" viewBox="0 0 380 380" preserveAspectRatio="xMidYMid meet">
-              <!-- Inner ring connections -->
-              <line x1="190" y1="190" x2="190" y2="99"/>
-              <line x1="190" y1="190" x2="269" y2="236"/>
-              <line x1="190" y1="190" x2="111" y2="236"/>
-              <!-- Outer ring connections -->
-              <line x1="190" y1="190" x2="190" y2="46"/>
-              <line x1="190" y1="190" x2="315" y2="262"/>
-              <line x1="190" y1="190" x2="65" y2="262"/>
-            </svg>
-            
-            <!-- Inner nodes: diagnosis dimensions -->
-            <div class="diagram-node-inner diagram-node-inner-1" style="left:calc(50% - 40px);top:calc(50% - 24% - 18px)" data-key="business">
-              业务
-              <span class="diagram-tooltip">评估企业业务模式与运营效率</span>
-            </div>
-            <div class="diagram-node-inner diagram-node-inner-2" style="left:calc(50% + 24%*0.866 - 40px);top:calc(50% + 24%*0.5 - 18px)" data-key="finance">
-              财务
-              <span class="diagram-tooltip">分析企业资金状况与盈利能力</span>
-            </div>
-            <div class="diagram-node-inner diagram-node-inner-3" style="left:calc(50% - 24%*0.866 - 40px);top:calc(50% + 24%*0.5 - 18px)" data-key="debt">
-              债务
-              <span class="diagram-tooltip">评估企业负债结构与偿债能力</span>
-            </div>
-            
-            <!-- Outer nodes: restructuring solutions -->
-            <div class="diagram-node-outer" style="left:calc(50% - 48px);top:calc(50% - 38% - 20px)" data-key="asset-restructure">
-              资产重组
-              <span class="diagram-tooltip">优化资产配置，盘活存量资源</span>
-            </div>
-            <div class="diagram-node-outer" style="left:calc(50% + 38%*0.866 - 48px);top:calc(50% + 38%*0.5 - 20px)" data-key="debt-restructure">
-              债务重组
-              <span class="diagram-tooltip">协商债务化解方案，减轻负担</span>
-            </div>
-            <div class="diagram-node-outer" style="left:calc(50% - 38%*0.866 - 48px);top:calc(50% + 38%*0.5 - 20px)" data-key="operation-restructure">
-              业务重组
-              <span class="diagram-tooltip">重整业务结构，重塑竞争优势</span>
+              <div class="diagram-orbit-body" style="pointer-events:auto">
+                <svg class="diagram-orbit-svg" viewBox="0 0 380 380" preserveAspectRatio="xMidYMid meet">
+                  <line x1="190" y1="190" x2="190" y2="10"/>
+                  <line x1="190" y1="190" x2="190" y2="10" transform="rotate(120,190,190)"/>
+                  <line x1="190" y1="190" x2="190" y2="10" transform="rotate(240,190,190)"/>
+                </svg>
+                  <!-- Outer Node 1 at 0° -->
+                  <div style="position:absolute;top:0;left:50%;transform:rotate(0deg);transform-origin:0px 50%">
+                    <div class="diagram-node-outer" data-key="asset-restructure" style="transform:rotate(0deg);pointer-events:auto">
+                      <span class="diagram-node-text">资产重组</span>
+                      <span class="diagram-tooltip">优化资产配置，盘活存量资源</span>
+                    </div>
+                  </div>
+                  
+                  <!-- Outer Node 2 at 120° -->
+                  <div style="position:absolute;top:0;left:50%;transform:rotate(120deg);transform-origin:0px 50%">
+                    <div class="diagram-node-outer" data-key="debt-restructure" style="transform:rotate(-120deg);pointer-events:auto">
+                      <span class="diagram-node-text">债务重组</span>
+                      <span class="diagram-tooltip">协商债务化解方案，减轻负担</span>
+                    </div>
+                  </div>
+                  
+                  <!-- Outer Node 3 at 240° -->
+                  <div style="position:absolute;top:0;left:50%;transform:rotate(240deg);transform-origin:0px 50%">
+                    <div class="diagram-node-outer" data-key="operation-restructure" style="transform:rotate(-240deg);pointer-events:auto">
+                      <span class="diagram-node-text">业务重组</span>
+                      <span class="diagram-tooltip">重整业务结构，重塑竞争优势</span>
+                    </div>
+                  </div>
+              </div>
             </div>
             
             <!-- Detail Panel (hidden by default) -->
