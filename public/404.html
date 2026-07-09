@@ -40,8 +40,8 @@ img{max-width:100%;display:block;object-fit:contain;pointer-events:none}
 /* Header */
 .header{position:sticky;top:0;z-index:100;background:var(--brand);box-shadow:0 2px 12px rgba(171,25,66,.15)}
 .header-inner{max-width:var(--content-max);margin:0 auto;padding:0 var(--content-padding);height:64px;display:flex;align-items:center;justify-content:space-between}
-.header-logo{display:flex;align-items:center;height:100%}
-.header-logo img{width:150px;height:auto;object-fit:contain;display:block}
+.header-logo{display:flex;align-items:center;height:100%;padding:8px 12px}
+.header-logo img{width:115px;height:auto;object-fit:contain;display:block}
 .header-nav{display:flex;gap:32px;align-items:center}
 .header-nav a{color:#fff;font-size:15px;font-weight:400;opacity:.9;position:relative}
 .header-nav a:hover{opacity:1;color:#fff}
@@ -94,15 +94,40 @@ img{max-width:100%;display:block;object-fit:contain;pointer-events:none}
           .page-hero-title{font-size:36px}
           .page-hero-subtitle{font-size:14px}
         }
+/* Hamburger button */
+.hamburger-btn{display:none;align-items:center;justify-content:center;width:44px;height:44px;background:none;border:none;cursor:pointer;flex-direction:column;gap:5px;padding:0;z-index:101;position:relative;-webkit-tap-highlight-color:transparent}
+.hamburger-btn span{display:block;width:24px;height:2.5px;background:#fff;border-radius:2px;transition:all .3s ease;transform-origin:center;pointer-events:none}
+.hamburger-btn.active span:nth-child(1){transform:translateY(7.5px) rotate(45deg)}
+.hamburger-btn.active span:nth-child(2){opacity:0}
+.hamburger-btn.active span:nth-child(3){transform:translateY(-7.5px) rotate(-45deg)}
+
+/* Mobile nav overlay */
+.mobile-nav-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.5);z-index:99;opacity:0;pointer-events:none;transition:opacity .3s ease}
+.mobile-nav-overlay.active{opacity:1;pointer-events:auto}
+
+/* Mobile nav panel */
+.mobile-nav{position:fixed;top:0;right:0;width:75%;max-width:300px;height:100%;background:#AB1942;z-index:100;padding:80px 24px 24px;transform:translateX(100%);transition:transform .3s ease;overflow-y:auto}
+.mobile-nav-overlay.active .mobile-nav{transform:translateX(0)}
+
+/* Mobile nav links */
+.mobile-nav a{display:block;color:#fff;font-size:17px;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.12);font-weight:500;letter-spacing:.5px}
+.mobile-nav a:last-child{border-bottom:none}
+.mobile-nav a.active{opacity:1;font-weight:600}
+.mobile-nav .nav-item-wrapper{display:block;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.12)}
+.mobile-nav .nav-item-wrapper a{display:inline;padding:0;border-bottom:none}
+.mobile-nav .nav-badge{font-size:10px;font-weight:600;background:#fff;color:#AB1942;padding:1px 6px;border-radius:8px;line-height:1.4;letter-spacing:.5px;margin-left:6px}
+
 @media(max-width:767px){
   :root{--content-padding:20px}
   
   .header-inner{height:56px}
-  .header-logo img{width:130px;display:block}
+  .header-logo img{width:100px;display:block}
   .header-nav{gap:18px}
   .header-nav a{font-size:13px}
   .nav-badge{font-size:9px;padding:0 4px}
-  
+  .header-nav{display:none}
+  .hamburger-btn{display:flex}
+
   .error-inner{min-height:auto;padding:60px 0 100px}
   .error-code{font-size:80px;margin-bottom:16px}
   .error-title{font-size:24px}
@@ -131,8 +156,20 @@ img{max-width:100%;display:block;object-fit:contain;pointer-events:none}
       <a href="experts.html">专家团队</a>
       <span class="nav-item-wrapper"><a href="diag.html">诊断</a><span class="nav-badge">免费</span></span>
     </nav>
+    <button class="hamburger-btn" aria-label="菜单"><span></span><span></span><span></span></button>
   </div>
 </header>
+
+<div class="mobile-nav-overlay">
+  <nav class="mobile-nav">
+    <a href="index.html" class="active">首页</a>
+    <a href="about.html">关于</a>
+    <a href="services.html">服务</a>
+    <a href="cases-detail.html">案例</a>
+    <a href="experts.html">专家团队</a>
+    <span class="nav-item-wrapper"><a href="diag.html">诊断</a><span class="nav-badge">免费</span></span>
+  </nav>
+</div>
 
 <main>
   <section class="error-section">
@@ -186,5 +223,9 @@ img{max-width:100%;display:block;object-fit:contain;pointer-events:none}
   </div>
 </footer>
 
+<script>
+/* Mobile hamburger menu */
+(function(){var h=document.querySelector('.hamburger-btn'),o=document.querySelector('.mobile-nav-overlay');if(!h||!o)return;h.addEventListener('click',function(){this.classList.toggle('active');o.classList.toggle('active');document.body.style.overflow=o.classList.contains('active')?'hidden':''});o.addEventListener('click',function(e){if(e.target===this){this.classList.remove('active');h.classList.remove('active');document.body.style.overflow=''}});o.querySelectorAll('a').forEach(function(l){l.addEventListener('click',function(){o.classList.remove('active');h.classList.remove('active');document.body.style.overflow=''})})})();
+</script>
 </body>
 </html>
