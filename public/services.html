@@ -164,14 +164,19 @@ img{max-width:100%;display:block;object-fit:contain;pointer-events:none}
 .cta-btn::after{content:'→';transition:transform var(--transition)}
 .cta-btn:hover::after{transform:translateX(4px)}
 
-/* Footer - 精简版 */
-.footer{background:var(--bg-dark);color:#fff;padding:12px 0 8px}
-.footer-content{display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;text-align:center}
-.footer-email{font-size:12px;color:var(--text-faint)}
+/* Footer */
+.footer{background:var(--bg-dark);color:#fff;padding:28px 0 16px}
+.footer-inner{display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.footer-left{flex-shrink:0}
+.footer-logo{width:55px;height:auto;filter:brightness(0) invert(1);opacity:.9;display:block}
+.footer-right{display:flex;align-items:center;gap:24px;flex-wrap:wrap}
+.footer-links{display:flex;gap:20px;flex-wrap:wrap}
+.footer-links a{font-size:13px;color:var(--text-faint);text-decoration:none;transition:color var(--transition)}
+.footer-links a:hover{color:#fff}
+.footer-email{font-size:13px;color:var(--text-faint)}
 .footer-email a{color:var(--text-faint);text-decoration:none}
 .footer-email a:hover{color:#fff}
-.footer-divider{color:var(--text-muted);font-size:12px;user-select:none}
-.footer-copyright{font-size:12px;color:var(--text-muted)}
+.footer-bottom{padding-top:14px;margin-top:14px;border-top:1px solid rgba(255,255,255,.08);text-align:center;font-size:11px;color:var(--text-muted)}
 
 /* Responsive */
         @media(max-width:1023px){
@@ -222,8 +227,9 @@ img{max-width:100%;display:block;object-fit:contain;pointer-events:none}
   .cta-content p{font-size:14px}
   .cta-btn{padding:16px 36px;font-size:15px;min-height:52px;min-width:180px;justify-content:center}
   
-  .footer-content{flex-direction:column;gap:4px}
-  .footer-divider{display:none}
+  .footer-inner{flex-direction:column;align-items:flex-start;gap:16px}
+  .footer-right{flex-direction:column;align-items:flex-start;gap:12px}
+  .footer-links{gap:14px}
 }
 
 /* Contact CTA */
@@ -235,8 +241,7 @@ img{max-width:100%;display:block;object-fit:contain;pointer-events:none}
 .contact-btn{display:inline-flex;align-items:center;gap:8px;padding:14px 32px;background:var(--brand);color:#fff;font-size:15px;font-weight:600;border-radius:50px;transition:all var(--transition);cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation;text-decoration:none}
 .contact-btn:hover{background:var(--brand-light);transform:translateY(-2px);box-shadow:0 8px 20px rgba(171,25,66,.3)}
 .contact-btn:active{transform:translateY(0)}
-.contact-btn::after{content:'→';transition:transform var(--transition)}
-.contact-btn:hover::after{transform:translateX(4px)}
+
 .contact-wechat{display:inline-flex;align-items:center;gap:10px;padding:8px 18px;background:var(--bg-gray);border-radius:50px;font-size:14px;color:var(--text-secondary);cursor:pointer;transition:all var(--transition);-webkit-tap-highlight-color:transparent}
 .contact-wechat:hover{background:#e5e7eb;transform:translateY(-1px)}
 .contact-wechat:active{transform:scale(.97)}
@@ -507,11 +512,7 @@ main{overflow-x:hidden}
           <p>预约免费咨询，我们的专业顾问会为你做初步诊断</p>
         </div>
         <div class="contact-actions">
-          <a href="mailto:lucasa@agent.qq.com" class="contact-btn">联系咨询</a>
-          <div class="contact-wechat" onclick="document.getElementById('wechat-overlay').classList.remove('hidden')">
-            <img src="images/wechat-qrcode.jpg" alt="微信二维码" style="width:28px;height:28px;border-radius:6px;object-fit:cover;">
-            <span>扫码咨询</span>
-          </div>
+          <div class="contact-btn" onclick="document.getElementById('wechat-overlay').classList.remove('hidden')">联系咨询</div>
         </div>
       </div>
     </div>
@@ -543,10 +544,24 @@ main{overflow-x:hidden}
 <!-- Footer -->
 <footer class="footer">
   <div class="container">
-    <div class="footer-content">
-      <span class="footer-email">邮箱：<a href="mailto:lucasa@agent.qq.com">lucasa@agent.qq.com</a></span>
-      <span class="footer-divider">|</span>
-      <span class="footer-copyright">© 2026 灰金重组</span>
+    <div class="footer-inner">
+      <div class="footer-left">
+        <img src="images/logo-hjzc-transparent-white.png" alt="灰金重组" class="footer-logo">
+      </div>
+      <div class="footer-right">
+        <div class="footer-links">
+          <a href="index.html">首页</a>
+          <a href="about.html">关于</a>
+          <a href="services.html">服务</a>
+          <a href="cases-detail.html">案例</a>
+          <a href="experts.html">专家</a>
+          <a href="diag.html">诊断</a>
+        </div>
+        <div class="footer-email">邮箱：<a href="mailto:lucasa@agent.qq.com">lucasa@agent.qq.com</a></div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 灰金重组</p>
     </div>
   </div>
 </footer>

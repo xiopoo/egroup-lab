@@ -122,14 +122,19 @@ img{max-width:100%;display:block;object-fit:contain;pointer-events:none}
 .diagnosis-btn::after{content:'→';transition:transform var(--transition)}
 .diagnosis-btn:hover::after{transform:translateX(4px)}
 
-/* Footer - 精简版 */
-.footer{background:var(--bg-dark);color:#fff;padding:12px 0 8px}
-.footer-content{display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;text-align:center}
-.footer-email{font-size:12px;color:var(--text-faint)}
+/* Footer */
+.footer{background:var(--bg-dark);color:#fff;padding:28px 0 16px}
+.footer-inner{display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.footer-left{flex-shrink:0}
+.footer-logo{width:55px;height:auto;filter:brightness(0) invert(1);opacity:.9;display:block}
+.footer-right{display:flex;align-items:center;gap:24px;flex-wrap:wrap}
+.footer-links{display:flex;gap:20px;flex-wrap:wrap}
+.footer-links a{font-size:13px;color:var(--text-faint);text-decoration:none;transition:color var(--transition)}
+.footer-links a:hover{color:#fff}
+.footer-email{font-size:13px;color:var(--text-faint)}
 .footer-email a{color:var(--text-faint);text-decoration:none}
 .footer-email a:hover{color:#fff}
-.footer-divider{color:var(--text-muted);font-size:12px;user-select:none}
-.footer-copyright{font-size:12px;color:var(--text-muted)}
+.footer-bottom{padding-top:14px;margin-top:14px;border-top:1px solid rgba(255,255,255,.08);text-align:center;font-size:11px;color:var(--text-muted)}
 
 /* Responsive */
 @media(max-width:1023px){
@@ -165,8 +170,9 @@ img{max-width:100%;display:block;object-fit:contain;pointer-events:none}
   .diagnosis-content p{font-size:14px}
   .diagnosis-btn{padding:16px 36px;font-size:15px;min-height:52px;min-width:180px;justify-content:center}
 
-  .footer-content{flex-direction:column;gap:4px}
-  .footer-divider{display:none}
+  .footer-inner{flex-direction:column;align-items:flex-start;gap:16px}
+  .footer-right{flex-direction:column;align-items:flex-start;gap:12px}
+  .footer-links{gap:14px}
 }
 
 /* Expert Detail Modal */
@@ -372,10 +378,24 @@ main{overflow-x:hidden}
 <!-- Footer -->
 <footer class="footer">
   <div class="container">
-    <div class="footer-content">
-      <span class="footer-email">邮箱：<a href="mailto:lucasa@agent.qq.com">lucasa@agent.qq.com</a></span>
-      <span class="footer-divider">|</span>
-      <span class="footer-copyright">© 2026 灰金重组</span>
+    <div class="footer-inner">
+      <div class="footer-left">
+        <img src="images/logo-hjzc-transparent-white.png" alt="灰金重组" class="footer-logo">
+      </div>
+      <div class="footer-right">
+        <div class="footer-links">
+          <a href="index.html">首页</a>
+          <a href="about.html">关于</a>
+          <a href="services.html">服务</a>
+          <a href="cases-detail.html">案例</a>
+          <a href="experts.html">专家</a>
+          <a href="diag.html">诊断</a>
+        </div>
+        <div class="footer-email">邮箱：<a href="mailto:lucasa@agent.qq.com">lucasa@agent.qq.com</a></div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 灰金重组</p>
     </div>
   </div>
 </footer>
