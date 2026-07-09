@@ -7,6 +7,7 @@
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.4.21/vue.global.prod.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+    <script src="js/seed-data.js"></script>
     <style>
         :root{
           --brand:#AB1942;
@@ -510,8 +511,13 @@
             const currentLevel = ref(0);
             const selectedAnswer = ref(null);
             const answers = ref({});
-            const diagnosisCount = ref(parseInt(localStorage.getItem('diagnosis_count') || '128'));
-            const averageScore = ref(parseFloat(localStorage.getItem('diagnosis_avg_score')) || 62);
+            const seed = window.__SEED || {diagnosisCount:128,diagnosisAvgScore:62,diagnosisAvgCount:0};
+            const diagCountSeed = seed.diagnosisCount;
+            const diagUserExtra = parseInt(localStorage.getItem('diagnosis_user_extra') || '0');
+            /* Migrate from old localStorage key */
+            (function(){var oc=localStorage.getItem('diagnosis_count');if(oc!==null){var ov=parseInt(oc)||0;if(ov>diagCountSeed){localStorage.setItem('diagnosis_user_extra',String(ov-diagCountSeed))}localStorage.removeItem('diagnosis_count')}})();
+            const diagnosisCount = ref(diagCountSeed + parseInt(localStorage.getItem('diagnosis_user_extra')||'0'));
+            const averageScore = ref(parseFloat(localStorage.getItem('diagnosis_avg_score')) || seed.diagnosisAvgScore);
             const showContact = ref(false);
             const radarChart = ref(null);
             const totalQuestions = computed(() => questions.value.length);
@@ -531,7 +537,7 @@
             const startFastDiagnosis = () => {useFastMode.value=true;questions.value=[...fastQuestions];currentQuestionIndex.value=0;currentLevel.value=questions.value[0]?.level||0;selectedAnswer.value=null;answers.value={};currentPage.value='question'};
             const startFullDiagnosis = () => {useFastMode.value=false;questions.value=[...fullQuestions];currentQuestionIndex.value=0;currentLevel.value=questions.value[0]?.level||0;selectedAnswer.value=null;answers.value={};currentPage.value='question'};
             const toggleOption = (type) => {expandedOption.value = expandedOption.value === type ? null : type};
-            const selectOption = (idx) => {selectedAnswer.value=idx;answers.value[currentQuestionIndex.value]=idx;if(isLastQuestion.value){diagnosisCount.value++;localStorage.setItem('diagnosis_count',diagnosisCount.value);var pa=parseFloat(localStorage.getItem('diagnosis_avg_score')||'62'),pc=parseInt(localStorage.getItem('diagnosis_avg_count')||'0'),na=pc>0?Math.round((pa*pc+Math.round(totalScore.value))/(pc+1)):Math.round(totalScore.value);averageScore.value=na;localStorage.setItem('diagnosis_avg_score',String(na));localStorage.setItem('diagnosis_avg_count',String(pc+1));currentPage.value='result';nextTick(()=>renderRadarChart())}else{currentQuestionIndex.value++;currentLevel.value=questions.value[currentQuestionIndex.value].level;selectedAnswer.value=answers.value[currentQuestionIndex.value]??null}};
+            const selectOption = (idx) => {selectedAnswer.value=idx;answers.value[currentQuestionIndex.value]=idx;if(isLastQuestion.value){diagnosisCount.value++;const ue=parseInt(localStorage.getItem('diagnosis_user_extra')||'0')+1;localStorage.setItem('diagnosis_user_extra',String(ue));var pa=parseFloat(localStorage.getItem('diagnosis_avg_score')||'62'),pc=parseInt(localStorage.getItem('diagnosis_avg_count')||'0'),na=pc>0?Math.round((pa*pc+Math.round(totalScore.value))/(pc+1)):Math.round(totalScore.value);averageScore.value=na;localStorage.setItem('diagnosis_avg_score',String(na));localStorage.setItem('diagnosis_avg_count',String(pc+1));currentPage.value='result';nextTick(()=>renderRadarChart())}else{currentQuestionIndex.value++;currentLevel.value=questions.value[currentQuestionIndex.value].level;selectedAnswer.value=answers.value[currentQuestionIndex.value]??null}};
             const prevQuestion = () => {if(currentQuestionIndex.value>0){currentQuestionIndex.value--;currentLevel.value=questions.value[currentQuestionIndex.value].level;selectedAnswer.value=answers.value[currentQuestionIndex.value]??null}};
             const renderRadarChart = () => {const ctx=document.getElementById('radarChart').getContext('2d');if(radarChart.value)radarChart.value.destroy();radarChart.value=new Chart(ctx,{type:'radar',data:{labels:dimensionScores.value.map(d=>d.name),datasets:[{label:'维度评分',data:dimensionScores.value.map(d=>d.score),backgroundColor:'rgba(171,25,66,0.2)',borderColor:'#AB1942',borderWidth:2,pointBackgroundColor:'#AB1942',pointBorderColor:'#fff'}]},options:{scales:{r:{beginAtZero:true,max:100,ticks:{stepSize:20,font:{size:10}},grid:{color:'rgba(0,0,0,0.1)'},pointLabels:{font:{size:12}}}},plugins:{legend:{display:false}},maintainAspectRatio:false}})};
             const restartDiagnosis = () => {currentPage.value='home';showContact.value=false};

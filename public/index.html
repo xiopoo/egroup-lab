@@ -459,6 +459,7 @@ main{overflow-x:hidden}
 }
 .contact-btn{cursor:pointer}
 </style>
+  <script src="js/seed-data.js"></script>
 </head>
 <body>
 
@@ -915,9 +916,14 @@ main{overflow-x:hidden}
 </footer>
 
 <script>
-/* Dynamic diagnosis counter from localStorage */
+/* Dynamic diagnosis counter from localStorage + seed data */
 (function(){
-  var count = parseInt(localStorage.getItem('diagnosis_count') || '128');
+  var seed = window.__SEED || {diagnosisCount:128};
+  var diagCountSeed = seed.diagnosisCount;
+  /* Migrate from old localStorage key */
+  (function(){var oc=localStorage.getItem('diagnosis_count');if(oc!==null){var ov=parseInt(oc)||0;if(ov>diagCountSeed){localStorage.setItem('diagnosis_user_extra',String(ov-diagCountSeed))}localStorage.removeItem('diagnosis_count')}})();
+  var userExtra = parseInt(localStorage.getItem('diagnosis_user_extra') || '0');
+  var count = diagCountSeed + userExtra;
   var el = document.getElementById('diagnosis-count');
   if (el) el.textContent = count + '+';
 })();
