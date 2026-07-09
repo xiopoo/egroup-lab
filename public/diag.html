@@ -348,7 +348,7 @@
                     </div>
                 </div>
                 <div class="mt-6 text-sm text-gray-500">
-                    <p>已有 <strong class="brand-color">{{ diagnosisCount }}</strong> 位老板完成诊断</p>
+                    <p>已有 <strong class="brand-color">{{ diagnosisCount }}+</strong> 企业完成诊断</p>
                     <p class="mt-1">平均评分：<strong class="brand-color">{{ averageScore }}</strong> 分</p>
                 </div>
                 <div class="mt-6">
@@ -462,42 +462,42 @@
         const { createApp, ref, computed, nextTick } = Vue;
         const levels = [{name:'基础诊断',weight:0},{name:'债务评估',weight:0.3},{name:'资产评估',weight:0.2},{name:'经营评估',weight:0.25},{name:'法律评估',weight:0.15},{name:'综合诊断',weight:0.1}];
         const fullQuestions = [
-            {text:'企业当前是否存在逾期债务？',options:[{text:'否',score:100},{text:'有但可控',score:60},{text:'大面积逾期',score:20}],dimension:'debt',level:0},
-            {text:'银行贷款到期时间是否集中在3个月内？',options:[{text:'否',score:100},{text:'部分',score:60},{text:'集中',score:20}],dimension:'debt',level:0},
-            {text:'是否存在个人或夫妻共同担保公司债务的情况？',options:[{text:'否',score:100},{text:'少量',score:60},{text:'大量',score:20}],dimension:'family',level:0},
-            {text:'核心业务是否持续盈利？',options:[{text:'是',score:100},{text:'微利',score:60},{text:'亏损',score:20}],dimension:'business',level:0},
-            {text:'是否已涉及诉讼或被执行？',options:[{text:'否',score:100},{text:'有但可控',score:60},{text:'严重',score:20}],dimension:'legal',level:0},
-            {text:'资产负债率（总负债/总资产）',options:[{text:'≤50%',score:100},{text:'50-70%',score:60},{text:'≥70%',score:20}],dimension:'debt',level:1},
-            {text:'综合融资成本（年化）',options:[{text:'≤10%',score:100},{text:'10-15%',score:60},{text:'≥15%',score:20}],dimension:'debt',level:1},
-            {text:'短期负债占比（流动负债/总负债）',options:[{text:'≤40%',score:100},{text:'40-60%',score:60},{text:'≥60%',score:20}],dimension:'debt',level:1},
-            {text:'是否存在民间借贷？',options:[{text:'否',score:100},{text:'少量且合规',score:60},{text:'大量或高息',score:20}],dimension:'debt',level:1},
-            {text:'个人连带责任担保金额占净资产比例',options:[{text:'≤20%',score:100},{text:'20-50%',score:60},{text:'≥50%',score:20}],dimension:'family',level:1},
-            {text:'是否存在联保、互保链？',options:[{text:'否',score:100},{text:'有但未出险',score:60},{text:'已出险',score:20}],dimension:'debt',level:1},
-            {text:'逾期债务占总债务比例',options:[{text:'≤5%',score:100},{text:'5-20%',score:60},{text:'≥20%',score:20}],dimension:'debt',level:1},
-            {text:'是否存在以贷养贷情况？',options:[{text:'否',score:100},{text:'少量',score:60},{text:'严重',score:20}],dimension:'debt',level:1},
-            {text:'夫妻共签债务金额',options:[{text:'无',score:100},{text:'少量',score:60},{text:'大量',score:20}],dimension:'family',level:1},
-            {text:'债务到期时间分布是否均衡？',options:[{text:'均衡',score:100},{text:'部分集中',score:60},{text:'高度集中',score:20}],dimension:'debt',level:1},
-            {text:'可快速变现资产占比',options:[{text:'≥50%',score:100},{text:'30-50%',score:60},{text:'≤30%',score:20}],dimension:'asset',level:2},
-            {text:'是否存在闲置或低效资产？',options:[{text:'否',score:100},{text:'少量',score:60},{text:'大量',score:20}],dimension:'asset',level:2},
-            {text:'应收账款周转天数',options:[{text:'≤60天',score:100},{text:'60-90天',score:60},{text:'≥90天',score:20}],dimension:'asset',level:2},
-            {text:'库存周转天数',options:[{text:'≤30天',score:100},{text:'30-60天',score:60},{text:'≥60天',score:20}],dimension:'asset',level:2},
-            {text:'固定资产抵押率',options:[{text:'≤50%',score:100},{text:'50-80%',score:60},{text:'≥80%',score:20}],dimension:'asset',level:2},
-            {text:'是否存在已查封资产？',options:[{text:'否',score:100},{text:'少量',score:60},{text:'大量',score:20}],dimension:'legal',level:2},
-            {text:'无形资产（资质/牌照）是否完整？',options:[{text:'完整',score:100},{text:'部分缺失',score:60},{text:'严重缺失',score:20}],dimension:'asset',level:2},
-            {text:'对外投资是否存在亏损？',options:[{text:'否',score:100},{text:'少量',score:60},{text:'严重',score:20}],dimension:'asset',level:2},
-            {text:'核心业务毛利率',options:[{text:'≥20%',score:100},{text:'10-20%',score:60},{text:'≤10%',score:20}],dimension:'business',level:3},
-            {text:'近6个月现金流是否为正？',options:[{text:'持续为正',score:100},{text:'基本平衡',score:60},{text:'持续为负',score:20}],dimension:'business',level:3},
-            {text:'经营性现金流/净利润比率',options:[{text:'≥1',score:100},{text:'0.5-1',score:60},{text:'≤0.5',score:20}],dimension:'business',level:3},
-            {text:'是否存在亏损业务？',options:[{text:'否',score:100},{text:'少量',score:60},{text:'大量',score:20}],dimension:'business',level:3},
-            {text:'客户集中度（前5大客户占比）',options:[{text:'≤50%',score:100},{text:'50-70%',score:60},{text:'≥70%',score:20}],dimension:'business',level:3},
-            {text:'供应商账期是否合理？',options:[{text:'合理',score:100},{text:'偏紧',score:60},{text:'严重受限',score:20}],dimension:'business',level:3},
-            {text:'是否建立现金流预警机制？',options:[{text:'已建立',score:100},{text:'部分建立',score:60},{text:'未建立',score:20}],dimension:'business',level:3},
-            {text:'公私账户是否完全分开？',options:[{text:'完全分开',score:100},{text:'部分混同',score:60},{text:'严重混同',score:20}],dimension:'legal',level:3},
-            {text:'已涉诉案件数量',options:[{text:'0',score:100},{text:'1-3',score:60},{text:'≥4',score:20}],dimension:'legal',level:4},
-            {text:'是否存在被执行案件？',options:[{text:'否',score:100},{text:'有但未冻结',score:60},{text:'已冻结',score:20}],dimension:'legal',level:4},
-            {text:'账户冻结情况',options:[{text:'无',score:100},{text:'非核心账户',score:60},{text:'核心账户',score:20}],dimension:'legal',level:4},
-            {text:'是否存在刑事风险（拒执罪等）？',options:[{text:'否',score:100},{text:'有风险',score:60},{text:'已触发',score:20}],dimension:'legal',level:4},
-            {text:'是否完成公司化改造？',options:[{text:'已完成',score:100},{text:'进行中',score:60},{text:'未开始',score:20}],dimension:'legal',level:4}
+            {text:'企业当前是否存在逾期债务？',options:[{text:'否',score:100},{text:'有但可控',score:67},{text:'大面积逾期',score:33}],dimension:'debt',level:0},
+            {text:'银行贷款到期时间是否集中在3个月内？',options:[{text:'否',score:100},{text:'部分',score:67},{text:'集中',score:33}],dimension:'debt',level:0},
+            {text:'是否存在个人或夫妻共同担保公司债务的情况？',options:[{text:'否',score:100},{text:'少量',score:67},{text:'大量',score:33}],dimension:'family',level:0},
+            {text:'核心业务是否持续盈利？',options:[{text:'是',score:100},{text:'微利',score:67},{text:'亏损',score:33}],dimension:'business',level:0},
+            {text:'是否已涉及诉讼或被执行？',options:[{text:'否',score:100},{text:'有但可控',score:67},{text:'严重',score:33}],dimension:'legal',level:0},
+            {text:'资产负债率（总负债/总资产）',options:[{text:'≤50%',score:100},{text:'50-70%',score:67},{text:'≥70%',score:33}],dimension:'debt',level:1},
+            {text:'综合融资成本（年化）',options:[{text:'≤10%',score:100},{text:'10-15%',score:67},{text:'≥15%',score:33}],dimension:'debt',level:1},
+            {text:'短期负债占比（流动负债/总负债）',options:[{text:'≤40%',score:100},{text:'40-60%',score:67},{text:'≥60%',score:33}],dimension:'debt',level:1},
+            {text:'是否存在民间借贷？',options:[{text:'否',score:100},{text:'少量且合规',score:67},{text:'大量或高息',score:33}],dimension:'debt',level:1},
+            {text:'个人连带责任担保金额占净资产比例',options:[{text:'≤20%',score:100},{text:'20-50%',score:67},{text:'≥50%',score:33}],dimension:'family',level:1},
+            {text:'是否存在联保、互保链？',options:[{text:'否',score:100},{text:'有但未出险',score:67},{text:'已出险',score:33}],dimension:'debt',level:1},
+            {text:'逾期债务占总债务比例',options:[{text:'≤5%',score:100},{text:'5-20%',score:67},{text:'≥20%',score:33}],dimension:'debt',level:1},
+            {text:'是否存在以贷养贷情况？',options:[{text:'否',score:100},{text:'少量',score:67},{text:'严重',score:33}],dimension:'debt',level:1},
+            {text:'夫妻共签债务金额',options:[{text:'无',score:100},{text:'少量',score:67},{text:'大量',score:33}],dimension:'family',level:1},
+            {text:'债务到期时间分布是否均衡？',options:[{text:'均衡',score:100},{text:'部分集中',score:67},{text:'高度集中',score:33}],dimension:'debt',level:1},
+            {text:'可快速变现资产占比',options:[{text:'≥50%',score:100},{text:'30-50%',score:67},{text:'≤30%',score:33}],dimension:'asset',level:2},
+            {text:'是否存在闲置或低效资产？',options:[{text:'否',score:100},{text:'少量',score:67},{text:'大量',score:33}],dimension:'asset',level:2},
+            {text:'应收账款周转天数',options:[{text:'≤60天',score:100},{text:'60-90天',score:67},{text:'≥90天',score:33}],dimension:'asset',level:2},
+            {text:'库存周转天数',options:[{text:'≤30天',score:100},{text:'30-60天',score:67},{text:'≥60天',score:33}],dimension:'asset',level:2},
+            {text:'固定资产抵押率',options:[{text:'≤50%',score:100},{text:'50-80%',score:67},{text:'≥80%',score:33}],dimension:'asset',level:2},
+            {text:'是否存在已查封资产？',options:[{text:'否',score:100},{text:'少量',score:67},{text:'大量',score:33}],dimension:'legal',level:2},
+            {text:'无形资产（资质/牌照）是否完整？',options:[{text:'完整',score:100},{text:'部分缺失',score:67},{text:'严重缺失',score:33}],dimension:'asset',level:2},
+            {text:'对外投资是否存在亏损？',options:[{text:'否',score:100},{text:'少量',score:67},{text:'严重',score:33}],dimension:'asset',level:2},
+            {text:'核心业务毛利率',options:[{text:'≥20%',score:100},{text:'10-20%',score:67},{text:'≤10%',score:33}],dimension:'business',level:3},
+            {text:'近6个月现金流是否为正？',options:[{text:'持续为正',score:100},{text:'基本平衡',score:67},{text:'持续为负',score:33}],dimension:'business',level:3},
+            {text:'经营性现金流/净利润比率',options:[{text:'≥1',score:100},{text:'0.5-1',score:67},{text:'≤0.5',score:33}],dimension:'business',level:3},
+            {text:'是否存在亏损业务？',options:[{text:'否',score:100},{text:'少量',score:67},{text:'大量',score:33}],dimension:'business',level:3},
+            {text:'客户集中度（前5大客户占比）',options:[{text:'≤50%',score:100},{text:'50-70%',score:67},{text:'≥70%',score:33}],dimension:'business',level:3},
+            {text:'供应商账期是否合理？',options:[{text:'合理',score:100},{text:'偏紧',score:67},{text:'严重受限',score:33}],dimension:'business',level:3},
+            {text:'是否建立现金流预警机制？',options:[{text:'已建立',score:100},{text:'部分建立',score:67},{text:'未建立',score:33}],dimension:'business',level:3},
+            {text:'公私账户是否完全分开？',options:[{text:'完全分开',score:100},{text:'部分混同',score:67},{text:'严重混同',score:33}],dimension:'legal',level:3},
+            {text:'已涉诉案件数量',options:[{text:'0',score:100},{text:'1-3',score:67},{text:'≥4',score:33}],dimension:'legal',level:4},
+            {text:'是否存在被执行案件？',options:[{text:'否',score:100},{text:'有但未冻结',score:67},{text:'已冻结',score:33}],dimension:'legal',level:4},
+            {text:'账户冻结情况',options:[{text:'无',score:100},{text:'非核心账户',score:67},{text:'核心账户',score:33}],dimension:'legal',level:4},
+            {text:'是否存在刑事风险（拒执罪等）？',options:[{text:'否',score:100},{text:'有风险',score:67},{text:'已触发',score:33}],dimension:'legal',level:4},
+            {text:'是否完成公司化改造？',options:[{text:'已完成',score:100},{text:'进行中',score:67},{text:'未开始',score:33}],dimension:'legal',level:4}
         ];
         const fastQuestions = fullQuestions.filter(q => q.level === 0);
         createApp({setup(){
@@ -510,7 +510,7 @@
             const selectedAnswer = ref(null);
             const answers = ref({});
             const diagnosisCount = ref(parseInt(localStorage.getItem('diagnosis_count') || '128'));
-            const averageScore = ref(62);
+            const averageScore = ref(parseFloat(localStorage.getItem('diagnosis_avg_score')) || 62);
             const showContact = ref(false);
             const radarChart = ref(null);
             const totalQuestions = computed(() => questions.value.length);
@@ -530,7 +530,7 @@
             const startFastDiagnosis = () => {useFastMode.value=true;questions.value=[...fastQuestions];currentQuestionIndex.value=0;currentLevel.value=questions.value[0]?.level||0;selectedAnswer.value=null;answers.value={};currentPage.value='question'};
             const startFullDiagnosis = () => {useFastMode.value=false;questions.value=[...fullQuestions];currentQuestionIndex.value=0;currentLevel.value=questions.value[0]?.level||0;selectedAnswer.value=null;answers.value={};currentPage.value='question'};
             const toggleOption = (type) => {expandedOption.value = expandedOption.value === type ? null : type};
-            const selectOption = (idx) => {selectedAnswer.value=idx;answers.value[currentQuestionIndex.value]=idx;if(isLastQuestion.value){diagnosisCount.value++;localStorage.setItem('diagnosis_count',diagnosisCount.value);currentPage.value='result';nextTick(()=>renderRadarChart())}else{currentQuestionIndex.value++;currentLevel.value=questions.value[currentQuestionIndex.value].level;selectedAnswer.value=answers.value[currentQuestionIndex.value]??null}};
+            const selectOption = (idx) => {selectedAnswer.value=idx;answers.value[currentQuestionIndex.value]=idx;if(isLastQuestion.value){diagnosisCount.value++;localStorage.setItem('diagnosis_count',diagnosisCount.value);var pa=parseFloat(localStorage.getItem('diagnosis_avg_score')||'62'),pc=parseInt(localStorage.getItem('diagnosis_avg_count')||'0'),na=pc>0?Math.round((pa*pc+Math.round(totalScore.value))/(pc+1)):Math.round(totalScore.value);averageScore.value=na;localStorage.setItem('diagnosis_avg_score',String(na));localStorage.setItem('diagnosis_avg_count',String(pc+1));currentPage.value='result';nextTick(()=>renderRadarChart())}else{currentQuestionIndex.value++;currentLevel.value=questions.value[currentQuestionIndex.value].level;selectedAnswer.value=answers.value[currentQuestionIndex.value]??null}};
             const prevQuestion = () => {if(currentQuestionIndex.value>0){currentQuestionIndex.value--;currentLevel.value=questions.value[currentQuestionIndex.value].level;selectedAnswer.value=answers.value[currentQuestionIndex.value]??null}};
             const renderRadarChart = () => {const ctx=document.getElementById('radarChart').getContext('2d');if(radarChart.value)radarChart.value.destroy();radarChart.value=new Chart(ctx,{type:'radar',data:{labels:dimensionScores.value.map(d=>d.name),datasets:[{label:'维度评分',data:dimensionScores.value.map(d=>d.score),backgroundColor:'rgba(171,25,66,0.2)',borderColor:'#AB1942',borderWidth:2,pointBackgroundColor:'#AB1942',pointBorderColor:'#fff'}]},options:{scales:{r:{beginAtZero:true,max:100,ticks:{stepSize:20,font:{size:10}},grid:{color:'rgba(0,0,0,0.1)'},pointLabels:{font:{size:12}}}},plugins:{legend:{display:false}},maintainAspectRatio:false}})};
             const restartDiagnosis = () => {currentPage.value='home';showContact.value=false};
