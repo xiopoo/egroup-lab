@@ -419,9 +419,9 @@
                         <button @click="showContact = !showContact" class="btn-primary flex-1">预约咨询</button>
                     </div>
                 </div>
-                <div v-if="showContact" class="wechat-overlay" @click="showContact = false">
-                    <div class="wechat-popover-fixed" @click.stop>
-                        <button class="wechat-close" @click="showContact = false">&times;</button>
+                <div v-if="showContact" class="wechat-overlay" @click="showContact = false" @touchend.self="showContact = false">
+                    <div class="wechat-popover-fixed" @click.stop @touchend.stop>
+                        <button class="wechat-close" @click="showContact = false" @touchend="showContact = false">&times;</button>
                         <img src="images/wechat-qrcode.jpg" alt="微信二维码">
                         <span class="wechat-popover-label">长按/扫码添加微信，获取专业诊断方案</span>
                         <span style="display:block;text-align:center;font-size:11px;color:#9ca3af;margin-top:4px">如扫码不成功，可搜索微信号：igrape 添加</span>
