@@ -24,6 +24,7 @@
         }
         *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
         html{overflow-x:hidden;width:100%}
+        [v-cloak]{display:none!important}
         img{object-fit:contain;max-width:100%}
         body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif;background-color:#f8f9fa;min-height:100vh;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;-webkit-tap-highlight-color:transparent;touch-action:manipulation;overflow-x:hidden;width:100%}
         a{text-decoration:none;color:inherit;transition:color .2s ease}
@@ -422,7 +423,7 @@
                         <button @click="showContact = !showContact" class="btn-primary flex-1">预约咨询</button>
                     </div>
                 </div>
-                <div v-if="showContact" class="wechat-overlay" @click="showContact = false" @touchend.self="showContact = false">
+                <div v-if="showContact" v-cloak class="wechat-overlay" @click="showContact = false" @touchend.self="showContact = false">
                     <div class="wechat-popover-fixed" @click.stop @touchend.stop>
                         <button class="wechat-close" @click="showContact = false" @touchend="showContact = false">&times;</button>
                         <img src="images/wechat-qrcode.jpg" alt="微信二维码">
