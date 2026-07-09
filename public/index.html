@@ -179,12 +179,9 @@ img{max-width:100%;display:block;object-fit:contain;pointer-events:none}
 .layer-text-3 .text{font-size:12px}
 
 /* Layer color variants - 3 colors shared across 4 blocks per layer */
-.layer-color-1{background:linear-gradient(135deg,#5B9BD5,#4A90D9)}
-.layer-color-2{background:linear-gradient(135deg,#4EDB8A,#2ECC71)}
-.layer-color-3{background:linear-gradient(135deg,#F5B041,#F39C12)}
-.layer-color-4{background:linear-gradient(135deg,#E57373,#EF5350)}
-.layer-color-5{background:linear-gradient(135deg,#BA68C8,#AB47BC)}
-.layer-color-6{background:linear-gradient(135deg,#4DD0E1,#00BCD4)}
+.ring-layer-1-bg{background:rgba(80,160,220,.7);backdrop-filter:blur(3px)}
+.ring-layer-2-bg{background:rgba(100,190,160,.65);backdrop-filter:blur(3px)}
+.ring-layer-3-bg{background:rgba(230,160,70,.65);backdrop-filter:blur(3px)}
 
 /* Tooltip */
 .diagram-tooltip{
@@ -506,7 +503,7 @@ img{max-width:100%;display:block;object-fit:contain;pointer-events:none}
                   <line x1="250" y1="250" x2="250" y2="10"/>
                 </svg>
                 <div class="depth-layer cr-layer-1">
-                  <div class="sphere-text-block layer-text-1 layer-color-1" data-key="diag">
+                  <div class="sphere-text-block layer-text-1 ring-layer-1-bg" data-key="diag">
                     <span class="text">诊断</span>
                     <span class="diagram-tooltip">全面评估企业健康度，识别核心问题</span>
                   </div>
@@ -518,7 +515,7 @@ img{max-width:100%;display:block;object-fit:contain;pointer-events:none}
                   <line x1="250" y1="250" x2="250" y2="10"/>
                 </svg>
                 <div class="depth-layer cr-layer-1" style="animation-delay:-11.25s,-11.25s">
-                  <div class="sphere-text-block layer-text-1 layer-color-2" data-key="reorg">
+                  <div class="sphere-text-block layer-text-1 ring-layer-1-bg" data-key="reorg">
                     <span class="text">重组</span>
                     <span class="diagram-tooltip">系统性重构企业资产与债务结构</span>
                   </div>
@@ -530,7 +527,7 @@ img{max-width:100%;display:block;object-fit:contain;pointer-events:none}
                   <line x1="250" y1="250" x2="250" y2="10"/>
                 </svg>
                 <div class="depth-layer cr-layer-1" style="animation-delay:-22.5s,-22.5s">
-                  <div class="sphere-text-block layer-text-1 layer-color-3" data-key="breakthrough">
+                  <div class="sphere-text-block layer-text-1 ring-layer-1-bg" data-key="breakthrough">
                     <span class="text">破局</span>
                     <span class="diagram-tooltip">打破经营困局，开辟全新发展路径</span>
                   </div>
@@ -542,7 +539,7 @@ img{max-width:100%;display:block;object-fit:contain;pointer-events:none}
                   <line x1="250" y1="250" x2="250" y2="10"/>
                 </svg>
                 <div class="depth-layer cr-layer-1" style="animation-delay:-33.75s,-33.75s">
-                  <div class="sphere-text-block layer-text-1 layer-color-4" data-key="reshape">
+                  <div class="sphere-text-block layer-text-1 ring-layer-1-bg" data-key="reshape">
                     <span class="text">重塑</span>
                     <span class="diagram-tooltip">重塑企业价值体系与核心竞争力</span>
                   </div>
@@ -560,7 +557,7 @@ img{max-width:100%;display:block;object-fit:contain;pointer-events:none}
                     <line x1="250" y1="250" x2="250" y2="10"/>
                   </svg>
                   <div class="depth-layer cr-layer-2" style="left:calc(50% - 40px)">
-                    <div class="sphere-text-block layer-text-2 layer-color-5" data-key="business">
+                    <div class="sphere-text-block layer-text-2 ring-layer-2-bg" data-key="business">
                       <span class="text">业务</span>
                       <span class="diagram-tooltip">评估企业业务模式与运营效率</span>
                     </div>
@@ -572,7 +569,7 @@ img{max-width:100%;display:block;object-fit:contain;pointer-events:none}
                     <line x1="250" y1="250" x2="250" y2="10"/>
                   </svg>
                   <div class="depth-layer cr-layer-2" style="animation-delay:-10s,-10s;left:calc(50% - 40px)">
-                    <div class="sphere-text-block layer-text-2 layer-color-6" data-key="finance">
+                    <div class="sphere-text-block layer-text-2 ring-layer-2-bg" data-key="finance">
                       <span class="text">财务</span>
                       <span class="diagram-tooltip">分析企业资金状况与盈利能力</span>
                     </div>
@@ -584,7 +581,7 @@ img{max-width:100%;display:block;object-fit:contain;pointer-events:none}
                     <line x1="250" y1="250" x2="250" y2="10"/>
                   </svg>
                   <div class="depth-layer cr-layer-2" style="animation-delay:-20s,-20s;left:calc(50% - 40px)">
-                    <div class="sphere-text-block layer-text-2 layer-color-1" data-key="debt">
+                    <div class="sphere-text-block layer-text-2 ring-layer-2-bg" data-key="debt">
                       <span class="text">债务</span>
                       <span class="diagram-tooltip">评估企业负债结构与偿债能力</span>
                     </div>
@@ -596,7 +593,7 @@ img{max-width:100%;display:block;object-fit:contain;pointer-events:none}
                     <line x1="250" y1="250" x2="250" y2="10"/>
                   </svg>
                   <div class="depth-layer cr-layer-2" style="animation-delay:-30s,-30s;left:calc(50% - 40px)">
-                    <div class="sphere-text-block layer-text-2 layer-color-2" data-key="asset">
+                    <div class="sphere-text-block layer-text-2 ring-layer-2-bg" data-key="asset">
                       <span class="text">资产</span>
                       <span class="diagram-tooltip">盘活存量资产，优化资源配置</span>
                     </div>
@@ -615,7 +612,7 @@ img{max-width:100%;display:block;object-fit:contain;pointer-events:none}
                     <line x1="250" y1="250" x2="250" y2="10"/>
                   </svg>
                   <div class="depth-layer cr-layer-3" style="left:calc(50% - 36px)">
-                    <div class="sphere-text-block layer-text-3 layer-color-3" data-key="value">
+                    <div class="sphere-text-block layer-text-3 ring-layer-3-bg" data-key="value">
                       <span class="text">价值</span>
                       <span class="diagram-tooltip">发现与释放企业潜在价值</span>
                     </div>
@@ -627,7 +624,7 @@ img{max-width:100%;display:block;object-fit:contain;pointer-events:none}
                     <line x1="250" y1="250" x2="250" y2="10"/>
                   </svg>
                   <div class="depth-layer cr-layer-3" style="animation-delay:-8.75s,-8.75s;left:calc(50% - 36px)">
-                    <div class="sphere-text-block layer-text-3 layer-color-4" data-key="order">
+                    <div class="sphere-text-block layer-text-3 ring-layer-3-bg" data-key="order">
                       <span class="text">秩序</span>
                       <span class="diagram-tooltip">重建企业运营新秩序</span>
                     </div>
@@ -639,7 +636,7 @@ img{max-width:100%;display:block;object-fit:contain;pointer-events:none}
                     <line x1="250" y1="250" x2="250" y2="10"/>
                   </svg>
                   <div class="depth-layer cr-layer-3" style="animation-delay:-17.5s,-17.5s;left:calc(50% - 36px)">
-                    <div class="sphere-text-block layer-text-3 layer-color-5" data-key="balance">
+                    <div class="sphere-text-block layer-text-3 ring-layer-3-bg" data-key="balance">
                       <span class="text">平衡</span>
                       <span class="diagram-tooltip">实现资产债务现金流三维平衡</span>
                     </div>
@@ -651,7 +648,7 @@ img{max-width:100%;display:block;object-fit:contain;pointer-events:none}
                     <line x1="250" y1="250" x2="250" y2="10"/>
                   </svg>
                   <div class="depth-layer cr-layer-3" style="animation-delay:-26.25s,-26.25s;left:calc(50% - 36px)">
-                    <div class="sphere-text-block layer-text-3 layer-color-6" data-key="growth">
+                    <div class="sphere-text-block layer-text-3 ring-layer-3-bg" data-key="growth">
                       <span class="text">增长</span>
                       <span class="diagram-tooltip">驱动企业持续增长与价值提升</span>
                     </div>
@@ -689,7 +686,7 @@ img{max-width:100%;display:block;object-fit:contain;pointer-events:none}
           <div class="label">稳定就业岗位</div>
         </div>
         <div class="stat-item">
-          <div class="num">9.7%</div>
+          <div class="num">29.5%</div>
           <div class="label">净利润修复峰值</div>
         </div>
       </div>
