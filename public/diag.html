@@ -261,7 +261,7 @@
                     <a href="experts.html">专家团队</a>
                     <span class="nav-item-wrapper"><a href="diag.html" class="active">诊断</a><span class="nav-badge">免费</span></span>
                 </nav>
-                <button class="hamburger-btn" aria-label="菜单"><span></span><span></span><span></span></button>
+                <button class="hamburger-btn" aria-label="菜单" onclick="var o=document.querySelector('.mobile-nav-overlay');var h=this;h.classList.toggle('active');if(o){o.classList.toggle('active');document.body.style.overflow=o.classList.contains('active')?'hidden':''}"><span></span><span></span><span></span></button>
             </div>
         </header>
 
@@ -533,8 +533,8 @@
             return {currentPage,useFastMode,expandedOption,questions,currentQuestionIndex,currentLevel,selectedAnswer,answers,diagnosisCount,averageScore,showContact,levels,totalQuestions,currentQuestion,isLastQuestion,progressPercent,dimensionScores,totalScore,resultLevel,resultClass,findings,suggestions,getScoreClass,startDiagnosis,startFastDiagnosis,startFullDiagnosis,toggleOption,selectOption,prevQuestion,renderRadarChart,restartDiagnosis}
         }}).mount('#app');
 
-        /* Mobile hamburger menu - after Vue mount */
-        (function(){var h=document.querySelector('.hamburger-btn'),o=document.querySelector('.mobile-nav-overlay');if(!h||!o)return;h.addEventListener('click',function(){this.classList.toggle('active');o.classList.toggle('active');document.body.style.overflow=o.classList.contains('active')?'hidden':''});o.addEventListener('click',function(e){if(e.target===this){this.classList.remove('active');h.classList.remove('active');document.body.style.overflow=''}});o.querySelectorAll('a').forEach(function(l){l.addEventListener('click',function(){o.classList.remove('active');h.classList.remove('active');document.body.style.overflow=''})})})();
+        /* Mobile hamburger: closing logic (opening via onclick on button) */
+        (function(){var o=document.querySelector('.mobile-nav-overlay'),h=document.querySelector('.hamburger-btn');if(!o||!h)return;function c(){o.classList.remove('active');h.classList.remove('active');document.body.style.overflow=''}o.addEventListener('click',function(e){if(e.target===this)c()});o.querySelectorAll('a').forEach(function(l){l.addEventListener('click',c)})})();
     </script>
 </body>
 </html>
