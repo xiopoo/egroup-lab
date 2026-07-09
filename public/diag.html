@@ -455,10 +455,6 @@
         </footer>
     </div>
 
-    <script>
-        /* Mobile hamburger menu */
-        (function(){var h=document.querySelector('.hamburger-btn'),o=document.querySelector('.mobile-nav-overlay');if(!h||!o)return;h.addEventListener('click',function(){this.classList.toggle('active');o.classList.toggle('active');document.body.style.overflow=o.classList.contains('active')?'hidden':''});o.addEventListener('click',function(e){if(e.target===this){this.classList.remove('active');h.classList.remove('active');document.body.style.overflow=''}});o.querySelectorAll('a').forEach(function(l){l.addEventListener('click',function(){o.classList.remove('active');h.classList.remove('active');document.body.style.overflow=''})})})();
-
         const { createApp, ref, computed, nextTick } = Vue;
         const levels = [{name:'基础诊断',weight:0},{name:'债务评估',weight:0.3},{name:'资产评估',weight:0.2},{name:'经营评估',weight:0.25},{name:'法律评估',weight:0.15},{name:'综合诊断',weight:0.1}];
         const fullQuestions = [
@@ -536,6 +532,9 @@
             const restartDiagnosis = () => {currentPage.value='home';showContact.value=false};
             return {currentPage,useFastMode,expandedOption,questions,currentQuestionIndex,currentLevel,selectedAnswer,answers,diagnosisCount,averageScore,showContact,levels,totalQuestions,currentQuestion,isLastQuestion,progressPercent,dimensionScores,totalScore,resultLevel,resultClass,findings,suggestions,getScoreClass,startDiagnosis,startFastDiagnosis,startFullDiagnosis,toggleOption,selectOption,prevQuestion,renderRadarChart,restartDiagnosis}
         }}).mount('#app');
+
+        /* Mobile hamburger menu - after Vue mount */
+        (function(){var h=document.querySelector('.hamburger-btn'),o=document.querySelector('.mobile-nav-overlay');if(!h||!o)return;h.addEventListener('click',function(){this.classList.toggle('active');o.classList.toggle('active');document.body.style.overflow=o.classList.contains('active')?'hidden':''});o.addEventListener('click',function(e){if(e.target===this){this.classList.remove('active');h.classList.remove('active');document.body.style.overflow=''}});o.querySelectorAll('a').forEach(function(l){l.addEventListener('click',function(){o.classList.remove('active');h.classList.remove('active');document.body.style.overflow=''})})})();
     </script>
 </body>
 </html>
