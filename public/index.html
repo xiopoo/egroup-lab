@@ -41,7 +41,7 @@ img{max-width:100%;display:block;object-fit:contain;pointer-events:none}
 .header{position:sticky;top:0;z-index:100;background:var(--brand);box-shadow:0 2px 12px rgba(171,25,66,.15)}
 .header-inner{max-width:var(--content-max);margin:0 auto;padding:0 var(--content-padding);height:64px;display:flex;align-items:center;justify-content:space-between}
 .header-logo{display:flex;align-items:center;height:100%}
-.header-logo img{width:120px;height:auto;object-fit:contain;display:block}
+.header-logo img{width:150px;height:auto;object-fit:contain;display:block}
 .header-nav{display:flex;gap:32px;align-items:center}
 .header-nav a{color:#fff;font-size:15px;font-weight:400;opacity:.9;position:relative}
 .header-nav a:hover{opacity:1;color:#fff}
@@ -55,7 +55,7 @@ img{max-width:100%;display:block;object-fit:contain;pointer-events:none}
 /* Hero */
 .hero{background:linear-gradient(135deg,var(--brand) 0%,var(--brand-dark) 100%);position:relative;overflow-x:hidden}
 .hero::before{content:'';position:absolute;top:-50%;right:0;width:600px;height:600px;background:radial-gradient(circle,rgba(255,255,255,.08) 0%,transparent 70%);border-radius:50%;pointer-events:none;transform:translateX(50%)}
-.hero-inner{position:relative;display:grid;grid-template-columns:1fr 1.15fr;gap:48px;align-items:center;box-sizing:border-box;min-height:320px;padding:48px 0}
+.hero-inner{position:relative;display:grid;grid-template-columns:1fr 1.15fr;gap:48px;align-items:center;box-sizing:border-box;min-height:auto;padding:48px 0 0}
 .hero-content{position:relative;z-index:1}
 .hero-badge{display:inline-block;font-size:16px;color:#fff;letter-spacing:4px;margin-bottom:24px;opacity:.7;font-weight:300}
 .hero-title{font-size:48px;font-weight:700;color:#fff;letter-spacing:-.02em;line-height:1.15;margin-bottom:12px}
@@ -68,7 +68,7 @@ img{max-width:100%;display:block;object-fit:contain;pointer-events:none}
 .hero-cta::after{content:'→';transition:transform var(--transition)}
 .hero-cta:hover::after{transform:translateX(4px)}
 .hero-visual{position:relative;display:flex;align-items:center;justify-content:center}
-.hero-radial{width:100%;max-width:420px;aspect-ratio:1;position:relative;display:flex;align-items:center;justify-content:center}
+.hero-radial{width:100%;max-width:100%;aspect-ratio:1;position:relative;display:flex;align-items:center;justify-content:center}
 /* Enterprise Core Dynamic Diagram - 2.5D Sphere */
 .diagram-core{
   position:absolute;z-index:10;width:16%;aspect-ratio:1;border-radius:50%;
@@ -113,11 +113,11 @@ img{max-width:100%;display:block;object-fit:contain;pointer-events:none}
 
 /* Depth animation layer - opacity changes based on orbit position */
 .depth-layer{
-  position:absolute;top:0;left:calc(50% - 38px);pointer-events:auto;z-index:4;
+  position:absolute;top:0;left:calc(50% - 45px);pointer-events:auto;z-index:4;
   animation:sphere-depth 35s linear infinite
 }
-.ellipse-layer-30 .depth-layer{left:calc(50% - 34px)}
-.ellipse-layer-60 .depth-layer{left:calc(50% - 30px)}
+.ellipse-layer-30 .depth-layer{left:calc(50% - 40px)}
+.ellipse-layer-60 .depth-layer{left:calc(50% - 36px)}
 
 /* Text block appearance */
 .sphere-text-block{
@@ -131,20 +131,20 @@ img{max-width:100%;display:block;object-fit:contain;pointer-events:none}
 
 /* Layer 1 (Equator) styles - 4 text blocks */
 .layer-text-1{
-  width:76px;height:32px;border-radius:16px;font-size:14px;
+  width:90px;height:36px;border-radius:16px;font-size:14px;
   box-shadow:0 4px 20px rgba(0,0,0,.18)
 }
 
 /* Layer 2 (30° lat) styles */
 .layer-text-2{
-  width:68px;height:28px;border-radius:14px;font-size:13px;
+  width:80px;height:32px;border-radius:14px;font-size:13px;
   box-shadow:0 3px 15px rgba(0,0,0,.15)
 }
 .layer-text-2 .text{font-size:12px}
 
 /* Layer 3 (60° lat) styles */
 .layer-text-3{
-  width:60px;height:24px;border-radius:12px;font-size:12px;
+  width:72px;height:28px;border-radius:12px;font-size:12px;
   box-shadow:0 2px 10px rgba(0,0,0,.12)
 }
 .layer-text-3 .text{font-size:11px}
@@ -337,14 +337,16 @@ img{max-width:100%;display:block;object-fit:contain;pointer-events:none}
         }
 /* Mid-screen: reduce sphere to avoid overflow */
 @media(min-width:768px) and (max-width:1023px){
-  .hero-radial{max-width:380px}
+  .hero-radial{max-width:400px}
+  .stats-in-hero .stats{grid-template-columns:repeat(2,1fr);gap:16px}
+  .stats-in-hero{padding:8px 0 20px}
 }
 
 @media(max-width:767px){
   :root{--content-padding:20px}
   
   .header-inner{height:56px}
-  .header-logo img{width:100px;display:block}
+  .header-logo img{width:130px;display:block}
   .header-nav{gap:18px}
   .header-nav a{font-size:13px}
   .nav-badge{font-size:9px;padding:0 4px}
@@ -357,6 +359,11 @@ img{max-width:100%;display:block;object-fit:contain;pointer-events:none}
   .hero-desc{font-size:14px;margin-bottom:32px}
   .hero-cta{padding:14px 32px;font-size:15px;min-height:48px;min-width:160px;justify-content:center}
   .hero-visual{display:none}
+  .stats-in-hero{padding:4px 0 24px;margin-top:8px}
+  .stats-in-hero .stats{grid-template-columns:repeat(2,1fr);gap:12px}
+  .stats-in-hero .stat-item{padding:12px 8px}
+  .stats-in-hero .stat-item .num{font-size:32px}
+  .stats-in-hero .stat-item .label{font-size:13px}
   
   .stats-section{padding:40px 0}
   .stats{grid-template-columns:repeat(2,1fr);gap:0}
@@ -395,6 +402,14 @@ img{max-width:100%;display:block;object-fit:contain;pointer-events:none}
   .footer{padding:48px 0 24px}
   .footer-bottom{font-size:11px}
 }
+/* Stats inside Hero */
+.stats-in-hero{padding:12px 0 28px;border-top:1px solid rgba(255,255,255,.1);margin-top:16px}
+.stats-in-hero .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.stats-in-hero .stat-item{text-align:center;padding:16px;position:relative}
+.stats-in-hero .stat-item::after{content:'';position:absolute;right:0;top:10%;bottom:10%;width:1px;background:rgba(255,255,255,.15)}
+.stats-in-hero .stat-item:last-child::after{display:none}
+.stats-in-hero .stat-item .num{font-size:42px;font-weight:700;color:#fff;letter-spacing:-.02em;line-height:1.1;margin-bottom:6px}
+.stats-in-hero .stat-item .label{font-size:14px;color:rgba(255,255,255,.7);line-height:1.5}
 </style>
 </head>
 <body>
@@ -402,7 +417,7 @@ img{max-width:100%;display:block;object-fit:contain;pointer-events:none}
 <header class="header">
   <div class="header-inner">
     <a href="index.html" class="header-logo">
-      <img src="images/logo-white.png" alt="灰金重组">
+      <img src="images/logo-hjzc-transparent-white.png" alt="灰金重组">
     </a>
     <nav class="header-nav">
       <a href="index.html" class="active">首页</a>
@@ -437,8 +452,8 @@ img{max-width:100%;display:block;object-fit:contain;pointer-events:none}
               <div class="sphere-layer-line"></div>
               <!-- 诊断 0° -->
               <div class="orbit-node-wrap" style="animation:sphere-ring-cw 35s linear infinite">
-                <svg class="orbit-node-svg" viewBox="0 0 380 380" preserveAspectRatio="xMidYMid meet" style="animation:sphere-depth 35s linear infinite">
-                  <line x1="190" y1="190" x2="190" y2="10"/>
+                <svg class="orbit-node-svg" viewBox="0 0 500 500" preserveAspectRatio="xMidYMid meet" style="animation:sphere-depth 35s linear infinite">
+                  <line x1="250" y1="250" x2="250" y2="10"/>
                 </svg>
                 <div class="depth-layer cr-layer-1">
                   <div class="sphere-text-block layer-text-1 layer-color-1" data-key="diag">
@@ -449,8 +464,8 @@ img{max-width:100%;display:block;object-fit:contain;pointer-events:none}
               </div>
               <!-- 重组 90° -->
               <div class="orbit-node-wrap" style="animation:sphere-ring-cw 35s linear infinite;animation-delay:-8.75s">
-                <svg class="orbit-node-svg" viewBox="0 0 380 380" preserveAspectRatio="xMidYMid meet" style="animation:sphere-depth 35s linear infinite;animation-delay:-8.75s">
-                  <line x1="190" y1="190" x2="190" y2="10"/>
+                <svg class="orbit-node-svg" viewBox="0 0 500 500" preserveAspectRatio="xMidYMid meet" style="animation:sphere-depth 35s linear infinite;animation-delay:-8.75s">
+                  <line x1="250" y1="250" x2="250" y2="10"/>
                 </svg>
                 <div class="depth-layer cr-layer-1" style="animation-delay:-8.75s,-8.75s">
                   <div class="sphere-text-block layer-text-1 layer-color-2" data-key="reorg">
@@ -461,8 +476,8 @@ img{max-width:100%;display:block;object-fit:contain;pointer-events:none}
               </div>
               <!-- 破局 180° -->
               <div class="orbit-node-wrap" style="animation:sphere-ring-cw 35s linear infinite;animation-delay:-17.5s">
-                <svg class="orbit-node-svg" viewBox="0 0 380 380" preserveAspectRatio="xMidYMid meet" style="animation:sphere-depth 35s linear infinite;animation-delay:-17.5s">
-                  <line x1="190" y1="190" x2="190" y2="10"/>
+                <svg class="orbit-node-svg" viewBox="0 0 500 500" preserveAspectRatio="xMidYMid meet" style="animation:sphere-depth 35s linear infinite;animation-delay:-17.5s">
+                  <line x1="250" y1="250" x2="250" y2="10"/>
                 </svg>
                 <div class="depth-layer cr-layer-1" style="animation-delay:-17.5s,-17.5s">
                   <div class="sphere-text-block layer-text-1 layer-color-3" data-key="breakthrough">
@@ -473,8 +488,8 @@ img{max-width:100%;display:block;object-fit:contain;pointer-events:none}
               </div>
               <!-- 重塑 270° -->
               <div class="orbit-node-wrap" style="animation:sphere-ring-cw 35s linear infinite;animation-delay:-26.25s">
-                <svg class="orbit-node-svg" viewBox="0 0 380 380" preserveAspectRatio="xMidYMid meet" style="animation:sphere-depth 35s linear infinite;animation-delay:-26.25s">
-                  <line x1="190" y1="190" x2="190" y2="10"/>
+                <svg class="orbit-node-svg" viewBox="0 0 500 500" preserveAspectRatio="xMidYMid meet" style="animation:sphere-depth 35s linear infinite;animation-delay:-26.25s">
+                  <line x1="250" y1="250" x2="250" y2="10"/>
                 </svg>
                 <div class="depth-layer cr-layer-1" style="animation-delay:-26.25s,-26.25s">
                   <div class="sphere-text-block layer-text-1 layer-color-4" data-key="reshape">
@@ -491,8 +506,8 @@ img{max-width:100%;display:block;object-fit:contain;pointer-events:none}
               <div class="ellipse-layer ellipse-layer-30">
                 <!-- 业务 0° -->
                 <div class="orbit-node-wrap" style="animation:sphere-ring-ccw 30s linear infinite">
-                  <svg class="orbit-node-svg" viewBox="0 0 380 380" preserveAspectRatio="xMidYMid meet" style="animation:sphere-depth 30s linear infinite">
-                    <line x1="190" y1="190" x2="190" y2="10"/>
+                  <svg class="orbit-node-svg" viewBox="0 0 500 500" preserveAspectRatio="xMidYMid meet" style="animation:sphere-depth 30s linear infinite">
+                    <line x1="250" y1="250" x2="250" y2="10"/>
                   </svg>
                   <div class="depth-layer cr-layer-2" style="left:calc(50% - 40px)">
                     <div class="sphere-text-block layer-text-2 layer-color-5" data-key="business">
@@ -503,8 +518,8 @@ img{max-width:100%;display:block;object-fit:contain;pointer-events:none}
                 </div>
                 <!-- 财务 90° -->
                 <div class="orbit-node-wrap" style="animation:sphere-ring-ccw 30s linear infinite;animation-delay:-7.5s">
-                  <svg class="orbit-node-svg" viewBox="0 0 380 380" preserveAspectRatio="xMidYMid meet" style="animation:sphere-depth 30s linear infinite;animation-delay:-7.5s">
-                    <line x1="190" y1="190" x2="190" y2="10"/>
+                  <svg class="orbit-node-svg" viewBox="0 0 500 500" preserveAspectRatio="xMidYMid meet" style="animation:sphere-depth 30s linear infinite;animation-delay:-7.5s">
+                    <line x1="250" y1="250" x2="250" y2="10"/>
                   </svg>
                   <div class="depth-layer cr-layer-2" style="animation-delay:-7.5s,-7.5s;left:calc(50% - 40px)">
                     <div class="sphere-text-block layer-text-2 layer-color-6" data-key="finance">
@@ -515,8 +530,8 @@ img{max-width:100%;display:block;object-fit:contain;pointer-events:none}
                 </div>
                 <!-- 债务 180° -->
                 <div class="orbit-node-wrap" style="animation:sphere-ring-ccw 30s linear infinite;animation-delay:-15s">
-                  <svg class="orbit-node-svg" viewBox="0 0 380 380" preserveAspectRatio="xMidYMid meet" style="animation:sphere-depth 30s linear infinite;animation-delay:-15s">
-                    <line x1="190" y1="190" x2="190" y2="10"/>
+                  <svg class="orbit-node-svg" viewBox="0 0 500 500" preserveAspectRatio="xMidYMid meet" style="animation:sphere-depth 30s linear infinite;animation-delay:-15s">
+                    <line x1="250" y1="250" x2="250" y2="10"/>
                   </svg>
                   <div class="depth-layer cr-layer-2" style="animation-delay:-15s,-15s;left:calc(50% - 40px)">
                     <div class="sphere-text-block layer-text-2 layer-color-1" data-key="debt">
@@ -527,8 +542,8 @@ img{max-width:100%;display:block;object-fit:contain;pointer-events:none}
                 </div>
                 <!-- 资产 270° -->
                 <div class="orbit-node-wrap" style="animation:sphere-ring-ccw 30s linear infinite;animation-delay:-22.5s">
-                  <svg class="orbit-node-svg" viewBox="0 0 380 380" preserveAspectRatio="xMidYMid meet" style="animation:sphere-depth 30s linear infinite;animation-delay:-22.5s">
-                    <line x1="190" y1="190" x2="190" y2="10"/>
+                  <svg class="orbit-node-svg" viewBox="0 0 500 500" preserveAspectRatio="xMidYMid meet" style="animation:sphere-depth 30s linear infinite;animation-delay:-22.5s">
+                    <line x1="250" y1="250" x2="250" y2="10"/>
                   </svg>
                   <div class="depth-layer cr-layer-2" style="animation-delay:-22.5s,-22.5s;left:calc(50% - 40px)">
                     <div class="sphere-text-block layer-text-2 layer-color-2" data-key="asset">
@@ -546,8 +561,8 @@ img{max-width:100%;display:block;object-fit:contain;pointer-events:none}
               <div class="ellipse-layer ellipse-layer-60">
                 <!-- 价值 0° -->
                 <div class="orbit-node-wrap" style="animation:sphere-ring-cw 25s linear infinite">
-                  <svg class="orbit-node-svg" viewBox="0 0 380 380" preserveAspectRatio="xMidYMid meet" style="animation:sphere-depth 25s linear infinite">
-                    <line x1="190" y1="190" x2="190" y2="10"/>
+                  <svg class="orbit-node-svg" viewBox="0 0 500 500" preserveAspectRatio="xMidYMid meet" style="animation:sphere-depth 25s linear infinite">
+                    <line x1="250" y1="250" x2="250" y2="10"/>
                   </svg>
                   <div class="depth-layer cr-layer-3" style="left:calc(50% - 36px)">
                     <div class="sphere-text-block layer-text-3 layer-color-3" data-key="value">
@@ -558,8 +573,8 @@ img{max-width:100%;display:block;object-fit:contain;pointer-events:none}
                 </div>
                 <!-- 秩序 90° -->
                 <div class="orbit-node-wrap" style="animation:sphere-ring-cw 25s linear infinite;animation-delay:-6.25s">
-                  <svg class="orbit-node-svg" viewBox="0 0 380 380" preserveAspectRatio="xMidYMid meet" style="animation:sphere-depth 25s linear infinite;animation-delay:-6.25s">
-                    <line x1="190" y1="190" x2="190" y2="10"/>
+                  <svg class="orbit-node-svg" viewBox="0 0 500 500" preserveAspectRatio="xMidYMid meet" style="animation:sphere-depth 25s linear infinite;animation-delay:-6.25s">
+                    <line x1="250" y1="250" x2="250" y2="10"/>
                   </svg>
                   <div class="depth-layer cr-layer-3" style="animation-delay:-6.25s,-6.25s;left:calc(50% - 36px)">
                     <div class="sphere-text-block layer-text-3 layer-color-4" data-key="order">
@@ -570,8 +585,8 @@ img{max-width:100%;display:block;object-fit:contain;pointer-events:none}
                 </div>
                 <!-- 平衡 180° -->
                 <div class="orbit-node-wrap" style="animation:sphere-ring-cw 25s linear infinite;animation-delay:-12.5s">
-                  <svg class="orbit-node-svg" viewBox="0 0 380 380" preserveAspectRatio="xMidYMid meet" style="animation:sphere-depth 25s linear infinite;animation-delay:-12.5s">
-                    <line x1="190" y1="190" x2="190" y2="10"/>
+                  <svg class="orbit-node-svg" viewBox="0 0 500 500" preserveAspectRatio="xMidYMid meet" style="animation:sphere-depth 25s linear infinite;animation-delay:-12.5s">
+                    <line x1="250" y1="250" x2="250" y2="10"/>
                   </svg>
                   <div class="depth-layer cr-layer-3" style="animation-delay:-12.5s,-12.5s;left:calc(50% - 36px)">
                     <div class="sphere-text-block layer-text-3 layer-color-5" data-key="balance">
@@ -582,8 +597,8 @@ img{max-width:100%;display:block;object-fit:contain;pointer-events:none}
                 </div>
                 <!-- 增长 270° -->
                 <div class="orbit-node-wrap" style="animation:sphere-ring-cw 25s linear infinite;animation-delay:-18.75s">
-                  <svg class="orbit-node-svg" viewBox="0 0 380 380" preserveAspectRatio="xMidYMid meet" style="animation:sphere-depth 25s linear infinite;animation-delay:-18.75s">
-                    <line x1="190" y1="190" x2="190" y2="10"/>
+                  <svg class="orbit-node-svg" viewBox="0 0 500 500" preserveAspectRatio="xMidYMid meet" style="animation:sphere-depth 25s linear infinite;animation-delay:-18.75s">
+                    <line x1="250" y1="250" x2="250" y2="10"/>
                   </svg>
                   <div class="depth-layer cr-layer-3" style="animation-delay:-18.75s,-18.75s;left:calc(50% - 36px)">
                     <div class="sphere-text-block layer-text-3 layer-color-6" data-key="growth">
@@ -605,10 +620,9 @@ img{max-width:100%;display:block;object-fit:contain;pointer-events:none}
         </div>
       </div>
     </div>
-  </section>
 
-  <!-- Stats -->
-  <section class="stats-section">
+  <!-- Stats in Hero -->
+  <div class="stats-in-hero">
     <div class="container">
       <div class="stats">
         <div class="stat-item">
@@ -629,6 +643,7 @@ img{max-width:100%;display:block;object-fit:contain;pointer-events:none}
         </div>
       </div>
     </div>
+  </div>
   </section>
 
 
@@ -812,7 +827,7 @@ img{max-width:100%;display:block;object-fit:contain;pointer-events:none}
   <div class="container">
     <div class="footer-top">
       <div class="footer-brand">
-        <img src="images/logo-white.png" alt="灰金重组">
+        <img src="images/logo-hjzc-transparent-white.png" alt="灰金重组">
         <div class="footer-brand-name">灰金重组</div>
         <div class="footer-brand-slogan">看 清 问 题 · 重 建 秩 序</div>
       </div>
