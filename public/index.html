@@ -681,7 +681,7 @@ main{overflow-x:hidden}
     <div class="container">
       <div class="stats">
         <div class="stat-item">
-          <div class="num">128+</div>
+          <div class="num" id="diagnosis-count">128+</div>
           <div class="label">企业完成诊断</div>
         </div>
         <div class="stat-item">
@@ -904,6 +904,13 @@ main{overflow-x:hidden}
 </footer>
 
 <script>
+/* Dynamic diagnosis counter from localStorage */
+(function(){
+  var count = parseInt(localStorage.getItem('diagnosis_count') || '128');
+  var el = document.getElementById('diagnosis-count');
+  if (el) el.textContent = count + '+';
+})();
+
 /* Mobile hamburger menu */
 (function(){var h=document.querySelector('.hamburger-btn'),o=document.querySelector('.mobile-nav-overlay');if(!h||!o)return;h.addEventListener('click',function(){this.classList.toggle('active');o.classList.toggle('active');document.body.style.overflow=o.classList.contains('active')?'hidden':''});o.addEventListener('click',function(e){if(e.target===this){this.classList.remove('active');h.classList.remove('active');document.body.style.overflow=''}});o.querySelectorAll('a').forEach(function(l){l.addEventListener('click',function(){o.classList.remove('active');h.classList.remove('active');document.body.style.overflow=''})})})();
 
