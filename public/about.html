@@ -135,21 +135,24 @@ img{max-width:100%;display:block;object-fit:contain;pointer-events:none}
 .cta-btn:hover::after{transform:translateX(4px)}
 
 /* Footer */
-.footer{background:var(--bg-dark);color:#fff;padding:60px 0 30px}
-.footer-top{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:40px;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,.1)}
-.footer-brand img{width:120px;height:auto;margin-bottom:16px;filter:brightness(0) invert(1);opacity:.9}
-.footer-brand-name{font-size:20px;font-weight:600;margin-bottom:8px}
-.footer-brand-slogan{font-size:14px;color:var(--text-faint);letter-spacing:2px}
-.footer-col h5{font-size:15px;font-weight:600;margin-bottom:20px;color:#fff}
-.footer-links{list-style:none}
-.footer-links li{margin-bottom:12px}
-.footer-links a{font-size:14px;color:var(--text-faint)}
+.footer{background:var(--bg-dark);color:#fff;padding:18px 0 10px}
+.footer-top{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-start;padding-bottom:12px;border-bottom:1px solid rgba(255,255,255,.1);gap:16px}
+.footer-brand{display:flex;align-items:center;gap:10px}
+.footer-brand img{width:55px;height:auto;filter:brightness(0) invert(1);opacity:.9}
+.footer-brand-info{display:flex;flex-direction:column}
+.footer-brand-name{font-size:15px;font-weight:600}
+.footer-brand-slogan{font-size:11px;color:var(--text-faint);letter-spacing:2px}
+.footer-col{flex:1;min-width:120px}
+.footer-col h5{font-size:13px;font-weight:600;margin-bottom:8px;color:#fff}
+.footer-links{list-style:none;display:flex;flex-wrap:wrap;gap:14px}
+.footer-links li{margin-bottom:0}
+.footer-links a{font-size:12px;color:var(--text-faint)}
 .footer-links a:hover{color:#fff}
-.footer-contact p{font-size:14px;color:var(--text-faint);margin-bottom:10px;line-height:1.6}
+.footer-contact p{font-size:12px;color:var(--text-faint);margin-bottom:4px;line-height:1.5}
 .footer-contact a{color:var(--text-faint)}
 .footer-contact a:hover{color:#fff}
-.footer-bottom{padding-top:30px;text-align:center;font-size:12px;color:var(--text-muted);line-height:1.8}
-.footer-bottom p{margin-bottom:4px}
+.footer-bottom{padding-top:10px;text-align:center;font-size:11px;color:var(--text-muted);line-height:1.5}
+.footer-bottom p{margin-bottom:0}
 
 /* Responsive */
         @media(max-width:1023px){
@@ -225,9 +228,17 @@ img{max-width:100%;display:block;object-fit:contain;pointer-events:none}
   .cta-actions{justify-content:center;flex-direction:column}
   .cta-btn{width:100%;min-height:48px;min-width:160px;justify-content:center}
 
-  .footer-top{grid-template-columns:1fr;gap:32px}
-  .footer{padding:48px 0 24px}
+  .footer-top{flex-direction:column;align-items:flex-start;gap:10px}
+  .footer{padding:16px 0 8px}
   .footer-bottom{font-size:11px}
+  .footer-brand{gap:8px}
+  .footer-brand img{width:45px}
+  .footer-brand-name{font-size:14px}
+  .footer-brand-slogan{font-size:11px}
+  .footer-col h5{font-size:12px;margin-bottom:6px}
+  .footer-links{gap:10px}
+  .footer-links a{font-size:11px}
+  .footer-contact p{font-size:11px;margin-bottom:3px}
 }
 </style>
 </head>
@@ -443,8 +454,10 @@ img{max-width:100%;display:block;object-fit:contain;pointer-events:none}
     <div class="footer-top">
       <div class="footer-brand">
         <img src="images/logo-hjzc-transparent-white.png" alt="灰金重组">
-        <div class="footer-brand-name">灰金重组</div>
-        <div class="footer-brand-slogan">看 清 问 题 · 重 建 秩 序</div>
+        <div class="footer-brand-info">
+          <div class="footer-brand-name">灰金重组</div>
+          <div class="footer-brand-slogan">看 清 问 题 · 重 建 秩 序</div>
+        </div>
       </div>
       <div class="footer-col">
         <h5>快速导航</h5>

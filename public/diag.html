@@ -159,10 +159,24 @@
         .page-hero-inner{position:relative;z-index:1;text-align:center;padding:60px 0}
         .page-hero-title{font-size:42px;font-weight:700;color:#fff;letter-spacing:-.02em;line-height:1.2;margin-bottom:12px}
         .page-hero-subtitle{font-size:18px;color:#fff;opacity:.85;font-weight:400}
-        .footer{padding:48px 0 40px;text-align:center;font-size:13px;color:var(--text-muted);border-top:1px solid var(--border)}
-        .footer p{margin-bottom:4px}
-        .footer a{color:var(--text-secondary)}
-        .footer a:hover{color:var(--brand)}
+        .footer{background:var(--bg-dark);color:#fff;padding:18px 0 10px}
+        .footer-top{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-start;padding-bottom:12px;border-bottom:1px solid rgba(255,255,255,.1);gap:16px}
+        .footer-brand{display:flex;align-items:center;gap:10px}
+        .footer-brand img{width:55px;height:auto;filter:brightness(0) invert(1);opacity:.9}
+        .footer-brand-info{display:flex;flex-direction:column}
+        .footer-brand-name{font-size:15px;font-weight:600}
+        .footer-brand-slogan{font-size:11px;color:var(--text-faint);letter-spacing:2px}
+        .footer-col{flex:1;min-width:120px}
+        .footer-col h5{font-size:13px;font-weight:600;margin-bottom:8px;color:#fff}
+        .footer-links{list-style:none;display:flex;flex-wrap:wrap;gap:14px}
+        .footer-links li{margin-bottom:0}
+        .footer-links a{font-size:12px;color:var(--text-faint)}
+        .footer-links a:hover{color:#fff}
+        .footer-contact p{font-size:12px;color:var(--text-faint);margin-bottom:4px;line-height:1.5}
+        .footer-contact a{color:var(--text-faint)}
+        .footer-contact a:hover{color:#fff}
+        .footer-bottom{padding-top:10px;text-align:center;font-size:11px;color:var(--text-muted);line-height:1.5}
+        .footer-bottom p{margin-bottom:0}
         .score-badge{display:inline-flex;align-items:center;justify-content:center;width:80px;height:80px;border-radius:50%;background-color:#AB1942;color:#fff;font-size:24px;font-weight:700}
         .w-16{width:64px}
         .h-16{height:64px}
@@ -217,6 +231,17 @@
           .page-hero-title{font-size:32px}
           .page-hero-subtitle{font-size:15px}
           .home-desc{max-width:90%;display:block;white-space:normal}
+          .footer-top{flex-direction:column;align-items:flex-start;gap:10px}
+          .footer{padding:16px 0 8px}
+          .footer-bottom{font-size:11px}
+          .footer-brand{gap:8px}
+          .footer-brand img{width:45px}
+          .footer-brand-name{font-size:14px}
+          .footer-brand-slogan{font-size:11px}
+          .footer-col h5{font-size:12px;margin-bottom:6px}
+          .footer-links{gap:10px}
+          .footer-links a{font-size:11px}
+          .footer-contact p{font-size:11px;margin-bottom:3px}
         }
 
         /* WeChat Popover */
@@ -415,7 +440,39 @@
         </main>
 
         <footer class="footer">
-            <p>© 2026 灰金重组</p>
+            <div class="container">
+                <div class="footer-top">
+                    <div class="footer-brand">
+                        <img src="images/logo-hjzc-transparent-white.png" alt="灰金重组">
+                        <div class="footer-brand-info">
+                          <div class="footer-brand-name">灰金重组</div>
+                          <div class="footer-brand-slogan">看 清 问 题 · 重 建 秩 序</div>
+                        </div>
+                    </div>
+                    <div class="footer-col">
+                        <h5>快速导航</h5>
+                        <ul class="footer-links">
+                            <li><a href="index.html">首页</a></li>
+                            <li><a href="about.html">关于我们</a></li>
+                            <li><a href="services.html">核心服务</a></li>
+                            <li><a href="cases-detail.html">成功案例</a></li>
+                            <li><a href="experts.html">专家团队</a></li>
+                            <li><a href="diag.html">诊断</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h5>联系方式</h5>
+                        <div class="footer-contact">
+                            <p>邮箱：<a href="mailto:lucasa@agent.qq.com">lucasa@agent.qq.com</a></p>
+                            <p>专注：企业困境诊断与重组</p>
+                            <p>理念：看清问题，重建秩序</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>© 2026 灰金重组</p>
+                </div>
+            </div>
         </footer>
     </div>
 
