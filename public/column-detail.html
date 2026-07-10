@@ -155,6 +155,8 @@ img{max-width:100%;display:block;object-fit:contain;pointer-events:none}
 
 main{overflow-x:hidden}
 
+.article-hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;max-width:none}
+
 /* Responsive */
 @media(max-width:1023px){
   .related-grid{grid-template-columns:repeat(2,1fr)}
@@ -189,6 +191,21 @@ main{overflow-x:hidden}
 }
 </style>
     <script src="js/image-urls-v2.js"></script>
+<script>
+(function(){
+  var u = window.__IMAGE_URLS;
+  if(!u) return;
+  var img = document.getElementById('articleHeroImg');
+  if(!img) return;
+  var params = new URLSearchParams(window.location.search);
+  var id = params.get('id') || '1';
+  var key = 'column' + id;
+  if(u[key]){ img.src = u[key]; }
+})();
+</script>
+<script>
+document.getElementById('articleHeroImg').addEventListener('error', function(){ this.style.display = 'none'; });
+</script>
 </head>
 <body>
 
@@ -242,6 +259,7 @@ main{overflow-x:hidden}
   <section class="article-feature-image">
     <div class="container">
       <div class="article-image-placeholder">
+        <img class="article-hero-img" id="articleHeroImg" alt="">
         <span class="article-image-placeholder-text" id="article-image-text">债务重组</span>
       </div>
     </div>

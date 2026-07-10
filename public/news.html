@@ -148,6 +148,8 @@ img{max-width:100%;display:block;object-fit:contain;pointer-events:none}
 .footer-email a:hover{color:#fff}
 .footer-bottom{padding-top:14px;margin-top:14px;border-top:1px solid rgba(255,255,255,.08);text-align:center;font-size:11px;color:var(--text-muted)}
 
+.news-thumb-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;max-width:none;z-index:0}
+
 /* Responsive */
         @media(max-width:1023px){
           .page-hero{height:200px}
@@ -328,10 +330,11 @@ function renderNewsList() {
     grid.innerHTML = '<div class="no-results"><div class="no-results-icon">📭</div><div>暂无相关新闻</div></div>';
   } else {
     var html = '';
-    pageItems.forEach(function(item) {
+    pageItems.forEach(function(item, idx) {
       html += '<div class="news-card">' +
         '<div class="news-thumb">' +
           '<div class="news-thumb-bg ' + item.catClass + '">' +
+            '<img class="news-thumb-img" data-news="' + ((idx % 2) + 1) + '" alt="' + item.category + '">' +
             '<span class="news-thumb-icon">' + item.catIcon + '</span>' +
           '</div>' +
           '<span class="news-category-tag">' + item.category + '</span>' +
@@ -392,6 +395,22 @@ document.getElementById('search-input').addEventListener('input', function() {
 
 // Initial render
 renderNewsList();
+
+// Image injection
+(function(){
+  var u = window.__IMAGE_URLS;
+  if(!u) return;
+  document.querySelectorAll('.news-thumb-img').forEach(function(img){
+    var n = img.getAttribute('data-news');
+    var key = 'news' + n;
+    if(key && u[key]){ img.src = u[key]; }
+  });
+})();
+
+// Image error handling
+document.querySelectorAll('.news-thumb-img').forEach(function(img){
+  img.addEventListener('error', function(){ this.style.display = 'none'; });
+});
 </script>
 </body>
 </html>

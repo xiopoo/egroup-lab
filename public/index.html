@@ -292,7 +292,7 @@ img{max-width:100%;display:block;object-fit:contain;pointer-events:none}
 .service-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--brand);transform:scaleX(0);transform-origin:left;transition:transform var(--transition)}
 .service-card:hover{border-color:var(--brand);box-shadow:var(--shadow-md);transform:translateY(-6px)}
 .service-card:hover::before{transform:scaleX(1)}
-.service-card-img{height:160px;object-fit:cover;border-radius:var(--radius-md) var(--radius-md) 0 0;margin:-28px -24px 16px -24px;width:calc(100% + 48px);display:block;background:linear-gradient(135deg,var(--brand),var(--brand-dark))}
+.service-card-img{height:160px;object-fit:cover;max-width:none;border-radius:var(--radius-md) var(--radius-md) 0 0;margin:-28px -24px 16px -24px;width:calc(100% + 48px);display:block;background:linear-gradient(135deg,var(--brand),var(--brand-dark))}
 .service-number{font-size:48px;font-weight:700;color:var(--brand);opacity:.15;line-height:1;margin-bottom:16px;font-family:'Georgia',serif}
 .service-card h3{font-size:20px;font-weight:600;color:var(--text);margin-bottom:8px}
 .service-target{font-size:13px;color:var(--brand);margin-bottom:16px;font-weight:500}
@@ -308,6 +308,7 @@ img{max-width:100%;display:block;object-fit:contain;pointer-events:none}
 .case-image{height:180px;background:linear-gradient(135deg,var(--brand) 0%,var(--brand-dark) 100%);position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden}
 .case-image::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 70% 30%,rgba(255,255,255,.1) 0%,transparent 50%)}
 .case-image-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1}
+.article-card-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;max-width:none;z-index:0}
 .case-tag{position:absolute;top:16px;left:16px;padding:4px 12px;background:rgba(255,255,255,.9);color:var(--brand);font-size:12px;font-weight:600;border-radius:20px;z-index:2}
 .case-image-text{position:relative;color:#fff;font-size:36px;font-weight:700;opacity:.3;z-index:0}
 /* Three-state: hide broken img, show CSS fallback */
@@ -879,6 +880,7 @@ main{overflow-x:hidden}
       <div class="cases-grid">
         <div class="case-card">
           <div class="case-image">
+            <img class="article-card-img" data-column="1" alt="债务重组">
             <span class="case-tag">债务重组</span>
             <span class="case-image-text">债务</span>
           </div>
@@ -899,6 +901,7 @@ main{overflow-x:hidden}
         </div>
         <div class="case-card">
           <div class="case-image" style="background:linear-gradient(135deg,#2b6cb0 0%,#2c5282 100%)">
+            <img class="article-card-img" data-column="2" alt="资产盘活">
             <span class="case-tag">资产盘活</span>
             <span class="case-image-text">资产</span>
           </div>
@@ -919,6 +922,7 @@ main{overflow-x:hidden}
         </div>
         <div class="case-card">
           <div class="case-image" style="background:linear-gradient(135deg,#c05621 0%,#9c4221 100%)">
+            <img class="article-card-img" data-column="3" alt="经营诊断">
             <span class="case-tag">经营诊断</span>
             <span class="case-image-text">诊断</span>
           </div>
@@ -1190,7 +1194,7 @@ document.addEventListener('DOMContentLoaded', function() {
   if (!u) return;
 
   // Three-state mechanism: on load error, hide img → CSS fallback shows
-  document.querySelectorAll('.case-image-img, .service-card-img').forEach(function(img){
+  document.querySelectorAll('.case-image-img, .service-card-img, .article-card-img').forEach(function(img){
     img.addEventListener('error', function(){
       this.classList.add('img-error');
       console.warn('[Image] FAILED:', this.src || '(empty)');
@@ -1259,6 +1263,16 @@ document.addEventListener('DOMContentLoaded', function() {
       img.src = svcUrls[idx-1];
     }
   });
+
+  /* 专栏配图注入 */
+  (function(){
+    var colMap = {1:'column1',2:'column2',3:'column3'};
+    document.querySelectorAll('.article-card-img').forEach(function(img){
+      var idx = img.getAttribute('data-column');
+      var key = colMap[idx];
+      if(key && u[key]){ img.src = u[key]; }
+    });
+  })();
 })();
 </script>
 </body>

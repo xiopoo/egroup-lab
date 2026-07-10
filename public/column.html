@@ -155,6 +155,10 @@ img{max-width:100%;display:block;object-fit:contain;pointer-events:none}
 
 main{overflow-x:hidden}
 
+.article-card-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;max-width:none;z-index:0}
+.featured-image{overflow:hidden;position:relative}
+.featured-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;max-width:none}
+
 /* Responsive */
 @media(max-width:1023px){
   .page-hero-title{font-size:36px}
@@ -196,6 +200,23 @@ main{overflow-x:hidden}
 }
 </style>
     <script src="js/image-urls-v2.js"></script>
+<script>
+(function(){
+  var u = window.__IMAGE_URLS;
+  if(!u) return;
+  var colMap = {'1':'column1','2':'column2','3':'column3','4':'column4'};
+  document.querySelectorAll('.article-card-img, .featured-img').forEach(function(img){
+    var idx = img.getAttribute('data-column');
+    var key = colMap[idx];
+    if(key && u[key]){ img.src = u[key]; }
+  });
+})();
+</script>
+<script>
+document.querySelectorAll('.article-card-img, .featured-img').forEach(function(img){
+  img.addEventListener('error', function(){ this.style.display = 'none'; });
+});
+</script>
 </head>
 <body>
 
@@ -261,6 +282,7 @@ main{overflow-x:hidden}
     <div class="container">
       <div class="featured-card" id="featured-article" data-category="debt">
         <div class="featured-image">
+          <img class="featured-img" data-column="1" alt="债务重组">
           <span class="featured-tag">债务重组</span>
           <span class="featured-image-text">债务重组</span>
         </div>
@@ -283,6 +305,7 @@ main{overflow-x:hidden}
       <div class="articles-grid" id="articles-grid">
         <div class="article-card" data-category="debt">
           <div class="article-card-image tag-debt">
+            <img class="article-card-img" data-column="1" alt="债务重组">
             <span class="article-card-tag">债务重组</span>
             <span class="article-card-image-text">债务</span>
           </div>
@@ -294,6 +317,7 @@ main{overflow-x:hidden}
         </div>
         <div class="article-card" data-category="asset">
           <div class="article-card-image tag-asset">
+            <img class="article-card-img" data-column="2" alt="资产盘活">
             <span class="article-card-tag">资产盘活</span>
             <span class="article-card-image-text">资产</span>
           </div>
@@ -305,6 +329,7 @@ main{overflow-x:hidden}
         </div>
         <div class="article-card" data-category="legal">
           <div class="article-card-image tag-legal">
+            <img class="article-card-img" data-column="3" alt="法律风控">
             <span class="article-card-tag">法律风控</span>
             <span class="article-card-image-text">法律</span>
           </div>
@@ -316,6 +341,7 @@ main{overflow-x:hidden}
         </div>
         <div class="article-card" data-category="diag">
           <div class="article-card-image tag-diag">
+            <img class="article-card-img" data-column="4" alt="经营诊断">
             <span class="article-card-tag">经营诊断</span>
             <span class="article-card-image-text">诊断</span>
           </div>
