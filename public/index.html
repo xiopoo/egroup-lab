@@ -1183,9 +1183,9 @@ document.addEventListener('DOMContentLoaded', function() {
   var dots = document.querySelectorAll('#heroDots span');
   if (!slides.length) return;
 
-  // Set background images on slides
+  // Set background images on slides with fallback gradient
   slides.forEach(function(s, i){
-    if (images[i]) s.style.backgroundImage = 'linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.5)),url('+images[i]+')';
+    if (images[i]) s.style.backgroundImage = 'url('+images[i]+'), linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.5)), linear-gradient(135deg, #AB1942 0%, #8B1435 100%)';
   });
 
   var current = 0, timer = null;
@@ -1211,26 +1211,26 @@ document.addEventListener('DOMContentLoaded', function() {
   start();
 })();
 
-  // Case cards
+  // Case cards with fallback gradient
   var caseCards = document.querySelectorAll('.case-card');
   var caseUrls = [u.case1, u.case2, u.case3];
   caseCards.forEach(function(card, i) {
     var imgDiv = card.querySelector('.case-image');
     if (imgDiv && caseUrls[i]) {
-      imgDiv.style.backgroundImage = 'url('+caseUrls[i]+')';
-      imgDiv.style.backgroundSize = 'cover';
-      imgDiv.style.backgroundPosition = 'center';
+      imgDiv.style.backgroundImage = 'url('+caseUrls[i]+'), linear-gradient(135deg, #AB1942 0%, #8B1435 100%)';
+      imgDiv.style.backgroundSize = 'cover, auto';
+      imgDiv.style.backgroundPosition = 'center, center';
     }
   });
 
-  // Service cards: add decorative image above service-number
+  // Service cards: add decorative image above service-number with fallback gradient
   var svcCards = document.querySelectorAll('.service-card');
   var svcUrls = [u.service1, u.service2, u.service3];
   svcCards.forEach(function(card, i) {
     if (!svcUrls[i]) return;
     var imgDiv = document.createElement('div');
     imgDiv.className = 'service-image';
-    imgDiv.style.cssText = 'height:160px;background-size:cover;background-position:center;overflow:hidden;border-radius:var(--radius-md) var(--radius-md) 0 0;margin:-28px -24px 16px -24px;background-image:url('+svcUrls[i]+')';
+    imgDiv.style.cssText = 'height:160px;background-size:cover,auto;background-position:center,center;overflow:hidden;border-radius:var(--radius-md) var(--radius-md) 0 0;margin:-28px -24px 16px -24px;background-image:url('+svcUrls[i]+'), linear-gradient(135deg, #AB1942 0%, #8B1435 100%)';
     card.insertBefore(imgDiv, card.firstChild);
   });
 })();
