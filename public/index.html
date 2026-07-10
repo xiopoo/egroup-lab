@@ -98,6 +98,9 @@ img{max-width:100%;display:block;object-fit:contain;pointer-events:none}
 .hero-carousel-dots span{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.35);cursor:pointer;transition:all .4s ease;touch-action:manipulation}
 .hero-carousel-dots span.active{background:#fff;width:26px;border-radius:5px}
 
+/* Hero Overlay: dark gradient between images and content for readability */
+.hero-overlay{position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(to right,rgba(0,0,0,.50) 0%,rgba(0,0,0,.15) 50%,transparent 70%);z-index:2;pointer-events:none}
+
 .hero-inner{position:relative;display:grid;grid-template-columns:1.3fr 1fr;gap:24px;align-items:center;box-sizing:border-box;min-height:auto;padding:20px 0 0}
 .hero-content{position:relative;z-index:3} /* 在图片之上 */
 .hero-badge{display:inline-block;font-size:16px;color:#fff;letter-spacing:4px;margin-bottom:10px;opacity:.7;font-weight:300}
@@ -110,7 +113,7 @@ img{max-width:100%;display:block;object-fit:contain;pointer-events:none}
 .hero-cta:active{transform:translateY(0)}
 .hero-cta::after{content:'→';transition:transform var(--transition)}
 .hero-cta:hover::after{transform:translateX(4px)}
-.hero-visual{position:relative;display:flex;align-items:center;justify-content:center}
+.hero-visual{position:relative;display:flex;align-items:center;justify-content:center;z-index:3}
 .hero-radial{width:100%;max-width:100%;aspect-ratio:1;position:relative;display:flex;align-items:center;justify-content:center}
 /* Enterprise Core Dynamic Diagram - 2.5D Sphere */
 .diagram-core{
@@ -524,6 +527,7 @@ main{overflow-x:hidden}
         <img alt="灰金重组" class="hero-slide-img" data-hero="2">
       </div>
     </div>
+    <div class="hero-overlay"></div>
     <div class="hero-carousel-dots" id="heroDots">
       <span class="active" data-index="0"></span>
       <span data-index="1"></span>
