@@ -90,16 +90,12 @@ img{max-width:100%;display:block;object-fit:contain;pointer-events:none}
 .hero-deco-ring-3{top:5%;right:2%;width:250px;height:250px;border-color:rgba(255,255,255,.02)}
 
 /* Hero Carousel: img-based slides with fade transition */
-.hero-carousel{position:absolute;top:0;left:0;width:100%;height:100%;z-index:2;overflow:hidden} /* z-index:2 — 轮播图片 */
+.hero-carousel{position:absolute;top:0;left:0;width:100%;height:100%;overflow:hidden} /* 背景图片层 */
 .hero-slide{position:absolute;top:0;left:0;width:100%;height:100%;opacity:0;transition:opacity 1.2s ease;background:linear-gradient(135deg,var(--brand) 0%,var(--brand-dark) 100%)}
 .hero-slide.active{opacity:1}
-.hero-slide-img{width:100%;height:100%;object-fit:cover;display:block;position:relative;z-index:2}
 .hero-carousel-dots{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);display:flex;gap:10px;z-index:5} /* z-index:5 — 指示点 */
 .hero-carousel-dots span{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.35);cursor:pointer;transition:all .4s ease;touch-action:manipulation}
 .hero-carousel-dots span.active{background:#fff;width:26px;border-radius:5px}
-
-/* Hero Overlay: dark gradient between images and content for readability */
-.hero-overlay{position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(to right,rgba(0,0,0,.50) 0%,rgba(0,0,0,.15) 50%,transparent 70%);z-index:2;pointer-events:none}
 
 .hero-inner{position:relative;display:grid;grid-template-columns:1.3fr 1fr;gap:24px;align-items:center;box-sizing:border-box;min-height:auto;padding:20px 0 0}
 .hero-content{position:relative;z-index:3} /* 在图片之上 */
@@ -462,7 +458,7 @@ main{overflow-x:hidden}
   .footer-links{gap:14px}
 }
 /* Stats inside Hero */
-.stats-in-hero{padding:8px 0 20px;border-top:1px solid rgba(255,255,255,.1);margin-top:8px}
+.stats-in-hero{padding:8px 0 20px;border-top:1px solid rgba(255,255,255,.1);margin-top:8px;position:relative;z-index:3}
 .stats-in-hero .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
 .stats-in-hero .stat-item{text-align:center;padding:16px;position:relative}
 .stats-in-hero .stat-item::after{content:'';position:absolute;right:0;top:10%;bottom:10%;width:1px;background:rgba(255,255,255,.15)}
@@ -518,16 +514,12 @@ main{overflow-x:hidden}
   <section class="hero" id="hero">
     <div class="hero-carousel" id="heroCarousel">
       <div class="hero-slide active" data-slide="0">
-        <img alt="灰金重组" class="hero-slide-img" data-hero="0">
       </div>
       <div class="hero-slide" data-slide="1">
-        <img alt="灰金重组" class="hero-slide-img" data-hero="1">
       </div>
       <div class="hero-slide" data-slide="2">
-        <img alt="灰金重组" class="hero-slide-img" data-hero="2">
       </div>
     </div>
-    <div class="hero-overlay"></div>
     <div class="hero-carousel-dots" id="heroDots">
       <span class="active" data-index="0"></span>
       <span data-index="1"></span>
@@ -1196,7 +1188,7 @@ document.addEventListener('DOMContentLoaded', function() {
   if (!u) return;
 
   // Three-state mechanism: on load error, hide img → CSS fallback shows
-  document.querySelectorAll('.case-image-img, .service-card-img, .hero-slide-img').forEach(function(img){
+  document.querySelectorAll('.case-image-img, .service-card-img').forEach(function(img){
     img.addEventListener('error', function(){
       this.classList.add('img-error');
       console.warn('[Image] FAILED:', this.src || '(empty)');
@@ -1207,17 +1199,14 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 
-  // Hero carousel: set <img> src, keep fade transition
+  // Hero carousel: set background-image on .hero-slide (CSS gradient fallback)
   var heroImages = u.heroImages || [];
   if (heroImages.length) {
     var slides = document.querySelectorAll('.hero-slide');
     slides.forEach(function(s, i){
       if (!heroImages[i]) return;
-      var img = s.querySelector('.hero-slide-img');
-      if (img) {
-        console.debug('[Image] Setting src:', heroImages[i]);
-        img.src = heroImages[i];
-      }
+      console.debug('[Image] Setting background:', heroImages[i]);
+      s.style.backgroundImage = 'url(' + heroImages[i] + '), linear-gradient(135deg, var(--brand) 0%, var(--brand-dark) 100%)';
     });
   }
 
