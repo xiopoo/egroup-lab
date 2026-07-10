@@ -91,7 +91,7 @@ img{max-width:100%;display:block;object-fit:contain;pointer-events:none}
 
 /* Hero Carousel: img-based slides with fade transition */
 .hero-carousel{position:absolute;top:0;left:0;width:100%;height:100%;overflow:hidden} /* 背景图片层 */
-.hero-slide{position:absolute;top:0;left:0;width:100%;height:100%;opacity:0;transition:opacity 1.2s ease;background:linear-gradient(135deg,var(--brand) 0%,var(--brand-dark) 100%)}
+.hero-slide{position:absolute;top:0;left:0;width:100%;height:100%;opacity:0;transition:opacity 1.2s ease;background:linear-gradient(135deg,var(--brand) 0%,var(--brand-dark) 100%);background-size:cover;background-position:center}
 .hero-slide.active{opacity:1}
 .hero-carousel-dots{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);display:flex;gap:10px;z-index:5} /* z-index:5 — 指示点 */
 .hero-carousel-dots span{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.35);cursor:pointer;transition:all .4s ease;touch-action:manipulation}
