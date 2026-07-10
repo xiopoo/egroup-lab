@@ -1,10 +1,30 @@
+/**
+ * image-urls.js — 网站配图资源
+ * 使用 Unsplash 免费高质量摄影图片（商用许可，无需署名）
+ * 格式: https://images.unsplash.com/photo-{ID}?w={width}&q=80
+ */
 window.__IMAGE_URLS = {
-  hero: "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Professional%20corporate%20meeting%20room%20with%20executives%20discussing%20financial%20restructuring%20strategy%2C%20modern%20office%20with%20floor%20to%20ceiling%20windows%2C%20warm%20ambient%20lighting%2C%20glass%20table%20with%20documents%20and%20laptops%2C%20clean%20professional%20atmosphere%2C%20business%20consulting%20scene%2C%20photorealistic%2C%20shallow%20depth%20of%20field&image_size=landscape_16_9",
-  case1: "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Professional%20architectural%20planning%20meeting%2C%20large%20blueprint%20on%20table%2C%20construction%20engineers%20reviewing%20building%20plans%2C%20modern%20office%20environment%2C%20hard%20hats%20on%20table%2C%20clean%20professional%20lighting%2C%20corporate%20business%20photography%20style%2C%20photorealistic&image_size=landscape_4_3",
-  case2: "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=International%20shipping%20port%20with%20colorful%20cargo%20containers%20stacked%2C%20cargo%20ship%20in%20background%2C%20blue%20sky%2C%20logistics%20and%20global%20trade%20concept%2C%20professional%20industrial%20photography%2C%20clean%20composition%2C%20photorealistic%2C%20warm%20sunlight&image_size=landscape_4_3",
-  case3: "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Modern%20upscale%20restaurant%20interior%20with%20elegant%20dining%20tables%2C%20warm%20ambient%20lighting%2C%20business%20professionals%20having%20dinner%20meeting%2C%20sophisticated%20decor%2C%20professional%20food%20service%20industry%20scene%2C%20clean%20composition%2C%20photorealistic&image_size=landscape_4_3",
-  service1: "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Business%20consultant%20analyzing%20financial%20charts%20and%20data%20reports%20on%20a%20modern%20desk%2C%20digital%20tablet%20displaying%20graphs%2C%20professional%20office%20setting%2C%20warm%20lighting%2C%20analytical%20business%20atmosphere%2C%20photorealistic%2C%20clean%20professional%20look&image_size=landscape_4_3",
-  service2: "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Senior%20business%20mentor%20coaching%20a%20professional%20in%20a%20modern%20office%2C%20one%20on%20one%20meeting%2C%20warm%20natural%20light%20from%20windows%2C%20trusted%20advisory%20relationship%2C%20professional%20attire%2C%20clean%20corporate%20environment%2C%20photorealistic%2C%20engaging%20conversation&image_size=landscape_4_3",
-  service3: "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Corporate%20restructuring%20visualization%2C%20professional%20business%20team%20reviewing%20financial%20rebuilding%20strategy%2C%20glass%20board%20with%20organizational%20charts%2C%20modern%20boardroom%2C%20serious%20professional%20atmosphere%2C%20warm%20elegant%20lighting%2C%20photorealistic&image_size=landscape_4_3",
-  about: "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Professional%20financial%20consulting%20team%20standing%20together%20in%20a%20modern%20corporate%20office%2C%20confident%20business%20professionals%2C%20warm%20brand%20color%20accent%20lighting%20in%20deep%20red%20tones%2C%20abstract%20corporate%20restructuring%20concept%2C%20clean%20minimalist%20composition%2C%20photorealistic%2C%20shallow%20depth%20of%20field&image_size=landscape_16_9"
+  /* 首页 Hero：现代会议室商务讨论 */
+  hero: "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=1200&q=80",
+
+  /* 案例一：建筑/工程行业 */
+  case1: "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=800&q=80",
+
+  /* 案例二：贸易/物流行业 */
+  case2: "https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?w=800&q=80",
+
+  /* 案例三：餐饮/服务行业 */
+  case3: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&q=80",
+
+  /* 服务一：诊断顾问 — 财务数据分析 */
+  service1: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&q=80",
+
+  /* 服务二：陪跑顾问 — 一对一辅导 */
+  service2: "https://images.unsplash.com/photo-1553877522-43269d4ea984?w=800&q=80",
+
+  /* 服务三：重组顾问 — 会议室战略讨论 */
+  service3: "https://images.unsplash.com/photo-1542744173-8e82cd37d553?w=800&q=80",
+
+  /* 关于页：专业团队合影 */
+  about: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1200&q=80"
 };
