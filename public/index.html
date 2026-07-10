@@ -1230,7 +1230,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (!svcUrls[i]) return;
     var imgDiv = document.createElement('div');
     imgDiv.className = 'service-image';
-    imgDiv.style.cssText = 'height:160px;background-size:cover;background-position:center;border-radius:var(--radius-md) var(--radius-md) 0 0;margin:-28px -24px 16px -24px;background-image:url('+svcUrls[i]+')';
+    imgDiv.style.cssText = 'height:160px;background-size:cover;background-position:center;overflow:hidden;border-radius:var(--radius-md) var(--radius-md) 0 0;margin:-28px -24px 16px -24px;background-image:url('+svcUrls[i]+')';
     card.insertBefore(imgDiv, card.firstChild);
   });
 })();
