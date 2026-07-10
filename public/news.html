@@ -298,6 +298,7 @@ var allNews = [
   { id:5, category:'媒体报道', title:'《财经》杂志：灰金重组创始人谈中小企业困境破局之道', date:'2025-07-30', summary:'《财经》杂志近日专访灰金重组联合创始人李景行...', catClass:'cat-media', catIcon:'🎙️' },
   { id:6, category:'媒体报道', title:'《经济观察报》：一家企业重组顾问的500天', date:'2025-05-12', summary:'《经济观察报》以长篇报道形式，记录了灰金重组团队陪伴某制造企业走出困境的500天历程...', catClass:'cat-media', catIcon:'📰' }
 ];
+allNews.sort(function(a,b){return new Date(b.date)-new Date(a.date)});
 
 var currentCategory = 'all';
 var currentPage = 1;
