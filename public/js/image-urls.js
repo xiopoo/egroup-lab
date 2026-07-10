@@ -4,8 +4,14 @@
  * 格式: https://images.unsplash.com/photo-{ID}?w={width}&q=80
  */
 window.__IMAGE_URLS = {
-  /* 首页 Hero：现代会议室商务讨论 */
-  hero: "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=1200&q=80",
+  /* 首页 Hero：轮播图片组 — 现代办公/产业园区主题 */
+  heroImages: [
+    "https://images.unsplash.com/photo-1606857521015-7f9fcf423740?w=1400&q=80",
+    "https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=1400&q=80",
+    "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1400&q=80"
+  ],
+  /** @deprecated 使用 heroImages 轮播 */
+  hero: "https://images.unsplash.com/photo-1606857521015-7f9fcf423740?w=1200&q=80",
 
   /* 案例一：建筑/工程行业 */
   case1: "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=800&q=80",
