@@ -100,7 +100,7 @@ img{max-width:100%;display:block;object-fit:contain;pointer-events:none}
 .hero-inner{position:relative;display:grid;grid-template-columns:1.3fr 1fr;gap:24px;align-items:center;box-sizing:border-box;min-height:auto;padding:20px 0 0}
 .hero-content{position:relative;z-index:3} /* 在图片之上 */
 /* Semi-transparent brand bg panel for text readability (full coverage, no fade) */
-.hero-content::before{content:'';position:absolute;top:-24px;left:-28px;right:-28px;bottom:-24px;background:rgba(171,25,66,.75);border-radius:20px;z-index:-1;pointer-events:none}
+.hero-content::before{content:'';position:absolute;top:-40px;left:-80px;right:-80px;bottom:-40px;background:radial-gradient(ellipse at center,rgba(171,25,66,.65) 0%,rgba(171,25,66,.40) 50%,transparent 80%);border-radius:50%;z-index:-1;pointer-events:none}
 .hero-badge{display:inline-block;font-size:16px;color:#fff;letter-spacing:4px;margin-bottom:10px;opacity:.7;font-weight:300}
 .hero-title{font-size:36px;font-weight:700;color:#fff;letter-spacing:-.02em;line-height:1.15;margin-bottom:6px;text-shadow:0 2px 12px rgba(0,0,0,.25)}
 .hero-subtitle{font-size:18px;color:#fff;font-weight:500;margin-bottom:4px}
@@ -409,9 +409,7 @@ main{overflow-x:hidden}
   .hero-slogan{font-size:14px;letter-spacing:2px;margin-bottom:24px}
   .hero-desc{font-size:13px;margin-bottom:32px;overflow-wrap:break-word;max-width:100%}
   .hero-content{max-width:100%;overflow-wrap:break-word}
-  .hero-content::before{display:none} /* bg now on .hero-inner */
-  .hero{background:rgba(171,25,66,.55);overflow:visible}
-  .hero-carousel{z-index:-1}
+  .hero{overflow:visible}
   .hero::before{width:300px;height:300px;right:0;top:-20%}
   .hero::after{width:250px;height:250px;left:0;bottom:-10%}
   .hero-deco-ring-1{width:280px;height:280px;right:0;top:-10%}
@@ -419,7 +417,7 @@ main{overflow-x:hidden}
   .hero-deco-ring-3{width:140px;height:140px;right:0;top:5%}
   .hero-cta{padding:14px 32px;font-size:15px;min-height:48px;min-width:160px;justify-content:center}
   .hero-visual{display:none}
-  .stats-in-hero{padding:0 0 8px;margin-top:0;border-top:none;background:none;backdrop-filter:none;-webkit-backdrop-filter:none}
+  .stats-in-hero{padding:0 0 8px;margin-top:0;border-top:none;background:linear-gradient(to right,rgba(171,25,66,.60) 0%,rgba(171,25,66,.45) 50%,rgba(171,25,66,.60) 100%);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
   .stats-in-hero .stats{grid-template-columns:repeat(2,1fr);gap:2px}
   .stats-in-hero .stat-item{padding:6px 2px;text-align:center;display:block}
   .stats-in-hero .stat-item::after{display:none}
