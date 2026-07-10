@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<meta name="description" content="灰金重组企业新闻详情">
+<title>新闻详情 | 灰金重组</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{overflow-x:hidden;width:100%}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif;background:#fff;color:#1a1a1a;line-height:1.8;font-size:15px;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;-webkit-tap-highlight-color:transparent;touch-action:manipulation;overflow-x:hidden;width:100%}
+a{text-decoration:none;color:inherit;transition:all .3s ease;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+img{max-width:100%;display:block;object-fit:contain;pointer-events:none}
+
+:root{
+  --brand:#AB1942;
+  --brand-dark:#8B1435;
+  --brand-light:#C42A52;
+  --text:#1a1a1a;
+  --text-secondary:#4a4a4a;
+  --text-muted:#8a8a8a;
+  --text-faint:#b0b0b0;
+  --border:#e8e8e8;
+  --border-light:#f0f0f0;
+  --bg-gray:#f7f7f7;
+  --bg-dark:#2a2a2a;
+  --bg-darker:#1f1f1f;
+  --content-max:1200px;
+  --content-padding:24px;
+  --radius-sm:6px;
+  --radius-md:10px;
+  --radius-lg:16px;
+  --shadow-sm:0 2px 8px rgba(0,0,0,.04);
+  --shadow-md:0 8px 24px rgba(0,0,0,.08);
+  --shadow-lg:0 16px 48px rgba(0,0,0,.12);
+  --transition:.3s ease;
+}
+
+.container{max-width:var(--content-max);margin:0 auto;padding:0 var(--content-padding)}
+
+/* Header */
+.header{position:sticky;top:0;z-index:100;background:var(--brand);box-shadow:0 2px 12px rgba(171,25,66,.15)}
+.header-inner{max-width:var(--content-max);margin:0 auto;padding:0 var(--content-padding);height:64px;display:flex;align-items:center;justify-content:space-between}
+.header-logo{display:flex;align-items:center;height:100%;padding:8px 12px}
+.header-logo img{width:95px;height:auto;object-fit:contain;display:block}
+.header-nav{display:flex;gap:32px;align-items:center}
+.header-nav a{color:#fff;font-size:15px;font-weight:400;opacity:.9;position:relative}
+.header-nav a:hover{opacity:1;color:#fff}
+.header-nav a::after{content:'';position:absolute;bottom:-6px;left:0;width:0;height:2px;background:#fff;transition:width var(--transition);opacity:.8}
+.header-nav a:hover::after{width:100%}
+.header-nav a.active{opacity:1;font-weight:500}
+.header-nav a.active::after{width:100%}
+.nav-item-wrapper{display:inline-flex;align-items:center;gap:4px}
+.nav-badge{font-size:10px;font-weight:600;background:#fff;color:#AB1942;padding:1px 5px;border-radius:8px;line-height:1.4;letter-spacing:.5px}
+
+/* Page Hero (detail - taller for article title) */
+.page-hero{background:linear-gradient(135deg,var(--brand) 0%,var(--brand-dark) 100%);position:relative;overflow:hidden;padding:48px 0}
+.page-hero::before{content:'';position:absolute;top:-50%;right:-10%;width:500px;height:500px;background:radial-gradient(circle,rgba(255,255,255,.08) 0%,transparent 70%);border-radius:50%;pointer-events:none}
+.page-hero-inner{position:relative;z-index:1}
+.page-hero-breadcrumb{font-size:13px;color:rgba(255,255,255,.65);margin-bottom:16px}
+.page-hero-breadcrumb a{color:rgba(255,255,255,.8);transition:color var(--transition)}
+.page-hero-breadcrumb a:hover{color:#fff}
+.page-hero-breadcrumb span{color:rgba(255,255,255,.5)}
+.page-hero-meta{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:16px}
+.page-hero-category{display:inline-block;padding:4px 14px;background:rgba(255,255,255,.18);color:#fff;font-size:12px;font-weight:500;border-radius:20px}
+.page-hero-date{font-size:14px;color:rgba(255,255,255,.7)}
+.page-hero-title{font-size:36px;font-weight:700;color:#fff;letter-spacing:-.02em;line-height:1.3;max-width:800px}
+
+/* Article Content */
+.article-section{padding:56px 0}
+.article-layout{max-width:780px;margin:0 auto}
+.article-feature-image{width:100%;height:360px;border-radius:var(--radius-lg);margin-bottom:40px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.article-feature-bg{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:72px;opacity:.3;color:#fff}
+.cat-company{background:linear-gradient(135deg,#AB1942 0%,#8B1435 100%)}
+.cat-industry{background:linear-gradient(135deg,#2C7A7B 0%,#1A5C5D 100%)}
+.cat-media{background:linear-gradient(135deg,#6B4FA9 0%,#4A3580 100%)}
+
+.article-body{font-size:16px;color:var(--text-secondary);line-height:2.1}
+.article-body p{margin-bottom:24px}
+.article-body p:last-child{margin-bottom:0}
+.article-body strong{color:var(--text);font-weight:600}
+
+.article-source{margin-top:48px;padding-top:28px;border-top:1px solid var(--border-light);font-size:14px;color:var(--text-muted)}
+
+/* Prev/Next Navigation */
+.article-nav{margin-top:48px;padding-top:28px;border-top:1px solid var(--border);display:flex;justify-content:space-between;gap:24px}
+.article-nav-item{flex:1;max-width:48%}
+.article-nav-label{font-size:12px;color:var(--text-muted);margin-bottom:8px}
+.article-nav-title{font-size:15px;font-weight:500;color:var(--text);line-height:1.5;transition:color var(--transition);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.article-nav-item a:hover .article-nav-title{color:var(--brand)}
+.article-nav-next{text-align:right}
+
+/* Related News */
+.related-section{padding:0 0 80px}
+.related-title{font-size:22px;font-weight:700;color:var(--text);margin-bottom:28px;text-align:center}
+.related-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.related-card{background:#fff;border:1px solid var(--border-light);border-radius:var(--radius-md);overflow:hidden;transition:all var(--transition);box-shadow:var(--shadow-sm)}
+.related-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md);border-color:var(--brand)}
+.related-thumb{height:140px;display:flex;align-items:center;justify-content:center}
+.related-thumb-bg{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:36px;opacity:.3;color:#fff}
+.related-body{padding:18px 16px}
+.related-date{font-size:12px;color:var(--text-muted);margin-bottom:8px}
+.related-card-title{font-size:14px;font-weight:600;color:var(--text);line-height:1.5;transition:color var(--transition);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+a:hover .related-card-title{color:var(--brand)}
+
+/* Back link */
+.back-link{display:inline-flex;align-items:center;gap:6px;font-size:14px;color:var(--brand);margin-bottom:32px;font-weight:500}
+.back-link:hover{gap:10px}
+
+/* Hamburger button */
+.hamburger-btn{display:none;align-items:center;justify-content:center;width:44px;height:44px;background:none;border:none;cursor:pointer;flex-direction:column;gap:5px;padding:0;z-index:101;position:relative;-webkit-tap-highlight-color:transparent}
+.hamburger-btn span{display:block;width:24px;height:2.5px;background:#fff;border-radius:2px;transition:all .3s ease;transform-origin:center;pointer-events:none}
+.hamburger-btn.active span:nth-child(1){transform:translateY(7.5px) rotate(45deg)}
+.hamburger-btn.active span:nth-child(2){opacity:0}
+.hamburger-btn.active span:nth-child(3){transform:translateY(-7.5px) rotate(-45deg)}
+
+/* Mobile nav overlay */
+.mobile-nav-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.5);z-index:99;opacity:0;pointer-events:none;transition:opacity .3s ease}
+.mobile-nav-overlay.active{opacity:1;pointer-events:auto}
+
+/* Mobile nav panel */
+.mobile-nav{position:fixed;top:0;right:0;width:75%;max-width:300px;height:100%;background:#AB1942;z-index:100;padding:80px 24px 24px;transform:translateX(100%);transition:transform .3s ease;overflow-y:auto}
+.mobile-nav-overlay.active .mobile-nav{transform:translateX(0)}
+
+/* Mobile nav links */
+.mobile-nav a{display:block;color:#fff;font-size:17px;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.12);font-weight:500;letter-spacing:.5px}
+.mobile-nav a:last-child{border-bottom:none}
+.mobile-nav a.active{opacity:1;font-weight:600}
+.mobile-nav .nav-item-wrapper{display:block;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.12)}
+.mobile-nav .nav-item-wrapper a{display:inline;padding:0;border-bottom:none}
+.mobile-nav .nav-badge{font-size:10px;font-weight:600;background:#fff;color:#AB1942;padding:1px 6px;border-radius:8px;line-height:1.4;letter-spacing:.5px;margin-left:6px}
+
+/* Footer */
+.footer{background:var(--bg-dark);color:#fff;padding:28px 0 16px}
+.footer-inner{display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.footer-left{flex-shrink:0}
+.footer-logo{width:55px;height:auto;filter:brightness(0) invert(1);opacity:.9;display:block}
+.footer-right{display:flex;align-items:center;gap:24px;flex-wrap:wrap}
+.footer-links{display:flex;gap:20px;flex-wrap:wrap}
+.footer-links a{font-size:13px;color:var(--text-faint);text-decoration:none;transition:color var(--transition)}
+.footer-links a:hover{color:#fff}
+.footer-email{font-size:13px;color:var(--text-faint)}
+.footer-email a{color:var(--text-faint);text-decoration:none}
+.footer-email a:hover{color:#fff}
+.footer-bottom{padding-top:14px;margin-top:14px;border-top:1px solid rgba(255,255,255,.08);text-align:center;font-size:11px;color:var(--text-muted)}
+
+/* Responsive */
+        @media(max-width:1023px){
+          .page-hero-title{font-size:30px}
+        }
+@media(max-width:767px){
+  :root{--content-padding:20px}
+
+  .header-inner{height:56px}
+  .header-logo img{width:80px;display:block}
+  .header-nav{gap:18px}
+  .header-nav a{font-size:13px}
+  .header-nav{display:none}
+  .hamburger-btn{display:flex}
+  .nav-badge{font-size:9px;padding:0 4px}
+
+  .page-hero{padding:36px 0}
+  .page-hero-title{font-size:24px}
+  .page-hero-breadcrumb{font-size:12px}
+  .page-hero-date{font-size:13px}
+
+  .article-section{padding:36px 0}
+  .article-feature-image{height:220px;margin-bottom:28px}
+  .article-feature-bg{font-size:48px}
+  .article-body{font-size:15px;line-height:1.9}
+  .article-body p{margin-bottom:18px}
+
+  .article-nav{flex-direction:column;gap:20px}
+  .article-nav-item{max-width:100%}
+  .article-nav-next{text-align:left}
+
+  .related-section{padding:0 0 56px}
+  .related-grid{grid-template-columns:1fr;gap:14px}
+  .related-thumb{height:120px}
+  .related-card-title{font-size:14px}
+
+  .footer-inner{flex-direction:column;align-items:flex-start;gap:16px}
+  .footer-right{flex-direction:column;align-items:flex-start;gap:12px}
+  .footer-links{gap:14px}
+}
+main{overflow-x:hidden}
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-inner">
+    <a href="index.html" class="header-logo">
+      <img src="images/logo-hjzc-transparent-white.png" alt="灰金重组">
+    </a>
+    <nav class="header-nav">
+      <a href="index.html">首页</a>
+      <a href="about.html">关于</a>
+      <a href="services.html">服务</a>
+      <a href="cases-detail.html">案例</a>
+      <a href="news.html" class="active">企业新闻</a>
+      <a href="experts.html">专家团队</a>
+      <span class="nav-item-wrapper"><a href="diag.html">诊断</a><span class="nav-badge">免费</span></span>
+      <a href="column.html">专栏</a>
+    </nav>
+    <button class="hamburger-btn" aria-label="菜单"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<div class="mobile-nav-overlay">
+  <nav class="mobile-nav">
+    <a href="index.html">首页</a>
+    <a href="about.html">关于</a>
+    <a href="services.html">服务</a>
+    <a href="cases-detail.html">案例</a>
+    <a href="news.html" class="active">企业新闻</a>
+    <a href="experts.html">专家团队</a>
+    <span class="nav-item-wrapper"><a href="diag.html">诊断</a><span class="nav-badge">免费</span></span>
+    <a href="column.html">专栏</a>
+  </nav>
+</div>
+
+<main>
+  <!-- Page Hero -->
+  <section class="page-hero">
+    <div class="container">
+      <div class="page-hero-inner">
+        <div class="page-hero-breadcrumb"><a href="news.html">企业新闻</a> <span>›</span> <span id="hero-category">文章详情</span></div>
+        <div class="page-hero-meta">
+          <span class="page-hero-category" id="hero-category-tag"></span>
+          <span class="page-hero-date" id="hero-date"></span>
+        </div>
+        <h1 class="page-hero-title" id="hero-title"></h1>
+      </div>
+    </div>
+  </section>
+
+  <!-- Article Content -->
+  <section class="article-section">
+    <div class="container">
+      <div class="article-layout">
+        <a href="news.html" class="back-link">← 返回新闻列表</a>
+
+        <div class="article-feature-image">
+          <div class="article-feature-bg" id="feature-bg"></div>
+        </div>
+
+        <div class="article-body" id="article-body"></div>
+
+        <div class="article-source" id="article-source"></div>
+
+        <!-- Prev/Next Navigation -->
+        <div class="article-nav" id="article-nav"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Related News -->
+  <section class="related-section">
+    <div class="container">
+      <h3 class="related-title">相关新闻</h3>
+      <div class="related-grid" id="related-grid"></div>
+    </div>
+  </section>
+</main>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-left">
+        <img src="images/logo-hjzc-transparent-white.png" alt="灰金重组" class="footer-logo">
+      </div>
+      <div class="footer-right">
+        <div class="footer-links">
+          <a href="index.html">首页</a>
+          <a href="about.html">关于</a>
+          <a href="services.html">服务</a>
+          <a href="cases-detail.html">案例</a>
+          <a href="experts.html">专家</a>
+          <a href="diag.html">诊断</a>
+        </div>
+        <div class="footer-email">邮箱：<a href="mailto:lucasa@agent.qq.com">lucasa@agent.qq.com</a></div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 灰金重组</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* Article database */
+var articles = {
+  1: {
+    id: 1,
+    category: '公司动态',
+    title: '灰金重组荣获2025年度企业服务创新奖',
+    date: '2025-08-15',
+    catClass: 'cat-company',
+    catIcon: '🏆',
+    body: '<p>近日，在2025年度企业服务创新大会上，灰金重组凭借在企业困境诊断与重组领域的专业服务和创新实践，荣获<strong>"2025年度企业服务创新奖"</strong>。这一奖项是对灰金重组团队多年来深耕中小企业困境重组领域的高度认可。</p>' +
+      '<p>自成立以来，灰金重组始终专注于为陷入经营困境的中小企业提供系统性、可落地的诊断与重组方案。通过<strong>"三维平衡"分析模型</strong>——从资产、负债、现金流三个维度对企业进行全面诊断，灰金重组已累计服务超过128家企业，帮助企业化解债务规模超过5亿元。</p>' +
+      '<p>评审委员会认为，灰金重组在以下方面表现突出：</p>' +
+      '<p>第一，<strong>创新的诊断方法论</strong>。区别于传统的财务审计视角，灰金重组从企业经营本质出发，构建了涵盖债务压力、资产质量、经营健康、法律风险、家庭保障五大维度的诊断体系。</p>' +
+      '<p>第二，<strong>系统性的解决方案</strong>。不局限于单一环节的修补，而是从诊断到方案设计、从落地执行到长期陪跑，提供全周期的专业服务。</p>' +
+      '<p>第三，<strong>显著的社会价值</strong>。通过帮助企业走出困境，灰金重组间接稳定了数千个就业岗位，创造了可观的社会效益。</p>' +
+      '<p>灰金重组联合创始人李景行在获奖后表示："这个奖项是对我们团队多年坚持的肯定。中小企业的困境重组是一条少有人走的路，但我们相信，帮助一家企业活下来、站起来，就帮助了几十个甚至上百个家庭。这条路我们会继续走下去。"</p>' +
+      '<p>展望未来，灰金重组将继续深化专业能力建设，拓展服务边界，为更多中小企业提供高质量的困境诊断与重组服务。</p>',
+    source: '来源：灰金重组品牌部 | 编辑：张晓'
+  },
+  2: {
+    id: 2,
+    category: '公司动态',
+    title: '灰金重组与某大型律师事务所达成战略合作',
+    date: '2025-07-22',
+    catClass: 'cat-company',
+    catIcon: '🤝',
+    body: '<p>为进一步提升企业重组服务的专业深度，灰金重组近日与某大型律师事务所签署战略合作协议。双方将围绕企业困境诊断、债务重组、破产重整等核心业务领域展开深度合作。</p>' +
+      '<p>此次合作将充分发挥双方在商业诊断与法律服务领域的专业优势，为客户提供更加全面、高效的一站式解决方案。灰金重组联合创始人王少华表示："法律服务是企业重组中不可或缺的一环，通过与顶尖律所的合作，我们能够为客户提供更加完整的服务链条。"</p>' +
+      '<p>根据合作协议，双方将建立联合工作组，定期开展案例研讨与业务交流，共同开发针对中小企业重组的标准化服务产品。</p>',
+    source: '来源：灰金重组品牌部 | 编辑：李明'
+  },
+  3: {
+    id: 3,
+    category: '行业资讯',
+    title: '2025年上半年企业破产重组案件同比增长15%',
+    date: '2025-08-10',
+    catClass: 'cat-industry',
+    catIcon: '📊',
+    body: '<p>根据最新司法统计数据，2025年上半年全国企业破产重组案件数量较去年同期增长15%，反映出当前经济环境下企业面临的经营压力持续加大。</p>' +
+      '<p>数据显示，制造业、建筑业和批发零售业是破产重组案件最为集中的三个行业，合计占比超过65%。中小企业仍然是破产重组的主要主体，占案件总数的80%以上。</p>' +
+      '<p>业内人士分析指出，随着经济结构调整的深入推进，企业破产重组案件数量短期内仍将保持增长态势。但与此同时，预重整、庭外重组等多元化解决机制的发展，也为困境企业提供了更多选择。</p>',
+    source: '来源：行业观察 | 编辑：王磊'
+  },
+  4: {
+    id: 4,
+    category: '行业资讯',
+    title: '新公司法实施后，企业债务重组迎来新机遇',
+    date: '2025-06-18',
+    catClass: 'cat-industry',
+    catIcon: '📋',
+    body: '<p>随着新公司法的正式实施，企业债务重组领域迎来了一系列制度性红利。新法在企业治理结构、债权人保护、出资制度等方面的修订，为困境企业的重组提供了更加灵活的法律框架。</p>' +
+      '<p>专家指出，新公司法在简化重组程序、强化债权人委员会职能、完善重整计划表决机制等方面的创新，有助于提高重组效率，降低重组成本，为中小企业的纾困重生创造了更好的制度环境。</p>' +
+      '<p>灰金重组研究团队认为，企业应积极把握这一政策窗口期，及时评估自身经营状况，主动寻求专业机构支持，以最小的代价实现经营秩序的恢复与重建。</p>',
+    source: '来源：行业观察 | 编辑：陈静'
+  },
+  5: {
+    id: 5,
+    category: '媒体报道',
+    title: '《财经》杂志：灰金重组创始人谈中小企业困境破局之道',
+    date: '2025-07-30',
+    catClass: 'cat-media',
+    catIcon: '🎙️',
+    body: '<p>《财经》杂志近日专访灰金重组联合创始人李景行，深入探讨了当前经济形势下中小企业面临的困境与破局之道。</p>' +
+      '<p>在采访中，李景行指出，中小企业当前面临的核心问题并非单纯的资金短缺，而是经营模式与市场环境的不匹配。"很多企业的问题不是没钱，而是钱花错了地方。我们做的第一件事，就是帮助企业看清自己的真实处境。"</p>' +
+      '<p>李景行分享了灰金重组独创的"三维平衡"分析模型，强调从资产、负债、现金流三个维度的平衡重构入手，才能真正帮助企业走出困境。这一方法论已在多个成功案例中得到验证。</p>',
+    source: '来源：《财经》杂志 | 记者：刘芳'
+  },
+  6: {
+    id: 6,
+    category: '媒体报道',
+    title: '《经济观察报》：一家企业重组顾问的500天',
+    date: '2025-05-12',
+    catClass: 'cat-media',
+    catIcon: '📰',
+    body: '<p>《经济观察报》以长篇报道形式，记录了灰金重组团队陪伴某制造企业走出困境的500天历程，展现了一家专业重组顾问机构如何以"陪跑"模式深度参与企业纾困。</p>' +
+      '<p>报道详细记录了从初步诊断、方案设计到落地执行、持续优化的全过程，呈现了重组顾问在企业困境中的关键角色——既是专业方案的提供者，也是变革过程的陪伴者。</p>' +
+      '<p>该案例中，灰金重组团队帮助企业成功化解了800万元债务，剥离了6条亏损产品线，6个月内实现现金流转正，成为中小企业困境重组的典型样本。</p>',
+    source: '来源：《经济观察报》 | 记者：赵刚'
+  }
+};
+
+function getParam(name) {
+  var url = new URL(window.location.href);
+  return url.searchParams.get(name);
+}
+
+function renderArticle() {
+  var id = parseInt(getParam('id')) || 1;
+  if (!articles[id]) id = 1;
+  var article = articles[id];
+
+  document.getElementById('hero-category').textContent = article.category;
+  document.getElementById('hero-category-tag').textContent = article.category;
+  document.getElementById('hero-date').textContent = article.date;
+  document.getElementById('hero-title').textContent = article.title;
+
+  var featureBg = document.getElementById('feature-bg');
+  featureBg.className = 'article-feature-bg ' + article.catClass;
+  featureBg.textContent = article.catIcon;
+
+  document.getElementById('article-body').innerHTML = article.body;
+  document.getElementById('article-source').textContent = article.source;
+
+  document.title = article.title + ' | 灰金重组';
+  var metaDesc = document.querySelector('meta[name="description"]');
+  if (metaDesc) {
+    var tmp = document.createElement('div');
+    tmp.innerHTML = article.body;
+    var plainText = (tmp.textContent || tmp.innerText || '').replace(/\s+/g, ' ').trim().substring(0, 150);
+    metaDesc.setAttribute('content', plainText);
+  }
+
+  // Prev/Next navigation
+  var allIds = Object.keys(articles).map(Number).sort(function(a,b) { return a - b; });
+  var currentIdx = allIds.indexOf(id);
+  var navHtml = '';
+
+  if (currentIdx > 0) {
+    var prev = articles[allIds[currentIdx - 1]];
+    navHtml += '<div class="article-nav-item">' +
+      '<div class="article-nav-label">← 上一篇</div>' +
+      '<a href="news-detail.html?id=' + prev.id + '"><div class="article-nav-title">' + prev.title + '</div></a>' +
+      '</div>';
+  } else {
+    navHtml += '<div class="article-nav-item"></div>';
+  }
+
+  if (currentIdx < allIds.length - 1) {
+    var next = articles[allIds[currentIdx + 1]];
+    navHtml += '<div class="article-nav-item article-nav-next">' +
+      '<div class="article-nav-label">下一篇 →</div>' +
+      '<a href="news-detail.html?id=' + next.id + '"><div class="article-nav-title">' + next.title + '</div></a>' +
+      '</div>';
+  } else {
+    navHtml += '<div class="article-nav-item"></div>';
+  }
+
+  document.getElementById('article-nav').innerHTML = navHtml;
+
+  // Related news (exclude current, up to 3)
+  var related = allIds.filter(function(n) { return n !== id; });
+  // Shuffle and pick up to 3
+  related.sort(function() { return Math.random() - 0.5; });
+  related = related.slice(0, 3);
+
+  var relatedHtml = '';
+  related.forEach(function(rid) {
+    var r = articles[rid];
+    relatedHtml += '<a href="news-detail.html?id=' + r.id + '" class="related-card">' +
+      '<div class="related-thumb"><div class="related-thumb-bg ' + r.catClass + '">' + r.catIcon + '</div></div>' +
+      '<div class="related-body">' +
+        '<div class="related-date">' + r.date + '</div>' +
+        '<div class="related-card-title">' + r.title + '</div>' +
+      '</div>' +
+    '</a>';
+  });
+  document.getElementById('related-grid').innerHTML = relatedHtml;
+}
+
+/* Mobile hamburger menu */
+(function(){var h=document.querySelector('.hamburger-btn'),o=document.querySelector('.mobile-nav-overlay');if(!h||!o)return;h.addEventListener('click',function(){this.classList.toggle('active');o.classList.toggle('active');document.body.style.overflow=o.classList.contains('active')?'hidden':''});o.addEventListener('click',function(e){if(e.target===this){this.classList.remove('active');h.classList.remove('active');document.body.style.overflow=''}});o.querySelectorAll('a').forEach(function(l){l.addEventListener('click',function(){o.classList.remove('active');h.classList.remove('active');document.body.style.overflow=''})})})();
+
+/* Initial render */
+renderArticle();
+</script>
+</body>
+</html>

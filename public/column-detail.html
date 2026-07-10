@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<meta name="description" content="灰金重组专栏文章详情">
+<title>专栏详情 | 灰金重组</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{overflow-x:hidden;width:100%}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif;background:#fff;color:#1a1a1a;line-height:1.8;font-size:15px;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;-webkit-tap-highlight-color:transparent;touch-action:manipulation;overflow-x:hidden;width:100%}
+a{text-decoration:none;color:inherit;transition:all .3s ease;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+img{max-width:100%;display:block;object-fit:contain;pointer-events:none}
+
+:root{
+  --brand:#AB1942;
+  --brand-dark:#8B1435;
+  --brand-light:#C42A52;
+  --text:#1a1a1a;
+  --text-secondary:#4a4a4a;
+  --text-muted:#8a8a8a;
+  --text-faint:#b0b0b0;
+  --border:#e8e8e8;
+  --border-light:#f0f0f0;
+  --bg-gray:#f7f7f7;
+  --bg-warm:#f5f3f0;
+  --brand-subtle:rgba(171,25,66,.04);
+  --brand-glow:rgba(171,25,66,.06);
+  --bg-dark:#2a2a2a;
+  --bg-darker:#1f1f1f;
+  --content-max:1200px;
+  --content-padding:24px;
+  --radius-sm:6px;
+  --radius-md:10px;
+  --radius-lg:16px;
+  --shadow-sm:0 2px 8px rgba(0,0,0,.04);
+  --shadow-md:0 8px 24px rgba(0,0,0,.08);
+  --shadow-lg:0 16px 48px rgba(0,0,0,.12);
+  --transition:.3s ease;
+}
+
+.container{max-width:var(--content-max);margin:0 auto;padding:0 var(--content-padding)}
+
+/* Header */
+.header{position:sticky;top:0;z-index:100;background:var(--brand);box-shadow:0 2px 12px rgba(171,25,66,.15)}
+.header-inner{max-width:var(--content-max);margin:0 auto;padding:0 var(--content-padding);height:64px;display:flex;align-items:center;justify-content:space-between}
+.header-logo{display:flex;align-items:center;height:100%;padding:8px 12px}
+.header-logo img{width:95px;height:auto;object-fit:contain;display:block}
+.header-nav{display:flex;gap:32px;align-items:center}
+.header-nav a{color:#fff;font-size:15px;font-weight:400;opacity:.9;position:relative}
+.header-nav a:hover{opacity:1;color:#fff}
+.header-nav a::after{content:'';position:absolute;bottom:-6px;left:0;width:0;height:2px;background:#fff;transition:width var(--transition);opacity:.8}
+.header-nav a:hover::after{width:100%}
+.header-nav a.active{opacity:1;font-weight:500}
+.header-nav a.active::after{width:100%}
+.nav-item-wrapper{display:inline-flex;align-items:center;gap:4px}
+.nav-badge{font-size:10px;font-weight:600;background:#fff;color:#AB1942;padding:1px 5px;border-radius:8px;line-height:1.4;letter-spacing:.5px}
+
+/* Hamburger button */
+.hamburger-btn{display:none;align-items:center;justify-content:center;width:44px;height:44px;background:none;border:none;cursor:pointer;flex-direction:column;gap:5px;padding:0;z-index:101;position:relative;-webkit-tap-highlight-color:transparent}
+.hamburger-btn span{display:block;width:24px;height:2.5px;background:#fff;border-radius:2px;transition:all .3s ease;transform-origin:center;pointer-events:none}
+.hamburger-btn.active span:nth-child(1){transform:translateY(7.5px) rotate(45deg)}
+.hamburger-btn.active span:nth-child(2){opacity:0}
+.hamburger-btn.active span:nth-child(3){transform:translateY(-7.5px) rotate(-45deg)}
+
+/* Mobile nav overlay */
+.mobile-nav-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.5);z-index:99;opacity:0;pointer-events:none;transition:opacity .3s ease}
+.mobile-nav-overlay.active{opacity:1;pointer-events:auto}
+
+/* Mobile nav panel */
+.mobile-nav{position:fixed;top:0;right:0;width:75%;max-width:300px;height:100%;background:#AB1942;z-index:100;padding:80px 24px 24px;transform:translateX(100%);transition:transform .3s ease;overflow-y:auto}
+.mobile-nav-overlay.active .mobile-nav{transform:translateX(0)}
+
+/* Mobile nav links */
+.mobile-nav a{display:block;color:#fff;font-size:17px;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.12);font-weight:500;letter-spacing:.5px}
+.mobile-nav a:last-child{border-bottom:none}
+.mobile-nav a.active{opacity:1;font-weight:600}
+.mobile-nav .nav-item-wrapper{display:block;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.12)}
+.mobile-nav .nav-item-wrapper a{display:inline;padding:0;border-bottom:none}
+.mobile-nav .nav-badge{font-size:10px;font-weight:600;background:#fff;color:#AB1942;padding:1px 6px;border-radius:8px;line-height:1.4;letter-spacing:.5px;margin-left:6px}
+
+/* Article Header */
+.article-header-section{padding:48px 0 0}
+.article-header-section .container{max-width:800px}
+.article-cat-tag{display:inline-block;font-size:12px;color:var(--brand);font-weight:600;letter-spacing:1px;margin-bottom:12px}
+.article-title{font-size:32px;font-weight:700;color:var(--text);letter-spacing:-.02em;line-height:1.3;margin-bottom:16px}
+.article-meta{display:flex;gap:20px;flex-wrap:wrap;font-size:13px;color:var(--text-muted);padding-bottom:24px;border-bottom:1px solid var(--border-light);margin-bottom:24px}
+.article-meta span{display:inline-flex;align-items:center;gap:4px}
+
+/* Feature Image */
+.article-feature-image{margin-bottom:32px}
+.article-feature-image .container{max-width:800px}
+.article-image-placeholder{width:100%;aspect-ratio:16/7;background:linear-gradient(135deg,var(--brand) 0%,var(--brand-dark) 100%);border-radius:var(--radius-md);position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.article-image-placeholder::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 70% 30%,rgba(255,255,255,.08) 0%,transparent 50%)}
+.article-image-placeholder-text{position:relative;color:#fff;font-size:48px;font-weight:700;opacity:.15;letter-spacing:4px}
+
+/* Article Body */
+.article-body-section{padding:0 0 48px}
+.article-body-section .container{max-width:800px}
+.article-body{font-size:16px;line-height:2;color:var(--text-secondary)}
+.article-body h2{font-size:22px;font-weight:700;color:var(--text);margin:36px 0 16px;line-height:1.4}
+.article-body h2:first-child{margin-top:0}
+.article-body h3{font-size:18px;font-weight:600;color:var(--text);margin:28px 0 12px;line-height:1.4}
+.article-body p{margin-bottom:18px}
+.article-body ul{margin-bottom:18px;padding-left:24px}
+.article-body li{margin-bottom:6px}
+.article-body strong{color:var(--text);font-weight:600}
+
+/* Article Footer */
+.article-footer-section{padding:0 0 32px}
+.article-footer-section .container{max-width:800px}
+.article-tags{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px}
+.article-tag{padding:4px 14px;background:var(--brand-subtle);color:var(--brand);font-size:12px;font-weight:500;border-radius:20px}
+.article-share{display:flex;align-items:center;gap:12px;padding:16px 0;border-top:1px solid var(--border-light);border-bottom:1px solid var(--border-light)}
+.article-share-label{font-size:13px;color:var(--text-muted)}
+.article-share-btn{padding:6px 16px;border-radius:20px;font-size:12px;background:var(--bg-gray);color:var(--text-secondary);cursor:pointer;border:none;transition:all var(--transition);-webkit-tap-highlight-color:transparent}
+.article-share-btn:hover{background:var(--brand);color:#fff}
+
+/* Related Articles */
+.related-section{padding:48px 0 64px;background:var(--bg-warm)}
+.related-section .section-header{text-align:center;margin-bottom:36px}
+.section-label{display:inline-block;font-size:13px;color:var(--brand);font-weight:600;letter-spacing:2px;text-transform:uppercase;margin-bottom:8px;position:relative;padding-bottom:12px}
+.section-label::after{content:'';position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:40px;height:2px;background:var(--brand);border-radius:2px}
+.section-title{font-size:28px;font-weight:700;color:var(--text);letter-spacing:-.02em;margin-bottom:12px;line-height:1.3}
+.related-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.related-card{background:#fff;border-radius:var(--radius-md);overflow:hidden;transition:all var(--transition);border:1px solid var(--border-light);box-shadow:var(--shadow-sm)}
+.related-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-md);border-color:transparent}
+.related-card-image{height:140px;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.related-card-image.cat-debt{background:linear-gradient(135deg,#4a5568 0%,#2d3748 100%)}
+.related-card-image.cat-asset{background:linear-gradient(135deg,#2b6cb0 0%,#2c5282 100%)}
+.related-card-image.cat-legal{background:linear-gradient(135deg,#2c7a7b 0%,#285e61 100%)}
+.related-card-image.cat-diag{background:linear-gradient(135deg,#c05621 0%,#9c4221 100%)}
+.related-card-image::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 70% 30%,rgba(255,255,255,.08) 0%,transparent 50%)}
+.related-card-tag{position:absolute;top:10px;left:10px;padding:2px 10px;background:rgba(255,255,255,.9);color:var(--brand);font-size:11px;font-weight:600;border-radius:20px;z-index:1}
+.related-card-image-text{position:relative;color:#fff;font-size:24px;font-weight:700;opacity:.2}
+.related-card-body{padding:18px}
+.related-card-body h4{font-size:15px;font-weight:600;color:var(--text);margin-bottom:6px;line-height:1.4}
+.related-card-body h4 a:hover{color:var(--brand)}
+.related-card-body p{font-size:12px;color:var(--text-muted);line-height:1.6;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.related-card-date{font-size:11px;color:var(--text-faint);display:block;margin-top:6px}
+
+/* Footer */
+.footer{background:var(--bg-dark);color:#fff;padding:28px 0 16px}
+.footer-inner{display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.footer-left{flex-shrink:0}
+.footer-logo{width:55px;height:auto;filter:brightness(0) invert(1);opacity:.9;display:block}
+.footer-right{display:flex;align-items:center;gap:24px;flex-wrap:wrap}
+.footer-links{display:flex;gap:20px;flex-wrap:wrap}
+.footer-links a{font-size:13px;color:var(--text-faint);text-decoration:none;transition:color var(--transition)}
+.footer-links a:hover{color:#fff}
+.footer-email{font-size:13px;color:var(--text-faint)}
+.footer-email a{color:var(--text-faint);text-decoration:none}
+.footer-email a:hover{color:#fff}
+.footer-bottom{padding-top:14px;margin-top:14px;border-top:1px solid rgba(255,255,255,.08);text-align:center;font-size:11px;color:var(--text-muted)}
+
+main{overflow-x:hidden}
+
+/* Responsive */
+@media(max-width:1023px){
+  .related-grid{grid-template-columns:repeat(2,1fr)}
+}
+
+@media(max-width:767px){
+  :root{--content-padding:20px}
+
+  .header-inner{height:56px}
+  .header-logo img{width:80px;display:block}
+  .header-nav{display:none}
+  .hamburger-btn{display:flex}
+  .nav-badge{font-size:9px;padding:0 4px}
+
+  .article-header-section{padding:32px 0 0}
+  .article-title{font-size:24px}
+  .article-meta{gap:14px;font-size:12px}
+
+  .article-image-placeholder{aspect-ratio:16/9}
+  .article-image-placeholder-text{font-size:32px}
+
+  .article-body{font-size:15px}
+  .article-body h2{font-size:20px;margin:28px 0 12px}
+  .article-body h3{font-size:16px}
+
+  .related-grid{grid-template-columns:1fr;gap:16px}
+  .related-card-image{height:120px}
+
+  .footer-inner{flex-direction:column;align-items:flex-start;gap:16px}
+  .footer-right{flex-direction:column;align-items:flex-start;gap:12px}
+  .footer-links{gap:14px}
+}
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-inner">
+    <a href="index.html" class="header-logo">
+      <img src="images/logo-hjzc-transparent-white.png" alt="灰金重组">
+    </a>
+    <nav class="header-nav">
+      <a href="index.html">首页</a>
+      <a href="about.html">关于</a>
+      <a href="services.html">服务</a>
+      <a href="cases-detail.html">案例</a>
+      <a href="news.html">企业新闻</a>
+      <a href="experts.html">专家团队</a>
+      <span class="nav-item-wrapper"><a href="diag.html">诊断</a><span class="nav-badge">免费</span></span>
+      <a href="column.html" class="active">专栏</a>
+    </nav>
+    <button class="hamburger-btn" aria-label="菜单"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<div class="mobile-nav-overlay">
+  <nav class="mobile-nav">
+    <a href="index.html">首页</a>
+    <a href="about.html">关于</a>
+    <a href="services.html">服务</a>
+    <a href="cases-detail.html">案例</a>
+    <a href="news.html">企业新闻</a>
+    <a href="experts.html">专家团队</a>
+    <span class="nav-item-wrapper"><a href="diag.html">诊断</a><span class="nav-badge">免费</span></span>
+    <a href="column.html" class="active">专栏</a>
+  </nav>
+</div>
+
+<main>
+  <!-- Article Header -->
+  <section class="article-header-section">
+    <div class="container">
+      <span class="article-cat-tag" id="article-cat-tag">债务重组</span>
+      <h1 class="article-title" id="article-title">中小企业债务重组的五个关键步骤</h1>
+      <div class="article-meta">
+        <span>✍ 灰金重组研究团队</span>
+        <span>📅 <span id="article-date">2025-06-15</span></span>
+        <span>⏱ <span id="article-readtime">约8分钟</span></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Feature Image -->
+  <section class="article-feature-image">
+    <div class="container">
+      <div class="article-image-placeholder">
+        <span class="article-image-placeholder-text" id="article-image-text">债务重组</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Article Body -->
+  <section class="article-body-section">
+    <div class="container">
+      <div class="article-body" id="article-body"></div>
+    </div>
+  </section>
+
+  <!-- Article Footer -->
+  <section class="article-footer-section">
+    <div class="container">
+      <div class="article-tags" id="article-tags"></div>
+      <div class="article-share">
+        <span class="article-share-label">分享文章：</span>
+        <button class="article-share-btn" onclick="copyArticleLink()">📋 复制链接</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Related Articles -->
+  <section class="related-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">RELATED</span>
+        <h2 class="section-title">相关文章</h2>
+      </div>
+      <div class="related-grid" id="related-grid"></div>
+    </div>
+  </section>
+</main>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-left">
+        <img src="images/logo-hjzc-transparent-white.png" alt="灰金重组" class="footer-logo">
+      </div>
+      <div class="footer-right">
+        <div class="footer-links">
+          <a href="index.html">首页</a>
+          <a href="about.html">关于</a>
+          <a href="services.html">服务</a>
+          <a href="cases-detail.html">案例</a>
+          <a href="experts.html">专家</a>
+          <a href="diag.html">诊断</a>
+        </div>
+        <div class="footer-email">邮箱：<a href="mailto:lucasa@agent.qq.com">lucasa@agent.qq.com</a></div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 灰金重组</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* Mobile hamburger menu */
+(function(){var h=document.querySelector('.hamburger-btn'),o=document.querySelector('.mobile-nav-overlay');if(!h||!o)return;h.addEventListener('click',function(){this.classList.toggle('active');o.classList.toggle('active');document.body.style.overflow=o.classList.contains('active')?'hidden':''});o.addEventListener('click',function(e){if(e.target===this){this.classList.remove('active');h.classList.remove('active');document.body.style.overflow=''}});o.querySelectorAll('a').forEach(function(l){l.addEventListener('click',function(){o.classList.remove('active');h.classList.remove('active');document.body.style.overflow=''})})})();
+
+/* Copy article link */
+function copyArticleLink(){
+  var url = window.location.href;
+  if(navigator.clipboard){
+    navigator.clipboard.writeText(url).then(function(){
+      alert('链接已复制到剪贴板');
+    });
+  } else {
+    var ta = document.createElement('textarea');
+    ta.value = url;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    alert('链接已复制到剪贴板');
+  }
+}
+
+/* Article data */
+var articles = {
+  1: {
+    category: '债务重组',
+    title: '中小企业债务重组的五个关键步骤',
+    date: '2025-06-15',
+    readtime: '约8分钟',
+    imageText: '债务重组',
+    tags: ['债务重组', '中小企业', '实操指南', '资金管理'],
+    content: '<p>在当前经济环境下，中小企业的债务问题愈发突出。高杠杆经营、短贷长投、融资渠道单一等问题叠加，使得许多企业面临严峻的偿债压力。本文从实操角度出发，梳理了债务重组的五个关键步骤。</p>' +
+      '<h2>第一步：全面债务清查</h2>' +
+      '<p>债务重组的第一步，是对企业的债务状况进行全面、系统的清查。这包括：</p>' +
+      '<ul>' +
+      '<li><strong>明确债务总规模：</strong>梳理所有负债项目，包括银行贷款、民间借贷、供应商欠款、员工薪资、税费欠缴等。</li>' +
+      '<li><strong>区分债务性质：</strong>将有息负债与无息负债、短期债务与长期债务、刚性债务与柔性债务进行分类。</li>' +
+      '<li><strong>识别关键债权人：</strong>判断哪些债权人对企业经营具有决定性影响。</li>' +
+      '<li><strong>评估担保情况：</strong>核查是否存在个人连带担保、资产抵押等情形，评估企业主个人的法律风险敞口。</li>' +
+      '</ul>' +
+      '<h2>第二步：现金流压力测试</h2>' +
+      '<p>在完成债务清查后，需要进行详细的现金流压力测试，以判断企业在不同情境下的偿债能力。具体包括：</p>' +
+      '<ul>' +
+      '<li>编制未来12个月的现金流预测表</li>' +
+      '<li>设定乐观、中性、悲观三种情景</li>' +
+      '<li>计算各情景下的资金缺口</li>' +
+      '<li>评估关键触发点（如贷款到期、大额应付到期等）</li>' +
+      '</ul>' +
+      '<h2>第三步：制定债务化解方案</h2>' +
+      '<p>基于前两步的分析结果，制定差异化的债务化解方案。常见的策略包括：</p>' +
+      '<ul>' +
+      '<li><strong>以时间换空间：</strong>与债权人协商展期、降息，为企业争取恢复时间</li>' +
+      '<li><strong>以资产换现金：</strong>处置低效资产、非核心资产，快速回笼资金</li>' +
+      '<li><strong>以股权换债权：</strong>引入战略投资者，通过债转股降低负债率</li>' +
+      '<li><strong>以增量激活存量：</strong>通过业务聚焦、成本优化释放现金流</li>' +
+      '</ul>' +
+      '<h2>第四步：与债权人展开谈判</h2>' +
+      '<p>谈判是债务重组中最关键的环节，也是最考验专业能力的部分。谈判策略要点包括：</p>' +
+      '<ul>' +
+      '<li><strong>建立信任：</strong>主动、坦诚地向债权人披露企业真实状况</li>' +
+      '<li><strong>统一立场：</strong>争取主要债权人的理解和支持</li>' +
+      '<li><strong>方案打包：</strong>将债务化解方案打包呈现，而非逐项讨论</li>' +
+      '<li><strong>底线思维：</strong>明确自身可接受的底线条件，做好最坏情况预案</li>' +
+      '</ul>' +
+      '<h2>第五步：执行落地与后续跟踪</h2>' +
+      '<p>方案达成后，执行是关键。建议：</p>' +
+      '<ul>' +
+      '<li>设立专门的执行小组，明确时间表和责任人</li>' +
+      '<li>建立定期的进展汇报机制</li>' +
+      '<li>保留应急方案，应对突发情况</li>' +
+      '<li>持续监控核心经营指标，确保企业在正确的恢复轨道上</li>' +
+      '</ul>' +
+      '<h2>结语</h2>' +
+      '<p>债务重组不是一蹴而就的工作，而是一个系统性工程。对于中小企业而言，越早启动债务重组的准备工作，越能掌握主动权。建议企业主在日常经营中就建立债务监控机制，一旦发现风险信号，及时寻求专业机构的帮助。</p>' +
+      '<p>（本文由灰金重组研究团队撰写，如需转载请联系授权。）</p>'
+  },
+  2: {
+    category: '资产盘活',
+    title: '存量资产盘活：被忽视的企业自救之道',
+    date: '2025-05-20',
+    readtime: '约6分钟',
+    imageText: '资产盘活',
+    tags: ['资产盘活', '企业自救', '存量资产', '资金管理'],
+    content: '<p>许多陷入困境的企业，往往将目光聚焦在外部融资和新业务拓展上，却忽略了企业内部沉睡的存量资产。本文探讨如何系统性地识别、评估和盘活企业存量资产。</p>' +
+      '<h2>什么是存量资产</h2>' +
+      '<p>存量资产是指企业已经拥有但未被充分利用或未产生预期收益的资产。这些资产可能以多种形态存在：闲置的生产设备、低效运转的厂房土地、积压的库存商品、未能变现的应收账款，甚至是被低估的无形资产如专利、品牌和客户资源。</p>' +
+      '<p>对于面临资金压力的企业而言，存量资产盘活往往比外部融资更快、成本更低。它不仅能为企业带来急需的现金流，还能优化资产结构，提升整体运营效率。</p>' +
+      '<h2>系统性盘活方法</h2>' +
+      '<p>存量资产盘活需要系统性的方法和专业的执行能力。首先要进行全面资产清查和分类，将资产按照流动性、可变现性和对企业核心业务的重要性进行分级。其次是选择适合的盘活方式，包括资产出售、售后回租、资产置换、资产证券化等。</p>' +
+      '<p>在执行过程中，需要注意几个关键点：一是合理定价，避免低价贱卖造成不必要的损失；二是控制交易节奏，避免集中处置引发市场恐慌；三是做好税务筹划，降低资产处置的税务成本。最重要的是，资产盘活必须服务于企业的整体战略目标，而非简单的变卖家产。</p>'
+  },
+  3: {
+    category: '法律风控',
+    title: '企业重组中的法律风险防范指南',
+    date: '2025-04-10',
+    readtime: '约7分钟',
+    imageText: '法律风控',
+    tags: ['法律风控', '企业重组', '破产保护', '合规'],
+    content: '<p>企业重组涉及多方利益博弈，法律风险贯穿始终。本指南从破产保护、债权人权益、股东责任等方面，系统梳理重组过程中的法律风险点。</p>' +
+      '<h2>破产保护的法律边界</h2>' +
+      '<p>破产保护制度为企业重组提供了重要的法律屏障，但保护范围是有限的。企业需要理解破产保护期间的权利义务边界：一方面，自动中止制度为债务人提供了喘息空间，暂停了债权人的个别追偿行为；另一方面，企业仍需遵守经营限制、信息披露等法定义务，任何违规行为都可能直接导致破产保护被撤销。</p>' +
+      '<h2>债权人权益保护</h2>' +
+      '<p>重组方案的公平性是法律审查的核心。重组方案必须确保同类债权人的平等对待，优先债权的优先受偿，以及对异议债权人的最低保护。任何涉嫌偏颇性清偿或欺诈性转让的行为，都将面临被撤销的法律后果。</p>' +
+      '<p>特别需要注意的是，重组过程中涉及的个人连带担保问题往往被企业主忽视。很多中小企业在借款时，企业主自愿提供了个人连带责任担保。在重组过程中，如何妥善处理个人担保责任，保护企业主个人的合法权益，是需要高度重视的法律风险点。</p>'
+  },
+  4: {
+    category: '经营诊断',
+    title: '如何判断你的企业是否已经陷入经营困境',
+    date: '2025-03-28',
+    readtime: '约5分钟',
+    imageText: '经营诊断',
+    tags: ['经营诊断', '风险预警', '现金流', '企业管理'],
+    content: '<p>企业的衰败往往不是一夜之间发生的，而是经历了一个渐进的过程。本文从现金流、利润率、客户流失率等维度，帮助企业主提前识别经营风险信号。</p>' +
+      '<h2>现金流预警信号</h2>' +
+      '<p>现金流是企业经营的血液。当出现以下信号时，企业主需要高度警惕：经营现金流持续为负、应付账款周转天数不断延长、银行授信额度被压缩、频繁使用短期借款填补长期资金缺口。这些信号单独出现时可能并不致命，但多个信号叠加，往往预示着资金链面临断裂风险。</p>' +
+      '<h2>利润质量的审视</h2>' +
+      '<p>账面盈利并非企业经营健康的充分条件。企业主需要关注利润的质量：收入增长是否伴随着应收账款的同步膨胀？毛利率的下降趋势是否被费用压缩所掩盖？非经常性收益是否美化了真实的经营状况？真正健康的企业，应当具有稳定的经营利润和与利润匹配的现金流。</p>' +
+      '<p>此外，客户集中度、核心团队稳定性、行业政策变化等因素也是重要的预警指标。建议企业主每季度进行一次经营健康度自查，一旦发现多个预警指标同时亮起，应当及时寻求专业诊断机构的帮助，而非等到危机全面爆发时才仓促应对。</p>'
+  }
+};
+
+/* All articles for related section */
+var allArticles = [
+  { id: 1, category: '债务重组', title: '中小企业债务重组的五个关键步骤', summary: '从实操角度出发，梳理了债务重组的五个关键步骤。', date: '2025-06-15', imageClass: 'cat-debt' },
+  { id: 2, category: '资产盘活', title: '存量资产盘活：被忽视的企业自救之道', summary: '探讨如何系统性地识别、评估和盘活企业存量资产。', date: '2025-05-20', imageClass: 'cat-asset' },
+  { id: 3, category: '法律风控', title: '企业重组中的法律风险防范指南', summary: '从破产保护、债权人权益等方面梳理法律风险点。', date: '2025-04-10', imageClass: 'cat-legal' },
+  { id: 4, category: '经营诊断', title: '如何判断你的企业是否已经陷入经营困境', summary: '从现金流、利润率等维度识别经营风险信号。', date: '2025-03-28', imageClass: 'cat-diag' }
+];
+
+/* Parse article ID from URL */
+function getArticleId(){
+  var params = new URLSearchParams(window.location.search);
+  var id = parseInt(params.get('id'));
+  return (id >= 1 && id <= 4) ? id : 1;
+}
+
+/* Render article */
+function renderArticle(){
+  var id = getArticleId();
+  var article = articles[id];
+  if(!article) return;
+
+  document.getElementById('article-cat-tag').textContent = article.category;
+  document.getElementById('article-title').textContent = article.title;
+  document.getElementById('article-date').textContent = article.date;
+  document.getElementById('article-readtime').textContent = article.readtime;
+  document.getElementById('article-image-text').textContent = article.imageText;
+  document.getElementById('article-body').innerHTML = article.content;
+
+  /* Update page title */
+  document.title = article.title + ' | 灰金重组';
+
+  /* Render tags */
+  var tagsHtml = '';
+  article.tags.forEach(function(tag){
+    tagsHtml += '<span class="article-tag">' + tag + '</span>';
+  });
+  document.getElementById('article-tags').innerHTML = tagsHtml;
+
+  /* Render related articles (exclude current) */
+  var relatedHtml = '';
+  allArticles.forEach(function(a){
+    if(a.id === id) return;
+    relatedHtml += '<div class="related-card">' +
+      '<div class="related-card-image ' + a.imageClass + '">' +
+        '<span class="related-card-tag">' + a.category + '</span>' +
+        '<span class="related-card-image-text">' + a.category.substring(0,2) + '</span>' +
+      '</div>' +
+      '<div class="related-card-body">' +
+        '<h4><a href="column-detail.html?id=' + a.id + '">' + a.title + '</a></h4>' +
+        '<p>' + a.summary + '</p>' +
+        '<span class="related-card-date">' + a.date + '</span>' +
+      '</div>' +
+    '</div>';
+  });
+  document.getElementById('related-grid').innerHTML = relatedHtml;
+}
+
+renderArticle();
+</script>
+</body>
+</html>

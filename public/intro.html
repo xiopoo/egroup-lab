@@ -6,6 +6,71 @@
     <title>企业诊断 | 灰金重组</title>
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        :root{
+          --brand:#AB1942;
+          --brand-dark:#8B1435;
+          --text-faint:#b0b0b0;
+          --text-muted:#8a8a8a;
+          --content-max:1200px;
+          --content-padding:24px;
+        }
+        html{overflow-x:hidden;width:100%}
+        .container{max-width:var(--content-max);margin:0 auto;padding:0 var(--content-padding)}
+        a{text-decoration:none;color:inherit;transition:all .3s ease;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+        img{max-width:100%;display:block;object-fit:contain}
+        .header{position:sticky;top:0;z-index:100;background:var(--brand);box-shadow:0 2px 12px rgba(171,25,66,.15)}
+        .header-inner{max-width:var(--content-max);margin:0 auto;padding:0 var(--content-padding);height:64px;display:flex;align-items:center;justify-content:space-between}
+        .header-logo{display:flex;align-items:center;height:100%;padding:8px 12px}
+        .header-logo img{width:95px;height:auto;object-fit:contain;display:block}
+        .header-nav{display:flex;gap:32px;align-items:center}
+        .header-nav a{color:#fff;font-size:15px;font-weight:400;opacity:.9;position:relative}
+        .header-nav a:hover{opacity:1;color:#fff}
+        .header-nav a::after{content:'';position:absolute;bottom:-6px;left:0;width:0;height:2px;background:#fff;transition:width .3s ease;opacity:.8}
+        .header-nav a:hover::after{width:100%}
+        .header-nav a.active{opacity:1;font-weight:500}
+        .header-nav a.active::after{width:100%}
+        .nav-item-wrapper{display:inline-flex;align-items:center;gap:4px}
+        .nav-badge{font-size:10px;font-weight:600;background:#fff;color:#AB1942;padding:1px 5px;border-radius:8px;line-height:1.4;letter-spacing:.5px}
+        .hamburger-btn{display:none;align-items:center;justify-content:center;width:44px;height:44px;background:none;border:none;cursor:pointer;flex-direction:column;gap:5px;padding:0;z-index:101;position:relative;-webkit-tap-highlight-color:transparent}
+        .hamburger-btn span{display:block;width:24px;height:2.5px;background:#fff;border-radius:2px;transition:all .3s ease;transform-origin:center;pointer-events:none}
+        .hamburger-btn.active span:nth-child(1){transform:translateY(7.5px) rotate(45deg)}
+        .hamburger-btn.active span:nth-child(2){opacity:0}
+        .hamburger-btn.active span:nth-child(3){transform:translateY(-7.5px) rotate(-45deg)}
+        .mobile-nav-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.5);z-index:99;opacity:0;pointer-events:none;transition:opacity .3s ease}
+        .mobile-nav-overlay.active{opacity:1;pointer-events:auto}
+        .mobile-nav{position:fixed;top:0;right:0;width:75%;max-width:300px;height:100%;background:#AB1942;z-index:100;padding:80px 24px 24px;transform:translateX(100%);transition:transform .3s ease;overflow-y:auto}
+        .mobile-nav-overlay.active .mobile-nav{transform:translateX(0)}
+        .mobile-nav a{display:block;color:#fff;font-size:17px;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.12);font-weight:500;letter-spacing:.5px}
+        .mobile-nav a:last-child{border-bottom:none}
+        .mobile-nav a.active{opacity:1;font-weight:600}
+        .mobile-nav .nav-item-wrapper{display:block;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.12)}
+        .mobile-nav .nav-item-wrapper a{display:inline;padding:0;border-bottom:none}
+        .mobile-nav .nav-badge{font-size:10px;font-weight:600;background:#fff;color:#AB1942;padding:1px 6px;border-radius:8px;line-height:1.4;letter-spacing:.5px;margin-left:6px}
+        .page-hero{background:linear-gradient(135deg,var(--brand) 0%,var(--brand-dark) 100%);position:relative;overflow:hidden;height:220px;display:flex;align-items:center}
+        .page-hero::before{content:'';position:absolute;top:-50%;right:-10%;width:500px;height:500px;background:radial-gradient(circle,rgba(255,255,255,.08) 0%,transparent 70%);border-radius:50%;pointer-events:none}
+        .page-hero-inner{position:relative;z-index:1;text-align:center;padding:60px 0}
+        .page-hero-title{font-size:42px;font-weight:700;color:#fff;letter-spacing:-.02em;line-height:1.2;margin-bottom:12px}
+        .page-hero-subtitle{font-size:18px;color:#fff;opacity:.85;font-weight:400}
+        .page-hero-icon{width:64px;height:64px;margin:0 auto 16px;border-radius:50%;background:rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;font-size:30px;border:1px solid rgba(255,255,255,.2)}
+        main{overflow-x:hidden}
+        @media(max-width:1023px){
+          .page-hero{height:200px}
+          .page-hero-title{font-size:36px}
+          .page-hero-subtitle{font-size:14px}
+        }
+        @media(max-width:767px){
+          :root{--content-padding:20px}
+          .header-inner{height:56px}
+          .header-logo img{width:80px;display:block}
+          .header-nav{gap:18px}
+          .header-nav a{font-size:13px}
+          .header-nav{display:none}
+          .hamburger-btn{display:flex}
+          .nav-badge{font-size:9px;padding:0 4px}
+          .page-hero{height:220px}
+          .page-hero-title{font-size:32px}
+          .page-hero-subtitle{font-size:15px}
+        }
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
             background-color: #f8f9fa;
@@ -118,16 +183,48 @@
     </style>
 </head>
 <body>
-    <div style="min-height: 100vh; background-color: #f9fafb;">
-        <header style="background-color: #AB1942; color: white; padding: 32px 16px; box-shadow: 0 4px 16px rgba(0,0,0,0.12);">
-            <div style="max-width: 448px; margin: 0 auto; text-align: center;">
-                <div style="width: 64px; height: 64px; margin: 0 auto 16px; border-radius: 50%; background-color: rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; font-size: 30px;">
-                    🔍
-                </div>
-                <h1 style="font-size: 24px; font-weight: 700; margin-bottom: 8px;">企业诊断</h1>
-                <p style="font-size: 14px; opacity: 0.8;">看清问题，重建秩序</p>
+        <header class="header">
+            <div class="header-inner">
+                <a href="index.html" class="header-logo">
+                    <img src="images/logo-hjzc-transparent-white.png" alt="灰金重组">
+                </a>
+                <nav class="header-nav">
+                    <a href="index.html">首页</a>
+                    <a href="about.html">关于</a>
+                    <a href="services.html">服务</a>
+                    <a href="cases-detail.html">案例</a>
+                    <a href="news.html">企业新闻</a>
+                    <a href="experts.html">专家团队</a>
+                    <span class="nav-item-wrapper"><a href="diag.html">诊断</a><span class="nav-badge">免费</span></span>
+                    <a href="column.html">专栏</a>
+                </nav>
+                <button class="hamburger-btn" aria-label="菜单"><span></span><span></span><span></span></button>
             </div>
         </header>
+
+        <div class="mobile-nav-overlay">
+            <nav class="mobile-nav">
+                <a href="index.html">首页</a>
+                <a href="about.html">关于</a>
+                <a href="services.html">服务</a>
+                <a href="cases-detail.html">案例</a>
+                <a href="news.html">企业新闻</a>
+                <a href="experts.html">专家团队</a>
+                <span class="nav-item-wrapper"><a href="diag.html">诊断</a><span class="nav-badge">免费</span></span>
+                <a href="column.html">专栏</a>
+            </nav>
+        </div>
+
+        <!-- Page Hero -->
+        <section class="page-hero">
+            <div class="container">
+                <div class="page-hero-inner">
+                    <div class="page-hero-icon">🔍</div>
+                    <h1 class="page-hero-title">企业诊断</h1>
+                    <p class="page-hero-subtitle">看清问题，重建秩序</p>
+                </div>
+            </div>
+        </section>
 
         <main style="max-width: 448px; margin: 0 auto; padding: 24px 16px;">
             <div class="card">
@@ -230,6 +327,10 @@
         <footer style="text-align: center; padding: 24px 16px; font-size: 14px; color: #9ca3af; background-color: white; border-top: 1px solid #e5e7eb;">
             <p>© 2026 灰金重组</p>
         </footer>
-    </div>
+
+<script>
+/* Mobile hamburger menu */
+(function(){var h=document.querySelector('.hamburger-btn'),o=document.querySelector('.mobile-nav-overlay');if(!h||!o)return;h.addEventListener('click',function(){this.classList.toggle('active');o.classList.toggle('active');document.body.style.overflow=o.classList.contains('active')?'hidden':''});o.addEventListener('click',function(e){if(e.target===this){this.classList.remove('active');h.classList.remove('active');document.body.style.overflow=''}});o.querySelectorAll('a').forEach(function(l){l.addEventListener('click',function(){o.classList.remove('active');h.classList.remove('active');document.body.style.overflow=''})})})();
+</script>
 </body>
 </html>

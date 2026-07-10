@@ -80,7 +80,7 @@ img{max-width:100%;display:block;object-fit:contain;pointer-events:none}
 .mobile-nav .nav-badge{font-size:10px;font-weight:600;background:#fff;color:#AB1942;padding:1px 6px;border-radius:8px;line-height:1.4;letter-spacing:.5px;margin-left:6px}
 
 /* Hero */
-.hero{background:linear-gradient(135deg,var(--brand) 0%,var(--brand-dark) 100%);position:relative;overflow:hidden}
+.hero{background:linear-gradient(135deg,var(--brand) 0%,var(--brand-dark) 100%);background-size:cover;background-position:center;position:relative;overflow:hidden}
 .hero::before{content:'';position:absolute;top:-30%;right:-10%;width:500px;height:500px;background:radial-gradient(circle,rgba(255,255,255,.06) 0%,transparent 65%);border-radius:50%;pointer-events:none;z-index:0}
 .hero::after{content:'';position:absolute;bottom:-20%;left:-10%;width:400px;height:400px;background:radial-gradient(circle,rgba(255,255,255,.04) 0%,transparent 60%);border-radius:50%;pointer-events:none;z-index:0}
 .hero-decoration{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;overflow:hidden}
@@ -460,6 +460,7 @@ main{overflow-x:hidden}
 .contact-btn{cursor:pointer}
 </style>
   <script src="js/seed-data.js"></script>
+  <script src="js/image-urls.js"></script>
 </head>
 <body>
 
@@ -473,8 +474,10 @@ main{overflow-x:hidden}
       <a href="about.html">关于</a>
       <a href="services.html">服务</a>
       <a href="cases-detail.html">案例</a>
+      <a href="news.html">企业新闻</a>
       <a href="experts.html">专家团队</a>
       <span class="nav-item-wrapper"><a href="diag.html">诊断</a><span class="nav-badge">免费</span></span>
+      <a href="column.html">专栏</a>
     </nav>
     <button class="hamburger-btn" aria-label="菜单"><span></span><span></span><span></span></button>
   </div>
@@ -486,8 +489,10 @@ main{overflow-x:hidden}
     <a href="about.html">关于</a>
     <a href="services.html">服务</a>
     <a href="cases-detail.html">案例</a>
+    <a href="news.html">企业新闻</a>
     <a href="experts.html">专家团队</a>
     <span class="nav-item-wrapper"><a href="diag.html">诊断</a><span class="nav-badge">免费</span></span>
+    <a href="column.html">专栏</a>
   </nav>
 </div>
 
@@ -828,6 +833,84 @@ main{overflow-x:hidden}
   </section>
   <div class="section-divider"></div>
 
+  <!-- Column Featured -->
+  <section class="section" style="position:relative">
+    <div class="bg-decor"></div>
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">COLUMN</span>
+        <h2 class="section-title">专栏精选</h2>
+        <p class="section-desc">深度文章，专业洞见，为企业困境破局提供系统性思考框架</p>
+      </div>
+      <div class="cases-grid">
+        <div class="case-card">
+          <div class="case-image">
+            <span class="case-tag">债务重组</span>
+            <span class="case-image-text">债务</span>
+          </div>
+          <div class="case-body">
+            <h3><a href="column-detail.html?id=1">中小企业债务重组的五个关键步骤</a></h3>
+            <p>在当前经济环境下，中小企业的债务问题愈发突出。本文从实操角度出发，梳理了债务重组的五个关键步骤：问题识别、方案设计、谈判协商、执行落地、后续跟踪……</p>
+            <div class="case-meta">
+              <div class="case-meta-item">
+                <strong>2025-06-15</strong>
+                发布日期
+              </div>
+              <div class="case-meta-item">
+                <strong>约8分钟</strong>
+                阅读时长
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="case-card">
+          <div class="case-image" style="background:linear-gradient(135deg,#2b6cb0 0%,#2c5282 100%)">
+            <span class="case-tag">资产盘活</span>
+            <span class="case-image-text">资产</span>
+          </div>
+          <div class="case-body">
+            <h3><a href="column-detail.html?id=2">存量资产盘活：被忽视的企业自救之道</a></h3>
+            <p>许多陷入困境的企业，往往将目光聚焦在外部融资和新业务拓展上，却忽略了企业内部沉睡的存量资产。本文探讨如何系统性地识别、评估和盘活企业存量资产……</p>
+            <div class="case-meta">
+              <div class="case-meta-item">
+                <strong>2025-05-20</strong>
+                发布日期
+              </div>
+              <div class="case-meta-item">
+                <strong>约6分钟</strong>
+                阅读时长
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="case-card">
+          <div class="case-image" style="background:linear-gradient(135deg,#c05621 0%,#9c4221 100%)">
+            <span class="case-tag">经营诊断</span>
+            <span class="case-image-text">诊断</span>
+          </div>
+          <div class="case-body">
+            <h3><a href="column-detail.html?id=4">如何判断你的企业是否已经陷入经营困境</a></h3>
+            <p>企业的衰败往往不是一夜之间发生的，而是经历了一个渐进的过程。本文从现金流、利润率、客户流失率等维度，帮助企业主提前识别经营风险信号……</p>
+            <div class="case-meta">
+              <div class="case-meta-item">
+                <strong>2025-03-28</strong>
+                发布日期
+              </div>
+              <div class="case-meta-item">
+                <strong>约5分钟</strong>
+                阅读时长
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="cases-more">
+        <a href="column.html">查看全部专栏文章 →</a>
+      </div>
+    </div>
+  </section>
+  <div class="section-divider"></div>
+
   <!-- Team -->
   <section class="section" style="position:relative">
     <div class="bg-decor"></div>
@@ -1064,6 +1147,40 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
 });
+</script>
+
+<script>
+/* Apply background images from image-urls.js */
+(function(){
+  var urls = window.__IMAGE_URLS;
+  if (!urls) return;
+  // Hero: set background image with gradient overlay
+  var hero = document.querySelector('.hero');
+  if (hero && urls.hero) hero.style.backgroundImage = 'linear-gradient(rgba(0,0,0,0.45),rgba(0,0,0,0.65)),url('+urls.hero+')';
+
+  // Case cards
+  var caseCards = document.querySelectorAll('.case-card');
+  var caseUrls = [urls.case1, urls.case2, urls.case3];
+  caseCards.forEach(function(card, i) {
+    var imgDiv = card.querySelector('.case-image');
+    if (imgDiv && caseUrls[i]) {
+      imgDiv.style.backgroundImage = 'url('+caseUrls[i]+')';
+      imgDiv.style.backgroundSize = 'cover';
+      imgDiv.style.backgroundPosition = 'center';
+    }
+  });
+
+  // Service cards: add decorative image above service-number
+  var svcCards = document.querySelectorAll('.service-card');
+  var svcUrls = [urls.service1, urls.service2, urls.service3];
+  svcCards.forEach(function(card, i) {
+    if (!svcUrls[i]) return;
+    var imgDiv = document.createElement('div');
+    imgDiv.className = 'service-image';
+    imgDiv.style.cssText = 'height:160px;background-size:cover;background-position:center;border-radius:var(--radius-md) var(--radius-md) 0 0;margin:-28px -24px 16px -24px;background-image:url('+svcUrls[i]+')';
+    card.insertBefore(imgDiv, card.firstChild);
+  });
+})();
 </script>
 </body>
 </html>

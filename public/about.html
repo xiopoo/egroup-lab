@@ -228,7 +228,13 @@ img{max-width:100%;display:block;object-fit:contain;pointer-events:none}
   .footer-links{gap:14px}
 }
 main{overflow-x:hidden}
+
+/* About banner image */
+.about-banner{margin-top:80px;border-radius:var(--radius-lg);overflow:hidden;aspect-ratio:16/9}
+.about-banner img{width:100%;height:100%;object-fit:cover;display:block}
+@media(max-width:767px){.about-banner{margin-top:56px;aspect-ratio:4/3}}
 </style>
+<script src="js/image-urls.js"></script>
 </head>
 <body>
 
@@ -242,8 +248,10 @@ main{overflow-x:hidden}
       <a href="about.html" class="active">关于</a>
       <a href="services.html">服务</a>
       <a href="cases-detail.html">案例</a>
+      <a href="news.html">企业新闻</a>
       <a href="experts.html">专家团队</a>
       <span class="nav-item-wrapper"><a href="diag.html">诊断</a><span class="nav-badge">免费</span></span>
+      <a href="column.html">专栏</a>
     </nav>
     <button class="hamburger-btn" aria-label="菜单"><span></span><span></span><span></span></button>
   </div>
@@ -255,8 +263,10 @@ main{overflow-x:hidden}
     <a href="about.html" class="active">关于</a>
     <a href="services.html">服务</a>
     <a href="cases-detail.html">案例</a>
+    <a href="news.html">企业新闻</a>
     <a href="experts.html">专家团队</a>
     <span class="nav-item-wrapper"><a href="diag.html">诊断</a><span class="nav-badge">免费</span></span>
+    <a href="column.html">专栏</a>
   </nav>
 </div>
 
@@ -285,6 +295,13 @@ main{overflow-x:hidden}
           <p>我们相信，<strong>每一家企业都有重生的可能</strong>。我们拒绝泛泛而谈的理论框架，始终以企业真实痛点为锚点，提供可落地、可执行的实战化解决方案。</p>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- About Banner Image -->
+  <section class="section first-section" style="padding-top:0;padding-bottom:0">
+    <div class="container">
+      <div class="about-banner" id="about-banner"></div>
     </div>
   </section>
 
@@ -464,6 +481,9 @@ main{overflow-x:hidden}
 <script>
 /* Mobile hamburger menu */
 (function(){var h=document.querySelector('.hamburger-btn'),o=document.querySelector('.mobile-nav-overlay');if(!h||!o)return;h.addEventListener('click',function(){this.classList.toggle('active');o.classList.toggle('active');document.body.style.overflow=o.classList.contains('active')?'hidden':''});o.addEventListener('click',function(e){if(e.target===this){this.classList.remove('active');h.classList.remove('active');document.body.style.overflow=''}});o.querySelectorAll('a').forEach(function(l){l.addEventListener('click',function(){o.classList.remove('active');h.classList.remove('active');document.body.style.overflow=''})})})();
+
+/* Apply about banner image */
+(function(){var u=window.__IMAGE_URLS;if(!u||!u.about)return;var b=document.getElementById('about-banner');if(!b)return;var i=document.createElement('img');i.src=u.about;i.alt='灰金重组团队';b.appendChild(i)})();
 </script>
 </body>
 </html>
