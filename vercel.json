@@ -1,7 +1,7 @@
 {
   "version": 2,
   "buildCommand": null,
-  "outputDirectory": "public",
+  "outputDirectory": "website/public",
   "cleanUrls": true,
   "headers": [
     {
