@@ -14,7 +14,7 @@
 ## Impact
 
 - Affected specs: sphere-2.5d-implementation
-- Affected code: `/Users/lucas/Documents/bamangB/regroup-lab/public/index.html` (CSS + JS)
+- Affected code: `website/public/index.html` (CSS + JS)
 
 ## ADDED Requirements
 

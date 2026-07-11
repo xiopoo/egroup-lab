@@ -14,7 +14,7 @@
 ## Impact
 
 - Affected specs: sphere-2.5d-implementation, fix-sphere-occlusion
-- Affected code: `/Users/lucas/Documents/bamangB/regroup-lab/public/index.html` (CSS)
+- Affected code: `website/public/index.html` (CSS)
 
 ## ADDED Requirements
 

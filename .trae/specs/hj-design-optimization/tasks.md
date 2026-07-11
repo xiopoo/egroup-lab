@@ -1,6 +1,6 @@
 # 灰金重组公众号排版设计优化 - 实施计划
 
-## [x] Task 1: 配色方案优化
+## [ ] Task 1: 配色方案优化
 - **Priority**: high
 - **Depends On**: None
 - **Description**: 
@@ -13,7 +13,7 @@
   - `human-judgement` TR-1.2: 正文文字清晰可读，对比度足够
 - **Notes**: 参考法律金融行业高端设计，采用米白背景提升质感
 
-## [x] Task 2: 排版层次优化
+## [ ] Task 2: 排版层次优化
 - **Priority**: high
 - **Depends On**: Task 1
 - **Description**: 
@@ -26,7 +26,7 @@
   - `human-judgement` TR-2.2: 段落间距舒适，阅读体验流畅
 - **Notes**: 标题使用品牌色，正文使用深色，形成对比
 
-## [x] Task 3: 品牌推广区重新设计
+## [ ] Task 3: 品牌推广区重新设计
 - **Priority**: high
 - **Depends On**: Task 1
 - **Description**: 
@@ -39,7 +39,7 @@
   - `human-judgement` TR-3.2: 品牌信息完整呈现，易于识别
 - **Notes**: 参考高端商务卡片设计，使用装饰线和留白增强质感
 
-## [x] Task 4: 引用块和重点内容优化
+## [ ] Task 4: 引用块和重点内容优化
 - **Priority**: medium
 - **Depends On**: Task 1
 - **Description**: 
@@ -52,7 +52,7 @@
   - `human-judgement` TR-4.2: 重点内容易于识别和记忆
 - **Notes**: 引用块使用品牌色边框，重点内容使用浅背景高亮
 
-## [x] Task 5: 章节分隔线设计优化
+## [ ] Task 5: 章节分隔线设计优化
 - **Priority**: medium
 - **Depends On**: Task 1
 - **Description**: 
@@ -65,7 +65,7 @@
   - `human-judgement` TR-5.2: 篇章结构清晰，视觉节奏良好
 - **Notes**: 分隔线使用品牌色和灰色组合，增加层次感
 
-## [x] Task 6: 公众号兼容性测试
+## [ ] Task 6: 公众号兼容性测试
 - **Priority**: high
 - **Depends On**: Tasks 1-5
 - **Description**: 
@@ -78,43 +78,15 @@
   - `human-judgement` TR-6.2: 复制到公众号后台后样式无丢失
 - **Notes**: 使用标准CSS属性，确保公众号兼容性
 
-## [x] Task 7: 添加微信二维码展示区
-- **Priority**: high
-- **Depends On**: Task 3
-- **Description**: 
-  - 在品牌推广区添加二维码展示区域
-  - 设计二维码容器样式，包含扫码引导文字
-  - 预留二维码图片位置，提示用户手动上传
-- **Acceptance Criteria Addressed**: FR-8
-- **Test Requirements**:
-  - `human-judgement` TR-7.1: 二维码展示区设计美观，引导清晰
-  - `human-judgement` TR-7.2: 二维码位置合理，不影响其他内容
-- **Notes**: 公众号不支持外链图片，二维码需用户手动上传
-
-## [x] Task 8: 添加"阅读原文"引导按钮
-- **Priority**: high
-- **Depends On**: Task 3
-- **Description**: 
-  - 在品牌推广区添加"阅读原文"引导按钮
-  - 设计按钮样式：品牌色背景、白色文字、圆角
-  - 添加引导文字，提示用户点击跳转官网
-- **Acceptance Criteria Addressed**: FR-9
-- **Test Requirements**:
-  - `human-judgement` TR-8.1: 按钮设计美观，视觉突出
-  - `human-judgement` TR-8.2: 引导文字清晰，明确告知用户用途
-- **Notes**: 公众号"阅读原文"链接需在后台设置，此处仅做视觉引导
-
-## [x] Task 9: SKILL.md模板更新
+## [ ] Task 7: SKILL.md模板更新
 - **Priority**: medium
-- **Depends On**: Tasks 1-8
+- **Depends On**: Tasks 1-5
 - **Description**: 
   - 更新品牌烙印模板的配色方案
   - 更新排版样式规范
   - 更新品牌推广区设计规范
-  - 添加二维码和阅读原文按钮规范
-- **Acceptance Criteria Addressed**: AC-1, AC-2, AC-3, FR-8, FR-9
+- **Acceptance Criteria Addressed**: AC-1, AC-2, AC-3
 - **Test Requirements**:
-  - `programmatic` TR-9.1: SKILL.md中包含完整的配色方案定义
-  - `programmatic` TR-9.2: SKILL.md中包含完整的排版样式规范
-  - `programmatic` TR-9.3: SKILL.md中包含二维码和阅读原文按钮规范
+  - `programmatic` TR-7.1: SKILL.md中包含完整的配色方案定义
+  - `programmatic` TR-7.2: SKILL.md中包含完整的排版样式规范
 - **Notes**: 确保模板规范与实际HTML输出一致

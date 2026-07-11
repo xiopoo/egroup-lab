@@ -9,21 +9,21 @@
 - **Priority**: high
 - **Depends On**: None
 - **Description**: 
-  - 在 `.trae/skills/` 下创建 regroup-lab 系列 Skill 目录结构
-  - 创建主入口 Skill：`regroup-lab/SKILL.md`
+  - 在 `.trae/skills/` 下创建 hj 系列 Skill 目录结构
+  - 创建主入口 Skill：`hj/SKILL.md`
   - 建立 Skill 命名规范与开发规范
-  - 配置本地数据存储路径：`~/.regroup-lab/`
+  - 配置本地数据存储路径：`~/.hj/`
   - 建立数据文件目录结构：cases/、terms/、templates/、saves/
   - 定义核心数据模型（案例、术语、模板、存档）
 - **Acceptance Criteria Addressed**: AC-1
 - **Test Requirements**:
-  - `programmatic` TR-0.1: regroup-lab 主 Skill 可被正常调用
+  - `programmatic` TR-0.1: hj 主 Skill 可被正常调用
   - `programmatic` TR-0.2: 本地数据目录结构创建完成
   - `programmatic` TR-0.3: 数据模型定义清晰完整
   - `human-judgement` TR-0.4: Skill 目录结构清晰，命名规范统一
 - **Notes**: Skill 放在当前项目的 `.trae/skills/` 目录下，与 DBS 平行
 
-## [ ] Task 1: regroup-lab 主入口 Skill
+## [ ] Task 1: hj 主入口 Skill
 - **Priority**: high
 - **Depends On**: Task 0
 - **Description**: 
@@ -38,14 +38,14 @@
   - 说话风格定义（与DBS一致：直接、精准、不讨好）
 - **Acceptance Criteria Addressed**: AC-1, AC-10
 - **Test Requirements**:
-  - `programmatic` TR-1.1: 调用 regroup-lab 后，能根据用户描述路由到正确的子Skill
+  - `programmatic` TR-1.1: 调用 hj 后，能根据用户描述路由到正确的子Skill
   - `programmatic` TR-1.2: 子Skill完成后返回主入口，能推荐2-3个下一步方向
   - `programmatic` TR-1.3: 模糊需求时能给出清晰的选项引导
   - `human-judgement` TR-1.4: 路由逻辑合理，符合用户直觉
   - `human-judgement` TR-1.5: 说话风格与DBS一致，直接精准
 - **Notes**: 主入口是整个系统的调度中心，路由逻辑要清晰准确
 
-## [ ] Task 2: regroup-lab-content 内容诊断
+## [ ] Task 2: hj-content 内容诊断
 - **Priority**: high
 - **Depends On**: Task 1
 - **Description**: 
@@ -69,7 +69,7 @@
   - `human-judgement` TR-2.5: 适配重组领域的专业特性，诊断维度准确
 - **Notes**: 内容诊断是核心功能，诊断质量直接决定系统价值。需深度适配重组领域
 
-## [ ] Task 3: regroup-lab-ai-check AI写作特征检测
+## [ ] Task 3: hj-ai-check AI写作特征检测
 - **Priority**: high
 - **Depends On**: Task 1
 - **Description**: 
@@ -92,7 +92,7 @@
   - `human-judgement` TR-3.6: 改写引导有启发性，能帮用户找到自己的表达方式
 - **Notes**: 专业文章有其特殊性，不能照搬通用AI检测标准，需调整阈值和规则
 
-## [ ] Task 4: regroup-lab-title 公众号标题生成
+## [ ] Task 4: hj-title 公众号标题生成
 - **Priority**: high
 - **Depends On**: Task 1
 - **Description**: 
@@ -111,7 +111,7 @@
   - `human-judgement` TR-4.5: 标题适配重组领域语境，专业且不违和
 - **Notes**: 参考dbs-xhs-title的75个公式，精选适配公众号和重组领域的
 
-## [ ] Task 5: regroup-lab-wechat-html 公众号排版
+## [ ] Task 5: hj-wechat-html 公众号排版
 - **Priority**: high
 - **Depends On**: Task 1
 - **Description**: 
@@ -133,7 +133,7 @@
   - `human-judgement` TR-5.5: 代码结构清晰，易于调整
 - **Notes**: 可复用dbs-wechat-html的核心逻辑，重点在风格预设的适配
 
-## [ ] Task 6: regroup-lab-cases 案例库
+## [ ] Task 6: hj-cases 案例库
 - **Priority**: high
 - **Depends On**: Task 0
 - **Description**: 
@@ -152,9 +152,9 @@
   - `programmatic` TR-6.4: 能生成可直接引用的案例摘要
   - `human-judgement` TR-6.5: 案例内容真实有价值，非编造
   - `human-judgement` TR-6.6: 案例分类合理，检索结果相关度高
-- **Notes**: 内置案例使用公开的经典案例，注意版权。案例数据放在 `~/.regroup-lab/cases/`
+- **Notes**: 内置案例使用公开的经典案例，注意版权。案例数据放在 `~/.hj/cases/`
 
-## [ ] Task 7: regroup-lab-terms 术语库
+## [ ] Task 7: hj-terms 术语库
 - **Priority**: high
 - **Depends On**: Task 0
 - **Description**: 
@@ -174,9 +174,9 @@
   - `programmatic` TR-7.4: 每个术语包含定义、场景、误区等完整信息
   - `human-judgement` TR-7.5: 术语解释专业准确
   - `human-judgement` TR-7.6: 应用场景和常见误区有实用价值
-- **Notes**: 术语是专业性的基础，确保准确。术语数据放在 `~/.regroup-lab/terms/`
+- **Notes**: 术语是专业性的基础，确保准确。术语数据放在 `~/.hj/terms/`
 
-## [ ] Task 8: regroup-lab-templates 写作模板库
+## [ ] Task 8: hj-templates 写作模板库
 - **Priority**: medium
 - **Depends On**: Task 0
 - **Description**: 
@@ -202,14 +202,14 @@
   - `human-judgement` TR-8.6: 写作提示有启发性，能真正帮助写作
 - **Notes**: 模板是结构化写作的基础，确保每种模板都有清晰的逻辑
 
-## [ ] Task 9: regroup-lab-save 存档功能
+## [ ] Task 9: hj-save 存档功能
 - **Priority**: medium
 - **Depends On**: Task 2, Task 3
 - **Description**: 
   - 存档数据模型：诊断结果、文章内容、时间戳、标签
   - 存档流程：保存当前工作状态到本地文件
   - 存档列表展示
-  - 存储位置：`~/.regroup-lab/saves/`
+  - 存储位置：`~/.hj/saves/`
   - 存档文件命名规范
   - 存档数量限制与清理提示
 - **Acceptance Criteria Addressed**: AC-9
@@ -220,7 +220,7 @@
   - `human-judgement` TR-9.4: 存档操作简单，结果清晰
 - **Notes**: 参考dbs-save的实现方式
 
-## [ ] Task 10: regroup-lab-restore 恢复存档
+## [ ] Task 10: hj-restore 恢复存档
 - **Priority**: medium
 - **Depends On**: Task 9
 - **Description**: 
@@ -237,7 +237,7 @@
   - `human-judgement` TR-10.4: 恢复操作清晰，不会误操作
 - **Notes**: 参考dbs-restore的实现方式
 
-## [ ] Task 11: regroup-lab-report 报告生成
+## [ ] Task 11: hj-report 报告生成
 - **Priority**: medium
 - **Depends On**: Task 9
 - **Description**: 
@@ -280,9 +280,9 @@
 ## 二期规划（待确认）
 以下Skill在一期完成后根据需求优先级逐步开发：
 
-- regroup-lab-diagnosis（选题诊断）
-- regroup-lab-hook（开头优化）
-- regroup-lab-chatroom（多视角讨论）
-- regroup-lab-deconstruct（概念拆解）
-- regroup-lab-decision（决策沉淀）
-- regroup-lab-content-system（内容结构化系统）
+- hj-diagnosis（选题诊断）
+- hj-hook（开头优化）
+- hj-chatroom（多视角讨论）
+- hj-deconstruct（概念拆解）
+- hj-decision（决策沉淀）
+- hj-content-system（内容结构化系统）

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Hero Test</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--brand:#AB1942;--brand-dark:#8B1435}
+/* Exact hero CSS from index.html */
+.hero{background:linear-gradient(135deg,var(--brand) 0%,var(--brand-dark) 100%);background-size:cover;background-position:center;position:relative;overflow:hidden;min-height:480px}
+.hero-carousel{position:absolute;top:0;left:0;width:100%;height:100%;overflow:hidden;z-index:1}
+.hero-slide{position:absolute;top:0;left:0;width:100%;height:100%;opacity:0;transition:opacity 1.2s ease;background:linear-gradient(135deg,var(--brand) 0%,var(--brand-dark) 100%);background-size:cover;background-position:center}
+.hero-slide.active{opacity:1}
+.hero-inner{position:relative;z-index:2;display:grid;grid-template-columns:1.3fr 1fr;gap:24px;align-items:center;box-sizing:border-box;min-height:auto;padding:20px 0 0}
+.hero-content{position:relative;z-index:3}
+.hero-content::before{content:'';position:absolute;top:-36px;left:-72px;right:-56px;bottom:-24px;background:radial-gradient(ellipse at center,rgba(171,25,66,.65) 0%,rgba(171,25,66,.40) 50%,transparent 80%);border-radius:50%;z-index:-1;pointer-events:none}
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+.hero-title{color:#fff;font-size:36px;margin-bottom:6px}
+.hero-desc{color:#fff;font-size:14px;max-width:560px}
+.hero-visual{display:flex;align-items:center;justify-content:center;z-index:3;position:relative}
+.hero-radial{width:100%;max-width:100%;aspect-ratio:1;position:relative;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.05);border-radius:50%}
+
+/* Styles for test page */
+body{padding:20px;background:#333;font-family:sans-serif}
+.info{color:#fff;margin-bottom:12px;padding:12px;background:rgba(0,0,0,.5);border-radius:4px;font-size:13px}
+.info strong{color:#ff6}
+button{padding:8px 16px;margin-right:8px;margin-bottom:8px;cursor:pointer;border:none;border-radius:4px;font-size:13px}
+.btn-check{background:#4CAF50;color:#fff}
+.btn-toggle{background:#2196F3;color:#fff}
+.btn-fix{background:#FF9800;color:#fff}
+</style>
+</head>
+<body>
+
+<div class="info" id="logArea">
+  <strong>诊断日志:</strong><br>
+  <span id="logText">页面加载中...</span>
+</div>
+
+<div>
+  <button class="btn-check" onclick="checkState()">检查状态</button>
+  <button class="btn-toggle" onclick="toggleOverflow()">切换 overflow</button>
+  <button class="btn-fix" onclick="toggleFix()">切换 CSS 修复</button>
+  <span id="statusDisplay" style="color:#fff;font-size:12px"></span>
+</div>
+
+<!-- Exact hero HTML from index.html -->
+<section class="hero" id="hero">
+  <div class="hero-carousel" id="heroCarousel">
+    <div class="hero-slide active" data-slide="0">
+    </div>
+    <div class="hero-slide" data-slide="1">
+    </div>
+    <div class="hero-slide" data-slide="2">
+    </div>
+  </div>
+  <div class="container">
+    <div class="hero-inner">
+      <div class="hero-content">
+        <h1 class="hero-title">测试 Hero 轮播</h1>
+        <p class="hero-desc">此页面用于诊断桌面端 Hero 轮播图片显示问题。</p>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-radial">
+          <div style="color:#fff;text-align:center;font-size:14px">3D 球状图<br>(占位)</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+// Simulate image-urls-v2.js
+window.__IMAGE_URLS = {
+  heroImages: [
+    "images/hero-1.jpg?v=4",
+    "images/hero-2.jpg?v=4",
+    "images/hero-3.jpg?v=4"
+  ]
+};
+
+function log(msg) {
+  var el = document.getElementById('logText');
+  el.innerHTML = (el.innerHTML ? el.innerHTML + '<br>' : '') + new Date().toLocaleTimeString() + ' ' + msg;
+}
+
+// Image injection (exact same code as index.html)
+(function(){
+  var u = window.__IMAGE_URLS;
+  if (!u) { log('ERROR: __IMAGE_URLS not found'); return; }
+  
+  try {
+    var heroImages = u.heroImages || [];
+    if (heroImages.length) {
+      var slides = document.querySelectorAll('.hero-slide');
+      var heroEl = document.getElementById('hero');
+      slides.forEach(function(s, i){
+        if (!heroImages[i]) return;
+        log('Setting background: ' + heroImages[i]);
+        s.style.backgroundImage = 'url(' + heroImages[i] + '), linear-gradient(135deg, var(--brand) 0%, var(--brand-dark) 100%)';
+      });
+      if (heroEl) {
+        var cs = getComputedStyle(heroEl);
+        log('Hero height: ' + heroEl.offsetHeight + 'px, min-height: ' + cs.minHeight);
+      }
+    } else {
+      log('WARN: heroImages array is empty');
+    }
+  } catch(e) {
+    log('ERROR: ' + e.message);
+  }
+})();
+
+function checkState() {
+  var hero = document.getElementById('hero');
+  var slides = document.querySelectorAll('.hero-slide');
+  var carousel = document.getElementById('heroCarousel');
+  
+  log('=== 状态检查 ===');
+  if (hero) {
+    var cs = getComputedStyle(hero);
+    log('Hero: offsetHeight=' + hero.offsetHeight + 'px, minHeight=' + cs.minHeight + ', overflow=' + cs.overflow);
+  }
+  if (carousel) {
+    var cs = getComputedStyle(carousel);
+    log('Carousel: zIndex=' + cs.zIndex + ', height=' + carousel.offsetHeight + 'px');
+  }
+  slides.forEach(function(s, i) {
+    var cs = getComputedStyle(s);
+    var bg = s.style.backgroundImage || '(none)';
+    log('Slide[' + i + ']: active=' + s.classList.contains('active') + ', opacity=' + cs.opacity + ', bgImage=' + bg.substring(0, 60) + '...');
+  });
+}
+
+function toggleOverflow() {
+  var hero = document.getElementById('hero');
+  var cur = hero.style.overflow;
+  hero.style.overflow = (cur === 'visible' ? '' : 'visible');
+  hero.style.overflow = hero.style.overflow || 'hidden';
+  log('Overflow 已切换为: ' + hero.style.overflow);
+}
+
+function toggleFix() {
+  var hero = document.getElementById('hero');
+  var cur = hero.style.minHeight;
+  hero.style.minHeight = (cur === 'auto' ? '' : 'auto');
+  hero.style.minHeight = hero.style.minHeight || '480px';
+  log('minHeight 已切换为: ' + hero.style.minHeight);
+  
+  var carousel = document.getElementById('heroCarousel');
+  carousel.style.zIndex = (carousel.style.zIndex === '0' ? '1' : '0');
+  log('carousel zIndex 已切换为: ' + carousel.style.zIndex);
+}
+
+log('页面加载完成');
+</script>
+
+</body>
+</html>

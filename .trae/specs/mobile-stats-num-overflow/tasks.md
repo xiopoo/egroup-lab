@@ -13,7 +13,7 @@
   - `programmatic` TR-1.2: 375px下"29.5%"在18px下约55px，列宽167px，富余112px ✅
   - `programmatic` TR-1.3: 桌面端不受影响 ✅
 
-## [ ] Task 2: 修改首页CSS移动端数字样式
+## [x] Task 2: 修改首页CSS移动端数字样式
 - **Priority**: high
 - **Depends On**: Task 1
 - **Description**: 
@@ -25,11 +25,11 @@
   - `human-judgment` TR-2.2: 桌面端(≥768px)统计数字保持原46px大字样式
   - `human-judgment` TR-2.3: 数字清晰可读，无明显变形
 
-## [ ] Task 3: 验证与提交
+## [x] Task 3: 验证与提交
 - **Priority**: medium
 - **Depends On**: Task 2
 - **Description**: 验证修改效果，提交并推送代码
 - **Acceptance Criteria Addressed**: AC-1, AC-2, AC-3
 - **Test Requirements**:
-  - `programmatic` TR-3.1: 确认修改后CSS代码正确
+  - `programmatic` TR-3.1: 确认修改后CSS代码正确 ✅
   - `human-judgment` TR-3.2: 在浏览器中模拟320px-375px视口检查数字完整显示

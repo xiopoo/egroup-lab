@@ -8,7 +8,7 @@
 ## 项目定位
 本项目为 **独立的 Skill 模块集合**，与"复利书房"价值投资内容网站完全独立，与 DBS 商业工具箱平行。
 
-- **项目名**: regroup-lab
+- **项目名**: hj
 - **品牌名**: 灰金重组写作助手
 - **形态**: TRAE IDE Skill 模块集合
 - **调用方式**: 对话交互，类似 DBS 的使用方式
@@ -21,27 +21,27 @@
 ```
 选题诊断 → 结构化写作 → 内容诊断 → 专项优化 → 发布管理
    ↓           ↓           ↓          ↓          ↓
-regroup-lab-  模板/案例/   regroup-lab- regroup-lab-  regroup-lab-
+hj-  模板/案例/   hj- hj-  hj-
 diagnosis   术语库       content   title/AI检测  wechat-html
 ```
 
 ### Skill 架构总览
 
 ```
-regroup-lab（主入口，路由+导航）
-├── regroup-lab-content      内容五维诊断（核心）
-├── regroup-lab-ai-check     AI写作特征检测
-├── regroup-lab-title        公众号标题生成
-├── regroup-lab-wechat-html  公众号排版与HTML生成
-├── regroup-lab-cases        案例库检索与引用
-├── regroup-lab-terms        专业术语库查询
-├── regroup-lab-templates    写作模板库
-├── regroup-lab-diagnosis    选题诊断（二期）
-├── regroup-lab-hook         开头优化（二期）
-├── regroup-lab-chatroom     多视角讨论（二期）
-├── regroup-lab-save         诊断存档
-├── regroup-lab-restore      恢复存档
-└── regroup-lab-report       报告生成
+hj（主入口，路由+导航）
+├── hj-content      内容五维诊断（核心）
+├── hj-ai-check     AI写作特征检测
+├── hj-title        公众号标题生成
+├── hj-wechat-html  公众号排版与HTML生成
+├── hj-cases        案例库检索与引用
+├── hj-terms        专业术语库查询
+├── hj-templates    写作模板库
+├── hj-diagnosis    选题诊断（二期）
+├── hj-hook         开头优化（二期）
+├── hj-chatroom     多视角讨论（二期）
+├── hj-save         诊断存档
+├── hj-restore      恢复存档
+└── hj-report       报告生成
 ```
 
 ## Goals
@@ -64,13 +64,13 @@ regroup-lab（主入口，路由+导航）
 
 ## 一期 Skill 模块规划
 
-### 1. regroup-lab（主入口 Skill）
+### 1. hj（主入口 Skill）
 - **功能**: 路由分发 + 任务后导航
 - **模式A（任务前路由）**: 根据用户意图，路由到对应的子 Skill
 - **模式B（任务后导航）**: 上一个 Skill 完成后，推荐 2-3 个下一步方向
 - **路由表**: 包含所有子 Skill 的入口与触发条件
 
-### 2. regroup-lab-content（内容诊断）
+### 2. hj-content（内容诊断）
 - **功能**: 基于 DBS 五维诊断框架，适配重组领域的内容质量检测
 - **诊断维度**:
   - 专业深度检测（专业术语使用、案例支撑、数据准确性）
@@ -80,25 +80,25 @@ regroup-lab（主入口，路由+导航）
   - 合规性检测（风险提示、免责声明、敏感词检查）
 - **输出**: 诊断报告 + 具体问题清单 + 优化建议
 
-### 3. regroup-lab-ai-check（AI写作特征检测）
+### 3. hj-ai-check（AI写作特征检测）
 - **功能**: 基于 dbs-ai-check 框架，适配专业文章场景的 AI 味检测
 - **检测维度**: 开头套路感、段落结尾金句、连接词过度、假大空描述、公式化结构、专业术语堆砌等
 - **输出**: 检测报告 + 逐处标记 + 修改建议
 - **改写引导**: 针对每处问题追问用户真实意图，引导找到自己的表达方式
 
-### 4. regroup-lab-title（公众号标题生成）
+### 4. hj-title（公众号标题生成）
 - **功能**: 基于爆款公式，适配重组领域的公众号标题生成
 - **标题类型**: 数字型、疑问型、悬念型、对比型、案例型、痛点型、金句型、反常识型
 - **模板库**: 20+ 重组领域专用标题公式
 - **输出**: 10 个备选标题 + 质量评估 + 一键应用
 
-### 5. regroup-lab-wechat-html（公众号排版）
+### 5. hj-wechat-html（公众号排版）
 - **功能**: 将 Markdown 文章转换为公众号兼容的 HTML
 - **排版样式**: 3-5 种专业风格预设（简约商务、专业报告、清新阅读、法律文书、数据报告）
 - **输出**: 预览 + HTML 代码 + 一键复制
 - **位置**: 与 dbs-wechat-html 功能类似，但预设风格更偏向专业内容
 
-### 6. regroup-lab-cases（案例库）
+### 6. hj-cases（案例库）
 - **功能**: 困境重组案例的检索、查询与引用
 - **数据来源**: 内置经典案例 + 用户自定义案例
 - **检索维度**: 行业、问题类型、解决方案、企业规模、审理法院
@@ -106,14 +106,14 @@ regroup-lab（主入口，路由+导航）
 - **输出**: 案例列表 + 详情 + 一键引用到当前写作
 - **数据存储**: 本地 Markdown/JSON 文件，支持用户自行添加
 
-### 7. regroup-lab-terms（术语库）
+### 7. hj-terms（术语库）
 - **功能**: 重组领域专业术语查询与解释
 - **术语分类**: 债务类、资产类、法律类、财务类、经营类、程序类
 - **术语结构**: 标准定义、应用场景、常见误区、相关术语、用法示例
 - **输出**: 术语解释 + 相关术语推荐 + 一键插入文章
 - **数据存储**: 本地数据文件，支持用户自定义补充
 
-### 8. regroup-lab-templates（写作模板库）
+### 8. hj-templates（写作模板库）
 - **功能**: 提供多种文章类型的结构化写作模板
 - **模板类型**:
   - 案例分析型
@@ -125,27 +125,27 @@ regroup-lab（主入口，路由+导航）
 - **模板结构**: 章节框架 + 写作提示 + 示例片段
 - **输出**: 模板内容 + 使用说明 + 一键应用
 
-### 9. regroup-lab-save（存档）
+### 9. hj-save（存档）
 - **功能**: 将当前诊断/写作状态保存到本地
 - **保存内容**: 诊断结果、文章版本、优化记录
-- **存储位置**: `~/.regroup-lab/saves/` 目录
+- **存储位置**: `~/.hj/saves/` 目录
 - **输出**: 存档文件路径 + 存档摘要
 
-### 10. regroup-lab-restore（恢复存档）
+### 10. hj-restore（恢复存档）
 - **功能**: 恢复之前的存档，继续上次的工作
 - **输出**: 存档列表 + 恢复后的状态
 
-### 11. regroup-lab-report（报告生成）
+### 11. hj-report（报告生成）
 - **功能**: 将多份诊断存档合并为一份完整报告
 - **输出**: Markdown 格式报告，可导出
 
 ## 二期 Skill 模块规划（待确认）
-- **regroup-lab-diagnosis**: 选题诊断（基于 dbs-diagnosis 框架，评估选题价值）
-- **regroup-lab-hook**: 开头优化（基于 dbs-hook 框架，优化文章开头）
-- **regroup-lab-chatroom**: 多视角讨论（基于 dbs-chatroom，重组领域专家角色）
-- **regroup-lab-deconstruct**: 概念拆解（基于 dbs-deconstruct，拆解专业概念）
-- **regroup-lab-decision**: 决策沉淀（基于 dbs-decision，选题决策记录复盘）
-- **regroup-lab-content-system**: 内容结构化系统（基于 dbs-content-system，内容资产工程化）
+- **hj-diagnosis**: 选题诊断（基于 dbs-diagnosis 框架，评估选题价值）
+- **hj-hook**: 开头优化（基于 dbs-hook 框架，优化文章开头）
+- **hj-chatroom**: 多视角讨论（基于 dbs-chatroom，重组领域专家角色）
+- **hj-deconstruct**: 概念拆解（基于 dbs-deconstruct，拆解专业概念）
+- **hj-decision**: 决策沉淀（基于 dbs-decision，选题决策记录复盘）
+- **hj-content-system**: 内容结构化系统（基于 dbs-content-system，内容资产工程化）
 
 ## Background & Context
 - 本项目为独立的 Skill 模块集合，与"复利书房"价值投资内容网站相互独立
@@ -233,7 +233,7 @@ regroup-lab（主入口，路由+导航）
 
 ## Constraints
 - **技术形态**: TRAE IDE Skill 模块，基于 SKILL.md 定义
-- **数据存储**: 本地文件系统（Markdown/JSON），路径 `~/.regroup-lab/`
+- **数据存储**: 本地文件系统（Markdown/JSON），路径 `~/.hj/`
 - **交互方式**: 纯对话交互，无图形界面
 - **诊断逻辑**: 基于规则引擎与模板匹配，不依赖大模型 API
 - **内容安全**: 所有诊断仅为辅助建议，不构成专业意见
@@ -249,56 +249,56 @@ regroup-lab（主入口，路由+导航）
 ## Acceptance Criteria
 
 ### AC-1: 主入口路由功能
-- **Given**: 用户调用 regroup-lab 主 Skill
+- **Given**: 用户调用 hj 主 Skill
 - **When**: 用户描述需求
 - **Then**: 系统正确路由到对应子 Skill，或引导用户选择
 - **Verification**: `human-judgment`
 
 ### AC-2: 内容五维诊断
 - **Given**: 用户提供文章初稿或选题
-- **When**: 调用 regroup-lab-content
+- **When**: 调用 hj-content
 - **Then**: 系统输出五维诊断报告，包含评分、问题、建议
 - **Verification**: `human-judgment`
 
 ### AC-3: AI写作特征检测
 - **Given**: 用户提供文章
-- **When**: 调用 regroup-lab-ai-check
+- **When**: 调用 hj-ai-check
 - **Then**: 系统逐处标记 AI 特征，给出检测报告
 - **Verification**: `human-judgment`
 
 ### AC-4: 标题生成
 - **Given**: 用户输入主题关键词
-- **When**: 调用 regroup-lab-title
+- **When**: 调用 hj-title
 - **Then**: 系统生成至少 10 个备选标题，覆盖多种风格
 - **Verification**: `human-judgment`
 
 ### AC-5: 公众号HTML生成
 - **Given**: 用户提供 Markdown 文章
-- **When**: 调用 regroup-lab-wechat-html
+- **When**: 调用 hj-wechat-html
 - **Then**: 系统生成公众号兼容的 HTML，可复制使用
 - **Verification**: `programmatic`
 
 ### AC-6: 案例库检索
 - **Given**: 用户描述案例检索需求
-- **When**: 调用 regroup-lab-cases
+- **When**: 调用 hj-cases
 - **Then**: 系统返回匹配的案例列表，可查看详情，可引用
 - **Verification**: `human-judgment`
 
 ### AC-7: 术语库查询
 - **Given**: 用户查询某个专业术语
-- **When**: 调用 regroup-lab-terms
+- **When**: 调用 hj-terms
 - **Then**: 系统返回术语解释、应用场景、常见误区
 - **Verification**: `human-judgment`
 
 ### AC-8: 写作模板
 - **Given**: 用户选择文章类型
-- **When**: 调用 regroup-lab-templates
+- **When**: 调用 hj-templates
 - **Then**: 系统输出对应模板的章节框架与写作提示
 - **Verification**: `human-judgment`
 
 ### AC-9: 存档与恢复
 - **Given**: 用户完成一次诊断
-- **When**: 调用 regroup-lab-save 和 regroup-lab-restore
+- **When**: 调用 hj-save 和 hj-restore
 - **Then**: 存档成功保存，可恢复继续
 - **Verification**: `programmatic`
 
@@ -312,28 +312,28 @@ regroup-lab（主入口，路由+导航）
 一期聚焦核心闭环：**诊 → 写 → 优 → 发**
 
 包含 Skill：
-1. regroup-lab（主入口）
-2. regroup-lab-content（内容诊断）
-3. regroup-lab-ai-check（AI检测）
-4. regroup-lab-title（标题生成）
-5. regroup-lab-wechat-html（公众号排版）
-6. regroup-lab-cases（案例库）
-7. regroup-lab-terms（术语库）
-8. regroup-lab-templates（模板库）
-9. regroup-lab-save（存档）
-10. regroup-lab-restore（恢复存档）
-11. regroup-lab-report（报告生成）
+1. hj（主入口）
+2. hj-content（内容诊断）
+3. hj-ai-check（AI检测）
+4. hj-title（标题生成）
+5. hj-wechat-html（公众号排版）
+6. hj-cases（案例库）
+7. hj-terms（术语库）
+8. hj-templates（模板库）
+9. hj-save（存档）
+10. hj-restore（恢复存档）
+11. hj-report（报告生成）
 
 不包含（二期及以后）：
-- regroup-lab-diagnosis（选题诊断）
-- regroup-lab-hook（开头优化）
-- regroup-lab-chatroom（多视角讨论）
-- regroup-lab-deconstruct（概念拆解）
-- regroup-lab-decision（决策沉淀）
-- regroup-lab-content-system（内容结构化系统）
+- hj-diagnosis（选题诊断）
+- hj-hook（开头优化）
+- hj-chatroom（多视角讨论）
+- hj-deconstruct（概念拆解）
+- hj-decision（决策沉淀）
+- hj-content-system（内容结构化系统）
 
 ## Open Questions
 - [ ] 案例库初始数据：是否有现成的案例可以整理导入？
 - [ ] 术语库初始词条：是否有现成的术语表？
-- [ ] 数据存储路径：`~/.regroup-lab/` 是否合适？
-- [ ] 与 DBS 的关系：是否需要从 DBS 主入口也能路由到 regroup-lab？
+- [ ] 数据存储路径：`~/.hj/` 是否合适？
+- [ ] 与 DBS 的关系：是否需要从 DBS 主入口也能路由到 hj？

@@ -16,7 +16,7 @@
 - 不新增页面或功能模块
 
 ## Background & Context
-- 当前网站首页位于 `/Users/lucas/Documents/bamangB/regroup-lab/public/index.html`
+- 当前网站首页位于 `website/public/index.html`
 - Hero 区域使用红色渐变背景，右侧包含三层轨道的 2.5D 球体可视化
 - 当前 `.hero-radial` 容器最大宽度为 420px，未能充分利用右侧可用空间
 - Stats 区域（四个统计数字）位于白色背景区域，紧贴红色 Hero 区域下方

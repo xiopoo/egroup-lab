@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>🔍 Hero 背景图诊断 - 极简测试</title>
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:sans-serif;background:#222;color:#fff;padding:24px}
+  h1{font-size:18px;margin-bottom:16px;color:#ff6}
+  h2{font-size:15px;margin:20px 0 10px;color:#6af}
+  .log-box{background:rgba(0,0,0,.6);padding:12px;border-radius:6px;font-size:12px;font-family:monospace;max-height:300px;overflow-y:auto;margin-bottom:20px;white-space:pre-wrap;line-height:1.6}
+  .log-box .error{color:#f44}
+  .log-box .warn{color:#fa0}
+  .log-box .ok{color:#0f0}
+  .log-box .info{color:#6af}
+
+  /* === 测试 1：纯 CSS background-image（完全模拟 hero-slide）=== */
+  .test-section{margin-bottom:30px;border:1px solid #444;border-radius:8px;overflow:hidden}
+  .test-section-title{padding:10px 14px;background:#333;font-size:13px;font-weight:600;border-bottom:1px solid #444}
+  .test-body{padding:14px}
+
+  .test-hero{position:relative;width:100%;min-height:400px;overflow:hidden;border-radius:6px;background:linear-gradient(135deg,#AB1942,#8B1435)}
+  .test-carousel{position:absolute;top:0;left:0;width:100%;height:100%;z-index:1}
+  .test-slide{position:absolute;top:0;left:0;width:100%;height:100%;opacity:0;transition:opacity 1.2s ease;background-size:cover;background-position:center;background:linear-gradient(135deg,#AB1942,#8B1435)}
+  .test-slide.active{opacity:1}
+  .test-content{position:relative;z-index:2;padding:40px 24px;color:#fff}
+
+  .test-hero-2{position:relative;width:100%;min-height:400px;overflow:visible;border-radius:6px;background:linear-gradient(135deg,#AB1942,#8B1435);margin-top:16px}
+  .test-carousel-2{position:absolute;top:0;left:0;width:100%;height:100%;z-index:1}
+  .test-slide-2{position:absolute;top:0;left:0;width:100%;height:100%;opacity:0;transition:opacity 1.2s ease;background-size:cover;background-position:center;background:linear-gradient(135deg,#AB1942,#8B1435)}
+  .test-slide-2.active{opacity:1}
+  .test-content-2{position:relative;z-index:2;padding:40px 24px;color:#fff}
+
+  /* === 测试 2：<img> 元素直接加载 === */
+  .img-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+  .img-grid img{width:100%;height:auto;border-radius:4px;border:1px solid #555;display:block}
+
+  /* === 测试 3：内联 background + img 对比 === */
+  .compare-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:12px}
+  .compare-bg{height:200px;border-radius:6px;background-size:cover;background-position:center;border:1px solid #555}
+  .compare-img{height:200px;border-radius:6px;overflow:hidden;border:1px solid #555}
+  .compare-img img{width:100%;height:100%;object-fit:cover}
+
+  /* Button */
+  button{padding:8px 16px;margin:4px;cursor:pointer;border:none;border-radius:4px;font-size:13px;background:#4CAF50;color:#fff}
+  button.warn{background:#FF9800}
+  button.danger{background:#f44336}
+  .status-badge{display:inline-block;padding:2px 8px;border-radius:10px;font-size:11px;font-weight:600}
+  .badge-ok{background:#1b5e20;color:#81c784}
+  .badge-fail{background:#b71c1c;color:#ef9a9a}
+
+  .button-bar{margin:12px 0;display:flex;flex-wrap:wrap;gap:6px}
+
+  /* Large desktop test */
+  .test-hero-lg{position:relative;width:100%;min-height:600px;overflow:hidden;border-radius:6px;background:linear-gradient(135deg,#AB1942,#8B1435)}
+  .test-carousel-lg{position:absolute;top:0;left:0;width:100%;height:100%;z-index:1}
+  .test-slide-lg{position:absolute;top:0;left:0;width:100%;height:100%;opacity:0;transition:opacity 1.2s ease;background-size:cover;background-position:center;background:linear-gradient(135deg,#AB1942,#8B1435)}
+  .test-slide-lg.active{opacity:1}
+  .test-content-lg{position:relative;z-index:2;padding:60px 24px;color:#fff}
+
+  /* fetch results */
+  .fetch-result{padding:8px 12px;border-radius:4px;margin:4px 0;font-size:12px;font-family:monospace}
+  .fetch-ok{background:#1b5e20;color:#81c784}
+  .fetch-fail{background:#b71c1c;color:#ef9a9a}
+</style>
+</head>
+<body>
+
+<h1>🔍 Hero 轮播背景图桌面端诊断</h1>
+<div class="log-box" id="log"></div>
+
+<div class="button-bar">
+  <button onclick="runFetchTest()">🌐 Fetch 测试图片</button>
+  <button class="warn" onclick="toggleOverflow()">切换 overflow:hidden/visible</button>
+  <button class="danger" onclick="checkComputedStyles()">检查计算样式</button>
+  <button onclick="window.location.reload()">刷新页面</button>
+</div>
+
+<!-- ====== 测试 A: 模拟桌面端 hero (overflow:hidden) ====== -->
+<div class="test-section">
+  <div class="test-section-title">
+    <span id="badge-a" class="status-badge badge-ok">测试中</span>
+    A: 模拟桌面端 — overflow:hidden, min-height:400px
+  </div>
+  <div class="test-body">
+    <div class="test-hero" id="heroA">
+      <div class="test-carousel" id="carouselA">
+        <div class="test-slide active" id="slideA0"></div>
+        <div class="test-slide" id="slideA1"></div>
+      </div>
+      <div class="test-content">
+        <strong>桌面端模拟 (overflow:hidden)</strong><br>
+        <span style="font-size:13px;opacity:.7">背景图应透过文字显示</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ====== 测试 B: 模拟手机端 (overflow:visible) ====== -->
+<div class="test-section">
+  <div class="test-section-title">
+    <span id="badge-b" class="status-badge badge-ok">测试中</span>
+    B: 模拟手机端 — overflow:visible, min-height:400px
+  </div>
+  <div class="test-body">
+    <div class="test-hero-2" id="heroB">
+      <div class="test-carousel-2" id="carouselB">
+        <div class="test-slide-2 active" id="slideB0"></div>
+        <div class="test-slide-2" id="slideB1"></div>
+      </div>
+      <div class="test-content-2">
+        <strong>手机端模拟 (overflow:visible)</strong><br>
+        <span style="font-size:13px;opacity:.7">背景图应透过文字显示</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ====== 测试 C: 大尺寸桌面 (min-height:600px) ====== -->
+<div class="test-section">
+  <div class="test-section-title">
+    <span id="badge-c" class="status-badge badge-ok">测试中</span>
+    C: 大尺寸桌面 — overflow:hidden, min-height:600px
+  </div>
+  <div class="test-body">
+    <div class="test-hero-lg" id="heroC">
+      <div class="test-carousel-lg" id="carouselC">
+        <div class="test-slide-lg active" id="slideC0"></div>
+      </div>
+      <div class="test-content-lg">
+        <strong>大尺寸桌面 (min-height:600px)</strong><br>
+        <span style="font-size:13px;opacity:.7">测试更高容器下背景图是否渲染</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ====== 测试 D: <img> 元素直接加载 ====== -->
+<div class="test-section">
+  <div class="test-section-title">
+    <span id="badge-d" class="status-badge badge-ok">测试中</span>
+    D: &lt;img&gt; 元素直接加载（对比背景图）
+  </div>
+  <div class="test-body">
+    <div class="img-grid">
+      <div><div style="font-size:12px;margin-bottom:4px;opacity:.7">hero-1.jpg</div><img id="img1" alt="hero-1" onerror="log('ERROR: img1 加载失败', 'error')" onload="log('OK: img1 加载成功 (' + this.naturalWidth + '×' + this.naturalHeight + ')', 'ok')"></div>
+      <div><div style="font-size:12px;margin-bottom:4px;opacity:.7">hero-2.jpg</div><img id="img2" alt="hero-2" onerror="log('ERROR: img2 加载失败', 'error')" onload="log('OK: img2 加载成功 (' + this.naturalWidth + '×' + this.naturalHeight + ')', 'ok')"></div>
+      <div><div style="font-size:12px;margin-bottom:4px;opacity:.7">hero-3.jpg</div><img id="img3" alt="hero-3" onerror="log('ERROR: img3 加载失败', 'error')" onload="log('OK: img3 加载成功 (' + this.naturalWidth + '×' + this.naturalHeight + ')', 'ok')"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ====== 测试 E: background vs img 同尺寸对比 ====== -->
+<div class="test-section">
+  <div class="test-section-title">
+    <span id="badge-e" class="status-badge badge-ok">测试中</span>
+    E: background-image vs &lt;img&gt; 同尺寸对比（hero-1.jpg）
+  </div>
+  <div class="test-body">
+    <div class="compare-row">
+      <div>
+        <div style="font-size:12px;margin-bottom:4px;opacity:.7">background-image + cover</div>
+        <div class="compare-bg" id="compareBg"></div>
+      </div>
+      <div>
+        <div style="font-size:12px;margin-bottom:4px;opacity:.7">&lt;img&gt; + object-fit:cover</div>
+        <div class="compare-img"><img id="compareImg" alt="compare"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ====== Fetch 测试结果 ====== -->
+<div class="test-section">
+  <div class="test-section-title">🌐 Fetch 网络请求测试</div>
+  <div class="test-body" id="fetchResults">
+    <div style="font-size:12px;opacity:.7;padding:8px">点击上方 "Fetch 测试图片" 按钮</div>
+  </div>
+</div>
+
+<script>
+function log(msg, type) {
+  var el = document.getElementById('log');
+  var cls = type || 'info';
+  var t = new Date().toLocaleTimeString();
+  el.innerHTML += '<span class="' + cls + '">[' + t + '] ' + msg + '</span>\n';
+  el.scrollTop = el.scrollHeight;
+  console.log('[' + cls + ']', msg);
+}
+
+function $(id) { return document.getElementById(id); }
+
+// ========== 初始化：注入背景图 ==========
+(function init() {
+  var base = window.location.origin;
+  var imgs = ['images/hero-1.jpg?v=4', 'images/hero-2.jpg?v=4', 'images/hero-3.jpg?v=4'];
+  
+  log('页面基地址: ' + base, 'info');
+  log('图片 URL 模板: ' + imgs[0], 'info');
+  
+  // 1. 设置 <img> 元素的 src
+  ['img1','img2','img3'].forEach(function(id, i) {
+    var img = $(id);
+    if (img) {
+      img.src = imgs[i];
+      log('设置 img#' + id + '.src = ' + imgs[i], 'info');
+    }
+  });
+  
+  // 2. 设置 background-image
+  // 测试A: overflow:hidden
+  var slideA0 = $('slideA0');
+  var slideA1 = $('slideA1');
+  if (slideA0) {
+    slideA0.style.backgroundImage = 'url(' + imgs[0] + '), linear-gradient(135deg, #AB1942, #8B1435)';
+    log('测试A slide0 设置 backgroundImage: ' + imgs[0], 'info');
+  }
+  if (slideA1) {
+    slideA1.style.backgroundImage = 'url(' + imgs[1] + '), linear-gradient(135deg, #AB1942, #8B1435)';
+  }
+  
+  // 测试B: overflow:visible
+  var slideB0 = $('slideB0');
+  var slideB1 = $('slideB1');
+  if (slideB0) {
+    slideB0.style.backgroundImage = 'url(' + imgs[0] + '), linear-gradient(135deg, #AB1942, #8B1435)';
+    log('测试B slide0 设置 backgroundImage: ' + imgs[0], 'info');
+  }
+  if (slideB1) {
+    slideB1.style.backgroundImage = 'url(' + imgs[1] + '), linear-gradient(135deg, #AB1942, #8B1435)';
+  }
+  
+  // 测试C: 大尺寸
+  var slideC0 = $('slideC0');
+  if (slideC0) {
+    slideC0.style.backgroundImage = 'url(' + imgs[2] + '), linear-gradient(135deg, #AB1942, #8B1435)';
+    log('测试C slide0 设置 backgroundImage: ' + imgs[2], 'info');
+  }
+  
+  // 测试E: 对比
+  var compareBg = $('compareBg');
+  if (compareBg) {
+    compareBg.style.backgroundImage = 'url(' + imgs[0] + '), linear-gradient(135deg, #AB1942, #8B1435)';
+  }
+  var compareImg = $('compareImg');
+  if (compareImg) {
+    compareImg.src = imgs[0];
+  }
+  
+  // 延迟检查计算样式
+  setTimeout(checkComputedStyles, 500);
+})();
+
+// ========== 检查计算样式 ==========
+function checkComputedStyles() {
+  log('=== 计算样式检查 ===', 'info');
+  
+  var checks = [
+    { id: 'heroA', name: 'Hero A (overflow:hidden)' },
+    { id: 'heroB', name: 'Hero B (overflow:visible)' },
+    { id: 'heroC', name: 'Hero C (min-height:600px)' }
+  ];
+  
+  checks.forEach(function(c) {
+    var el = $(c.id);
+    if (!el) { log('  ' + c.name + ': 元素未找到', 'error'); return; }
+    var cs = getComputedStyle(el);
+    var rect = el.getBoundingClientRect();
+    
+    log('  ' + c.name + ': offsetHeight=' + el.offsetHeight + 'px, rect.height=' + rect.height.toFixed(0) + 'px, minHeight=' + cs.minHeight + ', overflow=' + cs.overflow, 'info');
+  });
+  
+  // Check carousel elements
+  ['carouselA', 'carouselB', 'carouselC'].forEach(function(id) {
+    var el = $(id);
+    if (!el) return;
+    var cs = getComputedStyle(el);
+    log('  ' + id + ': height=' + el.offsetHeight + 'px, zIndex=' + cs.zIndex, 'info');
+  });
+  
+  // Check slides
+  ['slideA0','slideA1','slideB0','slideB1','slideC0'].forEach(function(id) {
+    var el = $(id);
+    if (!el) return;
+    var cs = getComputedStyle(el);
+    var bg = el.style.backgroundImage || '(none)';
+    log('  ' + id + ': opacity=' + cs.opacity + ', bgImage=' + bg.substring(0,50) + '..., height=' + el.offsetHeight + 'px', 'info');
+  });
+  
+  // Check <img> elements
+  ['img1','img2','img3'].forEach(function(id) {
+    var img = $(id);
+    if (!img) return;
+    log('  ' + id + ': complete=' + img.complete + ', natural=' + img.naturalWidth + '×' + img.naturalHeight + ', currentSrc=' + (img.currentSrc || img.src).substring(0,60), 'info');
+  });
+}
+
+// ========== Toggle overflow ==========
+function toggleOverflow() {
+  var heroA = $('heroA');
+  var heroB = $('heroB');
+  var carouselA = $('carouselA');
+  var carouselB = $('carouselB');
+  
+  [heroA, heroB].forEach(function(h) {
+    if (!h) return;
+    var cur = h.style.overflow;
+    h.style.overflow = (cur === 'visible' ? '' : 'visible');
+    h.style.overflow = h.style.overflow || 'hidden';
+    log('overflow 切换为: ' + h.style.overflow);
+  });
+  
+  setTimeout(checkComputedStyles, 200);
+}
+
+// ========== Fetch 测试 ==========
+async function runFetchTest() {
+  var el = $('fetchResults');
+  el.innerHTML = '<div style="font-size:12px;color:#6af">正在测试...</div>';
+  
+  var urls = [
+    'images/hero-1.jpg?v=4',
+    'images/hero-2.jpg?v=4',
+    'images/hero-3.jpg?v=4',
+    'https://hjcz.vercel.app/images/hero-1.jpg?v=4',
+    'https://hjcz.vercel.app/images/hero-2.jpg?v=4',
+    'https://hjcz.vercel.app/images/hero-3.jpg?v=4'
+  ];
+  
+  var html = '';
+  for (var i = 0; i < urls.length; i++) {
+    var url = urls[i];
+    try {
+      var resp = await fetch(url, { mode: 'cors' });
+      var blob = await resp.blob();
+      var ok = resp.ok;
+      html += '<div class="fetch-result fetch-ok">✓ ' + url + '<br>  → Status: ' + resp.status + ', Type: ' + blob.type + ', Size: ' + blob.size + ' bytes</div>';
+      log('Fetch 成功: ' + url + ' (' + resp.status + ', ' + blob.size + ' bytes, ' + blob.type + ')', 'ok');
+    } catch(e) {
+      html += '<div class="fetch-result fetch-fail">✗ ' + url + '<br>  → Error: ' + e.message + '</div>';
+      log('Fetch 失败: ' + url + ' — ' + e.message, 'error');
+    }
+  }
+  el.innerHTML = html;
+}
+
+// ========== 延迟检查 ==========
+setTimeout(function() {
+  log('--- 延迟检查 (2s) ---', 'info');
+  checkComputedStyles();
+}, 2000);
+
+log('页面加载完成，等待图片...', 'info');
+</script>
+</body>
+</html>

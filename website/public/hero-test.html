@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Hero 轮播诊断测试 (精确模拟生产环境)</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--brand:#AB1942;--brand-dark:#8B1435}
+body{background:#222;font-family:sans-serif;color:#fff;padding:20px}
+
+h1{font-size:18px;color:#ff6;margin-bottom:8px}
+h2{font-size:14px;color:#aaa;margin-bottom:16px}
+
+.log-box{background:rgba(0,0,0,.6);padding:12px;border-radius:6px;font-size:12px;font-family:monospace;max-height:300px;overflow-y:auto;margin-bottom:20px;white-space:pre-wrap;line-height:1.6}
+.log-box .error{color:#f44}
+.log-box .warn{color:#fa0}
+.log-box .ok{color:#0f0}
+.log-box .info{color:#6af}
+
+button{padding:8px 16px;margin:4px;cursor:pointer;border:none;border-radius:4px;font-size:13px}
+.btn-green{background:#4CAF50;color:#fff}
+.btn-orange{background:#FF9800;color:#fff}
+.btn-blue{background:#2196F3;color:#fff}
+.btn-red{background:#f44336;color:#fff}
+
+.button-bar{margin:12px 0;display:flex;flex-wrap:wrap;gap:6px}
+
+/* === 精确模拟生产环境的 Hero CSS === */
+.hero{background:linear-gradient(135deg,var(--brand) 0%,var(--brand-dark) 100%);background-size:cover;background-position:center;position:relative;overflow:hidden;min-height:480px}
+.hero-carousel{position:absolute;top:0;left:0;width:100%;height:100%;overflow:hidden;z-index:1}
+.hero-slide{position:absolute;top:0;left:0;width:100%;height:100%;opacity:0;transition:opacity 1.2s ease;background:linear-gradient(135deg,var(--brand) 0%,var(--brand-dark) 100%);background-size:cover;background-position:center}
+.hero-slide.active{opacity:1}
+.hero-carousel-dots{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);display:flex;gap:10px;z-index:5}
+.hero-carousel-dots span{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.35);cursor:pointer;transition:all .4s ease}
+.hero-carousel-dots span.active{background:#fff;width:26px;border-radius:5px}
+
+.hero-inner{position:relative;z-index:2;display:grid;grid-template-columns:1.3fr 1fr;gap:24px;align-items:center;box-sizing:border-box;min-height:auto;padding:20px 0 0}
+.hero-content{position:relative;z-index:3}
+.hero-content::before{content:'';position:absolute;top:-36px;left:-72px;right:-56px;bottom:-24px;background:radial-gradient(ellipse at center,rgba(171,25,66,.65) 0%,rgba(171,25,66,.40) 50%,transparent 80%);border-radius:50%;z-index:-1;pointer-events:none}
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+.hero-title{color:#fff;font-size:36px;margin-bottom:6px;font-weight:700}
+.hero-desc{color:#fff;font-size:14px;max-width:560px;line-height:1.8}
+.hero-visual{display:flex;align-items:center;justify-content:center;z-index:3;position:relative}
+.hero-radial{width:100%;max-width:100%;aspect-ratio:1;position:relative;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.05);border-radius:50%}
+
+/* Stats in hero */
+.stats-in-hero{padding:16px 0 24px;border-top:1px solid rgba(255,255,255,.1);margin-top:8px;position:relative;z-index:3;background:linear-gradient(to right,rgba(171,25,66,.60) 0%,rgba(171,25,66,.45) 50%,rgba(171,25,66,.60) 100%)}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.stat-item{text-align:center;padding:16px;position:relative}
+.stat-item .num{font-size:46px;font-weight:700;color:#fff;letter-spacing:-.02em;line-height:1.1;margin-bottom:6px}
+.stat-item .label{font-size:14px;color:rgba(255,255,255,.7);line-height:1.5}
+
+/* Mobile styles */
+@media(max-width:767px){
+  .hero-inner{grid-template-columns:1fr;gap:40px;min-height:auto;padding:24px 16px 10px;z-index:3;background:none;border-radius:0}
+  .hero{overflow:visible;min-height:auto}
+  .hero-visual{display:none}
+}
+
+/* Diagnostic overlay */
+.diag-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.7);z-index:9999;display:none;align-items:center;justify-content:center}
+.diag-overlay.active{display:flex}
+.diag-panel{background:#1a1a2e;border:1px solid #444;border-radius:12px;padding:24px;max-width:600px;width:90%;max-height:80vh;overflow-y:auto;font-size:13px;line-height:1.6}
+.diag-panel h3{color:#ff6;margin-bottom:12px}
+.diag-panel table{width:100%;border-collapse:collapse;margin:8px 0}
+.diag-panel td,.diag-panel th{border:1px solid #333;padding:6px 10px;text-align:left;font-size:12px}
+.diag-panel th{background:#333;color:#6af}
+.diag-close{float:right;cursor:pointer;color:#f44;font-size:20px}
+</style>
+</head>
+<body>
+
+<h1>🧪 Hero 轮播精确模拟测试</h1>
+<h2>完全复现生产环境 CSS + JS，用于诊断桌面端背景图不显示问题</h2>
+
+<div class="log-box" id="log">日志加载中...</div>
+
+<div class="button-bar">
+  <button class="btn-green" onclick="checkState()">📊 检查渲染状态</button>
+  <button class="btn-orange" onclick="toggleDesktopFix()">🛠 切换桌面端修复</button>
+  <button class="btn-blue" onclick="showDiagnosticPanel()">🔬 详细诊断面板</button>
+  <button class="btn-red" onclick="location.reload()">🔄 刷新</button>
+</div>
+
+<!-- ===== 精确复现生产的 Hero 区域 ===== -->
+<section class="hero" id="hero">
+  <div class="hero-carousel" id="heroCarousel">
+    <div class="hero-slide active" data-slide="0"></div>
+    <div class="hero-slide" data-slide="1"></div>
+    <div class="hero-slide" data-slide="2"></div>
+  </div>
+  <div class="hero-carousel-dots" id="heroDots">
+    <span class="active" data-index="0"></span>
+    <span data-index="1"></span>
+    <span data-index="2"></span>
+  </div>
+  <div class="container">
+    <div class="hero-inner">
+      <div class="hero-content">
+        <h1 class="hero-title">诊断测试</h1>
+        <p class="hero-desc">此页面精确复现 index.html 的 Hero 轮播 CSS 和 JS 逻辑，用于定位桌面端 background-image 不渲染的问题。</p>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-radial">
+          <div style="color:#fff;text-align:center;font-size:14px">3D 球状图<br>(占位)</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Stats -->
+  <div class="stats-in-hero">
+    <div class="container">
+      <div class="stats">
+        <div class="stat-item"><div class="num">128+</div><div class="label">企业完成诊断</div></div>
+        <div class="stat-item"><div class="num">2.2亿</div><div class="label">单案最大债务化解</div></div>
+        <div class="stat-item"><div class="num">550+</div><div class="label">稳定就业岗位</div></div>
+        <div class="stat-item"><div class="num">29.5%</div><div class="label">净利润修复峰值</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Diagnostic Overlay ===== -->
+<div class="diag-overlay" id="diagOverlay">
+  <div class="diag-panel" id="diagPanel">
+    <span class="diag-close" onclick="closeDiagPanel()">&times;</span>
+    <h3>🔬 详细诊断报告</h3>
+    <div id="diagContent">加载中...</div>
+  </div>
+</div>
+
+<script>
+window.__IMAGE_URLS = {
+  heroImages: [
+    "images/hero-1.jpg?v=4",
+    "images/hero-2.jpg?v=4",
+    "images/hero-3.jpg?v=4"
+  ]
+};
+
+var _fixApplied = false;
+var _intervalId = null;
+
+function log(msg, type) {
+  var el = document.getElementById('log');
+  if (!el) return;
+  var cls = type || 'info';
+  var t = new Date().toLocaleTimeString();
+  el.innerHTML += '<span class="' + cls + '">[' + t + '] ' + msg + '</span>\n';
+  el.scrollTop = el.scrollHeight;
+  console.log('[' + cls + ']', msg);
+}
+
+// ===== 精确复现生产的图片注入逻辑 =====
+(function(){
+  var u = window.__IMAGE_URLS;
+  if (!u) { log('ERROR: __IMAGE_URLS not found', 'error'); return; }
+  
+  try {
+    var heroImages = u.heroImages || [];
+    if (heroImages.length) {
+      var slides = document.querySelectorAll('.hero-slide');
+      var heroEl = document.getElementById('hero');
+      slides.forEach(function(s, i){
+        if (!heroImages[i]) return;
+        log('设置 Slide[' + i + '] background: ' + heroImages[i], 'info');
+        s.style.backgroundImage = 'url(' + heroImages[i] + '), linear-gradient(135deg, var(--brand) 0%, var(--brand-dark) 100%)';
+      });
+      if (heroEl) {
+        var cs = getComputedStyle(heroEl);
+        log('Hero: offsetHeight=' + heroEl.offsetHeight + 'px, minHeight=' + cs.minHeight + ', overflow=' + cs.overflow, 'info');
+      }
+    } else {
+      log('WARN: heroImages array is empty', 'warn');
+    }
+  } catch(e) {
+    log('ERROR: ' + e.message, 'error');
+  }
+})();
+
+// ===== 生产环境的轮播自动播放逻辑 =====
+(function(){
+  var slides = document.querySelectorAll('.hero-slide');
+  var dots = document.querySelectorAll('#heroDots span');
+  if (!slides.length) { log('No slides found for carousel', 'warn'); return; }
+  
+  log('Carousel 初始化: ' + slides.length + ' slides', 'info');
+  var current = 0, timer = null;
+  
+  function goTo(idx) {
+    if (idx === current) return;
+    slides[current].classList.remove('active');
+    dots[current].classList.remove('active');
+    current = idx;
+    slides[current].classList.add('active');
+    dots[current].classList.add('active');
+    log('Carousel 切换到 slide ' + current, 'info');
+  }
+  
+  function next() { goTo((current + 1) % slides.length); }
+  function start() { if(timer)clearInterval(timer); timer=setInterval(next, 4500); }
+  
+  dots.forEach(function(d) {
+    d.addEventListener('click', function() {
+      var idx = parseInt(this.getAttribute('data-index'));
+      if (idx !== current) { goTo(idx); start(); }
+    });
+  });
+  
+  start();
+  log('Carousel 自动播放已启动 (间隔 4.5s)', 'info');
+})();
+
+// ===== 检查渲染状态 =====
+function checkState() {
+  log('=== 渲染状态检查 ===', 'info');
+  var hero = document.getElementById('hero');
+  var carousel = document.getElementById('heroCarousel');
+  var slides = document.querySelectorAll('.hero-slide');
+  
+  if (hero) {
+    var cs = getComputedStyle(hero);
+    var rect = hero.getBoundingClientRect();
+    log('Hero: offsetHeight=' + hero.offsetHeight + 'px, rect.bottom=' + rect.bottom.toFixed(0) + ', minHeight=' + cs.minHeight + ', overflow=' + cs.overflow, 'info');
+  }
+  
+  if (carousel) {
+    var cs = getComputedStyle(carousel);
+    log('Carousel: zIndex=' + cs.zIndex + ', height=' + carousel.offsetHeight + 'px, offsetHeight=' + carousel.offsetHeight, 'info');
+  }
+  
+  slides.forEach(function(s, i) {
+    var cs = getComputedStyle(s);
+    var bg = s.style.backgroundImage || '(none)';
+    log('Slide[' + i + ']: active=' + s.classList.contains('active') + ', opacity=' + cs.opacity + ', bg=' + bg.substring(0,60) + '..., height=' + s.offsetHeight + 'px', 'info');
+  });
+  
+  // Check actual rendered pixels of hero
+  if (hero) {
+    var rect = hero.getBoundingClientRect();
+    log('Hero 实际渲染尺寸: ' + rect.width.toFixed(0) + ' × ' + rect.height.toFixed(0) + 'px', 'info');
+  }
+  
+  log('=== 检查完毕 ===', 'info');
+}
+
+// ===== 切换"修复"（模拟已部署的各种修复尝试）=====
+function toggleDesktopFix() {
+  var hero = document.getElementById('hero');
+  var carousel = document.getElementById('heroCarousel');
+  
+  if (!_fixApplied) {
+    // 尝试各种"修复"
+    log('🛠 应用 CSS 修复...', 'warn');
+    
+    // 1. min-height 强制
+    hero.style.minHeight = '480px';
+    log('  修复 1: min-height=480px (已强制)', 'info');
+    
+    // 2. z-index 调整
+    carousel.style.zIndex = '2';
+    log('  修复 2: carousel z-index=2', 'info');
+    
+    // 3. 强制背景图
+    var slides = document.querySelectorAll('.hero-slide');
+    slides.forEach(function(s, i) {
+      var u = window.__IMAGE_URLS;
+      if (u && u.heroImages[i]) {
+        s.style.backgroundImage = 'url(' + u.heroImages[i] + '), linear-gradient(135deg, #AB1942, #8B1435)';
+        s.style.backgroundSize = 'cover';
+        s.style.backgroundPosition = 'center';
+        log('  修复 3: 强制重设 slide[' + i + '] 背景图', 'info');
+      }
+    });
+    
+    // 4. 设置 position:relative 确保包含块
+    carousel.style.position = 'absolute';
+    
+    // 5. 尝试用 <img> 方式替代（仅用于测试）
+    log('  修复 4: 尝试通过 <img> 注入（测试用）', 'warn');
+    slides.forEach(function(s, i) {
+      var existingImg = s.querySelector('.debug-img');
+      if (!existingImg) {
+        var img = document.createElement('img');
+        img.className = 'debug-img';
+        img.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;z-index:-1;opacity:0.5';
+        img.onerror = function() { log('    诊断 img[' + i + '] 加载失败', 'error'); };
+        img.onload = function() { log('    诊断 img[' + i + '] 加载成功: ' + this.naturalWidth + '×' + this.naturalHeight, 'ok'); };
+        var u = window.__IMAGE_URLS;
+        if (u && u.heroImages[i]) {
+          img.src = u.heroImages[i];
+          s.appendChild(img);
+        }
+      }
+    });
+    
+    _fixApplied = true;
+  } else {
+    // Undo 修复
+    log('🛠 移除 CSS 修复', 'warn');
+    hero.style.minHeight = '';
+    carousel.style.zIndex = '1';
+    
+    document.querySelectorAll('.debug-img').forEach(function(el) { el.remove(); });
+    _fixApplied = false;
+  }
+  
+  setTimeout(checkState, 500);
+}
+
+// ===== 详细诊断面板 =====
+function showDiagnosticPanel() {
+  var overlay = document.getElementById('diagOverlay');
+  var content = document.getElementById('diagContent');
+  
+  var hero = document.getElementById('hero');
+  var carousel = document.getElementById('heroCarousel');
+  var slides = document.querySelectorAll('.hero-slide');
+  
+  var html = '<table>';
+  html += '<tr><th>属性</th><th>值</th></tr>';
+  
+  if (hero) {
+    var cs = getComputedStyle(hero);
+    var rect = hero.getBoundingClientRect();
+    html += '<tr><td>Hero offsetHeight</td><td>' + hero.offsetHeight + 'px</td></tr>';
+    html += '<tr><td>Hero rect.height</td><td>' + rect.height.toFixed(0) + 'px</td></tr>';
+    html += '<tr><td>Hero min-height</td><td>' + cs.minHeight + '</td></tr>';
+    html += '<tr><td>Hero overflow</td><td>' + cs.overflow + '</td></tr>';
+    html += '<tr><td>Hero position</td><td>' + cs.position + '</td></tr>';
+  }
+  
+  if (carousel) {
+    var cs = getComputedStyle(carousel);
+    html += '<tr><td>Carousel height</td><td>' + carousel.offsetHeight + 'px</td></tr>';
+    html += '<tr><td>Carousel z-index</td><td>' + cs.zIndex + '</td></tr>';
+    html += '<tr><td>Carousel position</td><td>' + cs.position + '</td></tr>';
+  }
+  
+  slides.forEach(function(s, i) {
+    var cs = getComputedStyle(s);
+    var bg = s.style.backgroundImage || '(none)';
+    html += '<tr><td>Slide[' + i + '] active</td><td>' + s.classList.contains('active') + '</td></tr>';
+    html += '<tr><td>Slide[' + i + '] opacity</td><td>' + cs.opacity + '</td></tr>';
+    html += '<tr><td>Slide[' + i + '] height</td><td>' + s.offsetHeight + 'px</td></tr>';
+    html += '<tr><td>Slide[' + i + '] bg</td><td style="word-break:break-all;max-width:300px">' + bg.substring(0, 80) + '...</td></tr>';
+  });
+  
+  // Window info
+  html += '<tr><td>Window innerWidth</td><td>' + window.innerWidth + 'px</td></tr>';
+  html += '<tr><td>Window innerHeight</td><td>' + window.innerHeight + 'px</td></tr>';
+  html += '<tr><td>Device Pixel Ratio</td><td>' + window.devicePixelRatio + '</td></tr>';
+  
+  html += '</table>';
+  
+  content.innerHTML = html;
+  overlay.classList.add('active');
+}
+
+function closeDiagPanel() {
+  document.getElementById('diagOverlay').classList.remove('active');
+}
+
+// ===== 定时检查 =====
+setTimeout(function() {
+  log('--- 延迟检查 (1.5s) ---', 'info');
+  checkState();
+}, 1500);
+
+setTimeout(function() {
+  log('--- 延迟检查 (4s) ---', 'info');
+  checkState();
+}, 4000);
+
+// ===== 窗口 resize 监控 =====
+window.addEventListener('resize', function() {
+  log('窗口尺寸变化: ' + window.innerWidth + ' × ' + window.innerHeight, 'info');
+});
+
+log('页面加载完成', 'info');
+</script>
+</body>
+</html>
