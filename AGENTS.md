@@ -6,6 +6,8 @@
 
 - 官网唯一正式源代码：`website/public/`
 - 公众号内容资产：`content-system/content/`
+- 巴芒资料域：`content-system/content/bamang/`
+- 多领域内容路由：`content-system/content/content-catalog.json`
 - 公众号成品：`content-system/output/`
 - Trae Skill 与规格唯一真源：根目录 `.trae/`
 - 正式生产部署入口：根目录 `vercel.json`
@@ -20,6 +22,13 @@
 4. 业务规则、诊断评分、数据用途、价格和对外承诺不得由 AI 擅自改变。
 5. 用户零编程基础：交付说明必须使用非技术语言，明确“完成了什么、如何验证、用户下一步做什么”。
 6. 修改目录结构、删除文件、迁移数据或清理 Git 前，必须创建可恢复快照并取得用户确认。
+
+## 内容域边界
+
+- `hj-*` 只处理灰金重组专业内容；
+- `dbs-*` 处理跨领域内容工程和巴芒研究；
+- `content/bamang` 中的原文、年份、人物和公司事实必须带来源，不得直接当作灰金原创或客户案例；
+- 灰金客户数据和法律判断不得进入巴芒资料域。
 
 ## 验证要求
 
