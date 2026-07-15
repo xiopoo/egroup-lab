@@ -1,6 +1,0 @@
-- [x] Checkpoint 1: 品牌推广区已移除自定义阅读原文按钮和提示文字
-- [x] Checkpoint 2: 引用块左侧边框已改为细竖线（1-2px）样式
-- [x] Checkpoint 3: 品牌推广区所有元素均居中对齐
-- [x] Checkpoint 4: 品牌推广区信息精简，无冗余内容
-- [x] Checkpoint 5: SKILL.md模板已同步更新引用块样式
-- [x] Checkpoint 6: SKILL.md模板已同步更新品牌推广区规范

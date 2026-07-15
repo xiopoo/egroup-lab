@@ -1,8 +1,0 @@
-- [x] diag.html `.container` 不再硬编码448px，改为使用 `var(--content-max)`
-- [x] diag.html `--content-max` 从680px改为1200px
-- [x] diag.html header 高度从56px改为64px
-- [x] 全站 `--content-max` 统一为1200px
-- [x] 平板断点（768-1023px）已添加并适配
-- [x] 桌面端（≥1024px）显示正常，容器宽度不异常偏窄
-- [x] 移动端（≤767px）显示不受影响
-- [x] 其他页面布局宽度不受本次修改影响

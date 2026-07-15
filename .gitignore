@@ -20,3 +20,6 @@ __pycache__/
 
 # Tunnel scripts
 tunnel.py
+
+# Trae AI tools
+.trae/
