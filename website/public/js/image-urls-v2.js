@@ -42,5 +42,11 @@ window.__IMAGE_URLS = {
 
   /* 新闻配图：复用现有服务/案例图片，800×534/533 */
   news1: "images/service-2.jpg?v=4",    // 公司动态（咨询/会议场景）
-  news2: "images/case-1.jpg?v=4"       // 行业资讯/媒体报道（建筑/行业场景）
+  news2: "images/case-1.jpg?v=4"       // 行业资讯/媒体报道（建筑/行业场景）,
+  column5: "images/case-3.jpg?v=4",    // 同步-file-1784133364981,
+  column6: "images/case-3.jpg?v=4",    // 同步-article-20260712-11d8pd,
+  column7: "images/case-3.jpg?v=4",    // 同步-article-20260713-1ki1pb,
+  column8: "images/case-3.jpg?v=4",    // 同步-file-1784133364981-2,
+  column9: "images/case-3.jpg?v=4",    // 同步-file-1784133364981-3,
+  column10: "images/case-3.jpg?v=4",    // 同步-article-20260715-10xdyk
 };

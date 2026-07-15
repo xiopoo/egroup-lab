@@ -1,5 +1,41 @@
 var COLUMN_DATA = [
   {
+    slug: 'file-1784133364981-3',
+    title: '打官司、算账、卖资产，和真正的困境重组差在哪？',
+    category: '经营诊断',
+    filter: 'diag',
+    date: '2026-07-15',
+    readtime: '约5分钟',
+    summary: '打官司、算账、卖资产，和真正的困境重组差在哪？',
+    tags: ["同步文章"],
+    imageKey: 'column9',
+    contentFile: 'column-content/file-1784133364981-3.html'
+  },
+  {
+    slug: 'file-1784133364981-2',
+    title: '做了10年重组，判断一家企业值不值得救，我只看4个硬指标',
+    category: '经营诊断',
+    filter: 'diag',
+    date: '2026-07-15',
+    readtime: '约5分钟',
+    summary: '做了10年重组，判断一家企业值不值得救，我只看4个硬指标',
+    tags: ["同步文章"],
+    imageKey: 'column8',
+    contentFile: 'column-content/file-1784133364981-2.html'
+  },
+  {
+    slug: 'file-1784133364981',
+    title: '为什么找了律师、会计、不良资产，企业还是活不了？',
+    category: '经营诊断',
+    filter: 'diag',
+    date: '2026-07-15',
+    readtime: '约5分钟',
+    summary: '为什么找了律师、会计、不良资产，企业还是活不了？',
+    tags: ["同步文章"],
+    imageKey: 'column5',
+    contentFile: 'column-content/file-1784133364981.html'
+  },
+  {
     slug: 'article-20260715-10xdyk',
     title: '民间借贷利息怎么算才合法？老板别再按高息硬还了',
     category: '法律风险',
