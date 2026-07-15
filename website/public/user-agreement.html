@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="灰金重组网站用户协议，说明网站内容、企业诊断工具的使用规则与责任边界。">
+<title>用户协议 | 灰金重组</title>
+<link rel="stylesheet" href="common.css">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--brand:#AB1942;--brand-dark:#7d1230;--text:#202124;--muted:#666;--line:#e8e3df;--paper:#fff;--warm:#f7f5f2;--content-padding:40px}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;color:var(--text);background:var(--paper);line-height:1.8;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+.container{max-width:1180px;margin:0 auto;padding:0 var(--content-padding)}
+.header{height:68px;background:rgba(255,255,255,.97);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:100}
+.header-inner{height:100%;display:flex;align-items:center;justify-content:space-between}
+.header-logo img{width:92px;height:auto;display:block}
+.header-nav{display:flex;align-items:center;gap:28px}
+.header-nav a{font-size:14px;color:#3d3d3d}
+.header-nav a:hover{color:var(--brand)}
+.nav-cta a{color:#fff;background:var(--brand);padding:9px 16px;border-radius:3px}
+.hamburger-btn{display:none;width:40px;height:40px;border:0;background:transparent;align-items:center;justify-content:center;flex-direction:column;gap:5px}
+.hamburger-btn span{width:22px;height:2px;background:#262626}
+.mobile-nav-overlay{display:none}
+.agreement-hero{background:#f6f3f1;border-bottom:1px solid var(--line);padding:58px 0 46px}
+.agreement-kicker{font-size:12px;color:var(--brand);font-weight:700;margin-bottom:10px}
+.agreement-hero h1{font-family:"Songti SC","STSong",serif;font-size:38px;line-height:1.3;font-weight:700;margin-bottom:12px}
+.agreement-meta{font-size:13px;color:#777}
+.agreement-layout{display:grid;grid-template-columns:220px minmax(0,760px);gap:68px;align-items:start;padding:58px 0 80px}
+.agreement-toc{position:sticky;top:100px;border-top:2px solid var(--brand);padding-top:16px}
+.agreement-toc strong{display:block;font-size:14px;margin-bottom:10px}
+.agreement-toc a{display:block;font-size:13px;color:#777;padding:5px 0}
+.agreement-toc a:hover{color:var(--brand)}
+.agreement-content{font-size:16px;color:#444}
+.agreement-intro{font-size:16px;color:#333;background:var(--warm);border-left:3px solid var(--brand);padding:18px 20px;margin-bottom:34px}
+.agreement-section{padding:0 0 30px;margin-bottom:30px;border-bottom:1px solid var(--line)}
+.agreement-section:last-child{margin-bottom:0}
+.agreement-section h2{font-size:22px;line-height:1.45;color:#222;margin-bottom:14px}
+.agreement-section p{margin-bottom:12px}
+.agreement-section ol,.agreement-section ul{padding-left:22px;margin:8px 0 12px}
+.agreement-section li{margin-bottom:8px}
+.agreement-contact{background:#fbf7f8;border:1px solid rgba(171,25,66,.16);padding:20px}
+.agreement-contact a{color:var(--brand);font-weight:600}
+.footer{background:#5f0f29;color:#fff;padding:28px 0 16px}
+.footer-inner{display:flex;align-items:flex-start;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.footer-logo{width:55px;height:auto;filter:brightness(0) invert(1);opacity:.9;display:block}
+.footer-right{display:flex;align-items:center;gap:24px;flex-wrap:wrap}
+.footer-links{display:flex;gap:20px;flex-wrap:wrap}
+.footer-links a,.footer-email,.footer-email a{font-size:13px;color:rgba(255,255,255,.66)}
+.footer-links a:hover,.footer-email a:hover{color:#fff}
+.footer-bottom{padding-top:14px;margin-top:14px;border-top:1px solid rgba(255,255,255,.1);text-align:center;font-size:11px;color:rgba(255,255,255,.52)}
+@media(max-width:767px){
+  :root{--content-padding:20px}
+  .header{height:58px}.header-logo img{width:82px}.header-nav{display:none}.hamburger-btn{display:flex}
+  .mobile-nav-overlay{display:block;position:fixed;inset:58px 0 0;background:rgba(255,255,255,.98);z-index:99;opacity:0;visibility:hidden;transition:.2s}
+  .mobile-nav-overlay.active{opacity:1;visibility:visible}
+  .mobile-nav{display:flex;flex-direction:column;padding:24px 20px;gap:8px}
+  .mobile-nav a{padding:12px 0;border-bottom:1px solid var(--line);font-size:15px}
+  .agreement-hero{padding:42px 0 34px}.agreement-hero h1{font-size:31px}
+  .agreement-layout{grid-template-columns:1fr;gap:0;padding:38px 0 58px}.agreement-toc{display:none}
+  .agreement-content{font-size:15px}.agreement-section h2{font-size:20px}
+  .footer-inner,.footer-right{flex-direction:column;align-items:flex-start;gap:14px}.footer-links{gap:14px}
+}
+</style>
+<script src="js/image-urls-v2.js"></script>
+<link rel="stylesheet" href="commercial.css">
+<link rel="stylesheet" href="site-paper-theme.css">
+</head>
+<body class="agreement-page">
+<header class="header">
+  <div class="container header-inner">
+    <a href="index.html" class="header-logo" aria-label="返回首页"><img src="images/logo-hjzc-transparent-white.png" alt="灰金重组"></a>
+    <nav class="header-nav" aria-label="主导航">
+      <a href="index.html">首页</a>
+      <a href="services.html">服务方案</a>
+      <a href="cases-detail.html">成功案例</a>
+      <a href="column.html">专栏洞察</a>
+      <span class="nav-about-group"><a href="about.html">关于灰金</a><span class="nav-about-dropdown"><a href="about.html">公司介绍</a><a href="brand.html">品牌主张</a><a href="experts.html">专业团队</a><a href="practice.html">服务实践</a></span></span>
+      <span class="nav-cta"><a href="diag.html">企业诊断</a></span>
+    </nav>
+    <button class="hamburger-btn" type="button" aria-label="打开菜单"><span></span><span></span><span></span></button>
+  </div>
+</header>
+<div class="mobile-nav-overlay">
+  <nav class="mobile-nav" aria-label="手机导航">
+    <a href="index.html">首页</a><a href="services.html">服务方案</a><a href="cases-detail.html">成功案例</a><a href="column.html">专栏洞察</a><span class="mobile-about-group"><a href="about.html">关于灰金</a><span class="mobile-about-links"><a href="about.html">公司介绍</a><a href="brand.html">品牌主张</a><a href="experts.html">专业团队</a><a href="practice.html">服务实践</a></span></span><a href="diag.html">企业诊断</a>
+  </nav>
+</div>
+
+<main>
+  <section class="agreement-hero">
+    <div class="container">
+      <div class="agreement-kicker">WEBSITE TERMS</div>
+      <h1>灰金重组网站用户协议</h1>
+      <div class="agreement-meta">版本：V1.0（试行） · 更新日期：2026年7月15日 · 生效日期：2026年7月15日</div>
+    </div>
+  </section>
+
+  <div class="container agreement-layout">
+    <aside class="agreement-toc" aria-label="协议目录">
+      <strong>协议目录</strong>
+      <a href="#acceptance">一、协议确认</a><a href="#scope">二、服务范围</a><a href="#diagnosis">三、企业诊断</a><a href="#conduct">四、使用规范</a><a href="#copyright">五、知识产权</a><a href="#privacy">六、个人信息</a><a href="#third-party">七、第三方服务</a><a href="#changes">八、服务调整</a><a href="#liability">九、责任边界</a><a href="#minor">十、未成年人</a><a href="#update">十一、协议更新</a><a href="#law">十二、法律适用</a><a href="#contact">十三、联系我们</a>
+    </aside>
+
+    <article class="agreement-content">
+      <div class="agreement-intro">欢迎访问灰金重组网站。请在使用本网站、阅读专栏内容或进入企业诊断前，认真阅读并理解本协议。灰金坚持从企业整体经营出发，为中小企业提供困境诊断与重组相关的信息、工具和专业服务入口。</div>
+
+      <section class="agreement-section" id="acceptance">
+        <h2>一、协议确认与适用范围</h2>
+        <p>本协议由网站访问者、企业诊断使用者（以下统称“用户”）与灰金重组网站运营方（以下简称“灰金”）共同遵守。</p>
+        <p>用户访问、浏览或实际使用本网站相关功能，即表示已阅读并同意本协议。若不同意本协议，应停止使用相关功能。</p>
+      </section>
+
+      <section class="agreement-section" id="scope">
+        <h2>二、网站提供的内容与服务</h2>
+        <p>本网站现阶段主要提供：</p>
+        <ol>
+          <li>灰金品牌、服务能力、团队和服务实践介绍；</li>
+          <li>企业经营、债务风险、资产盘活、法律风险和困境重组相关公开内容；</li>
+          <li>企业诊断工具及诊断结果展示；</li>
+          <li>咨询、诊断、陪跑和困境重组服务的联系入口。</li>
+        </ol>
+        <p>具体收费服务、交付范围、工作周期、双方责任和成果形式，以灰金与客户另行签署的书面合同或双方确认的正式文件为准。</p>
+      </section>
+
+      <section class="agreement-section" id="diagnosis">
+        <h2>三、企业诊断工具</h2>
+        <p>企业诊断用于帮助用户按经营、财务、债务及相关风险线索进行结构化梳理，便于理解企业当前状态并判断后续沟通方向。</p>
+        <p>用户应根据自身真实情况作答。因信息不完整、不准确、已发生变化或超出当前诊断范围，诊断结果可能与企业实际情况存在差异。</p>
+        <p>网站诊断结果不替代律师、会计师、税务师、评估机构等依法应由相应专业主体出具的意见，也不当然构成正式重组方案、投资建议、融资承诺或司法结论。需要进一步服务时，双方应另行确认服务内容。</p>
+      </section>
+
+      <section class="agreement-section" id="conduct">
+        <h2>四、用户使用规范</h2>
+        <p>用户应合法、善意地使用本网站，不得实施下列行为：</p>
+        <ul>
+          <li>提交虚假、冒用、违法取得或无权提供的信息；</li>
+          <li>干扰网站运行，绕过访问限制，探测、攻击或破坏网站及相关系统；</li>
+          <li>利用自动化工具高频抓取、批量下载、镜像复制网站内容；</li>
+          <li>将网站内容用于欺诈、误导宣传、违法经营或侵害他人合法权益；</li>
+          <li>法律法规禁止的其他行为。</li>
+        </ul>
+      </section>
+
+      <section class="agreement-section" id="copyright">
+        <h2>五、知识产权与内容使用</h2>
+        <p>本网站的品牌标识、文字、文章、页面设计、诊断题目编排、图表及其他内容，其相关权利归灰金或合法权利人所有。</p>
+        <p>用户可以为个人学习、企业内部讨论和正常咨询沟通浏览网站内容。未经书面许可，不得对网站内容进行批量复制、转载、改编、销售、建立镜像站点、制作数据集，或用于模型训练及其他商业用途。</p>
+        <p>确需转载、合作使用或引用较大篇幅内容的，可通过本协议末尾联系方式与灰金沟通授权。</p>
+      </section>
+
+      <section class="agreement-section" id="privacy">
+        <h2>六、个人信息与企业资料</h2>
+        <p>灰金将按照合法、正当、必要和诚信原则处理个人信息，并尽量将收集范围控制在实现具体功能所必需的范围内。</p>
+        <p>涉及联系方式、企业经营信息、债务及担保信息、材料上传或后续人工服务时，具体处理目的、信息种类、处理方式、保存期限和用户权利，以网站另行公示的隐私政策及相应场景的数据授权说明为准。</p>
+        <p>用户提供涉及企业、股东、员工、债权人或其他第三方的信息前，应确保具有合法依据或已取得必要授权。</p>
+      </section>
+
+      <section class="agreement-section" id="third-party">
+        <h2>七、第三方内容与外部链接</h2>
+        <p>网站可能提供微信、电子邮件或其他第三方服务入口。第三方服务由相应主体独立提供，其功能、稳定性和信息处理规则适用第三方自身条款。用户跳转前应自行判断并阅读相关规则。</p>
+      </section>
+
+      <section class="agreement-section" id="changes">
+        <h2>八、网站维护与服务调整</h2>
+        <p>灰金可以根据业务发展、系统维护、安全风险或法律法规变化，对网站内容和功能进行调整。涉及用户重要权益的重大变化，将通过网站页面或其他适当方式提示。</p>
+        <p>因设备维护、网络故障、第三方服务异常、不可抗力或安全事件导致的短时中断，灰金将尽合理努力恢复服务。</p>
+      </section>
+
+      <section class="agreement-section" id="liability">
+        <h2>九、责任边界</h2>
+        <p>网站公开文章和案例用于行业交流与一般信息参考。用户应结合自身情况判断，不应仅依据公开内容作出重大经营、财务、法律或资产处置决定。</p>
+        <p>因用户提供的信息不真实、不完整、无权提供，或违反本协议使用网站造成的损失和责任，由责任方依法承担。灰金依法应当承担的责任，不因本协议约定而排除或限制。</p>
+      </section>
+
+      <section class="agreement-section" id="minor">
+        <h2>十、未成年人使用</h2>
+        <p>本网站主要面向企业负责人及经授权的企业相关人员。未成年人不应独立提交企业、债务、担保、金融账户等信息；确有必要使用时，应在监护人指导并同意的情况下进行。</p>
+      </section>
+
+      <section class="agreement-section" id="update">
+        <h2>十一、协议更新</h2>
+        <p>灰金可根据网站功能、业务范围及法律法规变化更新本协议，并在页面标明更新日期。更新内容生效后，用户继续使用网站即视为接受更新后的协议；涉及依法需要另行取得同意的事项，将按规定处理。</p>
+      </section>
+
+      <section class="agreement-section" id="law">
+        <h2>十二、法律适用与争议处理</h2>
+        <p>本协议的订立、履行和解释适用中华人民共和国法律。因本协议或网站使用产生争议，双方应先友好协商；协商不能解决的，依法向有管辖权的人民法院提起诉讼。</p>
+      </section>
+
+      <section class="agreement-section" id="contact">
+        <h2>十三、联系我们</h2>
+        <div class="agreement-contact">
+          <p>对本协议、网站内容授权或网站使用存在问题，可联系灰金重组。</p>
+          <p>联系邮箱：<a href="mailto:lucasa@agent.qq.com">lucasa@agent.qq.com</a></p>
+        </div>
+      </section>
+    </article>
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-left"><img src="images/logo-hjzc-transparent-white.png" alt="灰金重组" class="footer-logo"></div>
+      <div class="footer-right">
+        <div class="footer-links"><a href="index.html">首页</a><a href="services.html">服务方案</a><a href="cases-detail.html">成功案例</a><a href="column.html">专栏洞察</a><a href="about.html">关于灰金</a><a href="experts.html">专业团队</a><a href="diag.html">企业诊断</a><a href="user-agreement.html">用户协议</a></div>
+        <div class="footer-email">邮箱：<a href="mailto:lucasa@agent.qq.com">lucasa@agent.qq.com</a></div>
+        <div class="footer-wechat"><img src="images/wechat-official-qr.jpg" alt="灰金重组公众号二维码" class="footer-wechat-qr"><div class="footer-wechat-copy"><strong>灰金重组公众号</strong><span>扫码关注企业经营与重组洞察</span></div></div>
+      </div>
+    </div>
+    <div class="footer-bottom"><p>© 2026 灰金重组</p></div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var button=document.querySelector('.hamburger-btn');
+  var overlay=document.querySelector('.mobile-nav-overlay');
+  if(!button||!overlay)return;
+  button.addEventListener('click',function(){
+    overlay.classList.toggle('active');
+    document.body.style.overflow=overlay.classList.contains('active')?'hidden':'';
+  });
+  overlay.querySelectorAll('a').forEach(function(link){
+    link.addEventListener('click',function(){overlay.classList.remove('active');document.body.style.overflow='';});
+  });
+})();
+</script>
+</body>
+</html>

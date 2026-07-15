@@ -1,0 +1,1388 @@
+/* Site-wide warm paper and red-gold hierarchy. Loaded after commercial.css. */
+:root{
+  --site-paper:#f4f1eb;
+  --site-paper-soft:#faf8f4;
+  --site-panel:#fff;
+  --site-ink:#202124;
+  --site-muted:#62656a;
+  --site-line:#d9d3c8;
+  --site-red:#a71940;
+  --site-gold:#b18a50;
+}
+
+html,body{background:var(--site-paper)!important}
+main{background:var(--site-paper)!important}
+
+body.home-page,
+body.services-page,
+body.cases-page,
+body.column-page,
+body.column-detail-page,
+body.diag-page,
+body.error-page,
+body.agreement-page,
+body.home-page main,
+body.services-page main,
+body.cases-page main,
+body.column-page main,
+body.column-detail-page main,
+body.diag-page main,
+body.error-page main,
+body.agreement-page main{
+  background:var(--site-paper)!important;
+}
+
+/* Shared editorial hierarchy. */
+.section-label,
+.eyebrow,
+.practice-tag,
+.case-kicker,
+.article-category,
+.filter-label{
+  color:var(--site-red)!important;
+}
+
+.section-title,
+.section-header h2,
+.practice-intro h2,
+.commercial-intro h2{
+  color:var(--site-ink)!important;
+}
+
+.section-title span,
+.section-header h2 span,
+.practice-intro h2 span,
+.commercial-intro h2 span{
+  color:var(--site-red)!important;
+}
+
+.section-desc,
+.section-header p,
+.practice-intro p{
+  color:var(--site-muted)!important;
+}
+
+.service-number,
+.method-num,
+.capability-num,
+.domain-card .num,
+.case-number,
+.step-number,
+.expert-card::before{
+  color:var(--site-gold)!important;
+}
+
+/* Standard content surfaces: paper bands outside, clean white information panels inside. */
+body:not(.about-page):not(.brand-page):not(.experts-page):not(.practice-page) main > .section,
+body.home-page > .section,
+.filter-section,
+.featured-section,
+.articles-section,
+.article-header-section,
+.article-footer-section,
+.related-section,
+.agreement-main{
+  background:var(--site-paper)!important;
+}
+
+.process-section,
+.deliverables-section,
+.suitable-section,
+.fit-section,
+.method-band,
+.column-intro,
+.featured-section,
+.related-section{
+  background:var(--site-paper-soft)!important;
+  border-color:var(--site-line)!important;
+}
+
+.service-card,
+.case-card,
+.expert-card,
+.practice-card,
+.value-card,
+.position-card,
+.method-item,
+.article-card,
+.featured-card,
+.deliverable-card,
+.suitable-item,
+.agreement-section,
+.related-card{
+  background:var(--site-panel)!important;
+  border-color:var(--site-line)!important;
+  box-shadow:none!important;
+}
+
+.service-card:hover,
+.case-card:hover,
+.expert-card:hover,
+.practice-card:hover,
+.article-card:hover,
+.featured-card:hover{
+  border-color:rgba(167,25,64,.48)!important;
+  box-shadow:0 14px 32px rgba(52,42,35,.07)!important;
+}
+
+/* The four About pages share one body rhythm, not four separate templates. */
+body.about-page,
+body.brand-page,
+body.experts-page,
+body.practice-page,
+body.about-page main,
+body.brand-page main,
+body.experts-page main,
+body.practice-page main{
+  background:var(--site-paper)!important;
+}
+
+body.about-page .page-hero,
+body.brand-page .page-hero,
+body.experts-page .page-hero,
+body.practice-page .page-hero{
+  display:flex!important;
+  min-height:248px!important;
+  height:auto!important;
+  margin:0!important;
+  position:relative!important;
+  overflow:hidden!important;
+  isolation:isolate!important;
+  background:linear-gradient(120deg,#8f1435,#ab1942)!important;
+}
+
+body.about-page .page-hero::before,
+body.brand-page .page-hero::before,
+body.experts-page .page-hero::before,
+body.practice-page .page-hero::before{
+  content:""!important;
+  position:absolute!important;
+  top:-128px!important;
+  left:-96px!important;
+  right:auto!important;
+  bottom:auto!important;
+  width:580px!important;
+  height:580px!important;
+  border-radius:50%!important;
+  background:rgba(94,12,37,.22)!important;
+  z-index:1!important;
+  pointer-events:none!important;
+}
+
+body.about-page .page-hero::after,
+body.brand-page .page-hero::after,
+body.experts-page .page-hero::after,
+body.practice-page .page-hero::after{
+  content:"HUIJIN"!important;
+  position:absolute!important;
+  right:max(24px,calc((100vw - 1168px)/2))!important;
+  bottom:-38px!important;
+  z-index:1!important;
+  color:rgba(255,255,255,.045)!important;
+  font:700 118px/1 Arial,sans-serif!important;
+  letter-spacing:8px!important;
+  pointer-events:none!important;
+}
+
+body.about-page .page-hero-photo,
+body.brand-page .page-hero-photo,
+body.experts-page .page-hero-photo,
+body.practice-page .page-hero-photo{
+  display:none!important;
+}
+
+body.about-page .page-hero > .container,
+body.brand-page .page-hero > .container,
+body.experts-page .page-hero > .container,
+body.practice-page .page-hero > .container{
+  width:100%!important;
+}
+
+body.about-page .page-hero-inner,
+body.brand-page .page-hero-inner,
+body.experts-page .page-hero-inner,
+body.practice-page .page-hero-inner{
+  min-height:248px!important;
+  padding:56px 0!important;
+  position:relative!important;
+  z-index:2!important;
+  display:flex!important;
+  flex-direction:column!important;
+  justify-content:center!important;
+  align-items:flex-start!important;
+  text-align:left!important;
+}
+
+body.about-page .page-hero-title,
+body.brand-page .page-hero-title,
+body.experts-page .page-hero-title,
+body.practice-page .page-hero-title{
+  max-width:760px!important;
+  margin:0 0 12px!important;
+  color:#fff!important;
+  font-size:42px!important;
+  font-weight:650!important;
+  line-height:1.22!important;
+  letter-spacing:0!important;
+}
+
+body.about-page .page-hero-subtitle,
+body.brand-page .page-hero-subtitle,
+body.experts-page .page-hero-subtitle,
+body.practice-page .page-hero-subtitle{
+  max-width:720px!important;
+  margin:0!important;
+  color:rgba(255,255,255,.72)!important;
+  font-size:15px!important;
+  line-height:1.85!important;
+}
+
+body.about-page .about-nav,
+body.brand-page .about-nav,
+body.experts-page .about-nav,
+body.practice-page .about-nav{
+  background:var(--site-paper-soft)!important;
+  border-bottom:1px solid var(--site-line)!important;
+}
+
+body.about-page .about-nav-inner,
+body.brand-page .about-nav-inner,
+body.experts-page .about-nav-inner,
+body.practice-page .about-nav-inner{
+  min-height:58px!important;
+  gap:8px!important;
+}
+
+body.about-page .about-nav a,
+body.brand-page .about-nav a,
+body.experts-page .about-nav a,
+body.practice-page .about-nav a{
+  padding:15px 16px!important;
+  color:#55585d!important;
+}
+
+body.about-page .about-nav a.active,
+body.brand-page .about-nav a.active,
+body.experts-page .about-nav a.active,
+body.practice-page .about-nav a.active{
+  color:var(--site-red)!important;
+  background:rgba(167,25,64,.07)!important;
+}
+
+body.about-page section.about-profile-section,
+body.brand-page main > section.section.philosophy,
+body.experts-page main > section.section.experts-section,
+body.practice-page main > .about-nav + section.section{
+  padding:88px 0!important;
+  background:var(--site-paper-soft)!important;
+  border:0!important;
+}
+
+body.brand-page .philosophy-grid,
+body.practice-page .practice-intro,
+body.experts-page .section-header{
+  max-width:1120px!important;
+  margin-left:auto!important;
+  margin-right:auto!important;
+  padding:0!important;
+  border:0!important;
+  border-radius:0!important;
+  background:transparent!important;
+  box-shadow:none!important;
+}
+
+body.brand-page .philosophy-grid,
+body.practice-page .practice-intro{
+  grid-template-columns:minmax(280px,.76fr) minmax(0,1.24fr)!important;
+  gap:72px!important;
+  align-items:start!important;
+}
+
+body.experts-page .section-header{
+  display:grid!important;
+  grid-template-columns:minmax(280px,.76fr) minmax(0,1.24fr)!important;
+  column-gap:72px!important;
+  row-gap:10px!important;
+  text-align:left!important;
+  margin-bottom:46px!important;
+}
+
+body.experts-page .section-header .section-label,
+body.experts-page .section-header .section-title{grid-column:1!important}
+body.experts-page .section-header .section-desc{grid-column:2!important;grid-row:1 / span 2!important;margin:0!important;max-width:none!important}
+
+body.brand-page .philosophy .section-title,
+body.brand-page .philosophy .eyebrow,
+body.experts-page .section-header .section-title,
+body.practice-page .practice-intro .section-title{
+  color:var(--site-ink)!important;
+}
+
+body.brand-page .philosophy .section-desc,
+body.practice-page .practice-intro .section-desc,
+body.experts-page .section-header .section-desc{
+  color:var(--site-muted)!important;
+}
+
+body.brand-page .slogan-box,
+body.practice-page .practice-intro > .section-desc{
+  padding:4px 0 4px 38px!important;
+  border:0!important;
+  border-left:1px solid var(--site-line)!important;
+  border-radius:0!important;
+  background:transparent!important;
+  box-shadow:none!important;
+}
+
+body.about-page .about-profile-section .about-profile-copy,
+body.brand-page .philosophy .slogan-box{
+  background:transparent!important;
+  border-top:0!important;
+  border-right:0!important;
+  border-bottom:0!important;
+  border-left:1px solid var(--site-line)!important;
+  border-radius:0!important;
+  box-shadow:none!important;
+}
+
+body.brand-page .slogan-box h2{color:var(--site-red)!important}
+
+body.brand-page .philosophy-grid > div:first-child::after,
+body.practice-page .practice-intro > div:first-child::after,
+body.experts-page .section-header::after{
+  content:"";
+  display:block;
+  width:54px;
+  height:2px;
+  margin-top:26px;
+  background:var(--site-gold);
+}
+
+body.experts-page .section-header::after{grid-column:1!important}
+
+/* About-family editorial composition: strong statements, quiet supporting copy. */
+body.about-page .about-profile-layout,
+body.brand-page .philosophy-grid{
+  grid-template-columns:minmax(330px,.82fr) minmax(0,1.18fr)!important;
+  gap:104px!important;
+}
+
+body.brand-page .philosophy-grid{
+  grid-template-rows:auto auto!important;
+  row-gap:18px!important;
+}
+
+body.brand-page .philosophy-grid > div:first-child{display:contents!important}
+body.brand-page .philosophy-grid > div:first-child > .eyebrow{grid-column:1!important;grid-row:1!important}
+body.brand-page .philosophy-grid > div:first-child > .section-title{grid-column:1!important;grid-row:2 / span 2!important}
+body.brand-page .philosophy-grid > div:first-child > .section-desc{
+  grid-column:2!important;
+  grid-row:1!important;
+  align-self:start!important;
+  max-width:none!important;
+  margin:0!important;
+  font-size:16px!important;
+  line-height:2.05!important;
+}
+body.brand-page .philosophy-grid > .slogan-box{grid-column:2!important;grid-row:2!important}
+
+body.about-page .about-profile-heading .eyebrow,
+body.brand-page .philosophy .eyebrow,
+body.experts-page .section-header .section-label,
+body.practice-page .practice-intro .eyebrow{
+  margin-bottom:22px!important;
+  font-size:13px!important;
+  font-weight:750!important;
+  letter-spacing:3px!important;
+}
+
+body.about-page .about-profile-heading h2,
+body.brand-page .philosophy .section-title{
+  max-width:430px!important;
+  margin:0!important;
+  font-size:46px!important;
+  line-height:1.28!important;
+  font-weight:650!important;
+  letter-spacing:0!important;
+}
+
+body.about-page .about-profile-copy,
+body.brand-page .philosophy .slogan-box{
+  padding:2px 0!important;
+  border:0!important;
+}
+
+body.about-page .about-profile-section .about-profile-copy{
+  padding:2px 0 2px 54px!important;
+  border-left:1px solid var(--site-line)!important;
+}
+
+body.about-page .about-profile-copy p,
+body.brand-page .philosophy .slogan-box p{
+  max-width:none!important;
+  margin:0 0 28px!important;
+  color:#4f5358!important;
+  font-size:17px!important;
+  line-height:2.15!important;
+}
+
+body.brand-page .philosophy .slogan-box h2{
+  display:none!important;
+}
+
+body.brand-page .philosophy .slogan-box{
+  margin-top:18px!important;
+  padding-top:34px!important;
+  border-top:1px solid var(--site-line)!important;
+}
+
+body.about-page .about-profile-heading::after,
+body.brand-page .philosophy-grid > div:first-child::after{
+  width:58px!important;
+  margin-top:34px!important;
+}
+
+body.brand-page .philosophy-grid > div:first-child::after{display:none!important}
+body.brand-page .philosophy .section-title::after{
+  content:"";
+  display:block;
+  width:58px;
+  height:2px;
+  margin-top:34px;
+  background:var(--site-gold);
+}
+
+/* Section introductions follow the reference's centered editorial hierarchy. */
+body.about-page .difference-inner,
+body.experts-page .section-header,
+body.practice-page .practice-intro{
+  display:block!important;
+  max-width:1120px!important;
+  text-align:center!important;
+}
+
+body.about-page .difference-inner > div:first-child,
+body.experts-page .section-header,
+body.practice-page .practice-intro{
+  margin-left:auto!important;
+  margin-right:auto!important;
+}
+
+body.about-page .difference-inner > div:first-child,
+body.experts-page .section-header,
+body.practice-page .practice-intro > div:first-child{
+  max-width:760px!important;
+}
+
+body.about-page .difference .eyebrow,
+body.experts-page .section-header .section-label,
+body.practice-page .practice-intro .eyebrow{
+  margin-bottom:18px!important;
+}
+
+body.about-page .difference .section-title,
+body.experts-page .section-header .section-title,
+body.practice-page .practice-intro .section-title{
+  max-width:850px!important;
+  margin:0 auto 18px!important;
+  color:var(--site-ink)!important;
+  font-size:42px!important;
+  line-height:1.35!important;
+  font-weight:650!important;
+  letter-spacing:0!important;
+}
+
+body.about-page .difference .section-desc,
+body.experts-page .section-header .section-desc,
+body.practice-page .practice-intro .section-desc{
+  max-width:760px!important;
+  margin:0 auto!important;
+  padding:0!important;
+  border:0!important;
+  color:#74777c!important;
+  font-size:16px!important;
+  line-height:1.95!important;
+}
+
+body.experts-page .section-header .section-label,
+body.experts-page .section-header .section-title,
+body.experts-page .section-header .section-desc,
+body.experts-page .section-header::after{
+  grid-column:auto!important;
+  grid-row:auto!important;
+}
+
+body.experts-page .section-header::after,
+body.practice-page .practice-intro > div:first-child::after{
+  margin-left:auto!important;
+  margin-right:auto!important;
+}
+
+body.about-page .diff-points{
+  display:grid!important;
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  gap:28px!important;
+  margin-top:58px!important;
+  border:0!important;
+}
+
+body.about-page .diff-point,
+body.about-page .diff-point:nth-child(1),
+body.about-page .diff-point:nth-child(2),
+body.about-page .diff-point:nth-child(3){
+  display:block!important;
+  min-height:258px!important;
+  padding:38px 34px!important;
+  border:1px solid var(--site-line)!important;
+  border-radius:6px!important;
+  background:rgba(255,255,255,.72)!important;
+  text-align:left!important;
+}
+
+body.about-page .diff-point::before{
+  content:"\2260";
+  display:block;
+  margin-bottom:30px;
+  color:var(--site-red);
+  font-size:26px;
+  line-height:1;
+  font-weight:800;
+}
+
+body.about-page .diff-point h3{
+  margin:0 0 18px!important;
+  font-size:20px!important;
+  line-height:1.45!important;
+}
+
+body.about-page .diff-point p{
+  font-size:15px!important;
+  line-height:1.95!important;
+}
+
+body.brand-page main > section.section:not(.philosophy) > .container > .eyebrow,
+body.brand-page main > section.section:not(.philosophy) > .container > .section-title,
+body.brand-page main > section.section:not(.philosophy) > .container > .section-desc{
+  display:block!important;
+  max-width:780px!important;
+  margin-left:auto!important;
+  margin-right:auto!important;
+  text-align:center!important;
+}
+
+body.brand-page main > section.section:not(.philosophy) > .container > .section-title{
+  margin-bottom:16px!important;
+  font-size:40px!important;
+}
+
+body.brand-page .values-grid,
+body.brand-page .position-grid,
+body.practice-page .practice-grid,
+body.practice-page .method-grid{
+  margin-top:52px!important;
+}
+
+body.brand-page .value-card,
+body.brand-page .position-card,
+body.practice-page .practice-card,
+body.practice-page .method-item{
+  border-radius:6px!important;
+}
+
+body.brand-page .section,
+body.experts-page .experts-section,
+body.practice-page .section{
+  background:var(--site-paper)!important;
+}
+
+body.brand-page .section:nth-of-type(3),
+body.practice-page .method-band{
+  background:var(--site-paper-soft)!important;
+  border-color:var(--site-line)!important;
+}
+
+/* Reading pages retain a white reading surface inside the warm site background. */
+.article-body-section,
+.article-content,
+.article-container,
+.agreement-content{
+  background:var(--site-panel)!important;
+  border-color:var(--site-line)!important;
+}
+
+/* Diagnosis controls stay white and functional; only their surrounding page follows the site. */
+body.diag-page main,
+body.diag-page .section{
+  background:var(--site-paper)!important;
+}
+
+@media(max-width:767px){
+  body.about-page section.about-profile-section,
+  body.brand-page main > section.section.philosophy,
+  body.experts-page main > section.section.experts-section,
+  body.practice-page main > .about-nav + section.section{
+    padding:52px 0!important;
+  }
+
+  body.brand-page .philosophy-grid,
+  body.practice-page .practice-intro,
+  body.experts-page .section-header{
+    grid-template-columns:1fr!important;
+    gap:22px!important;
+  }
+
+  body.about-page .about-profile-layout,
+  body.brand-page .philosophy-grid{
+    grid-template-columns:1fr!important;
+    gap:30px!important;
+  }
+
+  body.brand-page .philosophy-grid > div:first-child{display:block!important}
+  body.brand-page .philosophy-grid > div:first-child > .eyebrow,
+  body.brand-page .philosophy-grid > div:first-child > .section-title,
+  body.brand-page .philosophy-grid > div:first-child > .section-desc,
+  body.brand-page .philosophy-grid > .slogan-box{
+    grid-column:auto!important;
+    grid-row:auto!important;
+  }
+
+  body.brand-page .philosophy-grid > div:first-child > .section-desc{margin-top:24px!important}
+
+  body.about-page .about-profile-heading h2,
+  body.brand-page .philosophy .section-title{
+    font-size:34px!important;
+  }
+
+  body.about-page .about-profile-copy,
+  body.brand-page .philosophy .slogan-box{
+    padding-top:24px!important;
+    border-top:1px solid var(--site-line)!important;
+  }
+
+  body.about-page .about-profile-section .about-profile-copy{
+    padding:24px 0 0!important;
+    border-left:0!important;
+  }
+
+  body.brand-page .philosophy .slogan-box{padding-top:30px!important}
+
+  body.about-page .about-profile-copy p,
+  body.brand-page .philosophy .slogan-box p{
+    margin-bottom:20px!important;
+    font-size:15px!important;
+    line-height:1.95!important;
+  }
+
+  body.about-page .difference .section-title,
+  body.experts-page .section-header .section-title,
+  body.practice-page .practice-intro .section-title{
+    font-size:29px!important;
+  }
+
+  body.about-page .diff-points{
+    grid-template-columns:1fr!important;
+    gap:14px!important;
+    margin-top:34px!important;
+  }
+
+  body.about-page .diff-point,
+  body.about-page .diff-point:nth-child(1),
+  body.about-page .diff-point:nth-child(2),
+  body.about-page .diff-point:nth-child(3){
+    min-height:0!important;
+    padding:26px 24px!important;
+  }
+
+  body.about-page .diff-point::before{margin-bottom:20px}
+
+  body.brand-page main > section.section:not(.philosophy) > .container > .section-title{
+    font-size:29px!important;
+  }
+
+  body.brand-page .values-grid,
+  body.brand-page .position-grid,
+  body.practice-page .practice-grid,
+  body.practice-page .method-grid{
+    margin-top:32px!important;
+  }
+
+  body.experts-page .section-header .section-label,
+  body.experts-page .section-header .section-title,
+  body.experts-page .section-header .section-desc,
+  body.experts-page .section-header::after{
+    grid-column:1!important;
+    grid-row:auto!important;
+  }
+
+  body.brand-page .slogan-box,
+  body.practice-page .practice-intro > .section-desc{
+    padding:20px 0 0!important;
+    border-left:0!important;
+    border-top:1px solid var(--site-line)!important;
+  }
+
+  body.about-page .about-profile-section .about-profile-copy,
+  body.brand-page .philosophy .slogan-box{
+    border-left:0!important;
+    border-top:1px solid var(--site-line)!important;
+  }
+}
+
+/* Compact consultant cards: information first, decoration second. */
+body.experts-page .experts-grid{
+  gap:20px!important;
+  align-items:stretch!important;
+}
+
+body.experts-page .expert-card{
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:stretch!important;
+  min-height:0!important;
+  height:auto!important;
+  padding:30px 28px 24px!important;
+  text-align:center!important;
+}
+
+body.experts-page .expert-card h3{
+  margin:0 0 10px!important;
+  color:var(--site-ink)!important;
+  font-size:22px!important;
+  line-height:1.4!important;
+  text-align:center!important;
+}
+
+body.experts-page .expert-role{
+  display:inline-flex!important;
+  align-self:center!important;
+  justify-content:center!important;
+  max-width:100%!important;
+  margin:0 auto 18px!important;
+  padding:6px 12px!important;
+  border:1px solid rgba(167,25,64,.2)!important;
+  border-radius:3px!important;
+  background:rgba(167,25,64,.065)!important;
+  color:var(--site-red)!important;
+  font-size:12px!important;
+  line-height:1.45!important;
+  font-weight:650!important;
+  letter-spacing:0!important;
+  text-align:center!important;
+}
+
+body.experts-page .expert-card p{
+  flex:1!important;
+  margin:0!important;
+  padding:0!important;
+  color:#55595f!important;
+  font-size:14px!important;
+  line-height:1.8!important;
+  text-align:left!important;
+}
+
+body.experts-page .expert-card-meta{
+  min-height:42px!important;
+  margin-top:20px!important;
+  padding:10px 12px!important;
+  background:var(--site-paper-soft)!important;
+}
+
+@media(max-width:767px){
+  body.about-page .page-hero,
+  body.brand-page .page-hero,
+  body.experts-page .page-hero,
+  body.practice-page .page-hero{
+    min-height:200px!important;
+  }
+
+  body.about-page .page-hero::before,
+  body.brand-page .page-hero::before,
+  body.experts-page .page-hero::before,
+  body.practice-page .page-hero::before{
+    top:-84px!important;
+    left:-86px!important;
+    width:360px!important;
+    height:360px!important;
+  }
+
+  body.about-page .page-hero::after,
+  body.brand-page .page-hero::after,
+  body.experts-page .page-hero::after,
+  body.practice-page .page-hero::after{
+    right:16px!important;
+    bottom:-18px!important;
+    font-size:64px!important;
+  }
+
+  body.about-page .page-hero-inner,
+  body.brand-page .page-hero-inner,
+  body.experts-page .page-hero-inner,
+  body.practice-page .page-hero-inner{
+    min-height:200px!important;
+    padding:40px 0!important;
+  }
+
+  body.about-page .page-hero-title,
+  body.brand-page .page-hero-title,
+  body.experts-page .page-hero-title,
+  body.practice-page .page-hero-title{
+    font-size:30px!important;
+  }
+
+  body.experts-page .experts-grid{gap:14px!important}
+  body.experts-page .expert-card{padding:24px 22px 20px!important}
+  body.experts-page .expert-card h3{font-size:21px!important}
+  body.experts-page .expert-role{margin-bottom:15px!important}
+  body.experts-page .expert-card-meta{margin-top:16px!important}
+}
+
+/* Final About-family system: one shared structure across all four pages. */
+body.about-page .about-nav,
+body.brand-page .about-nav,
+body.experts-page .about-nav,
+body.practice-page .about-nav{
+  box-shadow:0 8px 24px rgba(53,43,36,.035)!important;
+}
+
+body.about-page .about-nav-inner,
+body.brand-page .about-nav-inner,
+body.experts-page .about-nav-inner,
+body.practice-page .about-nav-inner{
+  min-height:62px!important;
+}
+
+body.about-page .about-nav a,
+body.brand-page .about-nav a,
+body.experts-page .about-nav a,
+body.practice-page .about-nav a{
+  min-width:112px!important;
+  padding:17px 18px!important;
+  border-left:0!important;
+  text-align:center!important;
+}
+
+body.about-page .about-nav a.active,
+body.brand-page .about-nav a.active,
+body.experts-page .about-nav a.active,
+body.practice-page .about-nav a.active{
+  box-shadow:inset 0 2px 0 var(--site-red)!important;
+}
+
+body.about-page section.about-profile-section,
+body.brand-page main > section.section.philosophy,
+body.experts-page main > section.section.experts-section,
+body.practice-page main > .about-nav + section.section{
+  position:relative!important;
+  overflow:hidden!important;
+  padding:94px 0 92px!important;
+  background:linear-gradient(108deg,var(--site-paper-soft) 0%,var(--site-paper-soft) 72%,rgba(167,25,64,.035) 100%)!important;
+  border-top:0!important;
+  border-bottom:1px solid var(--site-line)!important;
+}
+
+body.about-page section.about-profile-section::before,
+body.brand-page main > section.section.philosophy::before,
+body.experts-page main > section.section.experts-section::before,
+body.practice-page main > .about-nav + section.section::before{
+  position:absolute;
+  right:max(28px,calc((100vw - 1160px)/2));
+  top:42px;
+  color:rgba(167,25,64,.045);
+  font-family:Georgia,'Times New Roman',serif;
+  font-size:108px;
+  line-height:1;
+  font-weight:700;
+  pointer-events:none;
+}
+
+body.about-page section.about-profile-section::before{content:"01"}
+body.brand-page main > section.section.philosophy::before{content:"02"}
+body.experts-page main > section.section.experts-section::before{content:"03"}
+body.practice-page main > .about-nav + section.section::before{content:"04"}
+
+body.about-page section.about-profile-section > .container,
+body.brand-page main > section.section.philosophy > .container,
+body.experts-page main > section.section.experts-section > .container,
+body.practice-page main > .about-nav + section.section > .container{
+  position:relative!important;
+  z-index:1!important;
+}
+
+body.about-page .about-profile-layout,
+body.brand-page .philosophy-grid,
+body.experts-page .section-header,
+body.practice-page .practice-intro{
+  display:grid!important;
+  grid-template-columns:minmax(330px,.82fr) minmax(0,1.18fr)!important;
+  column-gap:104px!important;
+  row-gap:18px!important;
+  max-width:1120px!important;
+  margin:0 auto!important;
+  padding:0!important;
+  align-items:start!important;
+  text-align:left!important;
+}
+
+body.about-page .about-profile-heading,
+body.practice-page .practice-intro > div:first-child{
+  grid-column:1!important;
+  grid-row:1 / span 2!important;
+}
+
+body.about-page .about-profile-copy,
+body.practice-page .practice-intro > .section-desc{
+  grid-column:2!important;
+  grid-row:1 / span 2!important;
+}
+
+body.brand-page .philosophy-grid > div:first-child{display:contents!important}
+body.brand-page .philosophy-grid > div:first-child > .eyebrow{grid-column:1!important;grid-row:1!important}
+body.brand-page .philosophy-grid > div:first-child > .section-title{grid-column:1!important;grid-row:2 / span 2!important}
+body.brand-page .philosophy-grid > div:first-child > .section-desc{grid-column:2!important;grid-row:1!important}
+body.brand-page .philosophy-grid > .slogan-box{grid-column:2!important;grid-row:2!important}
+
+body.experts-page .section-header .section-label{grid-column:1!important;grid-row:1!important}
+body.experts-page .section-header .section-title{grid-column:1!important;grid-row:2!important}
+body.experts-page .section-header .section-desc{grid-column:2!important;grid-row:1 / span 2!important}
+
+body.about-page .about-profile-heading .eyebrow,
+body.brand-page .philosophy .eyebrow,
+body.experts-page .section-header .section-label,
+body.practice-page .practice-intro .eyebrow{
+  display:block!important;
+  margin:0 0 22px!important;
+  color:var(--site-red)!important;
+  font-size:13px!important;
+  font-weight:750!important;
+  letter-spacing:3px!important;
+}
+
+body.about-page .about-profile-heading h2,
+body.brand-page .philosophy .section-title,
+body.experts-page .section-header .section-title,
+body.practice-page .practice-intro .section-title{
+  max-width:470px!important;
+  margin:0!important;
+  color:var(--site-ink)!important;
+  font-size:44px!important;
+  line-height:1.3!important;
+  font-weight:650!important;
+  letter-spacing:0!important;
+}
+
+body.about-page .about-profile-heading::after,
+body.brand-page .philosophy .section-title::after,
+body.experts-page .section-header .section-title::after,
+body.practice-page .practice-intro .section-title::after{
+  content:""!important;
+  display:block!important;
+  width:58px!important;
+  height:2px!important;
+  margin:32px 0 0!important;
+  background:var(--site-gold)!important;
+}
+
+body.brand-page .philosophy-grid > div:first-child::after,
+body.experts-page .section-header::after,
+body.practice-page .practice-intro > div:first-child::after{display:none!important}
+
+body.about-page .about-profile-section .about-profile-copy,
+body.brand-page .philosophy .slogan-box,
+body.practice-page .practice-intro > .section-desc{
+  margin:0!important;
+  padding:0!important;
+  border:0!important;
+  background:transparent!important;
+}
+
+body.about-page .about-profile-copy p,
+body.brand-page .philosophy .section-desc,
+body.brand-page .philosophy .slogan-box p,
+body.experts-page .section-header .section-desc,
+body.practice-page .practice-intro .section-desc{
+  max-width:none!important;
+  margin:0 0 25px!important;
+  padding:0!important;
+  border:0!important;
+  color:#55595f!important;
+  font-size:16px!important;
+  line-height:2.05!important;
+  text-align:left!important;
+}
+
+body.brand-page .philosophy .slogan-box{margin-top:4px!important}
+
+body.experts-page .section-header,
+body.practice-page .practice-intro{margin-bottom:54px!important}
+
+/* Shared rhythm for every section below the opening statement. */
+body.about-page .about-capability-section,
+body.about-page .difference,
+body.brand-page main > section.section:not(.philosophy),
+body.practice-page .method-band{
+  padding:92px 0!important;
+}
+
+body.about-page .about-capability-section,
+body.brand-page main > section.section:not(.philosophy):nth-of-type(even){
+  background:var(--site-panel)!important;
+}
+
+body.about-page .difference,
+body.brand-page main > section.section:not(.philosophy):nth-of-type(odd),
+body.practice-page .method-band{
+  background:var(--site-paper-soft)!important;
+}
+
+body.about-page .difference-inner > div:first-child,
+body.brand-page main > section.section:not(.philosophy) > .container > .eyebrow,
+body.brand-page main > section.section:not(.philosophy) > .container > .section-title,
+body.brand-page main > section.section:not(.philosophy) > .container > .section-desc,
+body.practice-page .method-band > .container > .eyebrow,
+body.practice-page .method-band > .container > .section-title{
+  max-width:780px!important;
+  margin-left:auto!important;
+  margin-right:auto!important;
+  text-align:center!important;
+}
+
+body.about-page .difference .section-title,
+body.brand-page main > section.section:not(.philosophy) > .container > .section-title,
+body.practice-page .method-band > .container > .section-title{
+  margin-top:0!important;
+  margin-bottom:16px!important;
+  font-size:38px!important;
+  line-height:1.4!important;
+}
+
+body.about-page .difference .section-title::after,
+body.brand-page main > section.section:not(.philosophy) > .container > .section-title::after,
+body.practice-page .method-band > .container > .section-title::after{
+  content:"";
+  display:block;
+  width:50px;
+  height:2px;
+  margin:24px auto 0;
+  background:var(--site-gold);
+}
+
+body.about-page .about-capability-list,
+body.about-page .diff-points,
+body.brand-page .values-grid,
+body.brand-page .position-grid,
+body.experts-page .experts-grid,
+body.practice-page .practice-grid,
+body.practice-page .method-grid{
+  gap:24px!important;
+}
+
+body.about-page .about-capability-list .capability-node,
+body.about-page .diff-point,
+body.brand-page .value-card,
+body.brand-page .position-card,
+body.experts-page .expert-card,
+body.practice-page .practice-card,
+body.practice-page .method-item{
+  border:1px solid var(--site-line)!important;
+  border-radius:6px!important;
+  background:rgba(255,255,255,.88)!important;
+  box-shadow:0 10px 28px rgba(55,45,38,.045)!important;
+}
+
+body.about-page .about-capability-list .capability-node:hover,
+body.about-page .diff-point:hover,
+body.brand-page .value-card:hover,
+body.brand-page .position-card:hover,
+body.experts-page .expert-card:hover,
+body.practice-page .practice-card:hover,
+body.practice-page .method-item:hover{
+  border-color:rgba(167,25,64,.38)!important;
+  box-shadow:0 16px 36px rgba(55,45,38,.075)!important;
+}
+
+@media(max-width:767px){
+  body.about-page .about-nav-inner,
+  body.brand-page .about-nav-inner,
+  body.experts-page .about-nav-inner,
+  body.practice-page .about-nav-inner{
+    min-height:56px!important;
+    gap:0!important;
+  }
+
+  body.about-page .about-nav a,
+  body.brand-page .about-nav a,
+  body.experts-page .about-nav a,
+  body.practice-page .about-nav a{
+    flex:1 1 25%!important;
+    min-width:0!important;
+    padding:16px 5px!important;
+    font-size:13px!important;
+  }
+
+  body.about-page section.about-profile-section,
+  body.brand-page main > section.section.philosophy,
+  body.experts-page main > section.section.experts-section,
+  body.practice-page main > .about-nav + section.section{
+    padding:58px 0!important;
+  }
+
+  body.about-page section.about-profile-section::before,
+  body.brand-page main > section.section.philosophy::before,
+  body.experts-page main > section.section.experts-section::before,
+  body.practice-page main > .about-nav + section.section::before{
+    top:24px;
+    right:18px;
+    font-size:72px;
+  }
+
+  body.about-page .about-profile-layout,
+  body.brand-page .philosophy-grid,
+  body.experts-page .section-header,
+  body.practice-page .practice-intro{
+    display:grid!important;
+    grid-template-columns:1fr!important;
+    gap:28px!important;
+    text-align:left!important;
+  }
+
+  body.brand-page .philosophy-grid > div:first-child{display:block!important}
+  body.about-page .about-profile-heading,
+  body.about-page .about-profile-copy,
+  body.brand-page .philosophy-grid > div:first-child > .eyebrow,
+  body.brand-page .philosophy-grid > div:first-child > .section-title,
+  body.brand-page .philosophy-grid > div:first-child > .section-desc,
+  body.brand-page .philosophy-grid > .slogan-box,
+  body.experts-page .section-header .section-label,
+  body.experts-page .section-header .section-title,
+  body.experts-page .section-header .section-desc,
+  body.practice-page .practice-intro > div:first-child,
+  body.practice-page .practice-intro > .section-desc{
+    grid-column:1!important;
+    grid-row:auto!important;
+  }
+
+  body.about-page .about-profile-heading h2,
+  body.brand-page .philosophy .section-title,
+  body.experts-page .section-header .section-title,
+  body.practice-page .practice-intro .section-title{
+    font-size:32px!important;
+  }
+
+  body.about-page .about-profile-copy,
+  body.brand-page .philosophy-grid > div:first-child > .section-desc,
+  body.experts-page .section-header .section-desc,
+  body.practice-page .practice-intro > .section-desc{
+    padding-top:25px!important;
+    border-top:1px solid var(--site-line)!important;
+  }
+
+  body.brand-page .philosophy .slogan-box{
+    margin-top:-8px!important;
+    padding-top:0!important;
+    border:0!important;
+  }
+
+  body.about-page .about-profile-copy p,
+  body.brand-page .philosophy .section-desc,
+  body.brand-page .philosophy .slogan-box p,
+  body.experts-page .section-header .section-desc,
+  body.practice-page .practice-intro .section-desc{
+    font-size:15px!important;
+    line-height:1.95!important;
+  }
+
+  body.about-page .about-capability-section,
+  body.about-page .difference,
+  body.brand-page main > section.section:not(.philosophy),
+  body.practice-page .method-band{
+    padding:58px 0!important;
+  }
+
+  body.about-page .difference .section-title,
+  body.brand-page main > section.section:not(.philosophy) > .container > .section-title,
+  body.practice-page .method-band > .container > .section-title{
+    font-size:29px!important;
+  }
+}
+
+/* Keep the team grid denser than the general content-card rhythm. */
+body.experts-page .experts-grid{gap:20px!important}
+
+@media(max-width:767px){
+  body.experts-page .experts-grid{gap:14px!important}
+}
+
+/* Balanced profile cards: centered content with a lightweight detail entry. */
+body.experts-page .expert-card{
+  position:relative!important;
+  justify-content:center!important;
+  min-height:286px!important;
+  padding:38px 34px 58px!important;
+  overflow:hidden!important;
+  background:linear-gradient(145deg,#fff 0%,#fff 72%,rgba(167,25,64,.035) 100%)!important;
+  box-shadow:0 12px 30px rgba(55,45,38,.055)!important;
+}
+
+body.experts-page .expert-card::before{
+  content:""!important;
+  display:block!important;
+  position:absolute!important;
+  top:0!important;
+  left:0!important;
+  right:0!important;
+  width:auto!important;
+  height:3px!important;
+  background:linear-gradient(90deg,var(--site-red) 0 76%,var(--site-gold) 76% 100%)!important;
+  transform:none!important;
+}
+
+body.experts-page .expert-card::after{
+  top:24px!important;
+  right:26px!important;
+  color:rgba(167,25,64,.105)!important;
+  font-size:38px!important;
+}
+
+body.experts-page .expert-card h3{
+  margin-bottom:11px!important;
+  font-size:24px!important;
+}
+
+body.experts-page .expert-role{
+  margin-bottom:22px!important;
+  background:rgba(167,25,64,.055)!important;
+}
+
+body.experts-page .expert-card p{
+  flex:0 0 auto!important;
+  max-width:94%!important;
+  margin:0 auto!important;
+  line-height:1.85!important;
+  text-align:center!important;
+}
+
+body.experts-page .expert-card-meta{
+  position:absolute!important;
+  right:26px!important;
+  bottom:20px!important;
+  display:inline-flex!important;
+  width:auto!important;
+  min-height:0!important;
+  margin:0!important;
+  padding:0!important;
+  gap:8px!important;
+  background:transparent!important;
+  color:var(--site-red)!important;
+  font-size:12px!important;
+  font-weight:650!important;
+}
+
+body.experts-page .expert-card-meta span:first-child{color:var(--site-red)!important}
+body.experts-page .expert-card-meta span:last-child{font-size:15px!important}
+
+body.experts-page .team-growth-note{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:18px;
+  margin:42px auto 0;
+  color:#5c6065;
+  font-size:14px;
+  font-weight:650;
+  letter-spacing:2px;
+  text-align:center;
+}
+
+body.experts-page .team-growth-note::before,
+body.experts-page .team-growth-note::after{
+  content:"";
+  display:block;
+  width:54px;
+  height:1px;
+}
+
+body.experts-page .team-growth-note::before{background:var(--site-red)}
+body.experts-page .team-growth-note::after{background:var(--site-gold)}
+
+@media(max-width:767px){
+  body.experts-page .expert-card{
+    min-height:255px!important;
+    padding:34px 22px 54px!important;
+  }
+  body.experts-page .expert-card h3{font-size:22px!important}
+  body.experts-page .expert-role{margin-bottom:18px!important}
+  body.experts-page .expert-card p{max-width:100%!important;font-size:13px!important}
+  body.experts-page .expert-card-meta{right:22px!important;bottom:18px!important}
+  body.experts-page .team-growth-note{gap:12px;margin-top:30px;font-size:13px;letter-spacing:1px}
+  body.experts-page .team-growth-note::before,
+  body.experts-page .team-growth-note::after{width:32px}
+}
+
+/* Site typography calibration: keep the dense business layout, but lift readability on desktop. */
+@media(min-width:768px){
+  body{
+    font-size:16px!important;
+  }
+
+  .header-nav a{
+    font-size:14px!important;
+    line-height:1.45!important;
+  }
+
+  .header-nav .nav-cta a{
+    font-size:14px!important;
+  }
+
+  .header-nav .nav-about-dropdown a{
+    font-size:13.5px!important;
+  }
+
+  .section-desc,
+  .section-header p,
+  .page-hero-subtitle,
+  body.services-page .page-hero-subtitle,
+  body.cases-page .page-hero-subtitle,
+  body.diag-page .page-hero-subtitle,
+  body.column-page .column-intro p,
+  body.brand-page .philosophy .section-desc,
+  body.experts-page .section-header .section-desc,
+  body.practice-page .practice-intro .section-desc{
+    font-size:16.5px!important;
+    line-height:1.9!important;
+  }
+
+  .service-card p,
+  .case-card p,
+  .commercial-case p,
+  .deliverable-card p,
+  .suitable-item p,
+  .process-card p,
+  .method-item p,
+  .position-card p,
+  .value-card p,
+  .domain-card p,
+  .system-card p,
+  .diff-point p,
+  .article-card p,
+  .featured-card p,
+  .practice-content p,
+  body.experts-page .expert-card p{
+    font-size:15px!important;
+    line-height:1.85!important;
+  }
+
+  .service-card h3,
+  .case-card h3,
+  .deliverable-card h3,
+  .process-card h3,
+  .method-item h3,
+  .position-card h3,
+  .value-card h3,
+  .domain-card h3,
+  .system-card h3,
+  .diff-point h3,
+  .article-card h3,
+  .practice-content h3{
+    line-height:1.38!important;
+  }
+}
