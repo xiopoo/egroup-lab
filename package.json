@@ -1,5 +1,6 @@
 {
   "private": true,
+  "main": "server.js",
   "scripts": {
     "build": "node -e \"const fs=require('fs'); fs.rmSync('dist',{recursive:true,force:true}); fs.cpSync('website/public','dist',{recursive:true});\""
   },
