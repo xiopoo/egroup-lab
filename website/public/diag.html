@@ -191,6 +191,32 @@
         .icon-lg{width:64px;height:64px;color:#d1d5db}
         .home-logo{width:200px;height:auto;margin:0 auto 12px;object-fit:contain;display:block}
         .home-desc{font-size:14px;color:#6b7280;font-weight:400;line-height:1.8;margin:0 auto;display:inline-block;white-space:nowrap;position:relative}
+        .diagnosis-home{display:grid;grid-template-columns:minmax(0,1fr) minmax(360px,420px);gap:32px;align-items:start;text-align:left;max-width:980px;margin:0 auto}
+        .diagnosis-home-main,.diagnosis-home-aside{min-width:0}
+        .diagnosis-kicker{display:inline-flex;align-items:center;gap:6px;color:#AB1942;background:#fdf2f4;border:1px solid rgba(171,25,66,.14);border-radius:999px;padding:5px 12px;font-size:12px;font-weight:600;margin-bottom:14px}
+        .diagnosis-home-title{font-size:32px;line-height:1.25;color:#1f2937;margin-bottom:12px;letter-spacing:0;font-weight:700}
+        .diagnosis-home-lead{font-size:16px;line-height:1.9;color:#4b5563;margin-bottom:20px;max-width:560px}
+        .diagnosis-proof-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:18px;max-width:520px}
+        .diagnosis-proof{background:#fafafa;border:1px solid #eee;border-radius:8px;padding:12px;text-align:center}
+        .diagnosis-proof strong{display:block;color:#AB1942;font-size:20px;line-height:1.2;margin-bottom:4px}
+        .diagnosis-proof span{font-size:12px;color:#6b7280;line-height:1.5}
+        .diag-section{margin-top:24px}
+        .diag-section-header{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:14px}
+        .diag-section-title{font-size:20px;font-weight:700;color:#1f2937;line-height:1.35}
+        .diag-section-note{font-size:13px;color:#6b7280;line-height:1.7;max-width:520px}
+        .diagnosis-boundary{background:#fff7ed;border:1px solid #fed7aa;border-radius:8px;color:#9a3412;padding:14px 16px;font-size:13px;line-height:1.8}
+        .diagnosis-full-sections{max-width:980px;margin:22px auto 0}
+        .diagnosis-compact-guide{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+        .diagnosis-guide-item{background:#fff;border:1px solid #eee;border-radius:8px;padding:18px}
+        .diagnosis-guide-item strong{display:block;color:#1f2937;font-size:15px;margin-bottom:8px}
+        .diagnosis-guide-item p{font-size:13px;line-height:1.7;color:#6b7280}
+        .result-action-panel{background:#fdf2f4;border:1px solid rgba(171,25,66,.14);border-radius:8px;padding:16px;margin-bottom:24px}
+        .result-action-panel h3{font-size:16px;color:#1f2937;margin-bottom:8px}
+        .result-action-panel p{font-size:13px;color:#6b7280;line-height:1.8;margin-bottom:12px}
+        .material-list{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px}
+        .material-item{background:#fff;border:1px solid #f3d4dc;border-radius:8px;padding:12px}
+        .material-item strong{display:block;color:#1f2937;font-size:13px;margin-bottom:5px}
+        .material-item span{display:block;color:#6b7280;font-size:12px;line-height:1.6}
         .diagnosis-option{border:2px solid #eee;border-radius:12px;margin-bottom:12px;overflow:hidden;transition:all 0.2s;background:#fff}
         .diagnosis-option.active{border-color:#AB1942;box-shadow:0 4px 16px rgba(171,25,66,0.1)}
         .diagnosis-option-header{padding:16px;cursor:pointer;display:flex;align-items:center;gap:12px}
@@ -219,6 +245,13 @@
         .diagnosis-option-detail .start-btn.fast:hover{background:#fdf2f4}
         @media(max-width:1023px){
           .page-hero{height:200px}
+          .diagnosis-home{grid-template-columns:1fr}
+          .diagnosis-compact-guide{grid-template-columns:1fr}
+        }
+
+        @media(min-width:1024px) and (max-width:1365px){
+          .diagnosis-home{grid-template-columns:1fr}
+          .diagnosis-home-aside{max-width:560px}
         }
 
         @media(max-width:767px){
@@ -234,6 +267,10 @@
           .page-hero-title{font-size:32px}
           .page-hero-subtitle{font-size:15px}
           .home-desc{max-width:90%;display:block;white-space:normal}
+          .diagnosis-home-title{font-size:24px}
+          .diagnosis-proof-row,.scenario-grid,.dimension-grid,.deliverable-grid,.material-list,.diagnosis-compact-guide{grid-template-columns:1fr}
+          .diag-section-header{display:block}
+          .diag-section-note{margin-top:6px}
           .footer-inner{flex-direction:column;align-items:flex-start;gap:16px}
           .footer-right{flex-direction:column;align-items:flex-start;gap:12px}
           .footer-links{gap:14px}
@@ -252,7 +289,7 @@
     </style>
     <script src="js/image-urls-v2.js?v=5"></script>
 <link rel="stylesheet" href="commercial.css">
-<link rel="stylesheet" href="site-paper-theme.css?v=20260716-mobile-nav">
+<link rel="stylesheet" href="site-paper-theme.css?v=20260717-mobile-nav-compact">
 </head>
 <body class="diag-page">
     <div id="app" class="min-h-screen">
@@ -289,75 +326,112 @@
           <div class="container">
             <div class="page-hero-inner">
               <h1 class="page-hero-title">企业诊断</h1>
-              <p class="page-hero-subtitle">36道题，3分钟，清晰掌握企业真实状况</p>
+              <p class="page-hero-subtitle">选择适合你的诊断方式，快速了解企业风险状况</p>
             </div>
           </div>
         </section>
 
         <main class="container px-4 py-6">
             <!-- Home -->
-            <div v-if="currentPage === 'home'" class="text-center py-12">
-                <div class="card">
-                    <div class="mb-6">
-                        <p class="home-desc">选择适合你的诊断方式，快速了解企业风险状况</p>
+            <div v-if="currentPage === 'home'" class="py-12">
+                <div class="diagnosis-home">
+                    <div class="diagnosis-home-main">
+                        <div class="card">
+                            <span class="diagnosis-kicker">企业经营健康体检</span>
+                            <h2 class="diagnosis-home-title">先做一次经营风险初筛</h2>
+                            <p class="diagnosis-home-lead">围绕债务、资产、经营、法律和家庭保障几个关键方向，先形成一个初步判断，再决定是否需要进一步复核。</p>
+                            <div class="diagnosis-proof-row">
+                                <div class="diagnosis-proof"><strong>{{ diagnosisCount }}+</strong><span>企业完成线上诊断</span></div>
+                                <div class="diagnosis-proof"><strong>{{ averageScore }}</strong><span>当前平均评分</span></div>
+                                <div class="diagnosis-proof"><strong>5维</strong><span>债务、资产、经营、法律、家庭</span></div>
+                            </div>
+                        </div>
                     </div>
-                    
-                    <!-- 全面诊断卡片 -->
-                    <div class="diagnosis-option" :class="{ active: expandedOption === 'full' }">
-                        <div class="diagnosis-option-header" @click="toggleOption('full')">
-                            <div class="diagnosis-option-icon full">📊</div>
-                            <div class="diagnosis-option-info">
-                                <div class="diagnosis-option-title">全面诊断</div>
-                                <div class="diagnosis-option-subtitle">
-                                    <span class="tag full">36道题</span>
-                                    <span>约3分钟</span>
+
+                    <aside class="diagnosis-home-aside">
+                        <div class="card">
+                            <div class="mb-6 text-center">
+                                <p class="home-desc">选择适合你的诊断方式，先把风险方向看清楚</p>
+                            </div>
+                            
+                            <!-- 全面诊断卡片 -->
+                            <div class="diagnosis-option" :class="{ active: expandedOption === 'full' }">
+                                <div class="diagnosis-option-header" @click="toggleOption('full')">
+                                    <div class="diagnosis-option-icon full">📊</div>
+                                    <div class="diagnosis-option-info">
+                                        <div class="diagnosis-option-title">全面诊断</div>
+                                        <div class="diagnosis-option-subtitle">
+                                            <span class="tag full">36道题</span>
+                                            <span>约3分钟</span>
+                                        </div>
+                                    </div>
+                                    <div class="diagnosis-option-chevron">▼</div>
+                                </div>
+                                <div class="diagnosis-option-detail">
+                                    <div class="suitable-for"><strong>适合：</strong>想全面了解企业经营状况，深入排查各维度风险</div>
+                                    <ul>
+                                        <li>覆盖债务、资产、经营、法律、家庭保障五大维度</li>
+                                        <li>36道完整题目，评估企业健康状况</li>
+                                        <li>生成雷达图，展示各维度得分</li>
+                                        <li>提供建议路径和关键发现</li>
+                                    </ul>
+                                    <button @click.stop="startDiagnosis" class="start-btn full">开始全面诊断</button>
                                 </div>
                             </div>
-                            <div class="diagnosis-option-chevron">▼</div>
-                        </div>
-                        <div class="diagnosis-option-detail">
-                            <div class="suitable-for"><strong>适合：</strong>想全面了解企业经营状况，深入排查各维度风险</div>
-                            <ul>
-                                <li>覆盖债务、资产、经营、法律、家庭保障五大维度</li>
-                                <li>36道完整题目，精准评估企业健康状况</li>
-                                <li>生成详细雷达图，直观展示各维度得分</li>
-                                <li>提供针对性建议路径和关键发现</li>
-                            </ul>
-                            <button @click.stop="startDiagnosis" class="start-btn full">开始全面诊断</button>
-                        </div>
-                    </div>
-                    
-                    <!-- 快速诊断卡片 -->
-                    <div class="diagnosis-option" :class="{ active: expandedOption === 'fast' }">
-                        <div class="diagnosis-option-header" @click="toggleOption('fast')">
-                            <div class="diagnosis-option-icon fast">⚡</div>
-                            <div class="diagnosis-option-info">
-                                <div class="diagnosis-option-title">快速诊断</div>
-                                <div class="diagnosis-option-subtitle">
-                                    <span class="tag fast">5道题</span>
-                                    <span>约1分钟</span>
+                            
+                            <!-- 快速诊断卡片 -->
+                            <div class="diagnosis-option" :class="{ active: expandedOption === 'fast' }">
+                                <div class="diagnosis-option-header" @click="toggleOption('fast')">
+                                    <div class="diagnosis-option-icon fast">⚡</div>
+                                    <div class="diagnosis-option-info">
+                                        <div class="diagnosis-option-title">快速诊断</div>
+                                        <div class="diagnosis-option-subtitle">
+                                            <span class="tag fast">5道题</span>
+                                            <span>约1分钟</span>
+                                        </div>
+                                    </div>
+                                    <div class="diagnosis-option-chevron">▼</div>
+                                </div>
+                                <div class="diagnosis-option-detail">
+                                    <div class="suitable-for"><strong>适合：</strong>时间有限，想快速筛查企业基本风险方向</div>
+                                    <ul>
+                                        <li>5道核心题目，快速筛查企业基本状况</li>
+                                        <li>聚焦关键风险点，初步判断风险等级</li>
+                                        <li>1分钟即可完成，高效便捷</li>
+                                        <li>可升级到全面诊断获取详细报告</li>
+                                    </ul>
+                                    <button @click.stop="startFastDiagnosis" class="start-btn fast">开始快速诊断</button>
                                 </div>
                             </div>
-                            <div class="diagnosis-option-chevron">▼</div>
                         </div>
-                        <div class="diagnosis-option-detail">
-                            <div class="suitable-for"><strong>适合：</strong>时间有限，想快速筛查企业基本风险方向</div>
-                            <ul>
-                                <li>5道核心题目，快速筛查企业基本状况</li>
-                                <li>聚焦关键风险点，初步判断风险等级</li>
-                                <li>1分钟即可完成，高效便捷</li>
-                                <li>可升级到全面诊断获取详细报告</li>
-                            </ul>
-                            <button @click.stop="startFastDiagnosis" class="start-btn fast">开始快速诊断</button>
+                        <div class="mt-6 text-sm text-gray-500 text-center">
+                            <p>结果只保存在当前浏览器，建议完成后截图留存。</p>
+                        </div>
+                        <div class="mt-6 text-center">
+                            <a href="index.html" class="text-sm brand-color" style="text-decoration:none;">← 返回首页</a>
+                        </div>
+                    </aside>
+                </div>
+
+                <div class="diagnosis-full-sections">
+                    <div class="diagnosis-compact-guide">
+                        <div class="diagnosis-guide-item">
+                            <strong>1. 先判断阶段</strong>
+                            <p>快速看清企业现在是观察、预警还是危机，不把所有问题混在一起处理。</p>
+                        </div>
+                        <div class="diagnosis-guide-item">
+                            <strong>2. 再看关键短板</strong>
+                            <p>结果会提示债务、资产、经营、法律、家庭保障中最需要关注的方向。</p>
+                        </div>
+                        <div class="diagnosis-guide-item">
+                            <strong>3. 最后决定动作</strong>
+                            <p>如果只是初筛，先做快速诊断；如果已经有逾期、诉讼或担保牵连，做全面诊断。</p>
                         </div>
                     </div>
-                </div>
-                <div class="mt-6 text-sm text-gray-500">
-                    <p>已有 <strong class="brand-color">{{ diagnosisCount }}+</strong> 企业完成诊断</p>
-                    <p class="mt-1">平均评分：<strong class="brand-color">{{ averageScore }}</strong> 分</p>
-                </div>
-                <div class="mt-6">
-                    <a href="index.html" class="text-sm brand-color" style="text-decoration:none;">← 返回首页</a>
+
+                    <div class="diag-section diagnosis-boundary">
+                        线上诊断只做初步判断，不替代正式法律、财务或重组意见。涉及诉讼、担保、资产处置和债务谈判时，需要结合材料进一步复核。
+                    </div>
                 </div>
             </div>
 
@@ -421,6 +495,15 @@
                     <div v-if="useFastMode" class="mb-6 p-4 bg-red-50 rounded-lg text-center border border-red-100">
                         <p class="text-sm text-red-700 mb-3">快速诊断已完成初步筛查，想深入了解企业各维度的详细状况？</p>
                         <button @click="startFullDiagnosis" class="btn-primary w-full">做全面诊断（36题）</button>
+                    </div>
+                    <div class="result-action-panel">
+                        <h3>如果要进一步沟通，建议先准备这三类材料</h3>
+                        <p>带着结果截图和基础材料沟通，会更容易判断先止血、先谈判，还是进入专项重组复核。</p>
+                        <div class="material-list">
+                            <div class="material-item"><strong>债务清单</strong><span>银行贷款、民间借贷、担保、到期时间和逾期情况。</span></div>
+                            <div class="material-item"><strong>资产清单</strong><span>房产、设备、应收、库存，以及抵押、查封和可变现情况。</span></div>
+                            <div class="material-item"><strong>法律材料</strong><span>诉讼、执行、冻结、保全、担保合同和重要往来文件。</span></div>
+                        </div>
                     </div>
                     <div class="flex gap-4">
                         <button @click="restartDiagnosis" class="btn-secondary flex-1">重新诊断</button>

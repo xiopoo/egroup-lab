@@ -20,12 +20,12 @@ var COLUMN_DATA = [
   },
   {
     slug: '20wan-li-xi-hua-de-shuang-kuai',
-    title: '20万利息花得爽快，2万服务费舍不得——老板心里那本账，你算对了吗？',
+    title: '20万利息花得爽快，2万服务费舍不得',
     category: '老板自救',
     filter: 'self',
     date: '2026-07-15',
     readtime: '约6分钟',
-    summary: '做了10年重组，见过最反常识的事就是：老板宁愿每年多花几十万利息借新还旧，也不愿意花2万块把债务从根上理顺。',
+    summary: '老板心里那本账，你算对了吗？',
     tags: [],
     imageKey: 'columnCover20wan',
     contentFile: 'column-content/20wan-li-xi-hua-de-shuang-kuai.html'
@@ -53,7 +53,7 @@ var COLUMN_DATA = [
     filter: 'legal',
     date: '2026-07-15',
     readtime: '约3分钟',
-    summary: '开篇：企业没了账还在——创业者的债务困境场景引入\n为什么\'臭\'——两座大山：传统观念冲突（欠债还钱）+ 市场野路子污名化\n为什么\'香\'——两笔账：解放个体生产力 + 激活社...',
+    summary: '个人破产不是逃债工具，而是给诚实而不幸的创业者留下重新开始的可能。',
     tags: [
       '个人破产',
       '债务重组',
@@ -70,7 +70,7 @@ var COLUMN_DATA = [
     filter: 'self',
     date: '2026-07-15',
     readtime: '约6分钟',
-    summary: '发表时间：2026-07-05\n类型：观点评论（热点借势）\n关键词：离婚债务隔离、有限责任、人格混同、夫妻共债、公司化改造、立体式重组、个人破产',
+    summary: '企业债务为什么会穿透到家庭？先看夫妻共债、公私混同和个人担保的风险边界。',
     tags: [],
     imageKey: 'column9',
     contentFile: 'column-content/liu-yi-shou-hun.html'
@@ -101,7 +101,7 @@ var COLUMN_DATA = [
     filter: 'self',
     date: '2026-07-15',
     readtime: '约3分钟',
-    summary: '前言：公开嗤之以鼻 vs 私下偷偷问——矛盾场景切入\n为什么\'闻起来臭\'——三道坎：传统道德直觉 + 野路子乱象透支口碑 + 债权人的真实痛感\n为什么\'吃起来香\'——三笔账...',
+    summary: '个人破产为什么一边被质疑，一边又成为负债者最现实的最后防线？',
     tags: [
       '个人破产',
       '债务重组',
@@ -137,7 +137,7 @@ var COLUMN_DATA = [
     filter: 'debt',
     date: '2026-07-15',
     readtime: '约4分钟',
-    summary: '元数据\n标题: 债务压顶？真正管用的解法只有这一条\n发布日期: 未发布\n文章类型: 服务介绍/方法工具\n对应公众号排版: 企业困境重组六大核心业务模块_公众号版.html\n...',
+    summary: '困境重组不是单点解债，而是围绕经营、债务、资产、法律与信用展开的系统工程。',
     tags: [],
     imageKey: 'column10',
     contentFile: 'column-content/zhai-wu-ya-ding.html'
@@ -149,7 +149,7 @@ var COLUMN_DATA = [
     filter: 'diag',
     date: '2026-07-15',
     readtime: '约5分钟',
-    summary: '做了10年重组，判断一家企业值不值得救，我只看4个硬指标',
+    summary: '不是账上有钱就叫能活，核心造血能力才是生死线。',
     tags: [
       '企业诊断',
       '经营造血',
@@ -253,7 +253,7 @@ var COLUMN_DATA = [
     filter: 'self',
     date: '2026-07-12',
     readtime: '约6分钟',
-    summary: '这几年，别人问我最多的，都是成功案例：哪个企业救回来了，哪笔债谈下来了，哪个老板少赔了多少钱。',
+    summary: '做重组越久，越不敢只劝人硬撑。',
     tags: [
       '困境重组',
       '破产选择',
@@ -321,7 +321,7 @@ var COLUMN_DATA = [
     filter: 'debt',
     date: '2026-07-09',
     readtime: '约20分钟',
-    summary: '第一章：银行贷款到期，正确的谈展期流程\n - 先找谁谈（风控部 > 客户经理）\n - 标准话术与禁忌\n - 银行不同角色的沟通策略\n - 四种方式的本质区别（无还本续贷 >...',
+    summary: '从银行贷款、民间借贷到执行风险，系统梳理负债老板可落地的自救顺序。',
     tags: [
       '债务展期',
       '民间借贷',

@@ -5,7 +5,7 @@ body.about-page{
   --about-ink:#202124;
   --about-muted:#62656a;
   --about-line:#d9d3c8;
-  --about-red:#a71940;
+  --about-red:#AB1942;
   --about-gold:#b18a50;
   background:var(--about-paper)!important;
 }

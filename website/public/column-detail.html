@@ -233,10 +233,10 @@ main{overflow-x:hidden}
 }
 </style>
 <script src="js/image-urls-v2.js?v=5"></script>
-<script src="js/column-data.js?v=20260716-public-tags"></script>
-<script src="js/column-content-data.js?v=20260716-content-inline-v2"></script>
+<script src="js/column-data.js?v=20260717-subtitle-dedupe"></script>
+<script src="js/column-content-data.js?v=20260717-subtitle-dedupe"></script>
 <link rel="stylesheet" href="commercial.css">
-<link rel="stylesheet" href="site-paper-theme.css?v=20260716-mobile-nav">
+<link rel="stylesheet" href="site-paper-theme.css?v=20260717-mobile-nav-compact">
 </head>
 <body class="column-detail-page">
 
@@ -587,8 +587,38 @@ renderArticle();
     normalizeArticleCtas(root);
   }
 
-  function normalizeArticleFormat(root){
+  function articleHeadingKey(value){
+    return String(value || '')
+      .replace(/^\s*副标题\s*[：:]\s*/, '')
+      .replace(/^\s*[—–-]+\s*/, '')
+      .replace(/[\s，。！？；：、“”‘’（）()《》〈〉·,.!?;:'"—–-]/g, '')
+      .toLowerCase();
+  }
+
+  function removeRepeatedArticleHeading(root, article){
+    if(!root || !article) return;
+    var contentRoot = root.querySelector('.article-body') || root;
+    var headingKeys = [article.title, article.summary].map(articleHeadingKey).filter(Boolean);
+    var current = contentRoot.firstElementChild;
+    var checked = 0;
+
+    while(current && checked < 3){
+      var next = current.nextElementSibling;
+      var isHeadingBlock = /^(P|H1|H2|H3)$/.test(current.tagName);
+      var key = articleHeadingKey(current.textContent);
+      if(isHeadingBlock && key && headingKeys.indexOf(key) !== -1){
+        current.remove();
+      } else if(isHeadingBlock && key){
+        break;
+      }
+      current = next;
+      checked += 1;
+    }
+  }
+
+  function normalizeArticleFormat(root, article){
     if(!root) return;
+    removeRepeatedArticleHeading(root, article);
     root.querySelectorAll('.article-body').forEach(function(nested){
       if(nested === root) return;
       nested.style.fontSize = '';
@@ -624,9 +654,9 @@ renderArticle();
     ensureArticleDiagnosisCta(root);
   }
 
-  function renderArticleHtml(articleBody, html){
+  function renderArticleHtml(articleBody, html, article){
     articleBody.innerHTML = html;
-    normalizeArticleFormat(articleBody);
+    normalizeArticleFormat(articleBody, article);
   }
 
   function resizeArticleFrame(frame){
@@ -695,7 +725,7 @@ renderArticle();
     var contentSource = window.COLUMN_CONTENT_DATA || {};
     var inlineContent = contentSource[article.slug];
     if(inlineContent){
-      renderArticleHtml(articleBody, inlineContent);
+      renderArticleHtml(articleBody, inlineContent, article);
       return;
     }
     var xhr = new XMLHttpRequest();
@@ -703,7 +733,7 @@ renderArticle();
     xhr.onreadystatechange = function(){
       if(xhr.readyState !== 4) return;
       if((xhr.status === 200 || xhr.status === 0) && xhr.responseText){
-        renderArticleHtml(articleBody, xhr.responseText);
+        renderArticleHtml(articleBody, xhr.responseText, article);
       } else {
         renderArticleFrame(article);
       }
