@@ -46,5 +46,8 @@ module.exports = function handler(req, res) {
 
   res.statusCode = status;
   res.setHeader("Content-Type", types[ext] || "application/octet-stream");
+  if (ext === ".txt") {
+    res.setHeader("Cache-Control", "no-store, max-age=0, must-revalidate");
+  }
   fs.createReadStream(file).pipe(res);
 };
