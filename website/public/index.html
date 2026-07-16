@@ -107,6 +107,7 @@ img{max-width:100%;display:block;object-fit:contain;pointer-events:none}
 .hero-slogan{font-size:15px;color:#fff;letter-spacing:4px;margin-bottom:8px;opacity:.85;font-weight:300}
 .hero-desc{font-size:14px;color:#fff;line-height:2;margin-bottom:14px;max-width:560px}
 .hero-cta{display:inline-flex;align-items:center;gap:8px;padding:12px 32px;background:#fff;color:var(--brand);font-size:16px;font-weight:600;border-radius:50px;transition:all var(--transition);box-shadow:0 8px 24px rgba(0,0,0,.15);position:relative;z-index:4;cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation} /* 在文字之上，确保可点击 */
+button.hero-cta{border:0;font-family:inherit}
 .hero-cta:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(0,0,0,.2)}
 .hero-cta:active{transform:translateY(0)}
 .hero-cta::after{content:'→';transition:transform var(--transition)}
@@ -342,6 +343,7 @@ img{max-width:100%;display:block;object-fit:contain;pointer-events:none}
 .contact-text p{font-size:15px;color:var(--text-secondary);line-height:1.8}
 .contact-actions{display:flex;gap:16px;justify-content:flex-end;align-items:center}
 .contact-btn{display:inline-flex;align-items:center;gap:8px;padding:14px 32px;background:var(--brand);color:#fff;font-size:15px;font-weight:600;border-radius:50px;transition:all var(--transition);cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+button.contact-btn{border:0;font-family:inherit}
 .contact-btn:hover{background:var(--brand-light);transform:translateY(-2px);box-shadow:0 8px 20px rgba(171,25,66,.3)}
 .contact-btn:active{transform:translateY(0)}
 
@@ -476,13 +478,15 @@ main{overflow-x:hidden}
 .contact-btn{cursor:pointer}
 </style>
   <script src="js/seed-data.js"></script>
-  <script src="js/image-urls-v2.js"></script>
+  <script src="js/image-urls-v2.js?v=5"></script>
   <!-- Preload hero bg images so JS backgroundImage is instant, no gradient flash -->
   <link rel="preload" href="images/hero-1.jpg?v=4" as="image">
   <link rel="preload" href="images/hero-2.jpg?v=4" as="image">
   <link rel="preload" href="images/hero-3.jpg?v=4" as="image">
+<link rel="stylesheet" href="commercial.css">
+<link rel="stylesheet" href="site-paper-theme.css?v=20260716-mobile-nav">
 </head>
-<body>
+<body class="home-page">
 
 <header class="header">
   <div class="header-inner">
@@ -491,13 +495,11 @@ main{overflow-x:hidden}
     </a>
     <nav class="header-nav">
       <a href="index.html" class="active">首页</a>
-      <a href="about.html">关于</a>
-      <a href="services.html">服务</a>
-      <a href="cases-detail.html">案例</a>
-      <a href="news.html">企业新闻</a>
-      <a href="experts.html">专家团队</a>
-      <span class="nav-item-wrapper"><a href="diag.html">诊断</a><span class="nav-badge">免费</span></span>
-      <a href="column.html">专栏</a>
+      <a href="services.html">服务方案</a>
+      <a href="cases-detail.html">成功案例</a>
+      <a href="column.html">专栏洞察</a>
+      <span class="nav-about-group"><a href="about.html">关于灰金</a><span class="nav-about-dropdown"><a href="about.html">公司介绍</a><a href="brand.html">品牌主张</a><a href="experts.html">专业团队</a><a href="practice.html">服务实践</a></span></span>
+      <span class="nav-item-wrapper nav-cta"><a href="diag.html">企业诊断</a></span>
     </nav>
     <button class="hamburger-btn" aria-label="菜单"><span></span><span></span><span></span></button>
   </div>
@@ -506,13 +508,11 @@ main{overflow-x:hidden}
 <div class="mobile-nav-overlay">
   <nav class="mobile-nav">
     <a href="index.html" class="active">首页</a>
-    <a href="about.html">关于</a>
-    <a href="services.html">服务</a>
-    <a href="cases-detail.html">案例</a>
-    <a href="news.html">企业新闻</a>
-    <a href="experts.html">专家团队</a>
-    <span class="nav-item-wrapper"><a href="diag.html">诊断</a><span class="nav-badge">免费</span></span>
-    <a href="column.html">专栏</a>
+    <a href="services.html">服务方案</a>
+    <a href="cases-detail.html">成功案例</a>
+    <a href="column.html">专栏洞察</a>
+    <span class="mobile-about-group"><a href="about.html">关于灰金</a><span class="mobile-about-links"><a href="about.html">公司介绍</a><a href="brand.html">品牌主张</a><a href="experts.html">专业团队</a><a href="practice.html">服务实践</a></span></span>
+    <span class="nav-item-wrapper nav-cta"><a href="diag.html">企业诊断</a></span>
   </nav>
 </div>
 
@@ -544,7 +544,10 @@ main{overflow-x:hidden}
           <p class="hero-subtitle">企业困境诊断与重组顾问</p>
           <p class="hero-slogan">看 清 问 题 · 重 建 秩 序</p>
           <p class="hero-desc">深耕中小企业困境诊断与重组赛道，聚焦企业资产、负债、现金流三维平衡重构。以专业视角穿透企业经营核心矛盾，通过系统性方案设计，为陷入发展瓶颈的中小企业提供可持续的破局路径与价值重塑方案。</p>
-          <a href="diag.html" class="hero-cta">免费诊断</a>
+          <div class="hero-actions">
+            <a href="diag.html" class="hero-cta">免费诊断</a>
+            <button type="button" class="hero-cta secondary" onclick="openWechatContact(event)">预约咨询</button>
+          </div>
         </div>
         <div class="hero-visual">
           <div class="hero-radial" id="diagram-container">
@@ -997,7 +1000,7 @@ main{overflow-x:hidden}
           <p>预约免费咨询，我们的专业顾问会为你做初步诊断</p>
         </div>
         <div class="contact-actions">
-          <div class="contact-btn" onclick="document.getElementById('wechat-overlay').classList.remove('hidden')">联系咨询</div>
+          <button type="button" class="contact-btn" onclick="openWechatContact(event)">预约咨询</button>
         </div>
       </div>
     </div>
@@ -1023,15 +1026,9 @@ main{overflow-x:hidden}
         <img src="images/logo-hjzc-transparent-white.png" alt="灰金重组" class="footer-logo">
       </div>
       <div class="footer-right">
-        <div class="footer-links">
-          <a href="index.html">首页</a>
-          <a href="about.html">关于</a>
-          <a href="services.html">服务</a>
-          <a href="cases-detail.html">案例</a>
-          <a href="experts.html">专家</a>
-          <a href="diag.html">诊断</a>
-        </div>
+        <div class="footer-links"><a href="index.html">首页</a><a href="services.html">服务方案</a><a href="cases-detail.html">成功案例</a><a href="column.html">专栏洞察</a><a href="about.html">关于灰金</a><a href="experts.html">专业团队</a><a href="diag.html">企业诊断</a><a href="user-agreement.html">用户协议</a></div>
         <div class="footer-email">邮箱：<a href="mailto:lucasa@agent.qq.com">lucasa@agent.qq.com</a></div>
+        <div class="footer-wechat"><img src="images/wechat-official-qr.jpg" alt="灰金重组公众号二维码" class="footer-wechat-qr"><div class="footer-wechat-copy"><strong>灰金重组公众号</strong><span>扫码关注企业经营与重组洞察</span></div></div>
       </div>
     </div>
     <div class="footer-bottom">
@@ -1040,6 +1037,7 @@ main{overflow-x:hidden}
   </div>
 </footer>
 
+<script src="js/wechat-contact.js"></script>
 <script>
 /* Dynamic diagnosis counter from localStorage + seed data */
 (function(){

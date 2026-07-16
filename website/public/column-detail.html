@@ -2,9 +2,10 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 <meta name="description" content="灰金重组专栏文章详情">
 <title>专栏详情 | 灰金重组</title>
+<link rel="stylesheet" href="common.css">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{overflow-x:hidden;width:100%}
@@ -78,6 +79,14 @@ img{max-width:100%;display:block;object-fit:contain;pointer-events:none}
 .mobile-nav .nav-item-wrapper{display:block;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.12)}
 .mobile-nav .nav-item-wrapper a{display:inline;padding:0;border-bottom:none}
 .mobile-nav .nav-badge{font-size:10px;font-weight:600;background:#fff;color:#AB1942;padding:1px 6px;border-radius:8px;line-height:1.4;letter-spacing:.5px;margin-left:6px}
+/* Commercial primary action in navigation */
+.header-nav .nav-cta a{background:#fff;color:#AB1942;padding:7px 14px;border-radius:999px;font-weight:700;opacity:1;box-shadow:0 2px 8px rgba(0,0,0,.12)}
+.header-nav .nav-cta a::after{display:none}
+.header-nav .nav-cta a:hover{color:#AB1942;transform:translateY(-1px)}
+.header-nav .nav-cta a.active{color:#AB1942;font-weight:700}
+.mobile-nav .nav-cta{display:block;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.12)}
+.mobile-nav .nav-cta a{display:inline-flex;align-items:center;justify-content:center;background:#fff;color:#AB1942;padding:8px 14px;border-radius:999px;font-weight:700;border-bottom:none;box-shadow:0 2px 8px rgba(0,0,0,.14)}
+.mobile-nav .nav-cta a.active{color:#AB1942;font-weight:700}
 
 /* Article Header */
 .article-header-section{padding:48px 0 0}
@@ -88,23 +97,51 @@ img{max-width:100%;display:block;object-fit:contain;pointer-events:none}
 .article-meta span{display:inline-flex;align-items:center;gap:4px}
 
 /* Feature Image */
-.article-feature-image{margin-bottom:32px}
+.article-feature-image{margin-bottom:26px}
 .article-feature-image .container{max-width:800px}
-.article-image-placeholder{width:100%;aspect-ratio:16/7;background:linear-gradient(135deg,var(--brand) 0%,var(--brand-dark) 100%);border-radius:var(--radius-md);position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden}
-.article-image-placeholder::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 70% 30%,rgba(255,255,255,.08) 0%,transparent 50%)}
-.article-image-placeholder-text{position:relative;color:#fff;font-size:48px;font-weight:700;opacity:.15;letter-spacing:4px}
+.article-image-placeholder{width:100%;aspect-ratio:21/5;max-height:180px;background:linear-gradient(135deg,var(--brand) 0%,var(--brand-dark) 100%);border-radius:8px;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.article-image-placeholder::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 70% 30%,rgba(255,255,255,.08) 0%,transparent 50%);z-index:2;pointer-events:none}
+.article-image-placeholder::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.03) 0%,rgba(0,0,0,.2) 100%);z-index:2;pointer-events:none}
+.article-image-placeholder-text{display:none!important}
 
 /* Article Body */
 .article-body-section{padding:0 0 48px}
 .article-body-section .container{max-width:800px}
 .article-body{font-size:16px;line-height:2;color:var(--text-secondary)}
-.article-body h2{font-size:22px;font-weight:700;color:var(--text);margin:36px 0 16px;line-height:1.4}
+#article-body{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+#article-body img{-webkit-user-drag:none;user-drag:none}
+#article-body .article-diagnosis-cta,#article-body .article-diagnosis-cta *{-webkit-user-select:text;user-select:text;-webkit-touch-callout:default}
+#article-body .article-diagnosis-cta a{-webkit-user-select:none;user-select:none}
+.article-body .article-body{font-size:inherit!important;line-height:inherit!important;color:inherit!important}
+.article-body p{font-size:16px!important;line-height:2!important;color:var(--text-secondary)!important;margin:0 0 18px!important;text-indent:2em!important}
+.article-body h2{font-size:21px!important;font-weight:700!important;color:var(--text)!important;margin:36px 0 16px!important;line-height:1.45!important;padding:0 0 0 14px!important;border-left:4px solid var(--brand)!important;border-bottom:none!important}
 .article-body h2:first-child{margin-top:0}
-.article-body h3{font-size:18px;font-weight:600;color:var(--text);margin:28px 0 12px;line-height:1.4}
-.article-body p{margin-bottom:18px}
-.article-body ul{margin-bottom:18px;padding-left:24px}
-.article-body li{margin-bottom:6px}
-.article-body strong{color:var(--text);font-weight:600}
+.article-body h3{font-size:18px!important;font-weight:700!important;color:var(--text)!important;margin:28px 0 12px!important;line-height:1.45!important}
+.article-body ul,.article-body ol{margin:0 0 20px!important;padding-left:24px!important}
+.article-body li{margin-bottom:8px!important;line-height:1.9!important;color:var(--text-secondary)!important}
+.article-body strong{color:var(--text)!important;font-weight:700!important}
+.article-body blockquote{margin:24px 0!important;padding:16px 18px!important;border:none!important;background:#f7f7f7!important;color:var(--text)!important;border-radius:8px!important;box-shadow:inset 0 0 0 1px var(--border-light)!important}
+.article-body blockquote p{margin:0!important;text-indent:0!important;color:var(--text)!important}
+.article-body .article-quote-callout{margin:18px 0!important;padding:14px 16px!important;background:#f7f7f7!important;border:none!important;border-radius:8px!important;color:var(--text)!important;box-shadow:inset 0 0 0 1px var(--border-light)!important}
+.article-body .article-quote-callout p{font-size:15px!important;color:var(--text)!important;line-height:1.8!important;text-indent:0!important;margin:0!important}
+.article-body .section-divider,.article-body hr{display:block!important;width:56px!important;height:2px!important;background:var(--brand)!important;border:none!important;margin:34px auto!important;opacity:.9!important}
+.article-body .article-lead{font-size:15px!important;color:var(--text-muted)!important;text-align:right!important;text-indent:0!important;margin:0 0 28px!important;font-style:italic!important;line-height:1.7!important}
+.article-body .diagnosis-link{text-decoration:none;color:inherit}
+.article-body .diagnosis-link:hover{opacity:.88}
+.article-body .article-diagnosis-cta{margin:40px 0 22px!important;padding:26px 28px!important;background:#fbf7f8!important;border:1px solid rgba(171,25,66,.18)!important;border-top:3px solid var(--brand)!important;border-radius:4px!important;text-align:left!important;box-shadow:0 8px 24px rgba(45,35,38,.06)!important;color:var(--text-secondary)!important;display:flex!important;align-items:center!important;justify-content:space-between!important;gap:28px!important;flex-wrap:nowrap!important;white-space:normal!important;box-sizing:border-box!important}
+.article-body .article-diagnosis-cta .article-cta-copy{min-width:0;flex:1 1 auto}
+.article-body .article-diagnosis-cta .article-cta-eyebrow{display:block!important;font-size:12px!important;color:var(--brand)!important;font-weight:700!important;line-height:1.5!important;margin:0 0 7px!important;letter-spacing:0!important}
+.article-body .article-diagnosis-cta h3{font-size:20px!important;color:var(--text)!important;text-align:left!important;margin:0 0 7px!important;padding:0!important;border:none!important;line-height:1.45!important;font-weight:700!important;background:transparent!important;box-shadow:none!important;letter-spacing:0!important}
+.article-body .article-diagnosis-cta p{font-size:14px!important;color:var(--text-muted)!important;text-align:left!important;text-indent:0!important;margin:0!important;line-height:1.7!important}
+.article-body .article-diagnosis-cta .diagnosis-link{display:inline-flex!important;align-items:center!important;justify-content:center!important;gap:8px!important;background:var(--brand)!important;color:#fff!important;padding:11px 20px!important;border:1px solid var(--brand)!important;border-radius:3px!important;font-size:14px!important;font-weight:600!important;line-height:1.4!important;white-space:nowrap!important;box-shadow:0 3px 0 #7e1230!important;transition:transform .18s ease,box-shadow .18s ease,background .18s ease!important}
+.article-body .article-diagnosis-cta .diagnosis-link:hover{background:#941638!important;transform:translateY(-1px)!important;box-shadow:0 4px 0 #71102b!important;opacity:1!important}
+.article-body .article-diagnosis-cta .diagnosis-link span{background:transparent!important;color:inherit!important;padding:0!important;border-radius:0!important}
+.article-body .article-diagnosis-cta .article-cta-icon{display:none!important}
+.article-body .article-disclaimer{background:#f7f7f7!important;border-radius:6px!important;padding:16px 18px!important;margin:28px 0 18px!important;color:#999!important;border:none!important}
+.article-body .article-disclaimer p{font-size:13px!important;color:#999!important;line-height:1.75!important;text-indent:0!important;margin:0!important}
+.article-body .article-disclaimer strong{color:#888!important}
+.article-body .article-copyright{font-size:12px!important;color:#bbb!important;text-align:center!important;letter-spacing:.1em!important;text-indent:0!important;margin:18px 0 0!important}
+.article-content-frame{width:100%;height:1px;min-height:0;border:0;display:block;background:#fff;overflow:visible}
 
 /* Article Footer */
 .article-footer-section{padding:0 0 32px}
@@ -130,9 +167,11 @@ img{max-width:100%;display:block;object-fit:contain;pointer-events:none}
 .related-card-image.cat-asset{background:linear-gradient(135deg,#2b6cb0 0%,#2c5282 100%)}
 .related-card-image.cat-legal{background:linear-gradient(135deg,#2c7a7b 0%,#285e61 100%)}
 .related-card-image.cat-diag{background:linear-gradient(135deg,#c05621 0%,#9c4221 100%)}
+.related-card-image.cat-self{background:linear-gradient(135deg,#7c3aed 0%,#5b21b6 100%)}
+.related-card-image.cat-repair{background:linear-gradient(135deg,#15803d 0%,#166534 100%)}
 .related-card-image::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 70% 30%,rgba(255,255,255,.08) 0%,transparent 50%)}
-.related-card-tag{position:absolute;top:10px;left:10px;padding:2px 10px;background:rgba(255,255,255,.9);color:var(--brand);font-size:11px;font-weight:600;border-radius:20px;z-index:1}
-.related-card-image-text{position:relative;color:#fff;font-size:24px;font-weight:700;opacity:.2}
+.related-card-tag,
+.related-card-image-text{display:none!important}
 .related-card-body{padding:18px}
 .related-card-body h4{font-size:15px;font-weight:600;color:var(--text);margin-bottom:6px;line-height:1.4}
 .related-card-body h4 a:hover{color:var(--brand)}
@@ -155,7 +194,7 @@ img{max-width:100%;display:block;object-fit:contain;pointer-events:none}
 
 main{overflow-x:hidden}
 
-.article-hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;max-width:none}
+.article-hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;max-width:none;filter:saturate(.86) contrast(.96);opacity:.92}
 
 /* Responsive */
 @media(max-width:1023px){
@@ -175,12 +214,15 @@ main{overflow-x:hidden}
   .article-title{font-size:24px}
   .article-meta{gap:14px;font-size:12px}
 
-  .article-image-placeholder{aspect-ratio:16/9}
-  .article-image-placeholder-text{font-size:32px}
+  .article-image-placeholder{aspect-ratio:16/6;max-height:132px}
+  .article-image-placeholder-text{font-size:26px}
 
   .article-body{font-size:15px}
   .article-body h2{font-size:20px;margin:28px 0 12px}
   .article-body h3{font-size:16px}
+  .article-body .article-diagnosis-cta{align-items:flex-start!important;flex-direction:column!important;gap:18px!important;padding:22px 20px!important}
+  .article-body .article-diagnosis-cta .diagnosis-link{width:100%!important}
+  .article-content-frame{height:1px;min-height:0}
 
   .related-grid{grid-template-columns:1fr;gap:16px}
   .related-card-image{height:120px}
@@ -190,24 +232,13 @@ main{overflow-x:hidden}
   .footer-links{gap:14px}
 }
 </style>
-    <script src="js/image-urls-v2.js"></script>
-<script>
-(function(){
-  var u = window.__IMAGE_URLS;
-  if(!u) return;
-  var img = document.getElementById('articleHeroImg');
-  if(!img) return;
-  var params = new URLSearchParams(window.location.search);
-  var id = params.get('id') || '1';
-  var key = 'column' + id;
-  if(u[key]){ img.src = u[key]; }
-})();
-</script>
-<script>
-document.getElementById('articleHeroImg').addEventListener('error', function(){ this.style.display = 'none'; });
-</script>
+<script src="js/image-urls-v2.js?v=5"></script>
+<script src="js/column-data.js?v=20260716-public-tags"></script>
+<script src="js/column-content-data.js?v=20260716-content-inline-v2"></script>
+<link rel="stylesheet" href="commercial.css">
+<link rel="stylesheet" href="site-paper-theme.css?v=20260716-mobile-nav">
 </head>
-<body>
+<body class="column-detail-page">
 
 <header class="header">
   <div class="header-inner">
@@ -216,13 +247,11 @@ document.getElementById('articleHeroImg').addEventListener('error', function(){ 
     </a>
     <nav class="header-nav">
       <a href="index.html">首页</a>
-      <a href="about.html">关于</a>
-      <a href="services.html">服务</a>
-      <a href="cases-detail.html">案例</a>
-      <a href="news.html">企业新闻</a>
-      <a href="experts.html">专家团队</a>
-      <span class="nav-item-wrapper"><a href="diag.html">诊断</a><span class="nav-badge">免费</span></span>
-      <a href="column.html" class="active">专栏</a>
+      <a href="services.html">服务方案</a>
+      <a href="cases-detail.html">成功案例</a>
+      <a href="column.html" class="active">专栏洞察</a>
+      <span class="nav-about-group"><a href="about.html">关于灰金</a><span class="nav-about-dropdown"><a href="about.html">公司介绍</a><a href="brand.html">品牌主张</a><a href="experts.html">专业团队</a><a href="practice.html">服务实践</a></span></span>
+      <span class="nav-item-wrapper nav-cta"><a href="diag.html">企业诊断</a></span>
     </nav>
     <button class="hamburger-btn" aria-label="菜单"><span></span><span></span><span></span></button>
   </div>
@@ -231,13 +260,11 @@ document.getElementById('articleHeroImg').addEventListener('error', function(){ 
 <div class="mobile-nav-overlay">
   <nav class="mobile-nav">
     <a href="index.html">首页</a>
-    <a href="about.html">关于</a>
-    <a href="services.html">服务</a>
-    <a href="cases-detail.html">案例</a>
-    <a href="news.html">企业新闻</a>
-    <a href="experts.html">专家团队</a>
-    <span class="nav-item-wrapper"><a href="diag.html">诊断</a><span class="nav-badge">免费</span></span>
-    <a href="column.html" class="active">专栏</a>
+    <a href="services.html">服务方案</a>
+    <a href="cases-detail.html">成功案例</a>
+    <a href="column.html" class="active">专栏洞察</a>
+    <span class="mobile-about-group"><a href="about.html">关于灰金</a><span class="mobile-about-links"><a href="about.html">公司介绍</a><a href="brand.html">品牌主张</a><a href="experts.html">专业团队</a><a href="practice.html">服务实践</a></span></span>
+    <span class="nav-item-wrapper nav-cta"><a href="diag.html">企业诊断</a></span>
   </nav>
 </div>
 
@@ -247,10 +274,11 @@ document.getElementById('articleHeroImg').addEventListener('error', function(){ 
     <div class="container">
       <span class="article-cat-tag" id="article-cat-tag">债务重组</span>
       <h1 class="article-title" id="article-title">中小企业债务重组的五个关键步骤</h1>
+      <p class="article-summary" id="article-summary" hidden></p>
       <div class="article-meta">
-        <span>✍ 灰金重组研究团队</span>
-        <span>📅 <span id="article-date">2025-06-15</span></span>
-        <span>⏱ <span id="article-readtime">约8分钟</span></span>
+        <span>灰金重组</span>
+        <span id="article-date">2025-06-15</span>
+        <span id="article-readtime">约8分钟</span>
       </div>
     </div>
   </section>
@@ -260,7 +288,6 @@ document.getElementById('articleHeroImg').addEventListener('error', function(){ 
     <div class="container">
       <div class="article-image-placeholder">
         <img class="article-hero-img" id="articleHeroImg" alt="">
-        <span class="article-image-placeholder-text" id="article-image-text">债务重组</span>
       </div>
     </div>
   </section>
@@ -275,10 +302,15 @@ document.getElementById('articleHeroImg').addEventListener('error', function(){ 
   <!-- Article Footer -->
   <section class="article-footer-section">
     <div class="container">
-      <div class="article-tags" id="article-tags"></div>
-      <div class="article-share">
-        <span class="article-share-label">分享文章：</span>
-        <button class="article-share-btn" onclick="copyArticleLink()">📋 复制链接</button>
+      <div class="article-footer-bar">
+        <div class="article-tag-group">
+          <span class="article-footer-label">文章标签</span>
+          <div class="article-tags" id="article-tags"></div>
+        </div>
+        <div class="article-share">
+          <span class="article-share-label">分享</span>
+          <button class="article-share-btn" onclick="copyArticleLink()">复制链接</button>
+        </div>
       </div>
     </div>
   </section>
@@ -303,15 +335,9 @@ document.getElementById('articleHeroImg').addEventListener('error', function(){ 
         <img src="images/logo-hjzc-transparent-white.png" alt="灰金重组" class="footer-logo">
       </div>
       <div class="footer-right">
-        <div class="footer-links">
-          <a href="index.html">首页</a>
-          <a href="about.html">关于</a>
-          <a href="services.html">服务</a>
-          <a href="cases-detail.html">案例</a>
-          <a href="experts.html">专家</a>
-          <a href="diag.html">诊断</a>
-        </div>
+        <div class="footer-links"><a href="index.html">首页</a><a href="services.html">服务方案</a><a href="cases-detail.html">成功案例</a><a href="column.html">专栏洞察</a><a href="about.html">关于灰金</a><a href="experts.html">专业团队</a><a href="diag.html">企业诊断</a><a href="user-agreement.html">用户协议</a></div>
         <div class="footer-email">邮箱：<a href="mailto:lucasa@agent.qq.com">lucasa@agent.qq.com</a></div>
+        <div class="footer-wechat"><img src="images/wechat-official-qr.jpg" alt="灰金重组公众号二维码" class="footer-wechat-qr"><div class="footer-wechat-copy"><strong>灰金重组公众号</strong><span>扫码关注企业经营与重组洞察</span></div></div>
       </div>
     </div>
     <div class="footer-bottom">
@@ -464,9 +490,15 @@ function renderArticle(){
 
   document.getElementById('article-cat-tag').textContent = article.category;
   document.getElementById('article-title').textContent = article.title;
+  var articleSummary = document.getElementById('article-summary');
+  if(articleSummary){
+    articleSummary.textContent = article.summary || '';
+    articleSummary.hidden = !article.summary;
+  }
   document.getElementById('article-date').textContent = article.date;
   document.getElementById('article-readtime').textContent = article.readtime;
-  document.getElementById('article-image-text').textContent = article.imageText;
+  var oldImageText = document.getElementById('article-image-text');
+  if(oldImageText) oldImageText.textContent = article.imageText;
   document.getElementById('article-body').innerHTML = article.content;
 
   /* Update page title */
@@ -475,7 +507,7 @@ function renderArticle(){
   /* Render tags */
   var tagsHtml = '';
   article.tags.forEach(function(tag){
-    tagsHtml += '<span class="article-tag">' + tag + '</span>';
+    tagsHtml += '<a class="article-tag" href="column.html?tag=' + encodeURIComponent(tag) + '">' + tag + '</a>';
   });
   document.getElementById('article-tags').innerHTML = tagsHtml;
 
@@ -499,6 +531,238 @@ function renderArticle(){
 }
 
 renderArticle();
+</script>
+<script>
+(function(){
+  var diagnosisUrl = 'diag.html';
+
+  function getSlug(){
+    var params = new URLSearchParams(window.location.search);
+    return params.get('slug') || 'article-20260715-10xdyk';
+  }
+
+  function columnImageUrl(imageKey){
+    var urls = window.__IMAGE_URLS || {};
+    var key = String(imageKey || 'column1');
+    if(urls[key]) return urls[key];
+    var match = key.match(/^column(\d+)$/);
+    if(match){
+      var fallback = ((parseInt(match[1], 10) - 1) % 18) + 1;
+      return urls['column' + fallback] || 'images/column-' + fallback + '.jpg';
+    }
+    return urls.column1 || 'images/column-1.jpg';
+  }
+
+  function setArticleHeroImage(article){
+    var img = document.getElementById('articleHeroImg');
+    if(!img || !article) return;
+    img.src = columnImageUrl(article.imageKey || 'column11');
+    img.alt = '';
+    img.addEventListener('error', function(){ this.style.display = 'none'; });
+  }
+
+  function normalizeArticleCtas(root){
+    root.querySelectorAll('.article-diagnosis-cta').forEach(function(block){
+      block.innerHTML =
+        '<div class="article-cta-copy">' +
+          '<span class="article-cta-eyebrow">企业经营有压力？</span>' +
+          '<h3>先做一次企业诊断</h3>' +
+          '<p>提前看清债务、现金流和经营风险。</p>' +
+        '</div>' +
+        '<a class="diagnosis-link" href="' + diagnosisUrl + '">免费获取企业诊断 <span aria-hidden="true">→</span></a>';
+    });
+  }
+
+  function ensureArticleDiagnosisCta(root){
+    if(!root) return;
+    root.querySelectorAll('.article-diagnosis-cta').forEach(function(block, idx){
+      if(idx > 0) block.remove();
+    });
+    var block = root.querySelector('.article-diagnosis-cta');
+    if(!block){
+      block = document.createElement('div');
+      block.className = 'article-diagnosis-cta';
+      root.appendChild(block);
+    }
+    normalizeArticleCtas(root);
+  }
+
+  function normalizeArticleFormat(root){
+    if(!root) return;
+    root.querySelectorAll('.article-body').forEach(function(nested){
+      if(nested === root) return;
+      nested.style.fontSize = '';
+      nested.style.lineHeight = '';
+      nested.style.color = '';
+    });
+    root.querySelectorAll('p').forEach(function(p){
+      var text = (p.textContent || '').trim();
+      if(text.indexOf('——') === 0) p.classList.add('article-lead');
+      if(text.indexOf('© 2026') !== -1 || text.indexOf('Copyright') !== -1) p.classList.add('article-copyright');
+    });
+    root.querySelectorAll('div, section').forEach(function(div){
+      if(div === root || div.classList.contains('article-body')) return;
+      var text = (div.textContent || '').replace(/\s+/g, '');
+      var style = div.getAttribute('style') || '';
+      if(text === '' || text === '&nbsp;') {
+        div.remove();
+        return;
+      }
+      if(text.indexOf('免责声明') !== -1) div.classList.add('article-disclaimer');
+      if(style.indexOf('border-left') !== -1 && !div.classList.contains('article-disclaimer')) {
+        div.classList.add('article-quote-callout');
+      }
+      var hasWebCta = text.indexOf('企业诊断初筛') !== -1 ||
+        text.indexOf('企业经营有压力') !== -1 ||
+        text.indexOf('免费获取企业诊断') !== -1 ||
+        text.indexOf('点击开始诊断') !== -1;
+      if(hasWebCta && text.length < 700 && !div.parentElement.closest('.article-diagnosis-cta')) {
+        div.classList.add('article-diagnosis-cta');
+      }
+    });
+    root.querySelectorAll('hr').forEach(function(hr){ hr.remove(); });
+    ensureArticleDiagnosisCta(root);
+  }
+
+  function renderArticleHtml(articleBody, html){
+    articleBody.innerHTML = html;
+    normalizeArticleFormat(articleBody);
+  }
+
+  function resizeArticleFrame(frame){
+    if(!frame) return;
+    try{
+      var doc = frame.contentDocument || frame.contentWindow.document;
+      if(!doc || !doc.body) return;
+      var root = doc.querySelector('.article-body') || doc.body;
+      var heights = [
+        root ? root.scrollHeight : 0,
+        root ? root.offsetHeight : 0,
+        doc.documentElement ? doc.documentElement.scrollHeight : 0,
+        doc.documentElement ? doc.documentElement.offsetHeight : 0,
+        doc.body.scrollHeight,
+        doc.body.offsetHeight
+      ].filter(function(value){ return value && isFinite(value); });
+      var height = Math.max.apply(Math, heights);
+      if(height > 0) frame.style.height = Math.ceil(height + 40) + 'px';
+    }catch(e){}
+  }
+
+  function watchArticleFrame(frame){
+    if(!frame) return;
+    function scheduleResize(){
+      resizeArticleFrame(frame);
+      requestAnimationFrame(function(){ resizeArticleFrame(frame); });
+    }
+    scheduleResize();
+    [80, 220, 520, 1000, 1800].forEach(function(delay){
+      setTimeout(scheduleResize, delay);
+    });
+    try{
+      var doc = frame.contentDocument || frame.contentWindow.document;
+      if(!doc || !doc.body) return;
+      var style = doc.createElement('style');
+      style.textContent = 'html,body{margin:0!important;padding:0!important;overflow:hidden!important;background:#fff!important}.article-body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif!important;color:#4a4a4a!important;font-size:17px!important;line-height:2.05!important;margin:0!important;padding:0!important}.article-body p{font-size:17px!important;line-height:2.05!important;color:#4a4a4a!important;margin:0 0 18px!important;text-indent:2em!important}.article-body blockquote p{text-indent:0!important;margin:0!important}';
+      doc.head.appendChild(style);
+      if(doc.fonts && doc.fonts.ready){
+        doc.fonts.ready.then(scheduleResize).catch(function(){});
+      }
+      if('ResizeObserver' in window){
+        var observer = new ResizeObserver(scheduleResize);
+        observer.observe(doc.documentElement);
+        observer.observe(doc.body);
+      }
+      var ticks = 0;
+      var timer = setInterval(function(){
+        scheduleResize();
+        ticks += 1;
+        if(ticks >= 8) clearInterval(timer);
+      }, 500);
+    }catch(e){}
+  }
+
+  function renderArticleFrame(article){
+    var articleBody = document.getElementById('article-body');
+    if(!articleBody) return;
+    articleBody.innerHTML = '<iframe class="article-content-frame" src="' + article.contentFile + '" title="' + article.title + '" scrolling="no"></iframe>';
+    var frame = articleBody.querySelector('iframe');
+    frame.addEventListener('load', function(){ watchArticleFrame(frame); });
+  }
+
+  function renderArticleBody(article){
+    var articleBody = document.getElementById('article-body');
+    if(!articleBody || !article || !article.contentFile) return;
+    var contentSource = window.COLUMN_CONTENT_DATA || {};
+    var inlineContent = contentSource[article.slug];
+    if(inlineContent){
+      renderArticleHtml(articleBody, inlineContent);
+      return;
+    }
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', article.contentFile, true);
+    xhr.onreadystatechange = function(){
+      if(xhr.readyState !== 4) return;
+      if((xhr.status === 200 || xhr.status === 0) && xhr.responseText){
+        renderArticleHtml(articleBody, xhr.responseText);
+      } else {
+        renderArticleFrame(article);
+      }
+    };
+    xhr.onerror = function(){ renderArticleFrame(article); };
+    xhr.send();
+  }
+
+  function renderRealArticle(){
+    var source = window.COLUMN_DATA || [];
+    var slug = getSlug();
+    var article = source.find(function(item){ return item.slug === slug; }) || source[0];
+    if(!article) return;
+
+    document.getElementById('article-cat-tag').textContent = article.category;
+    document.getElementById('article-title').textContent = article.title;
+    var summaryEl = document.getElementById('article-summary');
+    if(summaryEl){
+      summaryEl.textContent = article.summary || '';
+      summaryEl.hidden = !article.summary;
+    }
+    document.getElementById('article-date').textContent = article.date;
+    document.getElementById('article-readtime').textContent = article.readtime;
+    document.title = article.title + ' | 灰金重组';
+    setArticleHeroImage(article);
+
+    var footerTags = (article.tags || []).filter(Boolean);
+    if(!footerTags.length && article.category) footerTags = [article.category];
+    document.getElementById('article-tags').innerHTML = footerTags.map(function(tag){
+      return '<a class="article-tag" href="column.html?tag=' + encodeURIComponent(tag) + '">' + tag + '</a>';
+    }).join('');
+
+    renderArticleBody(article);
+
+    var related = source.filter(function(item){
+      return item.slug !== article.slug && item.filter === article.filter;
+    }).concat(source.filter(function(item){
+      return item.slug !== article.slug && item.filter !== article.filter;
+    })).slice(0, 3);
+
+    document.getElementById('related-grid').innerHTML = related.map(function(item){
+      return '<div class="related-card">' +
+        '<div class="related-card-image cat-' + item.filter + '">' +
+          '<img class="related-card-img" src="' + columnImageUrl(item.imageKey || 'column1') + '" alt="">' +
+        '</div>' +
+        '<div class="related-card-body">' +
+          '<h4><a href="column-detail.html?slug=' + item.slug + '">' + item.title + '</a></h4>' +
+          '<p>' + item.summary + '</p>' +
+          '<span class="related-card-date">' + item.date + '</span>' +
+        '</div>' +
+      '</div>';
+    }).join('');
+    document.querySelectorAll('.related-card-img').forEach(function(img){
+      img.addEventListener('error', function(){ this.style.display = 'none'; });
+    });
+  }
+
+  renderRealArticle();
+})();
 </script>
 </body>
 </html>

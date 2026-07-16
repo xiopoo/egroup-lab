@@ -199,26 +199,12 @@ main{overflow-x:hidden}
   .footer-links{gap:14px}
 }
 </style>
-    <script src="js/image-urls-v2.js"></script>
-<script>
-(function(){
-  var u = window.__IMAGE_URLS;
-  if(!u) return;
-  var colMap = {'1':'column1','2':'column2','3':'column3','4':'column4'};
-  document.querySelectorAll('.article-card-img, .featured-img').forEach(function(img){
-    var idx = img.getAttribute('data-column');
-    var key = colMap[idx];
-    if(key && u[key]){ img.src = u[key]; }
-  });
-})();
-</script>
-<script>
-document.querySelectorAll('.article-card-img, .featured-img').forEach(function(img){
-  img.addEventListener('error', function(){ this.style.display = 'none'; });
-});
-</script>
+    <script src="js/image-urls-v2.js?v=5"></script>
+<script src="js/column-data.js?v=20260716-public-tags"></script>
+<link rel="stylesheet" href="commercial.css">
+<link rel="stylesheet" href="site-paper-theme.css?v=20260716-mobile-nav">
 </head>
-<body>
+<body class="column-page">
 
 <header class="header">
   <div class="header-inner">
@@ -227,13 +213,11 @@ document.querySelectorAll('.article-card-img, .featured-img').forEach(function(i
     </a>
     <nav class="header-nav">
       <a href="index.html">首页</a>
-      <a href="about.html">关于</a>
-      <a href="services.html">服务</a>
-      <a href="cases-detail.html">案例</a>
-      <a href="news.html">企业新闻</a>
-      <a href="experts.html">专家团队</a>
-      <span class="nav-item-wrapper"><a href="diag.html">诊断</a><span class="nav-badge">免费</span></span>
-      <a href="column.html" class="active">专栏</a>
+      <a href="services.html">服务方案</a>
+      <a href="cases-detail.html">成功案例</a>
+      <a href="column.html" class="active">专栏洞察</a>
+      <span class="nav-about-group"><a href="about.html">关于灰金</a><span class="nav-about-dropdown"><a href="about.html">公司介绍</a><a href="brand.html">品牌主张</a><a href="experts.html">专业团队</a><a href="practice.html">服务实践</a></span></span>
+      <span class="nav-item-wrapper nav-cta"><a href="diag.html">企业诊断</a></span>
     </nav>
     <button class="hamburger-btn" aria-label="菜单"><span></span><span></span><span></span></button>
   </div>
@@ -242,13 +226,11 @@ document.querySelectorAll('.article-card-img, .featured-img').forEach(function(i
 <div class="mobile-nav-overlay">
   <nav class="mobile-nav">
     <a href="index.html">首页</a>
-    <a href="about.html">关于</a>
-    <a href="services.html">服务</a>
-    <a href="cases-detail.html">案例</a>
-    <a href="news.html">企业新闻</a>
-    <a href="experts.html">专家团队</a>
-    <span class="nav-item-wrapper"><a href="diag.html">诊断</a><span class="nav-badge">免费</span></span>
-    <a href="column.html" class="active">专栏</a>
+    <a href="services.html">服务方案</a>
+    <a href="cases-detail.html">成功案例</a>
+    <a href="column.html" class="active">专栏洞察</a>
+    <span class="mobile-about-group"><a href="about.html">关于灰金</a><span class="mobile-about-links"><a href="about.html">公司介绍</a><a href="brand.html">品牌主张</a><a href="experts.html">专业团队</a><a href="practice.html">服务实践</a></span></span>
+    <span class="nav-item-wrapper nav-cta"><a href="diag.html">企业诊断</a></span>
   </nav>
 </div>
 
@@ -272,7 +254,14 @@ document.querySelectorAll('.article-card-img, .featured-img').forEach(function(i
         <button class="filter-tab" data-filter="asset">资产盘活</button>
         <button class="filter-tab" data-filter="legal">法律风控</button>
         <button class="filter-tab" data-filter="diag">经营诊断</button>
-        <button class="filter-tab" data-filter="case">案例分析</button>
+        <button class="filter-tab" data-filter="repair">经营修复</button>
+        <button class="filter-tab" data-filter="self">老板自救</button>
+      </div>
+      <div class="tag-filter-status" id="tag-filter-status" hidden>
+        <span>当前标签</span>
+        <strong id="tag-filter-name"></strong>
+        <span id="tag-filter-count"></span>
+        <a href="column.html">查看全部</a>
       </div>
     </div>
   </section>
@@ -280,76 +269,24 @@ document.querySelectorAll('.article-card-img, .featured-img').forEach(function(i
   <!-- Featured Article -->
   <section class="featured-section">
     <div class="container">
-      <div class="featured-card" id="featured-article" data-category="debt">
-        <div class="featured-image">
-          <img class="featured-img" data-column="1" alt="债务重组">
-          <span class="featured-tag">债务重组</span>
-          <span class="featured-image-text">债务重组</span>
-        </div>
-        <div class="featured-body">
-          <span class="cat-label">最新文章</span>
-          <h2><a href="column-detail.html?id=1">中小企业债务重组的五个关键步骤</a></h2>
-          <p>在当前经济环境下，中小企业的债务问题愈发突出。本文从实操角度出发，梳理了债务重组的五个关键步骤：问题识别、方案设计、谈判协商、执行落地、后续跟踪……</p>
-          <div class="featured-meta">
-            <span>📅 2025-06-15</span>
-            <span>⏱ 约8分钟</span>
-          </div>
-        </div>
-      </div>
+      <div class="featured-card" id="featured-article"></div>
     </div>
   </section>
 
   <!-- Article Grid -->
   <section class="articles-section">
     <div class="container">
-      <div class="articles-grid" id="articles-grid">
-        <div class="article-card" data-category="debt">
-          <div class="article-card-image tag-debt">
-            <img class="article-card-img" data-column="1" alt="债务重组">
-            <span class="article-card-tag">债务重组</span>
-            <span class="article-card-image-text">债务</span>
-          </div>
-          <div class="article-card-body">
-            <h3><a href="column-detail.html?id=1">中小企业债务重组的五个关键步骤</a></h3>
-            <p>在当前经济环境下，中小企业的债务问题愈发突出。本文从实操角度出发，梳理了债务重组的五个关键步骤：问题识别、方案设计、谈判协商、执行落地、后续跟踪……</p>
-            <span class="article-card-date">2025-06-15</span>
-          </div>
-        </div>
-        <div class="article-card" data-category="asset">
-          <div class="article-card-image tag-asset">
-            <img class="article-card-img" data-column="2" alt="资产盘活">
-            <span class="article-card-tag">资产盘活</span>
-            <span class="article-card-image-text">资产</span>
-          </div>
-          <div class="article-card-body">
-            <h3><a href="column-detail.html?id=2">存量资产盘活：被忽视的企业自救之道</a></h3>
-            <p>许多陷入困境的企业，往往将目光聚焦在外部融资和新业务拓展上，却忽略了企业内部沉睡的存量资产。本文探讨如何系统性地识别、评估和盘活企业存量资产……</p>
-            <span class="article-card-date">2025-05-20</span>
-          </div>
-        </div>
-        <div class="article-card" data-category="legal">
-          <div class="article-card-image tag-legal">
-            <img class="article-card-img" data-column="3" alt="法律风控">
-            <span class="article-card-tag">法律风控</span>
-            <span class="article-card-image-text">法律</span>
-          </div>
-          <div class="article-card-body">
-            <h3><a href="column-detail.html?id=3">企业重组中的法律风险防范指南</a></h3>
-            <p>企业重组涉及多方利益博弈，法律风险贯穿始终。本指南从破产保护、债权人权益、股东责任等方面，系统梳理重组过程中的法律风险点……</p>
-            <span class="article-card-date">2025-04-10</span>
-          </div>
-        </div>
-        <div class="article-card" data-category="diag">
-          <div class="article-card-image tag-diag">
-            <img class="article-card-img" data-column="4" alt="经营诊断">
-            <span class="article-card-tag">经营诊断</span>
-            <span class="article-card-image-text">诊断</span>
-          </div>
-          <div class="article-card-body">
-            <h3><a href="column-detail.html?id=4">如何判断你的企业是否已经陷入经营困境</a></h3>
-            <p>企业的衰败往往不是一夜之间发生的，而是经历了一个渐进的过程。本文从现金流、利润率、客户流失率等维度，帮助企业主提前识别经营风险信号……</p>
-            <span class="article-card-date">2025-03-28</span>
-          </div>
+      <div class="articles-grid" id="articles-grid"></div>
+    </div>
+  </section>
+  <section class="site-closing-cta">
+    <div class="container">
+      <div class="cta-content">
+        <h3>文章只能提供判断线索，企业问题还需要回到现场。</h3>
+        <p>先做一次企业诊断，判断问题处于经营、债务、资产还是法律风险哪一层。</p>
+        <div class="cta-actions">
+          <a href="diag.html" class="cta-btn">开始企业诊断</a>
+          <button type="button" class="cta-btn secondary-action" onclick="openWechatContact(event)">预约咨询</button>
         </div>
       </div>
     </div>
@@ -374,15 +311,9 @@ document.querySelectorAll('.article-card-img, .featured-img').forEach(function(i
         <img src="images/logo-hjzc-transparent-white.png" alt="灰金重组" class="footer-logo">
       </div>
       <div class="footer-right">
-        <div class="footer-links">
-          <a href="index.html">首页</a>
-          <a href="about.html">关于</a>
-          <a href="services.html">服务</a>
-          <a href="cases-detail.html">案例</a>
-          <a href="experts.html">专家</a>
-          <a href="diag.html">诊断</a>
-        </div>
+        <div class="footer-links"><a href="index.html">首页</a><a href="services.html">服务方案</a><a href="cases-detail.html">成功案例</a><a href="column.html">专栏洞察</a><a href="about.html">关于灰金</a><a href="experts.html">专业团队</a><a href="diag.html">企业诊断</a><a href="user-agreement.html">用户协议</a></div>
         <div class="footer-email">邮箱：<a href="mailto:lucasa@agent.qq.com">lucasa@agent.qq.com</a></div>
+        <div class="footer-wechat"><img src="images/wechat-official-qr.jpg" alt="灰金重组公众号二维码" class="footer-wechat-qr"><div class="footer-wechat-copy"><strong>灰金重组公众号</strong><span>扫码关注企业经营与重组洞察</span></div></div>
       </div>
     </div>
     <div class="footer-bottom">
@@ -391,36 +322,150 @@ document.querySelectorAll('.article-card-img, .featured-img').forEach(function(i
   </div>
 </footer>
 
+<script src="js/wechat-contact.js"></script>
 <script>
 /* Mobile hamburger menu */
 (function(){var h=document.querySelector('.hamburger-btn'),o=document.querySelector('.mobile-nav-overlay');if(!h||!o)return;h.addEventListener('click',function(){this.classList.toggle('active');o.classList.toggle('active');document.body.style.overflow=o.classList.contains('active')?'hidden':''});o.addEventListener('click',function(e){if(e.target===this){this.classList.remove('active');h.classList.remove('active');document.body.style.overflow=''}});o.querySelectorAll('a').forEach(function(l){l.addEventListener('click',function(){o.classList.remove('active');h.classList.remove('active');document.body.style.overflow=''})})})();
 
-/* Category filter */
+/* Render synced column articles */
 (function(){
-  var tabs = document.querySelectorAll('#filter-bar .filter-tab');
-  var cards = document.querySelectorAll('#articles-grid .article-card');
-  var featured = document.getElementById('featured-article');
-  
-  tabs.forEach(function(tab){
+  var data = (window.COLUMN_DATA || []).slice();
+  var featuredEl = document.getElementById('featured-article');
+  var gridEl = document.getElementById('articles-grid');
+  var tagStatusEl = document.getElementById('tag-filter-status');
+  if(!featuredEl || !gridEl || !data.length) return;
+
+  var imageUrls = window.__IMAGE_URLS || {};
+  var fallbackByFilter = {
+    debt: 'column1',
+    asset: 'column2',
+    legal: 'column3',
+    diag: 'column4',
+    repair: 'column15',
+    self: 'column18'
+  };
+
+  function esc(value){
+    return String(value || '').replace(/[&<>"']/g, function(ch){
+      return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch];
+    });
+  }
+
+  function articleUrl(article){
+    return 'column-detail.html?slug=' + encodeURIComponent(article.slug);
+  }
+
+  function imageUrl(article){
+    var key = String(article.imageKey || '');
+    if(imageUrls[key]) return imageUrls[key];
+    var match = key.match(/^column(\d+)$/);
+    if(match){
+      var normalized = ((parseInt(match[1], 10) - 1) % 18) + 1;
+      return imageUrls['column' + normalized] || 'images/column-' + normalized + '.jpg';
+    }
+    return imageUrls[fallbackByFilter[article.filter]] || imageUrls.column1 || 'images/column-1.jpg';
+  }
+
+  function imageText(article){
+    if(article.filter === 'debt') return '债务';
+    if(article.filter === 'asset') return '资产';
+    if(article.filter === 'legal') return '法律';
+    if(article.filter === 'self') return '自救';
+    if(article.filter === 'repair') return '修复';
+    return '诊断';
+  }
+
+  function articleTags(article){
+    var tags = (article.tags || []).filter(Boolean);
+    if(!tags.length && article.category) tags = [article.category];
+    return tags;
+  }
+
+  function encodedTags(article){
+    return articleTags(article).map(function(tag){ return encodeURIComponent(tag); }).join(',');
+  }
+
+  function renderFeatured(article){
+    featuredEl.setAttribute('data-category', article.filter || '');
+    featuredEl.setAttribute('data-tags', encodedTags(article));
+    featuredEl.innerHTML =
+      '<div class="featured-image tag-' + esc(article.filter) + '">' +
+        '<img class="featured-img" src="' + esc(imageUrl(article)) + '" alt="' + esc(article.category) + '">' +
+        '<span class="featured-tag">' + esc(article.category) + '</span>' +
+        '<span class="featured-image-text">' + esc(imageText(article)) + '</span>' +
+      '</div>' +
+      '<div class="featured-body">' +
+        '<span class="cat-label">最新文章</span>' +
+        '<h2><a href="' + articleUrl(article) + '">' + esc(article.title) + '</a></h2>' +
+        '<p>' + esc(article.summary) + '</p>' +
+        '<div class="featured-meta"><span>' + esc(article.date) + '</span><span>' + esc(article.readtime) + '</span></div>' +
+      '</div>';
+  }
+
+  function renderCard(article, isFeaturedDuplicate){
+    var duplicateAttr = isFeaturedDuplicate ? ' data-featured-duplicate="true"' : '';
+    return '<div class="article-card" data-category="' + esc(article.filter) + '" data-tags="' + esc(encodedTags(article)) + '"' + duplicateAttr + '>' +
+      '<div class="article-card-image tag-' + esc(article.filter) + '">' +
+        '<img class="article-card-img" src="' + esc(imageUrl(article)) + '" alt="' + esc(article.category) + '">' +
+        '<span class="article-card-tag">' + esc(article.category) + '</span>' +
+        '<span class="article-card-image-text">' + esc(imageText(article)) + '</span>' +
+      '</div>' +
+      '<div class="article-card-body">' +
+        '<h3><a href="' + articleUrl(article) + '">' + esc(article.title) + '</a></h3>' +
+        '<p>' + esc(article.summary) + '</p>' +
+        '<span class="article-card-date">' + esc(article.date) + ' · ' + esc(article.readtime) + '</span>' +
+      '</div>' +
+    '</div>';
+  }
+
+  var featured = data.find(function(item){ return item.featured; }) || data[0];
+  renderFeatured(featured);
+  gridEl.innerHTML = data.map(function(item){
+    return renderCard(item, item.slug === featured.slug);
+  }).join('');
+
+  document.querySelectorAll('.article-card-img, .featured-img').forEach(function(img){
+    img.addEventListener('error', function(){ this.style.display = 'none'; });
+  });
+
+  function applyTagFilter(tag){
+    var encodedTag = encodeURIComponent(tag);
+    var matches = 0;
+    document.querySelectorAll('#filter-bar .filter-tab').forEach(function(tab){ tab.classList.remove('active'); });
+    document.querySelectorAll('#articles-grid .article-card').forEach(function(card){
+      var tags = (card.getAttribute('data-tags') || '').split(',').filter(Boolean);
+      var shouldShow = tags.indexOf(encodedTag) !== -1;
+      card.classList.toggle('is-filter-hidden', !shouldShow);
+      if(shouldShow) matches += 1;
+    });
+    var featuredSection = featuredEl.closest('.featured-section');
+    if(featuredSection) featuredSection.classList.add('is-filter-hidden');
+    if(tagStatusEl){
+      document.getElementById('tag-filter-name').textContent = tag;
+      document.getElementById('tag-filter-count').textContent = matches + ' 篇文章';
+      tagStatusEl.hidden = false;
+    }
+  }
+
+  var requestedTag = new URLSearchParams(window.location.search).get('tag');
+  if(requestedTag) applyTagFilter(requestedTag);
+
+  document.querySelectorAll('#filter-bar .filter-tab').forEach(function(tab){
     tab.addEventListener('click', function(){
-      tabs.forEach(function(t){t.classList.remove('active')});
-      this.classList.add('active');
-      var filter = this.getAttribute('data-filter');
-      
-      cards.forEach(function(card){
-        if(filter === 'all' || card.getAttribute('data-category') === filter){
-          card.style.display = '';
-        } else {
-          card.style.display = 'none';
-        }
+      document.querySelectorAll('#filter-bar .filter-tab').forEach(function(t){ t.classList.remove('active'); });
+      tab.classList.add('active');
+      if(tagStatusEl) tagStatusEl.hidden = true;
+      var filter = tab.getAttribute('data-filter');
+      document.querySelectorAll('#articles-grid .article-card').forEach(function(card){
+        var isFeaturedDuplicate = card.getAttribute('data-featured-duplicate') === 'true';
+        var shouldShow = filter === 'all'
+          ? !isFeaturedDuplicate
+          : card.getAttribute('data-category') === filter;
+        card.classList.toggle('is-filter-hidden', !shouldShow);
       });
-      
-      if(featured){
-        if(filter === 'all' || featured.getAttribute('data-category') === filter){
-          featured.closest('.featured-section').style.display = '';
-        } else {
-          featured.closest('.featured-section').style.display = 'none';
-        }
+      var featuredSection = featuredEl.closest('.featured-section');
+      if(featuredSection){
+        featuredSection.classList.toggle('is-filter-hidden', filter !== 'all');
       }
     });
   });

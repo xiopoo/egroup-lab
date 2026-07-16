@@ -42,11 +42,28 @@ window.__IMAGE_URLS = {
 
   /* 新闻配图：复用现有服务/案例图片，800×534/533 */
   news1: "images/service-2.jpg?v=4",    // 公司动态（咨询/会议场景）
-  news2: "images/case-1.jpg?v=4"       // 行业资讯/媒体报道（建筑/行业场景）,
+  news2: "images/case-1.jpg?v=4",      // 行业资讯/媒体报道（建筑/行业场景）
   column5: "images/case-3.jpg?v=4",    // 同步-file-1784133364981,
   column6: "images/case-3.jpg?v=4",    // 同步-article-20260712-11d8pd,
   column7: "images/case-3.jpg?v=4",    // 同步-article-20260713-1ki1pb,
   column8: "images/case-3.jpg?v=4",    // 同步-file-1784133364981-2,
   column9: "images/case-3.jpg?v=4",    // 同步-file-1784133364981-3,
   column10: "images/case-3.jpg?v=4",    // 同步-article-20260715-10xdyk
+  column11: "images/column-11.jpg?v=4",
+  column12: "images/column-12.jpg?v=4",
+  column13: "images/column-13.jpg?v=4",
+  column14: "images/column-14.jpg?v=4",
+  column15: "images/column-15.jpg?v=4",
+  column16: "images/column-16.jpg?v=4",
+  column17: "images/column-17.jpg?v=4",
+  column18: "images/column-18.jpg?v=4",
+  column21: "images/column-3.jpg?v=4",
+  column23: "images/column-5.jpg?v=4",
+  column27: "images/column-9.jpg?v=4",
+  columnCover20wan: "images/column-cover-20wan.jpg?v=2",
+  columnCoverLostBoss: "images/column-cover-lost-boss.jpg?v=2",
+  columnCoverFourThresholds: "images/column-cover-four-thresholds.jpg?v=2",
+  columnCoverLprInterest: "images/column-cover-lpr-interest.jpg?v=2",
+  columnCoverLawsuitAccountingAssets: "images/column-cover-lawsuit-accounting-assets.jpg?v=2",
+  columnCoverLawyerAccountantNpl: "images/column-cover-lawyer-accountant-npl.jpg?v=2"
 };

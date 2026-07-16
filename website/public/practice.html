@@ -12,10 +12,10 @@ html{overflow-x:hidden;width:100%}
 body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif;background:#fff;color:#1a1a1a;line-height:1.8;font-size:15px;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 a{text-decoration:none;color:inherit;transition:all .3s ease}
 img{max-width:100%;display:block;object-fit:cover}
-:root{--brand:#AB1942;--brand-dark:#8B1435;--brand-soft:#f8eef1;--text:#1a1a1a;--text-secondary:#4a4a4a;--text-muted:#7a7a7a;--text-faint:#b0b0b0;--border:#e8e8e8;--bg-gray:#f7f7f7;--bg-dark:#2a2a2a;--content-max:1200px;--content-padding:24px;--radius:8px;--shadow:0 12px 32px rgba(0,0,0,.08)}
+:root{--brand:#AB1942;--brand-dark:#8B1435;--brand-soft:#f8eef1;--text:#1a1a1a;--text-secondary:#4a4a4a;--text-muted:#7a7a7a;--text-faint:#b0b0b0;--border:#e8e8e8;--bg-gray:#f7f7f7;--bg-dark:#2a2a2a;--content-max:1120px;--content-padding:24px;--radius:8px;--shadow:0 12px 32px rgba(0,0,0,.08)}
 .container{max-width:var(--content-max);margin:0 auto;padding:0 var(--content-padding)}
 .header{position:sticky;top:0;z-index:100;background:var(--brand);box-shadow:0 2px 12px rgba(171,25,66,.15)}
-.header-inner{max-width:var(--content-max);margin:0 auto;padding:0 var(--content-padding);height:64px;display:flex;align-items:center;justify-content:space-between}
+.header-inner{max-width:1200px;margin:0 auto;padding:0 24px;height:64px;display:flex;align-items:center;justify-content:space-between}
 .header-logo{display:flex;align-items:center;height:100%;padding:8px 12px}.header-logo img{width:95px;height:auto;object-fit:contain}
 .header-nav{display:flex;gap:32px;align-items:center}.header-nav a{color:#fff;font-size:15px;font-weight:400;opacity:.9;position:relative}.header-nav a:hover,.header-nav a.active{opacity:1;color:#fff}.header-nav a::after{content:'';position:absolute;bottom:-6px;left:0;width:0;height:2px;background:#fff;transition:width .3s ease;opacity:.8}.header-nav a:hover::after,.header-nav a.active::after{width:100%}
 .nav-item-wrapper{display:inline-flex;align-items:center}.header-nav .nav-cta a{background:#fff;color:var(--brand);padding:7px 14px;border-radius:999px;font-weight:700;opacity:1;box-shadow:0 2px 8px rgba(0,0,0,.12)}.header-nav .nav-cta a::after{display:none}
@@ -28,13 +28,27 @@ img{max-width:100%;display:block;object-fit:cover}
 .footer{background:var(--bg-dark);color:#fff;padding:28px 0 16px}.footer-inner{display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}.footer-logo{width:55px;height:auto;filter:brightness(0) invert(1);opacity:.9}.footer-right{display:flex;align-items:center;gap:24px;flex-wrap:wrap}.footer-links{display:flex;gap:20px;flex-wrap:wrap}.footer-links a,.footer-email,.footer-email a{font-size:13px;color:var(--text-faint)}.footer-bottom{padding-top:14px;margin-top:14px;border-top:1px solid rgba(255,255,255,.08);text-align:center;font-size:11px;color:var(--text-muted)}
 @media(max-width:767px){:root{--content-padding:20px}.header-inner{height:56px}.header-logo img{width:80px}.header-nav{display:none}.hamburger-btn{display:flex}.practice-hero{padding:48px 0}.hero-grid,.practice-intro{grid-template-columns:1fr;gap:32px}.hero-copy h1{font-size:34px}.hero-copy p{font-size:15px}.hero-proof{font-size:16px}.section{padding:56px 0}.section-title{font-size:26px}.practice-grid,.method-grid{grid-template-columns:1fr;gap:16px}.cta-inner{flex-direction:column;align-items:flex-start}.cta-actions,.cta-btn{width:100%}.footer-inner,.footer-right{flex-direction:column;align-items:flex-start;gap:14px}.footer-links{gap:14px}}
 </style>
-<script src="js/image-urls-v2.js"></script>
+<script src="js/image-urls-v2.js?v=5"></script>
 <link rel="stylesheet" href="commercial.css">
-<link rel="stylesheet" href="site-paper-theme.css">
+<link rel="stylesheet" href="site-paper-theme.css?v=20260716-mobile-nav">
 </head>
 <body class="practice-page">
-<header class="header"><div class="header-inner"><a href="index.html" class="header-logo"><img src="images/logo-hjzc-transparent-white.png" alt="灰金重组"></a><nav class="header-nav"><a href="index.html">首页</a><a href="services.html">服务方案</a><a href="cases-detail.html">成功案例</a><a href="column.html">专栏洞察</a><span class="nav-about-group"><a href="about.html" class="active">关于灰金</a><span class="nav-about-dropdown"><a href="about.html">公司介绍</a><a href="brand.html">品牌主张</a><a href="experts.html">专业团队</a><a href="practice.html">服务实践</a></span></span><span class="nav-item-wrapper nav-cta"><a href="diag.html">企业诊断</a></span></nav><button class="hamburger-btn" aria-label="菜单"><span></span><span></span><span></span></button></div></header>
-<div class="mobile-nav-overlay"><nav class="mobile-nav"><a href="index.html">首页</a><a href="services.html">服务方案</a><a href="cases-detail.html">成功案例</a><a href="column.html">专栏洞察</a><span class="mobile-about-group"><a href="about.html" class="active">关于灰金</a><span class="mobile-about-links"><a href="about.html">公司介绍</a><a href="brand.html">品牌主张</a><a href="experts.html">专业团队</a><a href="practice.html">服务实践</a></span></span><span class="nav-item-wrapper nav-cta"><a href="diag.html">企业诊断</a></span></nav></div>
+<header class="header"><div class="header-inner"><a href="index.html" class="header-logo"><img src="images/logo-hjzc-transparent-white.png" alt="灰金重组"></a><nav class="header-nav">
+      <a href="index.html">首页</a>
+      <a href="services.html">服务方案</a>
+      <a href="cases-detail.html">成功案例</a>
+      <a href="column.html">专栏洞察</a>
+      <span class="nav-about-group"><a href="about.html" class="active">关于灰金</a><span class="nav-about-dropdown"><a href="about.html">公司介绍</a><a href="brand.html">品牌主张</a><a href="experts.html">专业团队</a><a href="practice.html">服务实践</a></span></span>
+      <span class="nav-item-wrapper nav-cta"><a href="diag.html">企业诊断</a></span>
+    </nav><button class="hamburger-btn" aria-label="菜单"><span></span><span></span><span></span></button></div></header>
+<div class="mobile-nav-overlay"><nav class="mobile-nav">
+    <a href="index.html">首页</a>
+    <a href="services.html">服务方案</a>
+    <a href="cases-detail.html">成功案例</a>
+    <a href="column.html">专栏洞察</a>
+    <span class="mobile-about-group"><a href="about.html" class="active">关于灰金</a><span class="mobile-about-links"><a href="about.html">公司介绍</a><a href="brand.html">品牌主张</a><a href="experts.html">专业团队</a><a href="practice.html">服务实践</a></span></span>
+    <span class="nav-item-wrapper nav-cta"><a href="diag.html">企业诊断</a></span>
+  </nav></div>
 <main>
   <section class="page-hero"><div class="container"><div class="page-hero-inner"><h1 class="page-hero-title">服务实践</h1><p class="page-hero-subtitle">从诊断到陪跑，再到受托困境重组，在真实问题中推动方案落地。</p></div></div></section>
   <nav class="about-nav" aria-label="关于灰金栏目导航"><div class="container about-nav-inner"><a href="about.html">公司介绍</a><a href="brand.html">品牌主张</a><a href="experts.html">专业团队</a><a href="practice.html" class="active">服务实践</a></div></nav>

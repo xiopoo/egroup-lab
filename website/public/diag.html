@@ -250,9 +250,11 @@
         @keyframes scaleIn{from{opacity:0;transform:scale(.9)}to{opacity:1;transform:scale(1)}}
         main{overflow-x:hidden}
     </style>
-    <script src="js/image-urls-v2.js"></script>
+    <script src="js/image-urls-v2.js?v=5"></script>
+<link rel="stylesheet" href="commercial.css">
+<link rel="stylesheet" href="site-paper-theme.css?v=20260716-mobile-nav">
 </head>
-<body>
+<body class="diag-page">
     <div id="app" class="min-h-screen">
         <header class="header">
             <div class="header-inner">
@@ -260,30 +262,26 @@
                     <img src="images/logo-hjzc-transparent-white.png" alt="灰金重组">
                 </a>
                 <nav class="header-nav">
-                    <a href="index.html">首页</a>
-                    <a href="about.html">关于</a>
-                    <a href="services.html">服务</a>
-                    <a href="cases-detail.html">案例</a>
-                    <a href="news.html">企业新闻</a>
-                    <a href="experts.html">专家团队</a>
-                    <span class="nav-item-wrapper"><a href="diag.html" class="active">诊断</a><span class="nav-badge">免费</span></span>
-                    <a href="column.html">专栏</a>
-                </nav>
+      <a href="index.html">首页</a>
+      <a href="services.html">服务方案</a>
+      <a href="cases-detail.html">成功案例</a>
+      <a href="column.html">专栏洞察</a>
+      <span class="nav-about-group"><a href="about.html">关于灰金</a><span class="nav-about-dropdown"><a href="about.html">公司介绍</a><a href="brand.html">品牌主张</a><a href="experts.html">专业团队</a><a href="practice.html">服务实践</a></span></span>
+      <span class="nav-item-wrapper nav-cta"><a href="diag.html" class="active">企业诊断</a></span>
+    </nav>
                 <button class="hamburger-btn" aria-label="菜单" onclick="var o=document.querySelector('.mobile-nav-overlay');var h=this;h.classList.toggle('active');if(o){o.classList.toggle('active');document.body.style.overflow=o.classList.contains('active')?'hidden':''}"><span></span><span></span><span></span></button>
             </div>
         </header>
 
         <div class="mobile-nav-overlay">
             <nav class="mobile-nav">
-                <a href="index.html">首页</a>
-                <a href="about.html">关于</a>
-                <a href="services.html">服务</a>
-                <a href="cases-detail.html">案例</a>
-                <a href="news.html">企业新闻</a>
-                <a href="experts.html">专家团队</a>
-                <span class="nav-item-wrapper"><a href="diag.html" class="active">诊断</a><span class="nav-badge">免费</span></span>
-                <a href="column.html">专栏</a>
-            </nav>
+    <a href="index.html">首页</a>
+    <a href="services.html">服务方案</a>
+    <a href="cases-detail.html">成功案例</a>
+    <a href="column.html">专栏洞察</a>
+    <span class="mobile-about-group"><a href="about.html">关于灰金</a><span class="mobile-about-links"><a href="about.html">公司介绍</a><a href="brand.html">品牌主张</a><a href="experts.html">专业团队</a><a href="practice.html">服务实践</a></span></span>
+    <span class="nav-item-wrapper nav-cta"><a href="diag.html" class="active">企业诊断</a></span>
+  </nav>
         </div>
 
         <!-- Page Hero -->
@@ -447,15 +445,9 @@
                         <img src="images/logo-hjzc-transparent-white.png" alt="灰金重组" class="footer-logo">
                     </div>
                     <div class="footer-right">
-                        <div class="footer-links">
-                            <a href="index.html">首页</a>
-                            <a href="about.html">关于</a>
-                            <a href="services.html">服务</a>
-                            <a href="cases-detail.html">案例</a>
-                            <a href="experts.html">专家</a>
-                            <a href="diag.html">诊断</a>
-                        </div>
+                        <div class="footer-links"><a href="index.html">首页</a><a href="services.html">服务方案</a><a href="cases-detail.html">成功案例</a><a href="column.html">专栏洞察</a><a href="about.html">关于灰金</a><a href="experts.html">专业团队</a><a href="diag.html">企业诊断</a><a href="user-agreement.html">用户协议</a></div>
                         <div class="footer-email">邮箱：<a href="mailto:lucasa@agent.qq.com">lucasa@agent.qq.com</a></div>
+        <div class="footer-wechat"><img src="images/wechat-official-qr.jpg" alt="灰金重组公众号二维码" class="footer-wechat-qr"><div class="footer-wechat-copy"><strong>灰金重组公众号</strong><span>扫码关注企业经营与重组洞察</span></div></div>
                     </div>
                 </div>
                 <div class="footer-bottom">

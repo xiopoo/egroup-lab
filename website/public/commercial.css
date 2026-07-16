@@ -3225,6 +3225,8 @@ body.column-page .article-card-body p{
 body.column-page .site-closing-cta{
   margin-top:0!important;
   border-top:0!important;
+  padding:72px 0!important;
+  background:linear-gradient(120deg,var(--commercial-red-deep),var(--commercial-red))!important;
 }
 
 body.column-detail-page .article-header-section{

@@ -1,39 +1,79 @@
 var COLUMN_DATA = [
   {
+    slug: 'article-20260716-dw0i4w',
+    title: '为什么困境重组是个慢生意？',
+    category: '经营修复',
+    filter: 'repair',
+    date: '2026-07-16',
+    readtime: '约6分钟',
+    summary: '做了10年重组，我发现老板最难过的从来不是钱这一关',
+    tags: [
+      '中小企业',
+      '困境重组',
+      '老板心魔',
+      '决策心理',
+      '三层心魔',
+      '重组判断课'
+    ],
+    imageKey: 'column21',
+    contentFile: 'column-content/article-20260716-dw0i4w.html'
+  },
+  {
+    slug: '20wan-li-xi-hua-de-shuang-kuai',
+    title: '20万利息花得爽快，2万服务费舍不得——老板心里那本账，你算对了吗？',
+    category: '老板自救',
+    filter: 'self',
+    date: '2026-07-15',
+    readtime: '约6分钟',
+    summary: '做了10年重组，见过最反常识的事就是：老板宁愿每年多花几十万利息借新还旧，也不愿意花2万块把债务从根上理顺。',
+    tags: [],
+    imageKey: 'columnCover20wan',
+    contentFile: 'column-content/20wan-li-xi-hua-de-shuang-kuai.html'
+  },
+  {
     slug: 'file-1784133364981-3',
     title: '打官司、算账、卖资产，和真正的困境重组差在哪？',
     category: '经营诊断',
     filter: 'diag',
     date: '2026-07-15',
     readtime: '约5分钟',
-    summary: '打官司、算账、卖资产，和真正的困境重组差在哪？',
-    tags: ["同步文章"],
-    imageKey: 'column9',
+    summary: '—— 为什么律师、会计、不良资产方，都解决不了中小企业的债务困境？',
+    tags: [
+      '困境重组',
+      '专业协同',
+      '经营修复'
+    ],
+    imageKey: 'columnCoverLawsuitAccountingAssets',
     contentFile: 'column-content/file-1784133364981-3.html'
   },
   {
-    slug: 'file-1784133364981-2',
-    title: '做了10年重组，判断一家企业值不值得救，我只看4个硬指标',
-    category: '经营诊断',
-    filter: 'diag',
+    slug: 'ge-ren-po-chan-zhi-du',
+    title: '个人破产制度：为什么\'闻起来臭，吃起来香\'？',
+    category: '法律风险',
+    filter: 'legal',
     date: '2026-07-15',
-    readtime: '约5分钟',
-    summary: '做了10年重组，判断一家企业值不值得救，我只看4个硬指标',
-    tags: ["同步文章"],
-    imageKey: 'column8',
-    contentFile: 'column-content/file-1784133364981-2.html'
+    readtime: '约3分钟',
+    summary: '开篇：企业没了账还在——创业者的债务困境场景引入\n为什么\'臭\'——两座大山：传统观念冲突（欠债还钱）+ 市场野路子污名化\n为什么\'香\'——两笔账：解放个体生产力 + 激活社...',
+    tags: [
+      '个人破产',
+      '债务重组',
+      '创业者',
+      '深圳试点'
+    ],
+    imageKey: 'column6',
+    contentFile: 'column-content/ge-ren-po-chan-zhi-du.html'
   },
   {
-    slug: 'file-1784133364981',
-    title: '为什么找了律师、会计、不良资产，企业还是活不了？',
-    category: '经营诊断',
-    filter: 'diag',
+    slug: 'liu-yi-shou-hun',
+    title: '刘一手官宣离婚背后：90%的中小企业老板，都在拿全家身家给公司填坑',
+    category: '老板自救',
+    filter: 'self',
     date: '2026-07-15',
-    readtime: '约5分钟',
-    summary: '为什么找了律师、会计、不良资产，企业还是活不了？',
-    tags: ["同步文章"],
-    imageKey: 'column5',
-    contentFile: 'column-content/file-1784133364981.html'
+    readtime: '约6分钟',
+    summary: '发表时间：2026-07-05\n类型：观点评论（热点借势）\n关键词：离婚债务隔离、有限责任、人格混同、夫妻共债、公司化改造、立体式重组、个人破产',
+    tags: [],
+    imageKey: 'column9',
+    contentFile: 'column-content/liu-yi-shou-hun.html'
   },
   {
     slug: 'article-20260715-10xdyk',
@@ -51,8 +91,72 @@ var COLUMN_DATA = [
       '滚息',
       '债务合规'
     ],
-    imageKey: 'column27',
+    imageKey: 'columnCoverLprInterest',
     contentFile: 'column-content/article-20260715-10xdyk.html'
+  },
+  {
+    slug: 'zui-shang-zai-ma',
+    title: '欠的债能合法不还？嘴上都在骂，私下都在问',
+    category: '老板自救',
+    filter: 'self',
+    date: '2026-07-15',
+    readtime: '约3分钟',
+    summary: '前言：公开嗤之以鼻 vs 私下偷偷问——矛盾场景切入\n为什么\'闻起来臭\'——三道坎：传统道德直觉 + 野路子乱象透支口碑 + 债权人的真实痛感\n为什么\'吃起来香\'——三笔账...',
+    tags: [
+      '个人破产',
+      '债务重组',
+      '创业者',
+      '深圳试点',
+      '类个人破产',
+      '浙江',
+      '江苏'
+    ],
+    imageKey: 'column7',
+    contentFile: 'column-content/zui-shang-zai-ma.html'
+  },
+  {
+    slug: 'file-1784133364981',
+    title: '为什么找了律师、会计、不良资产，企业还是活不了？',
+    category: '经营诊断',
+    filter: 'diag',
+    date: '2026-07-15',
+    readtime: '约5分钟',
+    summary: '——真正的困境重组，从来不是打官司、算算账那么简单',
+    tags: [
+      '困境重组',
+      '专业协同',
+      '企业自救'
+    ],
+    imageKey: 'columnCoverLawyerAccountantNpl',
+    contentFile: 'column-content/file-1784133364981.html'
+  },
+  {
+    slug: 'zhai-wu-ya-ding',
+    title: '债务压顶？真正管用的解法只有这一条',
+    category: '债务处理',
+    filter: 'debt',
+    date: '2026-07-15',
+    readtime: '约4分钟',
+    summary: '元数据\n标题: 债务压顶？真正管用的解法只有这一条\n发布日期: 未发布\n文章类型: 服务介绍/方法工具\n对应公众号排版: 企业困境重组六大核心业务模块_公众号版.html\n...',
+    tags: [],
+    imageKey: 'column10',
+    contentFile: 'column-content/zhai-wu-ya-ding.html'
+  },
+  {
+    slug: 'file-1784133364981-2',
+    title: '做了10年重组，判断一家企业值不值得救，我只看4个硬指标',
+    category: '经营诊断',
+    filter: 'diag',
+    date: '2026-07-15',
+    readtime: '约5分钟',
+    summary: '做了10年重组，判断一家企业值不值得救，我只看4个硬指标',
+    tags: [
+      '企业诊断',
+      '经营造血',
+      '困境重组'
+    ],
+    imageKey: 'column8',
+    contentFile: 'column-content/file-1784133364981-2.html'
   },
   {
     slug: 'article-20260713-1ki1pb',
@@ -70,7 +174,7 @@ var COLUMN_DATA = [
       '经营造血',
       '体面退场'
     ],
-    imageKey: 'column23',
+    imageKey: 'columnCoverFourThresholds',
     contentFile: 'column-content/article-20260713-1ki1pb.html'
   },
   {
@@ -156,7 +260,7 @@ var COLUMN_DATA = [
       '体面退场',
       '老板自救'
     ],
-    imageKey: 'column21',
+    imageKey: 'columnCoverLostBoss',
     contentFile: 'column-content/article-20260712-11d8pd.html'
   },
   {
@@ -211,55 +315,6 @@ var COLUMN_DATA = [
     contentFile: 'column-content/zi-chan-pan-huo.html'
   },
   {
-    slug: '20wan-li-xi-hua-de-shuang-kuai',
-    title: '20万利息花得爽快，2万服务费舍不得——老板心里那本账，你算对了吗？',
-    category: '老板自救',
-    filter: 'self',
-    date: '2026-07-11',
-    readtime: '约6分钟',
-    summary: '做了10年重组，见过最反常识的事就是：老板宁愿每年多花几十万利息借新还旧，也不愿意花2万块把债务从根上理顺。',
-    tags: [],
-    imageKey: 'column5',
-    contentFile: 'column-content/20wan-li-xi-hua-de-shuang-kuai.html'
-  },
-  {
-    slug: 'ge-ren-po-chan-zhi-du',
-    title: '个人破产制度：为什么\'闻起来臭，吃起来香\'？',
-    category: '法律风险',
-    filter: 'legal',
-    date: '2026-07-10',
-    readtime: '约3分钟',
-    summary: '开篇：企业没了账还在——创业者的债务困境场景引入\n为什么\'臭\'——两座大山：传统观念冲突（欠债还钱）+ 市场野路子污名化\n为什么\'香\'——两笔账：解放个体生产力 + 激活社...',
-    tags: [
-      '个人破产',
-      '债务重组',
-      '创业者',
-      '深圳试点'
-    ],
-    imageKey: 'column6',
-    contentFile: 'column-content/ge-ren-po-chan-zhi-du.html'
-  },
-  {
-    slug: 'zui-shang-zai-ma',
-    title: '欠的债能合法不还？嘴上都在骂，私下都在问',
-    category: '老板自救',
-    filter: 'self',
-    date: '2026-07-10',
-    readtime: '约3分钟',
-    summary: '前言：公开嗤之以鼻 vs 私下偷偷问——矛盾场景切入\n为什么\'闻起来臭\'——三道坎：传统道德直觉 + 野路子乱象透支口碑 + 债权人的真实痛感\n为什么\'吃起来香\'——三笔账...',
-    tags: [
-      '个人破产',
-      '债务重组',
-      '创业者',
-      '深圳试点',
-      '类个人破产',
-      '浙江',
-      '江苏'
-    ],
-    imageKey: 'column7',
-    contentFile: 'column-content/zui-shang-zai-ma.html'
-  },
-  {
     slug: 'zi-jiu-quan-zhi-nan',
     title: '负债老板自救完全指南（万字实操版）',
     category: '债务处理',
@@ -279,30 +334,6 @@ var COLUMN_DATA = [
     ],
     imageKey: 'column8',
     contentFile: 'column-content/zi-jiu-quan-zhi-nan.html'
-  },
-  {
-    slug: 'liu-yi-shou-hun',
-    title: '刘一手官宣离婚背后：90%的中小企业老板，都在拿全家身家给公司填坑',
-    category: '老板自救',
-    filter: 'self',
-    date: '2026-07-09',
-    readtime: '约6分钟',
-    summary: '发表时间：2026-07-05\n类型：观点评论（热点借势）\n关键词：离婚债务隔离、有限责任、人格混同、夫妻共债、公司化改造、立体式重组、个人破产',
-    tags: [],
-    imageKey: 'column9',
-    contentFile: 'column-content/liu-yi-shou-hun.html'
-  },
-  {
-    slug: 'zhai-wu-ya-ding',
-    title: '债务压顶？真正管用的解法只有这一条',
-    category: '债务处理',
-    filter: 'debt',
-    date: '2026-07-09',
-    readtime: '约4分钟',
-    summary: '元数据\n标题: 债务压顶？真正管用的解法只有这一条\n发布日期: 未发布\n文章类型: 服务介绍/方法工具\n对应公众号排版: 企业困境重组六大核心业务模块_公众号版.html\n...',
-    tags: [],
-    imageKey: 'column10',
-    contentFile: 'column-content/zhai-wu-ya-ding.html'
   },
   {
     slug: 'gan-le-10-nian',
