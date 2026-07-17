@@ -8,14 +8,14 @@
 
 ## 核心页面
 
-- 首页：https://huijinzhongzu.com/
-- 困境重组：https://huijinzhongzu.com/kunjinchongzu.html
-- 服务体系：https://huijinzhongzu.com/services.html
-- 企业诊断：https://huijinzhongzu.com/diag.html
-- 专栏洞察：https://huijinzhongzu.com/column.html
-- 成功案例：https://huijinzhongzu.com/cases-detail.html
-- 关于灰金：https://huijinzhongzu.com/about.html
-- 专业团队：https://huijinzhongzu.com/experts.html
+- 首页：https://hjcz.net/
+- 困境重组：https://hjcz.net/kunjinchongzu.html
+- 服务体系：https://hjcz.net/services.html
+- 企业诊断：https://hjcz.net/diag.html
+- 专栏洞察：https://hjcz.net/column.html
+- 成功案例：https://hjcz.net/cases-detail.html
+- 关于灰金：https://hjcz.net/about.html
+- 专业团队：https://hjcz.net/experts.html
 
 ## 重点主题
 

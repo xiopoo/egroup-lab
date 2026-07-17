@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /404.html
 
-Sitemap: https://huijinzhongzu.com/sitemap.xml
+Sitemap: https://hjcz.net/sitemap.xml
