@@ -121,6 +121,8 @@ img{max-width:100%;display:block;object-fit:contain;pointer-events:none}
 #article-body img{-webkit-user-drag:none;user-drag:none}
 #article-body .article-diagnosis-cta,#article-body .article-diagnosis-cta *{-webkit-user-select:text;user-select:text;-webkit-touch-callout:default}
 #article-body .article-diagnosis-cta a{-webkit-user-select:none;user-select:none}
+#article-body .article-topic-link,#article-body .article-topic-link *{-webkit-user-select:text;user-select:text;-webkit-touch-callout:default}
+#article-body .article-topic-link a{-webkit-user-select:none;user-select:none}
 .article-body .article-body{font-size:inherit!important;line-height:inherit!important;color:inherit!important}
 .article-body p{font-size:16px!important;line-height:2!important;color:var(--text-secondary)!important;margin:0 0 18px!important;text-indent:2em!important}
 .article-body h2{font-size:21px!important;font-weight:700!important;color:var(--text)!important;margin:36px 0 16px!important;line-height:1.45!important;padding:0 0 0 14px!important;border-left:4px solid var(--brand)!important;border-bottom:none!important}
@@ -146,6 +148,11 @@ img{max-width:100%;display:block;object-fit:contain;pointer-events:none}
 .article-body .article-diagnosis-cta .diagnosis-link:hover{background:#941638!important;transform:translateY(-1px)!important;box-shadow:0 4px 0 #71102b!important;opacity:1!important}
 .article-body .article-diagnosis-cta .diagnosis-link span{background:transparent!important;color:inherit!important;padding:0!important;border-radius:0!important}
 .article-body .article-diagnosis-cta .article-cta-icon{display:none!important}
+.article-body .article-topic-link{margin:34px 0 18px!important;padding:18px 20px!important;background:#fff!important;border:1px solid var(--border-light)!important;border-left:3px solid var(--brand)!important;border-radius:4px!important;box-shadow:0 6px 18px rgba(45,35,38,.04)!important;display:flex!important;align-items:center!important;justify-content:space-between!important;gap:18px!important}
+.article-body .article-topic-link p{font-size:14px!important;line-height:1.75!important;color:var(--text-muted)!important;text-indent:0!important;margin:0!important}
+.article-body .article-topic-link strong{display:block!important;font-size:15px!important;line-height:1.5!important;color:var(--text)!important;margin:0 0 4px!important}
+.article-body .article-topic-link a{display:inline-flex!important;align-items:center!important;color:var(--brand)!important;font-size:14px!important;font-weight:700!important;white-space:nowrap!important;text-decoration:none!important}
+.article-body .article-topic-link a:hover{color:#941638!important;opacity:1!important}
 .article-body .article-disclaimer{background:#f7f7f7!important;border-radius:6px!important;padding:16px 18px!important;margin:28px 0 18px!important;color:#999!important;border:none!important}
 .article-body .article-disclaimer p{font-size:13px!important;color:#999!important;line-height:1.75!important;text-indent:0!important;margin:0!important}
 .article-body .article-disclaimer strong{color:#888!important}
@@ -231,6 +238,7 @@ main{overflow-x:hidden}
   .article-body h3{font-size:16px}
   .article-body .article-diagnosis-cta{align-items:flex-start!important;flex-direction:column!important;gap:18px!important;padding:22px 20px!important}
   .article-body .article-diagnosis-cta .diagnosis-link{width:100%!important}
+  .article-body .article-topic-link{align-items:flex-start!important;flex-direction:column!important;gap:10px!important;padding:16px 18px!important}
   .article-content-frame{height:1px;min-height:0}
 
   .related-grid{grid-template-columns:1fr;gap:16px}
@@ -672,6 +680,38 @@ renderArticle();
     });
   }
 
+  function isRestructuringTopicArticle(article){
+    if(!article) return false;
+    var text = [
+      article.title || '',
+      article.summary || '',
+      article.category || '',
+      (article.tags || []).join(' ')
+    ].join(' ');
+    return /困境重组|债务重组|重组判断|经营修复|企业自救|经营造血/.test(text);
+  }
+
+  function ensureArticleTopicLink(root, article){
+    if(!root || !isRestructuringTopicArticle(article)) return;
+    root.querySelectorAll('.article-topic-link').forEach(function(block, idx){
+      if(idx > 0) block.remove();
+    });
+    var block = root.querySelector('.article-topic-link');
+    if(!block){
+      block = document.createElement('div');
+      block.className = 'article-topic-link';
+      var diagnosisBlock = root.querySelector('.article-diagnosis-cta');
+      if(diagnosisBlock && diagnosisBlock.parentNode === root){
+        root.insertBefore(block, diagnosisBlock);
+      } else {
+        root.appendChild(block);
+      }
+    }
+    block.innerHTML =
+      '<p><strong>延伸阅读：困境重组专题</strong>系统理解什么是困境重组、什么时候该重组，以及它和破产、诉讼、单点化债的区别。</p>' +
+      '<a href="kunjinchongzu.html">进入专题 →</a>';
+  }
+
   function ensureArticleDiagnosisCta(root){
     if(!root) return;
     root.querySelectorAll('.article-diagnosis-cta').forEach(function(block, idx){
@@ -751,6 +791,7 @@ renderArticle();
     });
     root.querySelectorAll('hr').forEach(function(hr){ hr.remove(); });
     ensureArticleDiagnosisCta(root);
+    ensureArticleTopicLink(root, article);
   }
 
   function renderArticleHtml(articleBody, html, article){
@@ -867,11 +908,34 @@ renderArticle();
 
     renderArticleBody(article);
 
-    var related = source.filter(function(item){
-      return item.slug !== article.slug && item.filter === article.filter;
-    }).concat(source.filter(function(item){
-      return item.slug !== article.slug && item.filter !== article.filter;
-    })).slice(0, 3);
+    var topicSlugs = [
+      'article-20260716-dw0i4w',
+      'file-1784133364981-3',
+      'file-1784133364981',
+      'file-1784133364981-2',
+      'article-20260713-1ki1pb',
+      'zhai-wu-ya-ding',
+      'gan-le-10-nian'
+    ];
+    var relatedPool = isRestructuringTopicArticle(article)
+      ? source.filter(function(item){
+          return item.slug !== article.slug && topicSlugs.indexOf(item.slug) !== -1;
+        }).concat(source.filter(function(item){
+          return item.slug !== article.slug && item.filter === article.filter && topicSlugs.indexOf(item.slug) === -1;
+        })).concat(source.filter(function(item){
+          return item.slug !== article.slug && item.filter !== article.filter && topicSlugs.indexOf(item.slug) === -1;
+        }))
+      : source.filter(function(item){
+          return item.slug !== article.slug && item.filter === article.filter;
+        }).concat(source.filter(function(item){
+          return item.slug !== article.slug && item.filter !== article.filter;
+        }));
+    var seenRelated = {};
+    var related = relatedPool.filter(function(item){
+      if(seenRelated[item.slug]) return false;
+      seenRelated[item.slug] = true;
+      return true;
+    }).slice(0, 3);
 
     document.getElementById('related-grid').innerHTML = related.map(function(item){
       return '<div class="related-card">' +
