@@ -711,5 +711,6 @@ main{overflow-x:hidden}
 /* Keep the case overview compact and reveal details on demand. */
 (function(){document.querySelectorAll('.case-card').forEach(function(card,index){var body=card.querySelector('.case-card-body');var stats=card.querySelector('.case-stats');if(!body||!stats)return;var id='case-detail-'+(index+1);body.id=id;body.hidden=true;var button=document.createElement('button');button.type='button';button.className='case-detail-toggle';button.setAttribute('aria-expanded','false');button.setAttribute('aria-controls',id);button.textContent='查看问题、处理路径与阶段结果';button.addEventListener('click',function(){var open=this.getAttribute('aria-expanded')==='true';this.setAttribute('aria-expanded',open?'false':'true');body.hidden=open;this.firstChild.nodeValue=open?'查看问题、处理路径与阶段结果':'收起案例详情'});stats.insertAdjacentElement('afterend',button)})})();
 </script>
+<script src="js/wechat-contact.js?v=20260717-footer-qr"></script>
 </body>
 </html>

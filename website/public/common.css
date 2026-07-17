@@ -132,7 +132,8 @@ img{max-width:100%;display:block;object-fit:contain;pointer-events:none}
 .footer-bottom{padding-top:14px;margin-top:14px;border-top:1px solid rgba(255,255,255,.08);text-align:center;font-size:11px;color:var(--text-muted)}
 
 /* Footer WeChat QR (new common layout) */
-.footer-wechat{display:flex;align-items:center;gap:12px;min-width:210px}
+.footer-wechat{display:flex;align-items:center;gap:12px;min-width:210px;cursor:pointer}
+.footer-wechat:focus-visible{outline:2px solid rgba(255,255,255,.7);outline-offset:4px;border-radius:4px}
 .footer-wechat-qr{width:82px;height:82px;display:block;object-fit:contain;background:#fff;padding:4px;border:1px solid rgba(255,255,255,.25);border-radius:3px;box-sizing:border-box}
 .footer-wechat-copy{display:flex;flex-direction:column;gap:4px;max-width:150px}
 .footer-wechat-copy strong{font-size:13px;line-height:1.5;color:#fff;font-weight:600}
@@ -157,7 +158,8 @@ img{max-width:100%;display:block;object-fit:contain;pointer-events:none}
 .wechat-overlay-card img{width:200px;height:200px;margin:0 auto 16px;object-fit:contain;border-radius:8px}
 .wechat-overlay-close{position:absolute;top:12px;right:12px;width:32px;height:32px;border:none;background:none;font-size:20px;color:var(--text-muted);cursor:pointer;display:flex;align-items:center;justify-content:center}
 .wechat-popover-fixed{background:#fff;border-radius:16px;padding:28px 24px;box-shadow:0 16px 48px rgba(0,0,0,.3);text-align:center;position:relative;max-width:280px;width:90%}
-.wechat-popover-fixed img{width:200px;height:200px;display:block;border-radius:8px;margin:0 auto}
+.wechat-popover-fixed img{width:220px;height:220px;display:block;border-radius:8px;margin:0 auto;object-fit:contain}
+.wechat-popover-fixed .official-wechat-qr{width:240px;height:240px}
 .wechat-popover-fixed .wechat-popover-label{display:block;text-align:center;font-size:13px;color:#6b7280;margin-top:12px}
 .wechat-close{position:absolute;top:8px;right:8px;font-size:22px;color:#9ca3af;background:none;border:none;cursor:pointer;width:32px;height:32px;display:flex;align-items:center;justify-content:center;border-radius:50%;line-height:1;transition:all .2s}
 .wechat-close:hover{background:#f3f4f6;color:#374151}
