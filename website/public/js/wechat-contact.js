@@ -14,6 +14,7 @@
       '.wechat-popover-fixed img{width:220px;height:220px;display:block;border-radius:8px;margin:0 auto;object-fit:contain;pointer-events:auto!important;-webkit-touch-callout:default!important;-webkit-user-select:auto!important;user-select:auto!important;touch-action:auto!important;-webkit-user-drag:auto!important}' +
       '.wechat-popover-fixed .official-wechat-qr{width:240px;height:240px}' +
       '.wechat-popover-fixed .wechat-popover-label{display:block;text-align:center;font-size:13px;color:#6b7280;margin-top:12px;line-height:1.6}' +
+      '.wechat-popover-fixed .wechat-qr-direct{display:inline-block;margin-top:10px;font-size:13px;color:#AB1942;font-weight:700;text-decoration:none}' +
       '.wechat-close{position:absolute;top:8px;right:8px;font-size:22px;color:#9ca3af;background:none;border:none;cursor:pointer;width:32px;height:32px;display:flex;align-items:center;justify-content:center;border-radius:50%;line-height:1;transition:all .2s}' +
       '.footer-wechat,.footer-wechat-qr{cursor:pointer}.footer-wechat-qr{pointer-events:auto!important;-webkit-touch-callout:default!important;-webkit-user-select:auto!important;user-select:auto!important;touch-action:auto!important;-webkit-user-drag:auto!important}';
     document.head.appendChild(style);
@@ -39,9 +40,6 @@
     const card = overlay.querySelector('.wechat-popover-fixed');
     if (card) {
       card.addEventListener('click', function (event) {
-        event.stopPropagation();
-      });
-      card.addEventListener('touchend', function (event) {
         event.stopPropagation();
       });
     }
@@ -112,9 +110,12 @@
     overlay.innerHTML =
       '<div class="wechat-popover-fixed">' +
         '<button type="button" class="wechat-close" aria-label="关闭">&times;</button>' +
-        '<img class="official-wechat-qr" src="' + OFFICIAL_QR_SRC + '" alt="灰金重组公众号二维码">' +
+        '<a href="' + OFFICIAL_QR_SRC + '" target="_blank" rel="noopener">' +
+          '<img class="official-wechat-qr" src="' + OFFICIAL_QR_SRC + '" alt="灰金重组公众号二维码">' +
+        '</a>' +
         '<span class="wechat-popover-label">长按识别/扫码关注灰金重组公众号</span>' +
-        '<span style="display:block;text-align:center;font-size:11px;color:#9ca3af;margin-top:4px">企业经营、债务重组与资产盘活洞察</span>' +
+        '<span style="display:block;text-align:center;font-size:11px;color:#9ca3af;margin-top:4px">如果微信只显示“保存图片”，点二维码打开原图后再长按</span>' +
+        '<a class="wechat-qr-direct" href="' + OFFICIAL_QR_SRC + '" target="_blank" rel="noopener">打开二维码原图</a>' +
       '</div>';
 
     document.body.appendChild(overlay);
