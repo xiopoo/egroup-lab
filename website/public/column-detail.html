@@ -3,8 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<meta name="description" content="灰金重组专栏文章详情">
+<meta id="meta-description" name="description" content="灰金重组专栏文章详情">
+<link id="canonical-link" rel="canonical" href="https://huijinzhongzu.com/column-detail.html">
+<meta id="og-title" property="og:title" content="专栏详情 | 灰金重组">
+<meta id="og-description" property="og:description" content="灰金重组专栏文章详情">
+<meta id="og-image" property="og:image" content="https://huijinzhongzu.com/images/column-1.jpg">
+<meta id="og-url" property="og:url" content="https://huijinzhongzu.com/column-detail.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="灰金重组">
+<meta name="twitter:card" content="summary_large_image">
 <title>专栏详情 | 灰金重组</title>
+<script id="article-jsonld" type="application/ld+json"></script>
 <link rel="stylesheet" href="common.css">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -553,6 +562,96 @@ renderArticle();
     return urls.column1 || 'images/column-1.jpg';
   }
 
+  function absoluteSiteUrl(path){
+    var cleanPath = String(path || '').replace(/^\/+/, '');
+    return 'https://huijinzhongzu.com/' + cleanPath;
+  }
+
+  function absoluteImageUrl(imagePath){
+    var cleanPath = String(imagePath || '').replace(/\?.*$/, '').replace(/^\/+/, '');
+    return absoluteSiteUrl(cleanPath || 'images/column-1.jpg');
+  }
+
+  function setMetaContent(selector, value){
+    var el = document.querySelector(selector);
+    if(el && value) el.setAttribute('content', value);
+  }
+
+  function ensureArticleMeta(property, content){
+    if(!content) return;
+    var el = document.querySelector('meta[property="' + property + '"]');
+    if(!el){
+      el = document.createElement('meta');
+      el.setAttribute('property', property);
+      document.head.appendChild(el);
+    }
+    el.setAttribute('content', content);
+  }
+
+  function setArticleTagMeta(tags){
+    document.querySelectorAll('meta[property="article:tag"]').forEach(function(el){
+      el.remove();
+    });
+    (tags || []).slice(0, 6).forEach(function(tag){
+      var el = document.createElement('meta');
+      el.setAttribute('property', 'article:tag');
+      el.setAttribute('content', tag);
+      document.head.appendChild(el);
+    });
+  }
+
+  function setArticleSeo(article){
+    if(!article) return;
+    var title = article.title || '专栏详情';
+    var description = article.summary || '灰金重组专栏文章，聚焦企业困境诊断、债务重组、资产盘活、法律风险和经营修复。';
+    var canonical = absoluteSiteUrl('column-detail.html?slug=' + encodeURIComponent(article.slug || ''));
+    var image = absoluteImageUrl(columnImageUrl(article.imageKey || 'column1'));
+
+    document.title = title + ' | 灰金重组';
+    var canonicalLink = document.getElementById('canonical-link');
+    if(canonicalLink) canonicalLink.setAttribute('href', canonical);
+    setMetaContent('meta[name="description"]', description);
+    setMetaContent('meta[property="og:title"]', title + ' | 灰金重组');
+    setMetaContent('meta[property="og:description"]', description);
+    setMetaContent('meta[property="og:image"]', image);
+    setMetaContent('meta[property="og:url"]', canonical);
+    ensureArticleMeta('article:published_time', article.date || '');
+    ensureArticleMeta('article:section', article.category || '');
+    setArticleTagMeta(article.tags || []);
+
+    var jsonLd = document.getElementById('article-jsonld');
+    if(jsonLd){
+      jsonLd.textContent = JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'Article',
+        headline: title,
+        description: description,
+        image: [image],
+        datePublished: article.date || '',
+        dateModified: article.date || '',
+        author: {
+          '@type': 'Organization',
+          name: '灰金重组',
+          url: 'https://huijinzhongzu.com/'
+        },
+        publisher: {
+          '@type': 'Organization',
+          name: '灰金重组',
+          logo: {
+            '@type': 'ImageObject',
+            url: 'https://huijinzhongzu.com/images/logo-color.png'
+          }
+        },
+        mainEntityOfPage: {
+          '@type': 'WebPage',
+          '@id': canonical
+        },
+        articleSection: article.category || '',
+        keywords: (article.tags || []).join(', ')
+      });
+    }
+  }
+
   function setArticleHeroImage(article){
     var img = document.getElementById('articleHeroImg');
     if(!img || !article) return;
@@ -757,7 +856,7 @@ renderArticle();
     }
     document.getElementById('article-date').textContent = article.date;
     document.getElementById('article-readtime').textContent = article.readtime;
-    document.title = article.title + ' | 灰金重组';
+    setArticleSeo(article);
     setArticleHeroImage(article);
 
     var footerTags = (article.tags || []).filter(Boolean);
