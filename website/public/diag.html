@@ -226,41 +226,41 @@
         .material-item{background:#fff;border:1px solid #f3d4dc;border-radius:8px;padding:12px}
         .material-item strong{display:block;color:#1f2937;font-size:13px;margin-bottom:5px}
         .material-item span{display:block;color:#6b7280;font-size:12px;line-height:1.6}
-        .diagnosis-option{border:2px solid #eee;border-radius:12px;margin-bottom:12px;overflow:hidden;transition:all 0.2s;background:#fff}
-        .diagnosis-option.active{border-color:#AB1942;box-shadow:0 4px 16px rgba(171,25,66,0.1)}
-        .diagnosis-option-header{padding:16px;cursor:pointer;display:flex;align-items:center;gap:12px}
-        .diagnosis-option-icon{width:48px;height:48px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0}
-        .diagnosis-option-icon.full{background:linear-gradient(135deg,#AB1942,#8B1435);color:#fff}
-        .diagnosis-option-icon.fast{background:linear-gradient(135deg,#fef2f2,#fee2e2);color:#AB1942}
-        .diagnosis-option-info{flex:1;min-width:0}
-        .diagnosis-option-title{font-size:16px;font-weight:600;color:#1f2937;margin-bottom:2px}
-        .diagnosis-option-subtitle{font-size:13px;color:#6b7280;display:flex;align-items:center;gap:4px;flex-wrap:wrap}
-        .diagnosis-option-subtitle .tag{display:inline-flex;align-items:center;padding:1px 8px;border-radius:10px;font-size:11px;font-weight:500}
-        .diagnosis-option-subtitle .tag.full{background:rgba(171,25,66,0.1);color:#AB1942}
-        .diagnosis-option-subtitle .tag.fast{background:rgba(59,130,246,0.1);color:#2563eb}
-        .diagnosis-option-chevron{font-size:14px;color:#9ca3af;transition:transform 0.2s;flex-shrink:0}
-        .diagnosis-option.active .diagnosis-option-chevron{transform:rotate(180deg);color:#AB1942}
-        .diagnosis-option-detail{max-height:0;overflow:hidden;transition:max-height 0.3s ease-out,padding 0.3s ease-out;background:#fafafa;border-top:1px solid transparent}
-        .diagnosis-option.active .diagnosis-option-detail{max-height:300px;padding:16px;border-top-color:#f0f0f0}
-        .diagnosis-option-detail ul{list-style:none;padding:0;margin:0 0 12px 0}
-        .diagnosis-option-detail li{font-size:13px;color:#4b5563;line-height:1.8;padding-left:20px;position:relative;margin-bottom:4px}
-        .diagnosis-option-detail li::before{content:'✓';position:absolute;left:0;color:#AB1942;font-weight:700;font-size:12px}
-        .diagnosis-option-detail .suitable-for{font-size:12px;color:#6b7280;margin-bottom:12px;padding:8px 12px;background:#fff;border-radius:6px;border:1px solid #f0f0f0}
-        .diagnosis-option-detail .suitable-for strong{color:#374151;font-weight:600}
-        .diagnosis-option-detail .start-btn{width:100%;padding:12px;border-radius:8px;border:none;font-size:15px;font-weight:600;cursor:pointer;transition:all 0.2s}
-        .diagnosis-option-detail .start-btn.full{background:#AB1942;color:#fff}
-        .diagnosis-option-detail .start-btn.full:hover{background:#8c1435}
-        .diagnosis-option-detail .start-btn.fast{background:#fff;color:#AB1942;border:2px solid #AB1942}
-        .diagnosis-option-detail .start-btn.fast:hover{background:#fdf2f4}
+        .diagnosis-start-label{display:block;color:#AB1942;font-size:12px;font-weight:700;letter-spacing:.08em;margin-bottom:8px}
+        .diagnosis-start-title{font-size:22px;line-height:1.4;color:#1f2937;margin-bottom:8px}
+        .diagnosis-start-lead{font-size:14px;line-height:1.8;color:#4b5563;margin-bottom:16px}
+        .diagnosis-start-points{list-style:none;margin:0 0 18px;padding:0;display:grid;gap:8px}
+        .diagnosis-start-points li{font-size:13px;line-height:1.6;color:#4b5563;padding-left:20px;position:relative}
+        .diagnosis-start-points li::before{content:'✓';position:absolute;left:0;color:#AB1942;font-weight:700}
+        .diagnosis-primary-action{width:100%;min-height:48px;padding:13px 18px;border:0;border-radius:8px;background:#AB1942;color:#fff;font-size:16px;font-weight:700;cursor:pointer;transition:background-color .2s ease,transform .2s ease}
+        .diagnosis-primary-action:hover{background:#8B1435;transform:translateY(-1px)}
+        .diagnosis-primary-action:focus-visible,.diagnosis-secondary-action:focus-visible{outline:3px solid rgba(171,25,66,.25);outline-offset:3px}
+        .diagnosis-action-meta{display:block;margin-top:9px;text-align:center;color:#6b7280;font-size:12px;line-height:1.6}
+        .diagnosis-path-divider{display:flex;align-items:center;gap:10px;margin:20px 0 12px;color:#6b7280;font-size:12px;line-height:1.5}
+        .diagnosis-path-divider::before,.diagnosis-path-divider::after{content:'';height:1px;background:#e5e7eb;flex:1}
+        .diagnosis-full-note{font-size:13px;line-height:1.7;color:#4b5563;margin-bottom:12px}
+        .diagnosis-secondary-action{width:100%;min-height:44px;padding:11px 16px;border:1px solid #AB1942;border-radius:8px;background:#fff;color:#AB1942;font-size:14px;font-weight:600;cursor:pointer;transition:background-color .2s ease,border-color .2s ease}
+        .diagnosis-secondary-action:hover{background:#fdf2f4;border-color:#8B1435}
+        .diagnosis-intake{max-width:760px;margin:0 auto}
+        .diagnosis-intake-card{padding:34px 38px}
+        .diagnosis-intake-step{display:inline-block;margin-bottom:10px;color:#AB1942;font-size:12px;font-weight:700;letter-spacing:.1em}
+        .diagnosis-intake-title{font-size:26px;line-height:1.4;color:#1f2937;margin-bottom:8px}
+        .diagnosis-intake-lead{font-size:14px;line-height:1.8;color:#6b7280;margin-bottom:26px}
+        .diagnosis-intake-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+        .diagnosis-field label{display:block;margin-bottom:8px;color:#374151;font-size:14px;font-weight:600}
+        .diagnosis-field label span{color:#9ca3af;font-size:12px;font-weight:400}
+        .diagnosis-field input{width:100%;height:48px;padding:0 14px;border:1px solid #d1d5db;border-radius:4px;background:#fff;color:#1f2937;font:inherit;outline:none;transition:border-color .2s,box-shadow .2s}
+        .diagnosis-field input:focus{border-color:#AB1942;box-shadow:0 0 0 3px rgba(171,25,66,.1)}
+        .diagnosis-field input::placeholder{color:#9ca3af}
+        .diagnosis-intake-error{margin-top:12px;color:#b91c1c;font-size:13px}
+        .diagnosis-privacy-note{margin:20px 0 22px;padding:13px 15px;border-left:3px solid #b18a50;background:#faf8f4;color:#62656a;font-size:12px;line-height:1.75}
+        .diagnosis-intake-actions{display:flex;gap:12px;align-items:center}
+        .diagnosis-intake-actions .diagnosis-secondary-action{width:auto;min-width:112px}
+        .diagnosis-result-enterprise{margin:0 0 8px;color:#6b7280;font-size:13px}
         @media(max-width:1023px){
           .page-hero{height:200px}
           .diagnosis-home{grid-template-columns:1fr}
           .diagnosis-compact-guide{grid-template-columns:1fr}
-        }
-
-        @media(min-width:1024px) and (max-width:1365px){
-          .diagnosis-home{grid-template-columns:1fr}
-          .diagnosis-home-aside{max-width:560px}
         }
 
         @media(max-width:767px){
@@ -277,6 +277,11 @@
           .page-hero-subtitle{font-size:15px}
           .home-desc{max-width:90%;display:block;white-space:normal}
           .diagnosis-home-title{font-size:24px}
+          .diagnosis-intake-card{padding:26px 22px}
+          .diagnosis-intake-grid{grid-template-columns:1fr}
+          .diagnosis-intake-actions{flex-direction:column-reverse}
+          .diagnosis-intake-actions .diagnosis-secondary-action{width:100%}
+          .diagnosis-home-aside{order:-1}
           .diagnosis-proof-row,.scenario-grid,.dimension-grid,.deliverable-grid,.material-list,.diagnosis-compact-guide{grid-template-columns:1fr}
           .diag-section-header{display:block}
           .diag-section-note{margin-top:6px}
@@ -299,6 +304,128 @@
     <script src="js/image-urls-v2.js?v=5"></script>
 <link rel="stylesheet" href="commercial.css">
 <link rel="stylesheet" href="site-paper-theme.css?v=20260717-mobile-nav-compact">
+<style>
+  @media(min-width:1024px){
+    body.diag-page main.container{max-width:1168px!important;padding-top:32px!important}
+    body.diag-page main > .py-12{padding-top:32px!important;padding-bottom:24px!important}
+    body.diag-page .diagnosis-home{
+      max-width:1168px;
+      grid-template-columns:minmax(0,1.35fr) minmax(390px,.75fr);
+      gap:0;
+      align-items:stretch;
+      background:#fff;
+      border:1px solid #d9d3c8;
+      box-shadow:0 18px 48px rgba(57,45,39,.08);
+    }
+    body.diag-page .diagnosis-home-main,
+    body.diag-page .diagnosis-home-aside{display:flex;min-width:0}
+    body.diag-page .diagnosis-home-aside{flex-direction:column}
+    body.diag-page .diagnosis-home-aside > .mt-6{display:none!important}
+    body.diag-page .diagnosis-home .card{
+      width:100%;
+      margin:0!important;
+      border:0!important;
+      border-radius:0!important;
+      box-shadow:none!important;
+    }
+    body.diag-page .diagnosis-home-main .card{
+      padding:54px 60px!important;
+      display:flex;
+      flex-direction:column;
+    }
+    body.diag-page .diagnosis-home-aside{
+      border-left:1px solid #d9d3c8;
+      background:#faf8f4;
+    }
+    body.diag-page .diagnosis-home-aside .card{
+      padding:46px 48px!important;
+      background:transparent!important;
+    }
+    body.diag-page .diagnosis-kicker{
+      padding:0 0 10px;
+      border:0;
+      border-radius:0;
+      background:transparent;
+      letter-spacing:.12em;
+    }
+    body.diag-page .diagnosis-home-title{
+      max-width:620px;
+      margin-bottom:18px;
+      font-size:38px;
+      line-height:1.28;
+      font-weight:650;
+    }
+    body.diag-page .diagnosis-home-lead{
+      max-width:650px;
+      margin-bottom:8px;
+      font-size:16px;
+      line-height:1.95;
+    }
+    body.diag-page .diagnosis-proof-row{
+      max-width:none;
+      margin-top:auto;
+      padding-top:30px;
+      border-top:1px solid #e3ddd3;
+      gap:0;
+    }
+    body.diag-page .diagnosis-proof{
+      padding:0 18px;
+      border:0;
+      border-right:1px solid #e3ddd3;
+      border-radius:0;
+      background:transparent;
+    }
+    body.diag-page .diagnosis-proof:first-child{padding-left:0}
+    body.diag-page .diagnosis-proof:last-child{padding-right:0;border-right:0}
+    body.diag-page .diagnosis-proof strong{font-size:26px;font-weight:650}
+    body.diag-page .diagnosis-start-label{
+      margin-bottom:14px;
+      font-size:11px;
+      letter-spacing:.14em;
+    }
+    body.diag-page .diagnosis-start-title{
+      margin-bottom:14px;
+      font-size:28px;
+      line-height:1.35;
+      font-weight:650;
+    }
+    body.diag-page .diagnosis-start-lead{font-size:14px;line-height:1.9;margin-bottom:18px}
+    body.diag-page .diagnosis-start-points{gap:9px;margin-bottom:20px}
+    body.diag-page .diagnosis-primary-action{min-height:52px;border-radius:3px}
+    body.diag-page .diagnosis-secondary-action{border-radius:3px}
+    body.diag-page .diagnosis-full-sections{max-width:1168px;margin-top:34px}
+    body.diag-page .diagnosis-compact-guide{
+      gap:0;
+      border-top:1px solid #d9d3c8;
+      border-bottom:1px solid #d9d3c8;
+    }
+    body.diag-page .diagnosis-guide-item{
+      padding:28px 34px;
+      border:0;
+      border-right:1px solid #d9d3c8;
+      border-radius:0;
+      background:transparent;
+    }
+    body.diag-page .diagnosis-guide-item:first-child{padding-left:0}
+    body.diag-page .diagnosis-guide-item:last-child{padding-right:0;border-right:0}
+    body.diag-page .diagnosis-guide-item strong{
+      margin-bottom:10px;
+      color:#AB1942;
+      font-size:14px;
+      letter-spacing:.04em;
+    }
+    body.diag-page .diagnosis-guide-item p{font-size:13px;line-height:1.85}
+    body.diag-page .diagnosis-boundary{
+      margin-top:30px;
+      padding:3px 0 3px 18px;
+      border:0;
+      border-left:3px solid #b18a50;
+      border-radius:0;
+      background:transparent;
+      color:#62656a;
+    }
+  }
+</style>
 </head>
 <body class="diag-page">
     <div id="app" class="min-h-screen">
@@ -335,7 +462,7 @@
           <div class="container">
             <div class="page-hero-inner">
               <h1 class="page-hero-title">企业诊断</h1>
-              <p class="page-hero-subtitle">选择适合你的诊断方式，快速了解企业风险状况</p>
+              <p class="page-hero-subtitle">用结构化问题，先看清企业风险处于什么阶段</p>
             </div>
           </div>
         </section>
@@ -360,62 +487,20 @@
 
                     <aside class="diagnosis-home-aside">
                         <div class="card">
-                            <div class="mb-6 text-center">
-                                <p class="home-desc">选择适合你的诊断方式，先把风险方向看清楚</p>
-                            </div>
-                            
-                            <!-- 全面诊断卡片 -->
-                            <div class="diagnosis-option" :class="{ active: expandedOption === 'full' }">
-                                <div class="diagnosis-option-header" @click="toggleOption('full')">
-                                    <div class="diagnosis-option-icon full">📊</div>
-                                    <div class="diagnosis-option-info">
-                                        <div class="diagnosis-option-title">全面诊断</div>
-                                        <div class="diagnosis-option-subtitle">
-                                            <span class="tag full">36道题</span>
-                                            <span>约3分钟</span>
-                                        </div>
-                                    </div>
-                                    <div class="diagnosis-option-chevron">▼</div>
-                                </div>
-                                <div class="diagnosis-option-detail">
-                                    <div class="suitable-for"><strong>适合：</strong>想全面了解企业经营状况，深入排查各维度风险</div>
-                                    <ul>
-                                        <li>覆盖债务、资产、经营、法律、家庭保障五大维度</li>
-                                        <li>36道完整题目，评估企业健康状况</li>
-                                        <li>生成雷达图，展示各维度得分</li>
-                                        <li>提供建议路径和关键发现</li>
-                                    </ul>
-                                    <button @click.stop="startDiagnosis" class="start-btn full">开始全面诊断</button>
-                                </div>
-                            </div>
-                            
-                            <!-- 快速诊断卡片 -->
-                            <div class="diagnosis-option" :class="{ active: expandedOption === 'fast' }">
-                                <div class="diagnosis-option-header" @click="toggleOption('fast')">
-                                    <div class="diagnosis-option-icon fast">⚡</div>
-                                    <div class="diagnosis-option-info">
-                                        <div class="diagnosis-option-title">快速诊断</div>
-                                        <div class="diagnosis-option-subtitle">
-                                            <span class="tag fast">5道题</span>
-                                            <span>约1分钟</span>
-                                        </div>
-                                    </div>
-                                    <div class="diagnosis-option-chevron">▼</div>
-                                </div>
-                                <div class="diagnosis-option-detail">
-                                    <div class="suitable-for"><strong>适合：</strong>时间有限，想快速筛查企业基本风险方向</div>
-                                    <ul>
-                                        <li>5道核心题目，快速筛查企业基本状况</li>
-                                        <li>聚焦关键风险点，初步判断风险等级</li>
-                                        <li>1分钟即可完成，高效便捷</li>
-                                        <li>可升级到全面诊断获取详细报告</li>
-                                    </ul>
-                                    <button @click.stop="startFastDiagnosis" class="start-btn fast">开始快速诊断</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="mt-6 text-sm text-gray-500 text-center">
-                            <p>结果只保存在当前浏览器，建议完成后截图留存。</p>
+                            <span class="diagnosis-start-label">建议先从这里开始</span>
+                            <h3 class="diagnosis-start-title">1 分钟快速初筛</h3>
+                            <p class="diagnosis-start-lead">回答 5 个核心问题，立即看到风险等级和需要优先关注的方向。</p>
+                            <ul class="diagnosis-start-points">
+                                <li>无需登录，不要求上传企业材料</li>
+                                <li>完成后立即生成初步结果</li>
+                                <li>结果仅保存在当前浏览器</li>
+                            </ul>
+                            <button @click="startFastDiagnosis" class="diagnosis-primary-action">开始快速初筛</button>
+                            <span class="diagnosis-action-meta">5 道题 · 约 1 分钟 · 免费</span>
+
+                            <div class="diagnosis-path-divider">已有明确风险信号</div>
+                            <p class="diagnosis-full-note">如果企业已经出现逾期、诉讼、执行、账户冻结或担保牵连，建议直接完成 36 题全面诊断。</p>
+                            <button @click="startDiagnosis" class="diagnosis-secondary-action">直接进入全面诊断（约 3 分钟）</button>
                         </div>
                         <div class="mt-6 text-center">
                             <a href="index.html" class="text-sm brand-color" style="text-decoration:none;">← 返回首页</a>
@@ -435,13 +520,40 @@
                         </div>
                         <div class="diagnosis-guide-item">
                             <strong>3. 最后决定动作</strong>
-                            <p>如果只是初筛，先做快速诊断；如果已经有逾期、诉讼或担保牵连，做全面诊断。</p>
+                            <p>根据风险等级和关键短板，决定继续观察、准备材料，还是尽快进入专业复核。</p>
                         </div>
                     </div>
 
                     <div class="diag-section diagnosis-boundary">
                         线上诊断只做初步判断，不替代正式法律、财务或重组意见。涉及诉讼、担保、资产处置和债务谈判时，需要结合材料进一步复核。
                     </div>
+                </div>
+            </div>
+
+            <!-- Intake -->
+            <div v-if="currentPage === 'intake'" class="py-4 diagnosis-intake">
+                <div class="card diagnosis-intake-card">
+                    <span class="diagnosis-intake-step">开始前 · 基本信息</span>
+                    <h2 class="diagnosis-intake-title">先确认本次诊断对象</h2>
+                    <p class="diagnosis-intake-lead">填写后再进入问卷，结果页会标注企业名称，便于截图、保存和后续沟通。</p>
+                    <form @submit.prevent="submitIntake" novalidate>
+                        <div class="diagnosis-intake-grid">
+                            <div class="diagnosis-field">
+                                <label for="enterprise-name">企业名称</label>
+                                <input id="enterprise-name" v-model.trim="enterpriseName" type="text" maxlength="80" autocomplete="organization" placeholder="请输入企业全称或简称" @input="intakeError = ''">
+                            </div>
+                            <div class="diagnosis-field">
+                                <label for="wechat-id">微信号 <span>（选填）</span></label>
+                                <input id="wechat-id" v-model.trim="wechatId" type="text" maxlength="50" autocomplete="off" placeholder="便于后续需要时联系">
+                            </div>
+                        </div>
+                        <p v-if="intakeError" class="diagnosis-intake-error" role="alert">{{ intakeError }}</p>
+                        <div class="diagnosis-privacy-note">当前页面不会自动上传或提交这些信息；它们只在本次打开页面期间用于标记诊断结果。需要专业沟通时，请在结果页主动选择“预约咨询”。</div>
+                        <div class="diagnosis-intake-actions">
+                            <button type="button" @click="currentPage = 'home'" class="diagnosis-secondary-action">返回</button>
+                            <button type="submit" class="diagnosis-primary-action">确认信息，进入{{ pendingMode === 'fast' ? '快速初筛' : '全面诊断' }}</button>
+                        </div>
+                    </form>
                 </div>
             </div>
 
@@ -475,6 +587,7 @@
                 <div class="card">
                     <div class="text-center mb-6">
                         <div class="score-badge mb-4">{{ Math.round(totalScore) }}</div>
+                        <p v-if="enterpriseName" class="diagnosis-result-enterprise">{{ enterpriseName }} · 本次诊断结果</p>
                         <h2 class="text-xl font-bold text-gray-800 mb-1">综合评分</h2>
                         <p class="text-sm" :class="resultClass">{{ resultLevel }}</p>
                     </div>
@@ -595,7 +708,10 @@
         createApp({setup(){
             const currentPage = ref('home');
             const useFastMode = ref(false);
-            const expandedOption = ref(null);
+            const pendingMode = ref('fast');
+            const enterpriseName = ref('');
+            const wechatId = ref('');
+            const intakeError = ref('');
             const questions = ref([]);
             const currentQuestionIndex = ref(0);
             const currentLevel = ref(0);
@@ -623,15 +739,17 @@
             const findings = computed(() => {const r=[];dimensionScores.value.forEach(d=>{if(d.score<40)r.push(d.name+'严重不足（'+d.score+'分），需立即采取措施');else if(d.score<60)r.push(d.name+'存在隐患（'+d.score+'分），建议重点关注')});if(r.length===0)r.push('企业整体健康状况良好，建议保持现有的经营管理模式');return r});
             const suggestions = computed(() => {const s=totalScore.value;if(s>=80)return[{title:'维持现状',content:'企业经营状况良好，建议继续保持稳健的财务管理和风险控制'},{title:'优化升级',content:'可考虑进一步优化债务结构，降低融资成本，提升资产运营效率'}];if(s>=60)return[{title:'风险预警',content:'企业存在一定风险，建议建立现金流监控机制，提前做好风险预案'},{title:'债务优化',content:'梳理现有债务结构，优先解决高息负债，降低综合融资成本'}];if(s>=40)return[{title:'紧急处理',content:'企业已进入风险预警区间，需立即启动债务重组准备工作'},{title:'专业咨询',content:'建议尽快联系专业重组机构，进行正式的企业诊断'},{title:'资产盘活',content:'处置低效资产，快速回笼现金，缓解资金压力'}];return[{title:'立即行动',content:'企业已处于危机状态，需立即采取全面的困境重组措施'},{title:'专业介入',content:'强烈建议寻求专业困境重组机构的帮助，制定系统性解决方案'},{title:'法律保护',content:'立即咨询律师，了解当前法律风险，避免情况进一步恶化'}]});
             const getScoreClass = (s) => {if(s>=80)return'text-green-600';if(s>=60)return'text-blue-600';if(s>=40)return'text-orange-600';return'text-red-600'};
-            const startDiagnosis = () => {useFastMode.value=false;questions.value=[...fullQuestions];currentQuestionIndex.value=0;currentLevel.value=questions.value[0]?.level||0;selectedAnswer.value=null;answers.value={};currentPage.value='question'};
-            const startFastDiagnosis = () => {useFastMode.value=true;questions.value=[...fastQuestions];currentQuestionIndex.value=0;currentLevel.value=questions.value[0]?.level||0;selectedAnswer.value=null;answers.value={};currentPage.value='question'};
-            const startFullDiagnosis = () => {useFastMode.value=false;questions.value=[...fullQuestions];currentQuestionIndex.value=0;currentLevel.value=questions.value[0]?.level||0;selectedAnswer.value=null;answers.value={};currentPage.value='question'};
-            const toggleOption = (type) => {expandedOption.value = expandedOption.value === type ? null : type};
+            const beginDiagnosis = (mode) => {useFastMode.value=mode==='fast';questions.value=mode==='fast'?[...fastQuestions]:[...fullQuestions];currentQuestionIndex.value=0;currentLevel.value=questions.value[0]?.level||0;selectedAnswer.value=null;answers.value={};currentPage.value='question'};
+            const openIntake = (mode) => {pendingMode.value=mode;intakeError.value='';currentPage.value='intake';nextTick(()=>document.getElementById('enterprise-name')?.focus())};
+            const submitIntake = () => {if(!enterpriseName.value){intakeError.value='请先填写企业名称';nextTick(()=>document.getElementById('enterprise-name')?.focus());return}beginDiagnosis(pendingMode.value)};
+            const startDiagnosis = () => openIntake('full');
+            const startFastDiagnosis = () => openIntake('fast');
+            const startFullDiagnosis = () => beginDiagnosis('full');
             const selectOption = (idx) => {selectedAnswer.value=idx;answers.value[currentQuestionIndex.value]=idx;if(isLastQuestion.value){diagnosisCount.value++;const ue=parseInt(localStorage.getItem('diagnosis_user_extra')||'0')+1;localStorage.setItem('diagnosis_user_extra',String(ue));var pa=parseFloat(localStorage.getItem('diagnosis_avg_score')||'62'),pc=parseInt(localStorage.getItem('diagnosis_avg_count')||'0'),na=pc>0?Math.round((pa*pc+Math.round(totalScore.value))/(pc+1)):Math.round(totalScore.value);averageScore.value=na;localStorage.setItem('diagnosis_avg_score',String(na));localStorage.setItem('diagnosis_avg_count',String(pc+1));currentPage.value='result';nextTick(()=>renderRadarChart())}else{currentQuestionIndex.value++;currentLevel.value=questions.value[currentQuestionIndex.value].level;selectedAnswer.value=answers.value[currentQuestionIndex.value]??null}};
             const prevQuestion = () => {if(currentQuestionIndex.value>0){currentQuestionIndex.value--;currentLevel.value=questions.value[currentQuestionIndex.value].level;selectedAnswer.value=answers.value[currentQuestionIndex.value]??null}};
             const renderRadarChart = () => {const ctx=document.getElementById('radarChart').getContext('2d');if(radarChart.value)radarChart.value.destroy();radarChart.value=new Chart(ctx,{type:'radar',data:{labels:dimensionScores.value.map(d=>d.name),datasets:[{label:'维度评分',data:dimensionScores.value.map(d=>d.score),backgroundColor:'rgba(171,25,66,0.2)',borderColor:'#AB1942',borderWidth:2,pointBackgroundColor:'#AB1942',pointBorderColor:'#fff'}]},options:{scales:{r:{beginAtZero:true,max:100,ticks:{stepSize:20,font:{size:10}},grid:{color:'rgba(0,0,0,0.1)'},pointLabels:{font:{size:12}}}},plugins:{legend:{display:false}},maintainAspectRatio:false}})};
             const restartDiagnosis = () => {currentPage.value='home';showContact.value=false};
-            return {currentPage,useFastMode,expandedOption,questions,currentQuestionIndex,currentLevel,selectedAnswer,answers,diagnosisCount,averageScore,showContact,levels,totalQuestions,currentQuestion,isLastQuestion,progressPercent,dimensionScores,totalScore,resultLevel,resultClass,findings,suggestions,getScoreClass,startDiagnosis,startFastDiagnosis,startFullDiagnosis,toggleOption,selectOption,prevQuestion,renderRadarChart,restartDiagnosis}
+            return {currentPage,useFastMode,pendingMode,enterpriseName,wechatId,intakeError,questions,currentQuestionIndex,currentLevel,selectedAnswer,answers,diagnosisCount,averageScore,showContact,levels,totalQuestions,currentQuestion,isLastQuestion,progressPercent,dimensionScores,totalScore,resultLevel,resultClass,findings,suggestions,getScoreClass,startDiagnosis,startFastDiagnosis,startFullDiagnosis,submitIntake,selectOption,prevQuestion,renderRadarChart,restartDiagnosis}
         }}).mount('#app');
 
         /* Mobile hamburger: closing logic (opening via onclick on button) */
