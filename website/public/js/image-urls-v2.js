@@ -65,5 +65,6 @@ window.__IMAGE_URLS = {
   columnCoverFourThresholds: "images/column-cover-four-thresholds.jpg?v=2",
   columnCoverLprInterest: "images/column-cover-lpr-interest.jpg?v=2",
   columnCoverLawsuitAccountingAssets: "images/column-cover-lawsuit-accounting-assets.jpg?v=2",
-  columnCoverLawyerAccountantNpl: "images/column-cover-lawyer-accountant-npl.jpg?v=2"
+  columnCoverLawyerAccountantNpl: "images/column-cover-lawyer-accountant-npl.jpg?v=2",
+  columnCoverVoiceDiagnosis: "images/column-cover-voice-diagnosis.png?v=1"
 };

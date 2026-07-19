@@ -1,5 +1,35 @@
 var COLUMN_DATA = [
   {
+    slug: 'article-20260718-voice-diagnosis',
+    title: '听完20条语音，我为什么没有马上给方案？',
+    category: '老板自救',
+    filter: 'self',
+    date: '2026-07-18',
+    readtime: '约6分钟',
+    summary: '旧投资能不能追回，与眼前债务怎么控制，需要分成两本账。先把事实和风险理清，再讨论方案。',
+    tags: [
+      '困境重组',
+      '债务梳理',
+      '止损判断',
+      '企业诊断'
+    ],
+    imageKey: 'columnCoverVoiceDiagnosis',
+    featured: true,
+    contentFile: 'column-content/article-20260718-voice-diagnosis.html'
+  },
+  {
+    slug: 'article-20260717-bi5yhy',
+    title: '绝大多数企业的债务雷，都是生意最好的时候埋下的',
+    category: '经营修复',
+    filter: 'repair',
+    date: '2026-07-17',
+    readtime: '约3分钟',
+    summary: '做了十年企业重组，我有个观察：绝大多数企业的致命债务，都不是在生意最难的时候欠下的。恰恰是在行情最火、赚钱最顺的顶峰，埋下的雷。',
+    tags: [],
+    imageKey: 'column23',
+    contentFile: 'column-content/article-20260717-bi5yhy.html'
+  },
+  {
     slug: 'article-20260716-dw0i4w',
     title: '为什么困境重组是个慢生意？',
     category: '经营修复',
@@ -243,7 +273,6 @@ var COLUMN_DATA = [
       '老板自查'
     ],
     imageKey: 'column12',
-    featured: true,
     contentFile: 'column-content/qi-ye-zhen-duan-36-ti.html'
   },
   {
